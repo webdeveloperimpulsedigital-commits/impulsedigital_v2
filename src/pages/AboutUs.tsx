@@ -31,6 +31,26 @@ const AboutUs: React.FC = () => {
           }
         });
       }
+
+      // Leadership cards animation
+      const useCards = document.querySelectorAll('.svc-use-card');
+      if (useCards.length) {
+        gsap.set(useCards, { opacity: 0, y: 40 });
+        ScrollTrigger.create({
+          trigger: '.svc-uses-grid',
+          start: 'top 65%',
+          once: true,
+          onEnter: () => {
+            gsap.to(useCards, {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.12,
+              ease: 'power3.out'
+            });
+          }
+        });
+      }
     }
 
     // Channels orbit animation
@@ -317,22 +337,29 @@ const AboutUs: React.FC = () => {
       <ServiceHandoff />
 
       {/* Section 6: Founders */}
-      <section className="svc-section glass-panel">
+      <section className="svc-uses glass-panel" id="leadership">
         <div className="container" style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <h2 className="svc-h2 split-text" style={{ textAlign: 'center', marginBottom: '4rem' }}>Our Leadership</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
-            <div style={{ background: 'rgba(255,255,255,0.02)', padding: '3rem', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflow: 'hidden', transition: 'all 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'none'}>
-              <div style={{ width: '120px', height: '120px', borderRadius: '50%', background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%)', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)' }}></div>
-              <h3 style={{ fontSize: '1.8rem', color: 'var(--white)', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)' }}>Founder 1</h3>
-              <p style={{ color: 'var(--accent)', fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1.5rem', fontWeight: 600 }}>Co-Founder</p>
-              <p style={{ color: 'var(--soft-grey)', lineHeight: 1.6, fontSize: '1.05rem' }}>Insert separate founder bio here. Describe their strategic vision, their background, and how they contribute to the momentum of the brands they work with.</p>
+          <div className="svc-uses-grid">
+            
+            {/* Founder 1 */}
+            <div className="svc-use-card" style={{ display: 'flex', flexDirection: 'column' }}>
+              <div className="svc-use-corner"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></div>
+              <img src={`${import.meta.env.BASE_URL}images/Sairam Krishnamurthy.png`} alt="Founder 1" style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', marginBottom: '1.5rem', border: '2px solid rgba(255,255,255,0.1)' }} />
+              <h3 className="svc-use-title">Founder 1 Name</h3>
+              <div className="svc-use-outcome" style={{ marginTop: 0, marginBottom: '1rem', alignSelf: 'flex-start' }}>Co-Founder</div>
+              <p className="svc-use-body" style={{ marginTop: 0 }}>Insert separate founder bio here. Describe their strategic vision, their background, and how they contribute to the momentum of the brands they work with.</p>
             </div>
-            <div style={{ background: 'rgba(255,255,255,0.02)', padding: '3rem', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflow: 'hidden', transition: 'all 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'none'}>
-              <div style={{ width: '120px', height: '120px', borderRadius: '50%', background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%)', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)' }}></div>
-              <h3 style={{ fontSize: '1.8rem', color: 'var(--white)', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)' }}>Founder 2</h3>
-              <p style={{ color: 'var(--accent)', fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1.5rem', fontWeight: 600 }}>Co-Founder</p>
-              <p style={{ color: 'var(--soft-grey)', lineHeight: 1.6, fontSize: '1.05rem' }}>Insert separate founder bio here. Describe their operational expertise, creative leadership, and how they ensure execution meets the high standards of the agency.</p>
+            
+            {/* Founder 2 */}
+            <div className="svc-use-card" style={{ display: 'flex', flexDirection: 'column' }}>
+              <div className="svc-use-corner"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></div>
+              <img src={`${import.meta.env.BASE_URL}images/Pratik Shetty.png`} alt="Founder 2" style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', marginBottom: '1.5rem', border: '2px solid rgba(255,255,255,0.1)' }} />
+              <h3 className="svc-use-title">Founder 2 Name</h3>
+              <div className="svc-use-outcome" style={{ marginTop: 0, marginBottom: '1rem', alignSelf: 'flex-start' }}>Co-Founder</div>
+              <p className="svc-use-body" style={{ marginTop: 0 }}>Insert separate founder bio here. Describe their operational expertise, creative leadership, and how they ensure execution meets the high standards of the agency.</p>
             </div>
+            
           </div>
         </div>
       </section>
