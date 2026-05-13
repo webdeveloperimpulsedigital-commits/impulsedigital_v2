@@ -1,17 +1,22 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 const Blog: React.FC = () => {
   const blogSliderRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const scrollLeft = () => {
+  const handleScroll = () => {
     if (blogSliderRef.current) {
-      blogSliderRef.current.scrollBy({ left: -window.innerWidth * 0.85, behavior: 'smooth' });
+      const scrollPosition = blogSliderRef.current.scrollLeft;
+      const cardWidth = blogSliderRef.current.clientWidth;
+      const newIndex = Math.round(scrollPosition / cardWidth);
+      setActiveIndex(newIndex);
     }
   };
 
-  const scrollRight = () => {
+  const scrollToSlide = (index: number) => {
     if (blogSliderRef.current) {
-      blogSliderRef.current.scrollBy({ left: window.innerWidth * 0.85, behavior: 'smooth' });
+      const cardWidth = blogSliderRef.current.clientWidth;
+      blogSliderRef.current.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
     }
   };
 
@@ -22,7 +27,7 @@ const Blog: React.FC = () => {
           <h2 className="section-heading split-text" style={{ marginBottom: 0 }}>The read before the next decision.</h2>
           <a href="#" className="btn" data-cursor="READ"><span className="btn-text">Go beyond the headline</span></a>
         </div>
-        <div className="blog-grid" ref={blogSliderRef}>
+        <div className="blog-grid" ref={blogSliderRef} onScroll={handleScroll}>
           <div className="blog-card blog-card--featured">
             <img src={`${import.meta.env.BASE_URL}images/dashboard.png`} alt="Dashboarding is Not Intelligence" className="blog-card-img" />
             <div className="blog-card-inner">
@@ -65,10 +70,21 @@ const Blog: React.FC = () => {
         </div>
         
         <div className="blog-slider-controls">
-          <button className="blog-slider-btn" onClick={scrollLeft} aria-label="Previous Blog">
+          <button className="blog-slider-btn" onClick={() => scrollToSlide(Math.max(0, activeIndex - 1))} aria-label="Previous Blog">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
-          <button className="blog-slider-btn" onClick={scrollRight} aria-label="Next Blog">
+
+          <div className="slider-dots">
+            {[0, 1, 2].map((idx) => (
+              <span
+                key={idx}
+                className={`slider-dot ${activeIndex === idx ? 'active' : ''}`}
+                onClick={() => scrollToSlide(idx)}
+              />
+            ))}
+          </div>
+
+          <button className="blog-slider-btn" onClick={() => scrollToSlide(Math.min(2, activeIndex + 1))} aria-label="Next Blog">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
           </button>
         </div>

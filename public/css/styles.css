@@ -913,7 +913,7 @@ nav.scrolled {
     .logo-grid {
         display: flex;
         width: max-content;
-        animation: logoScroll 20s linear infinite;
+        animation: logoScroll 60s linear infinite;
         gap: 1.5rem;
         min-height: auto;
     }
@@ -928,11 +928,12 @@ nav.scrolled {
         transform: none !important;
     }
     .logo-pane {
-        padding: 0.25rem; /* Reduce padding so logo can be bigger */
+        padding: 0.4rem;
     }
     .logo-card img {
         max-width: 95%;
         max-height: 90%;
+        transform: scale(min(var(--base-scale), 1.15)) !important;
     }
 
     /* Testimonials Mobile Slider */
@@ -988,11 +989,31 @@ nav.scrolled {
         line-height: 1.2 !important;
     }
     
+    .slider-dots {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin: 0 0.5rem;
+    }
+    .slider-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .slider-dot.active {
+        background: var(--impulse-violet);
+        transform: scale(1.4);
+    }
+    
     .test-slider-controls {
         display: flex;
         justify-content: center;
-        gap: 1rem;
-        margin-top: 1rem;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
     }
     .test-slider-btn {
         background: rgba(84, 61, 152, 0.15);
@@ -1048,8 +1069,9 @@ nav.scrolled {
     .blog-slider-controls {
         display: flex;
         justify-content: center;
-        gap: 1rem;
-        margin-top: 1rem;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
     }
     .blog-slider-btn {
         background: rgba(84, 61, 152, 0.15);
@@ -1153,9 +1175,11 @@ nav.scrolled {
     }
 }
 
-.test-slider-controls,
-.blog-slider-controls {
-    display: none;
+@media (min-width: 769px) {
+    .test-slider-controls,
+    .blog-slider-controls {
+        display: none;
+    }
 }
 
 
@@ -1946,7 +1970,18 @@ button,
 
 
     .cosmos-card {
-        width: 80vw;
+        width: 65vw;
+        height: 45vh;
+    }
+    
+    .hs-client {
+        font-size: 1.25rem !important;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hs-desc {
+        font-size: 0.85rem !important;
+        line-height: 1.4;
     }
 
     .logo-grid-massive {

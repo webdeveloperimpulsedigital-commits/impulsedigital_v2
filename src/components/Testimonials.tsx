@@ -1,17 +1,22 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 const Testimonials: React.FC = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const scrollLeft = () => {
+  const handleScroll = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: -window.innerWidth * 0.85, behavior: 'smooth' });
+      const scrollPosition = sliderRef.current.scrollLeft;
+      const cardWidth = sliderRef.current.clientWidth;
+      const newIndex = Math.round(scrollPosition / cardWidth);
+      setActiveIndex(newIndex);
     }
   };
 
-  const scrollRight = () => {
+  const scrollToSlide = (index: number) => {
     if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: window.innerWidth * 0.85, behavior: 'smooth' });
+      const cardWidth = sliderRef.current.clientWidth;
+      sliderRef.current.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
     }
   };
 
@@ -19,7 +24,7 @@ const Testimonials: React.FC = () => {
     <section className="testimonials glass-panel">
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <h2 className="section-heading split-text">What working with us looked like.</h2>
-        <div className="testimonial-grid" ref={sliderRef}>
+        <div className="testimonial-grid" ref={sliderRef} onScroll={handleScroll}>
           <div className="test-card-col">
             <div className="test-card">
               <div className="test-content">
@@ -113,10 +118,21 @@ const Testimonials: React.FC = () => {
         </div>
 
         <div className="test-slider-controls">
-          <button className="test-slider-btn" onClick={scrollLeft} aria-label="Previous Testimonial">
+          <button className="test-slider-btn" onClick={() => scrollToSlide(Math.max(0, activeIndex - 1))} aria-label="Previous Testimonial">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
-          <button className="test-slider-btn" onClick={scrollRight} aria-label="Next Testimonial">
+
+          <div className="slider-dots">
+            {[0, 1, 2, 3, 4, 5].map((idx) => (
+              <span
+                key={idx}
+                className={`slider-dot ${activeIndex === idx ? 'active' : ''}`}
+                onClick={() => scrollToSlide(idx)}
+              />
+            ))}
+          </div>
+
+          <button className="test-slider-btn" onClick={() => scrollToSlide(Math.min(5, activeIndex + 1))} aria-label="Next Testimonial">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
           </button>
         </div>

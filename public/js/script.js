@@ -299,17 +299,23 @@ document.fonts.ready.then(() => {
     const cosmosSection = document.getElementById('cases-pin');
     const cosmosCards = gsap.utils.toArray('.cosmos-card');
 
-    if(cosmosCards.length > 0 && window.innerWidth > 768) {
+    if(cosmosCards.length > 0) {
+        
+        const isMobile = window.innerWidth <= 768;
         
         // Initial State: Position cards deep in a true 3D tunnel using Z-axis
         cosmosCards.forEach((card, index) => {
             const isLeft = index % 2 === 0;
             // X position is completely fixed. Perspective naturally moves them outward as you fly closer.
-            const xOffset = isLeft ? -window.innerWidth * 0.3 : window.innerWidth * 0.3;
+            // On mobile, use a smaller offset so cards don't clip off screen.
+            const offsetMultiplier = isMobile ? 0.2 : 0.3;
+            const xOffset = isLeft ? -window.innerWidth * offsetMultiplier : window.innerWidth * offsetMultiplier;
+            // On mobile, we also need a vertical offset so they don't completely overlap in the center tunnel
+            const yOffset = isMobile ? (isLeft ? -window.innerHeight * 0.15 : window.innerHeight * 0.15) : 0;
             
             gsap.set(card, { 
                 x: xOffset, 
-                y: 0, 
+                y: yOffset, 
                 xPercent: -50, 
                 yPercent: -50, 
                 z: -5000, // Very deep in the tunnel
