@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
         
         <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
           <Link to="/" className="nav-item" data-cursor="GO" onClick={closeMobileMenu}>Home</Link>
-          <a href="#about" className="nav-item" data-cursor="GO" onClick={closeMobileMenu}>About Us</a>
+          <Link to="/about" className="nav-item" data-cursor="GO" onClick={closeMobileMenu}>About Us</Link>
           <div className="nav-dropdown">
             <a href="#services" className="nav-item" data-cursor="GO" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
               Services

@@ -4,6 +4,7 @@ import Background from './components/Background';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import AboutUs from './pages/AboutUs';
 import ConsumerIntelligence from './pages/ConsumerIntelligence';
 import MarketIntelligence from './pages/MarketIntelligence';
 import AlwaysOnIntelligence from './pages/AlwaysOnIntelligence';
@@ -32,6 +33,7 @@ const App: React.FC = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutUs />} />
         <Route path="/consumer-intelligence" element={<ConsumerIntelligence />} />
         <Route path="/market-intelligence" element={<MarketIntelligence />} />
         <Route path="/always-on-intelligence" element={<AlwaysOnIntelligence />} />
