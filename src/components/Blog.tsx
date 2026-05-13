@@ -1,6 +1,20 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 const Blog: React.FC = () => {
+  const blogSliderRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    if (blogSliderRef.current) {
+      blogSliderRef.current.scrollBy({ left: -window.innerWidth * 0.85, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (blogSliderRef.current) {
+      blogSliderRef.current.scrollBy({ left: window.innerWidth * 0.85, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="blog glass-panel">
       <div className="container">
@@ -8,7 +22,7 @@ const Blog: React.FC = () => {
           <h2 className="section-heading split-text" style={{ marginBottom: 0 }}>The read before the next decision.</h2>
           <a href="#" className="btn" data-cursor="READ"><span className="btn-text">Go beyond the headline</span></a>
         </div>
-        <div className="blog-grid">
+        <div className="blog-grid" ref={blogSliderRef}>
           <div className="blog-card blog-card--featured">
             <img src={`${import.meta.env.BASE_URL}images/dashboard.png`} alt="Dashboarding is Not Intelligence" className="blog-card-img" />
             <div className="blog-card-inner">
@@ -49,6 +63,16 @@ const Blog: React.FC = () => {
             </div>
           </div>
         </div>
+        
+        <div className="blog-slider-controls">
+          <button className="blog-slider-btn" onClick={scrollLeft} aria-label="Previous Blog">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button className="blog-slider-btn" onClick={scrollRight} aria-label="Next Blog">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+
       </div>
     </section>
   );
