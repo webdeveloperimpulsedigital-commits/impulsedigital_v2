@@ -345,31 +345,49 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* Section 6: Founders - Premium Profile Grid */}
-      <section style={{ padding: '8rem 0', borderTop: '1px solid rgba(255,255,255,0.05)' }} id="leadership">
-        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2 className="split-text" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontFamily: 'var(--font-heading)', textAlign: 'center', marginBottom: '5rem', color: 'var(--white)' }}>Our Leadership</h2>
+      {/* Section 6: Founders - Editorial Staggered Layout */}
+      <section style={{ padding: '8rem 0', position: 'relative' }} id="leadership">
+        <div className="container" style={{ maxWidth: '1100px', margin: '0 auto' }}>
+          <h2 className="split-text" style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontFamily: 'var(--font-heading)', marginBottom: '8rem', color: 'var(--white)' }}>Our Leadership</h2>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '3rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}>
             
-            {/* Founder 1 */}
-            <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '32px', padding: '4rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <div style={{ width: '160px', height: '160px', borderRadius: '50%', padding: '8px', background: 'linear-gradient(135deg, var(--impulse-violet), var(--accent))', marginBottom: '2rem' }}>
-                <img src={`${import.meta.env.BASE_URL}images/Sairam Krishnamurthy.png`} alt="Founder 1" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+            {/* Founder 1 - Image Left */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '5rem', alignItems: 'center' }}>
+              <div style={{ position: 'relative' }}>
+                <div style={{ width: '100%', aspectRatio: '4/5', borderRadius: '32px', overflow: 'hidden', position: 'relative' }}>
+                  <img src={`${import.meta.env.BASE_URL}images/Sairam Krishnamurthy.png`} alt="Founder 1" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 40%)' }}></div>
+                </div>
+                <div style={{ position: 'absolute', bottom: '-30px', right: '-30px', width: '150px', height: '150px', background: 'var(--impulse-violet)', borderRadius: '50%', zIndex: -1, opacity: 0.5, filter: 'blur(40px)' }}></div>
               </div>
-              <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', color: 'var(--white)', marginBottom: '0.5rem' }}>Founder 1 Name</h3>
-              <div style={{ color: 'var(--accent)', fontSize: '1.1rem', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '2rem' }}>Co-Founder</div>
-              <p style={{ fontSize: '1.15rem', color: 'var(--soft-grey)', lineHeight: 1.6 }}>Insert separate founder bio here. Describe their strategic vision, their background, and how they contribute to the momentum of the brands they work with.</p>
+              <div>
+                <h3 style={{ fontSize: '3.5rem', fontFamily: 'var(--font-heading)', color: 'var(--white)', marginBottom: '0.5rem', lineHeight: 1.1 }}>Founder 1 Name</h3>
+                <div style={{ color: 'var(--accent)', fontSize: '1.2rem', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '2.5rem' }}>Co-Founder</div>
+                <p style={{ fontSize: '1.3rem', color: 'var(--soft-grey)', lineHeight: 1.7 }}>
+                  Insert separate founder bio here. Describe their strategic vision, their background, and how they contribute to the momentum of the brands they work with.
+                </p>
+                <div style={{ marginTop: '2.5rem', width: '60px', height: '3px', background: 'var(--accent)' }}></div>
+              </div>
             </div>
             
-            {/* Founder 2 */}
-            <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '32px', padding: '4rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <div style={{ width: '160px', height: '160px', borderRadius: '50%', padding: '8px', background: 'linear-gradient(135deg, var(--impulse-violet), var(--accent))', marginBottom: '2rem' }}>
-                <img src={`${import.meta.env.BASE_URL}images/Pratik Shetty.png`} alt="Founder 2" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+            {/* Founder 2 - Image Right (Desktop) */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '5rem', alignItems: 'center' }}>
+              <div style={{ order: 2, position: 'relative' }}>
+                <div style={{ width: '100%', aspectRatio: '4/5', borderRadius: '32px', overflow: 'hidden', position: 'relative' }}>
+                  <img src={`${import.meta.env.BASE_URL}images/Pratik Shetty.png`} alt="Founder 2" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 40%)' }}></div>
+                </div>
+                <div style={{ position: 'absolute', top: '-30px', left: '-30px', width: '150px', height: '150px', background: 'var(--accent)', borderRadius: '50%', zIndex: -1, opacity: 0.4, filter: 'blur(40px)' }}></div>
               </div>
-              <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', color: 'var(--white)', marginBottom: '0.5rem' }}>Founder 2 Name</h3>
-              <div style={{ color: 'var(--accent)', fontSize: '1.1rem', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '2rem' }}>Co-Founder</div>
-              <p style={{ fontSize: '1.15rem', color: 'var(--soft-grey)', lineHeight: 1.6 }}>Insert separate founder bio here. Describe their operational expertise, creative leadership, and how they ensure execution meets the high standards of the agency.</p>
+              <div style={{ order: 1 }}>
+                <h3 style={{ fontSize: '3.5rem', fontFamily: 'var(--font-heading)', color: 'var(--white)', marginBottom: '0.5rem', lineHeight: 1.1 }}>Founder 2 Name</h3>
+                <div style={{ color: 'var(--accent)', fontSize: '1.2rem', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '2.5rem' }}>Co-Founder</div>
+                <p style={{ fontSize: '1.3rem', color: 'var(--soft-grey)', lineHeight: 1.7 }}>
+                  Insert separate founder bio here. Describe their operational expertise, creative leadership, and how they ensure execution meets the high standards of the agency.
+                </p>
+                <div style={{ marginTop: '2.5rem', width: '60px', height: '3px', background: 'var(--impulse-violet)' }}></div>
+              </div>
             </div>
             
           </div>
