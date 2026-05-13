@@ -1,17 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
+  const [showScroll, setShowScroll] = useState(false);
+
+  useEffect(() => {
+    const checkScroll = () => {
+      if (window.scrollY > 400) {
+        setShowScroll(true);
+      } else {
+        setShowScroll(false);
+      }
+    };
+    window.addEventListener('scroll', checkScroll);
+    return () => window.removeEventListener('scroll', checkScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer>
       <div className="footer-container">
         <div className="footer-grid">
           <div className="footer-col">
             <img src={`${import.meta.env.BASE_URL}ImpulseDigital_Logo.svg`} alt="Impulse Digital Logo" className="footer-logo" />
-            <p className="footer-tagline">AI native growth intelligence for enterprise brands.</p>
+            
             <div className="footer-socials">
               <a href="#" className="social-icon" data-cursor="FOLLOW"><i className="fab fa-facebook-f"></i></a>
-              <a href="#" className="social-icon" data-cursor="FOLLOW"><i className="fab fa-twitter"></i></a>
+              <a href="#" className="social-icon" data-cursor="FOLLOW"><i className="fa-brands fa-x-twitter"></i></a>
               <a href="#" className="social-icon" data-cursor="FOLLOW"><i className="fab fa-instagram"></i></a>
               <a href="#" className="social-icon" data-cursor="FOLLOW"><i className="fab fa-linkedin-in"></i></a>
               <a href="#" className="social-icon" data-cursor="FOLLOW"><i className="fab fa-youtube"></i></a>
@@ -49,18 +67,20 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="footer-col footer-contact-col">
-            <div className="contact-item">
+            <a href="tel:+919769285224" className="contact-item" style={{textDecoration: 'none'}}>
               <span className="contact-icon"><i className="fas fa-phone"></i></span>
               <span className="contact-text">+91-9769285224</span>
-            </div>
-            <div className="contact-item">
+            </a>
+            <a href="mailto:collabs@theimpulsedigital.com" className="contact-item" style={{textDecoration: 'none'}}>
               <span className="contact-icon"><i className="fas fa-envelope"></i></span>
               <span className="contact-text">collabs@theimpulsedigital.com</span>
-            </div>
+            </a>
             <div className="contact-item address-item">
               <span className="contact-icon"><i className="fas fa-map-marker-alt"></i></span>
               <span className="contact-text">
-                304 - 305, Chirag Infotech, Road No. 16/Z, Ambica Nagar, Wagle Industrial Estate, Thane, Mumbai 400604
+                304 - 305, Chirag Infotech, Road No. 16/Z,<br/>
+                Ambica Nagar, Wagle Industrial Estate,<br/>
+                Thane, Mumbai 400604
               </span>
             </div>
           </div>
@@ -68,7 +88,12 @@ const Footer: React.FC = () => {
 
         <div className="footer-divider"></div>
         <div className="footer-bottom">
-          <p>&copy; 2026 Impulse Digital. All rights reserved.</p>
+          <p>&copy; 2026 Impulse Digital All rights reserved</p>
+          <div className="footer-legal-links">
+            <a href="#">Privacy Policy</a>
+            <span className="separator">|</span>
+            <a href="#">Terms & Conditions</a>
+          </div>
         </div>
         <div className="footer-divider"></div>
       </div>
@@ -96,6 +121,14 @@ const Footer: React.FC = () => {
           <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" textAnchor="start" dominantBaseline="middle" fontSize="160" stroke="url(#textGradient)" strokeWidth="0.3" mask="url(#textMask)" className="svg-text-fill">Momentum for brands with appetite.</text>
         </svg>
       </div>
+
+      <button 
+        className={`scroll-to-top ${showScroll ? 'visible' : ''}`}
+        onClick={scrollToTop}
+        aria-label="Scroll to top"
+      >
+        <i className="fas fa-arrow-up"></i>
+      </button>
     </footer>
   );
 };
