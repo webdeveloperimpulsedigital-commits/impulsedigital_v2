@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Always-On Intelligence Services | Brand Monitoring and Live Market Signals | Impulse Digital</title>
+  <meta name="description"
+    content="Track brand conversations, sentiment shifts, e-commerce reviews, reputation risks, and market signals in real time. Impulse Digital builds always-on intelligence systems for brands that cannot afford to be caught off guard.">
+  <link rel="stylesheet" href="css/styles.css?v=54">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/SVGLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="service-page">
+  <canvas id="webgl-canvas"></canvas>
+
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute;top:0;left:0;pointer-events:none;">
+    <defs>
+      <clipPath id="impulse-mark-clip">
+        <path
+          d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+      </clipPath>
+      <symbol id="impulse-mark" viewBox="801 344 274 272">
+        <path
+          d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="cursor" aria-hidden="true">
+    <svg class="cursor-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+        class="cursor-mark-path" />
+    </svg>
+    <div class="cursor-text"></div>
+  </div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <div class="page-progress" aria-hidden="true">
+    <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+        class="page-progress-path" />
+    </svg>
+  </div>
+
+  <div class="noise-overlay"></div>
+
+  <nav id="main-nav">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="index.html" class="logo"><img src="ImpulseDigital_Logo.svg" alt="Impulse Digital Logo"></a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-item" data-cursor="GO">Home</a>
+        <a href="index.html#about" class="nav-item" data-cursor="GO">About Us</a>
+        <div class="nav-dropdown">
+          <a href="index.html#services" class="nav-item" data-cursor="GO"
+            style="display: flex; align-items: center; gap: 4px;">
+            Services
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"
+              class="dropdown-arrow">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+          <div class="dropdown-content">
+            <div class="dropdown-col">
+              <h4>Growth Intelligence</h4>
+              <div class="dropdown-list">
+                <a href="consumer-intelligence.html" class="dropdown-item">Consumer Intelligence</a>
+                <a href="market-intelligence.html" class="dropdown-item">Market and Competitive Intelligence</a>
+                <a href="always-on-intelligence.html" class="dropdown-item">Always-On Intelligence</a>
+                <a href="campaign-intelligence.html" class="dropdown-item">Campaign and Performance Intelligence</a>
+              </div>
+            </div>
+            <div class="dropdown-col">
+              <h4>AI Marketing Systems</h4>
+              <div class="dropdown-list">
+                <a href="archer-ai.html" class="dropdown-item">Archer AI</a>
+                <a href="agentic-ai.html" class="dropdown-item">Agentic AI</a>
+                <a href="ai-video-production.html" class="dropdown-item">Cinematic AI Production</a>
+                <a href="index.html#services" class="dropdown-item">Generative Search Optimisation</a>
+              </div>
+            </div>
+            <div class="dropdown-col">
+              <h4>Brand Infrastructure</h4>
+              <div class="dropdown-list">
+                <a href="index.html#services" class="dropdown-item">Search and Visibility</a>
+                <a href="index.html#services" class="dropdown-item">Content Strategy and Writing</a>
+                <a href="index.html#services" class="dropdown-item">Social Media</a>
+                <a href="index.html#services" class="dropdown-item">Video and Visual Content</a>
+                <a href="index.html#services" class="dropdown-item">Website Development</a>
+                <a href="index.html#services" class="dropdown-item">Brand Identity</a>
+                <a href="index.html#services" class="dropdown-item">Employer Branding</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="index.html#cases-pin" class="nav-item" data-cursor="GO">Case Studies</a>
+        <a href="index.html#blogs" class="nav-item" data-cursor="GO">Blogs</a>
+        <a href="index.html#resources" class="nav-item" data-cursor="GO">Resources</a>
+        <a href="index.html#careers" class="nav-item" data-cursor="GO">Careers</a>
+      </div>
+      <div class="nav-right">
+        <a href="#connect" class="btn-nav" data-cursor="HI">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="svc-hero-page" id="hero"
+      style="min-height:100vh; max-height:100vh; padding:10rem 4rem 4rem; display:flex; align-items:center; justify-content:center; box-sizing:border-box;">
+      <div class="svc-hero-page-content">
+        <h1 class="svc-hero-headline" style="font-size: clamp(3rem, 7.5vw, 8rem); margin-bottom: 2rem;">
+          Never Meet the<br>
+          <span style="color: var(--impulse-violet);">Problem Late.</span>
+        </h1>
+        <p class="svc-hero-page-desc"
+          style="font-size: clamp(1rem, 1.2vw, 1.2rem); max-width: 780px; margin: 0 auto 2.5rem;">Brand sentiment does
+          not wait for the monthly review. A complaint spikes. A review pattern repeats. A competitor move gains
+          traction. A campaign starts being read differently than intended. Impulse Digital builds always-on
+          intelligence systems that help brands monitor conversations, sentiment, marketplace signals, reputation risks,
+          and emerging opportunities before they turn into surprises.</p>
+        <div class="svc-hero-cta-row">
+          <a href="#connect" class="btn" data-cursor="BUILD">
+            <span class="btn-text">Build Your Intelligence System</span>
+            <div class="btn-fill"></div>
+          </a>
+          <a href="#use-cases" class="btn" data-cursor="EXPLORE">
+            <span class="btn-text">See What You Can Track</span>
+            <div class="btn-fill"></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- PROBLEM -->
+    <section class="svc-problem" id="warp-start">
+      <div class="container">
+        <div class="svc-problem-grid">
+          <div>
+            <h2 class="svc-h2 split-text" style="margin-bottom: 0; font-size: clamp(2rem, 3.5vw, 4rem);">
+              The Problem Starts<br>
+              Before It<br>
+              Looks Like One.
+            </h2>
+          </div>
+          <div class="svc-problem-body">
+            <p>Most brands are being talked about every day.</p>
+            <ul class="svc-problem-gaps">
+              <li><span class="gap-mark"><svg viewBox="801 344 274 272">
+                    <use href="#impulse-mark" />
+                  </svg></span><span class="gap-text">On social media.</span></li>
+              <li><span class="gap-mark"><svg viewBox="801 344 274 272">
+                    <use href="#impulse-mark" />
+                  </svg></span><span class="gap-text">In reviews.</span></li>
+              <li><span class="gap-mark"><svg viewBox="801 344 274 272">
+                    <use href="#impulse-mark" />
+                  </svg></span><span class="gap-text">In marketplace ratings.</span></li>
+              <li><span class="gap-mark"><svg viewBox="801 344 274 272">
+                    <use href="#impulse-mark" />
+                  </svg></span><span class="gap-text">In news cycles.</span></li>
+              <li><span class="gap-mark"><svg viewBox="801 344 274 272">
+                    <use href="#impulse-mark" />
+                  </svg></span><span class="gap-text">In forums.</span></li>
+              <li><span class="gap-mark"><svg viewBox="801 344 274 272">
+                    <use href="#impulse-mark" />
+                  </svg></span><span class="gap-text">In competitor conversations.</span></li>
+              <li><span class="gap-mark"><svg viewBox="801 344 274 272">
+                    <use href="#impulse-mark" />
+                  </svg></span><span class="gap-text">In customer complaints.</span></li>
+            </ul>
+            <p>The issue is not that nothing is happening. The issue is knowing what matters early enough to act.</p>
+            <p class="pivot">A dashboard that is checked once a week is not enough when the conversation can shift in a
+              day.</p>
+            <p>Always-On Intelligence closes that gap. It helps your team see what is changing, what needs attention,
+              and what should not be ignored.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- VS / PLAIN ENGLISH -->
+    <section class="svc-vs">
+      <div class="container">
+        <h2 class="svc-h2 split-text" style="font-size: clamp(2rem, 3.2vw, 3.8rem);">Always-On Intelligence, in Plain
+          English</h2>
+        <div class="svc-vs-stack">
+          <div class="svc-vs-line line-quiet">
+            <div class="svc-vs-label">Monitoring</div>
+            <div class="svc-vs-statement" style="white-space: nowrap;"><span class="svc-vs-strike">tells you what
+                happened.</span></div>
+          </div>
+          <div class="svc-vs-line">
+            <div class="svc-vs-label">Always-On Intelligence</div>
+            <div class="svc-vs-statement" style="white-space: nowrap; font-size: clamp(1.8rem, 3vw, 3.2rem);">tells you
+              <span class="svc-vs-highlight">what needs attention now</span>.</div>
+          </div>
+          <div class="svc-vs-pipeline">
+            <div class="svc-vs-step">
+              <div class="step-marker"><span class="step-dot"></span></div>
+              <div class="step-content"><span class="step-num">01</span><span class="step-label">Track brand health
+                  continuously</span></div>
+            </div>
+            <div class="svc-vs-step">
+              <div class="step-marker"><span class="step-dot"></span></div>
+              <div class="step-content"><span class="step-num">02</span><span class="step-label">Read consumer
+                  conversations as they move</span></div>
+            </div>
+            <div class="svc-vs-step">
+              <div class="step-marker"><span class="step-dot"></span></div>
+              <div class="step-content"><span class="step-num">03</span><span class="step-label">Catch sentiment shifts
+                  before they escalate</span></div>
+            </div>
+            <div class="svc-vs-step">
+              <div class="step-marker"><span class="step-dot"></span></div>
+              <div class="step-content"><span class="step-num">04</span><span class="step-label">Understand what reviews
+                  and marketplaces are revealing</span></div>
+            </div>
+            <div class="svc-vs-step">
+              <div class="step-marker"><span class="step-dot"></span></div>
+              <div class="step-content"><span class="step-num">05</span><span class="step-label">Turn live signals into
+                  alerts, dashboards, and decision inputs</span></div>
+            </div>
+          </div>
+          <p class="svc-vs-closing">The output is not a passive report. It is an early-warning system for brand,
+            digital, communications, e-commerce, and leadership teams.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- USE CASES -->
+    <section class="svc-uses glass-panel" id="use-cases">
+      <div class="container">
+        <h2 class="svc-h2 split-text">Where Always-On Intelligence Creates Business Leverage</h2>
+        <div class="svc-uses-grid">
+          <div class="svc-use-card" data-cursor="VIEW">
+            <div class="svc-use-corner"><svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg></div>
+            <h3 class="svc-use-title">Social Listening and Conversation Mapping</h3>
+            <p class="svc-use-body">Track what people are saying about your brand, category, competitors, campaigns, and
+              products across digital platforms. Useful when your team needs to understand consumer emotion,
+              conversation themes, emerging narratives, and category movement.</p>
+            <div class="svc-use-outcome">Output: Conversation maps, sentiment themes, audience signals, weekly reports,
+              and campaign conversation summaries.</div>
+          </div>
+          <div class="svc-use-card" data-cursor="VIEW">
+            <div class="svc-use-corner"><svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg></div>
+            <h3 class="svc-use-title">E-Commerce and Review Intelligence</h3>
+            <p class="svc-use-body">Track reviews, ratings, complaints, product feedback, and sentiment across
+              marketplaces. Useful when your team needs to know what is affecting conversion, product perception, repeat
+              purchase, or listing performance.</p>
+            <div class="svc-use-outcome">Output: Review intelligence reports, rating movement views, pain-point themes,
+              product feedback maps, and marketplace improvement inputs.</div>
+          </div>
+          <div class="svc-use-card" data-cursor="VIEW">
+            <div class="svc-use-corner"><svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg></div>
+            <h3 class="svc-use-title">Reputation and Crisis Tracking</h3>
+            <p class="svc-use-body">Track negative sentiment, complaint spikes, risky conversations, media mentions, and
+              emerging reputation threats. Useful when your brand needs to move before a complaint becomes a crisis.</p>
+            <div class="svc-use-outcome">Output: Risk alerts, sentiment-shift reports, crisis watch summaries,
+              escalation notes, and leadership-ready updates.</div>
+          </div>
+          <div class="svc-use-card" data-cursor="VIEW">
+            <div class="svc-use-corner"><svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg></div>
+            <h3 class="svc-use-title">Custom Alerts, Dashboards and Live Monitoring</h3>
+            <p class="svc-use-body">Create live visibility around the topics, brands, competitors, products, campaigns,
+              or risks your team cannot afford to miss. Useful when stakeholders need clear, current, and filtered
+              intelligence without digging through raw data.</p>
+            <div class="svc-use-outcome">Output: Live dashboards, custom alerts, priority signals, campaign trackers,
+              and executive reporting views.</div>
+          </div>
+          <div class="svc-use-card" data-cursor="VIEW">
+            <div class="svc-use-corner"><svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg></div>
+            <h3 class="svc-use-title">Hybrid and Always-On Intelligence Programs</h3>
+            <p class="svc-use-body">Build a continuous intelligence rhythm that combines live monitoring with regular
+              deep dives. Useful when your brand needs everyday visibility plus sharper periodic interpretation.</p>
+            <div class="svc-use-outcome">Output: Always-on monitoring, monthly insight reports, quarterly deep dives,
+              live alerts, and strategic recommendation decks.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- GUARDRAILS -->
+    <section class="svc-guardrails">
+      <div class="container">
+        <h2 class="svc-h2 split-text">Use Always-On Intelligence<br>Before</h2>
+        <div class="svc-guard-list">
+          <div class="svc-guard-row">
+            <span class="mark-glyph"><svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg></span>
+            <div class="svc-guard-title">A major campaign launch</div>
+            <div class="svc-guard-desc"></div>
+          </div>
+          <div class="svc-guard-row">
+            <span class="mark-glyph"><svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg></span>
+            <div class="svc-guard-title">A product launch or relaunch</div>
+            <div class="svc-guard-desc"></div>
+          </div>
+          <div class="svc-guard-row">
+            <span class="mark-glyph"><svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg></span>
+            <div class="svc-guard-title">A crisis, recall, or reputation-sensitive period</div>
+            <div class="svc-guard-desc"></div>
+          </div>
+          <div class="svc-guard-row">
+            <span class="mark-glyph"><svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg></span>
+            <div class="svc-guard-title">A leadership or brand identity transition</div>
+            <div class="svc-guard-desc"></div>
+          </div>
+          <div class="svc-guard-row">
+            <span class="mark-glyph"><svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg></span>
+            <div class="svc-guard-title">A new market entry</div>
+            <div class="svc-guard-desc"></div>
+          </div>
+          <div class="svc-guard-row">
+            <span class="mark-glyph"><svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg></span>
+            <div class="svc-guard-title">A competitive disruption</div>
+            <div class="svc-guard-desc"></div>
+          </div>
+          <div class="svc-guard-row">
+            <span class="mark-glyph"><svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg></span>
+            <div class="svc-guard-title">An e-commerce performance review</div>
+            <div class="svc-guard-desc"></div>
+          </div>
+          <div class="svc-guard-row">
+            <span class="mark-glyph"><svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg></span>
+            <div class="svc-guard-title">A high-visibility brand moment</div>
+            <div class="svc-guard-desc"></div>
+          </div>
+          <div class="svc-guard-row">
+            <span class="mark-glyph"><svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg></span>
+            <div class="svc-guard-title">A category conversation starts moving faster than expected</div>
+            <div class="svc-guard-desc"></div>
+          </div>
+        </div>
+        <h3 class="svc-guard-punchline">
+          <span class="svc-guard-punchline-line"><span class="inner">The risk is not always the event.</span></span>
+          <span class="svc-guard-punchline-line"><span class="inner accent" style="color: var(--impulse-violet);">The
+              risk is finding out too late.</span></span>
+        </h3>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- FILTERS SIGNAL FROM NOISE -->
+    <section class="svc-section glass-panel">
+      <div class="container">
+        <div class="svc-systems-grid">
+          <div class="svc-systems-intro">
+            <h2 class="svc-h2 split-text" style="margin-bottom: 2.5rem;">Impulse Digital Filters<br>Signal From Noise
+            </h2>
+            <p>Most monitoring systems collect more than teams can use. Mentions pile up. Dashboards look active.
+              Reports get longer. But the real question remains: what deserves attention?</p>
+            <p>Impulse Digital connects multiple sources and adds human interpretation on top of the data.</p>
+            <p class="closer">Not more dashboards. Earlier decisions.</p>
+          </div>
+          <div>
+            <p
+              style="font-size: 0.75rem; color: var(--impulse-violet); font-weight: 700; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 1.5rem;">
+              Every engagement can draw from</p>
+            <div class="svc-systems-pills">
+              <div class="svc-system-pill">Social conversations: What people are saying, feeling, sharing, and repeating
+              </div>
+              <div class="svc-system-pill">E-commerce and reviews: What buyers praise, reject, question, and complain
+                about</div>
+              <div class="svc-system-pill">News and public signals: What can affect reputation, trust, or public
+                perception</div>
+              <div class="svc-system-pill">Competitor movement: What others are launching, claiming, changing, or
+                gaining from</div>
+              <div class="svc-system-pill">Human interpretation: So alerts become context, not clutter</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- PROCESS -->
+    <section class="services glass-panel" id="process">
+      <div class="container">
+        <h2 class="section-heading split-text">How We Build Always-On Intelligence</h2>
+        <div class="scrub-container">
+          <div class="scrub-item">
+            <div class="scrub-left">
+              <div class="service-mark-draw" aria-hidden="true">
+                <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path class="service-mark-svg-path"
+                    d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+                    fill="none" stroke="#543D98" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="service-num">01</span>
+            </div>
+            <div class="scrub-right">
+              <h3 class="scrub-title text-fill">Define What Matters</h3>
+              <p class="scrub-desc">We identify the brands, products, competitors, campaigns, risks, and topics your
+                team needs to monitor.</p>
+            </div>
+          </div>
+          <div class="scrub-item">
+            <div class="scrub-left">
+              <div class="service-mark-draw" aria-hidden="true">
+                <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path class="service-mark-svg-path"
+                    d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+                    fill="none" stroke="#543D98" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="service-num">02</span>
+            </div>
+            <div class="scrub-right">
+              <h3 class="scrub-title text-fill">Set the Intelligence Frame</h3>
+              <p class="scrub-desc">We define what counts as signal, what counts as noise, and what needs escalation.
+              </p>
+            </div>
+          </div>
+          <div class="scrub-item">
+            <div class="scrub-left">
+              <div class="service-mark-draw" aria-hidden="true">
+                <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path class="service-mark-svg-path"
+                    d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+                    fill="none" stroke="#543D98" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="service-num">03</span>
+            </div>
+            <div class="scrub-right">
+              <h3 class="scrub-title text-fill">Configure the Monitoring Layer</h3>
+              <p class="scrub-desc">We set up the sources, topics, dashboards, alert logic, and reporting rhythm.</p>
+            </div>
+          </div>
+          <div class="scrub-item">
+            <div class="scrub-left">
+              <div class="service-mark-draw" aria-hidden="true">
+                <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path class="service-mark-svg-path"
+                    d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+                    fill="none" stroke="#543D98" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="service-num">04</span>
+            </div>
+            <div class="scrub-right">
+              <h3 class="scrub-title text-fill">Run the Pilot</h3>
+              <p class="scrub-desc">We monitor live signals, test alerts, refine thresholds, and improve the signal
+                quality.</p>
+            </div>
+          </div>
+          <div class="scrub-item">
+            <div class="scrub-left">
+              <div class="service-mark-draw" aria-hidden="true">
+                <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path class="service-mark-svg-path"
+                    d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+                    fill="none" stroke="#543D98" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="service-num">05</span>
+            </div>
+            <div class="scrub-right">
+              <h3 class="scrub-title text-fill">Deliver the Intelligence Rhythm</h3>
+              <p class="scrub-desc">We provide alerts, dashboards, reports, deep dives, and recommendations based on the
+                cadence your team needs.</p>
+            </div>
+          </div>
+        </div>
+        <div
+          style="text-align: center; max-width: 800px; margin: 5rem auto 0; padding-top: 4rem; border-top: 1px solid rgba(255,255,255,0.08);">
+          <p style="font-size: 1.25rem; line-height: 1.6; color: var(--soft-grey); margin-bottom: 1rem; opacity: 0.85;">
+            The aim is not to watch everything.</p>
+          <p
+            style="font-size: 1.4rem; line-height: 1.5; color: var(--white); font-family: var(--font-heading); font-weight: 600;">
+            The aim is to know what matters before it becomes expensive.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGOS -->
+    <section class="logos">
+      <div class="container">
+        <h2 class="section-heading text-center split-text"
+          style="font-size: clamp(2rem, 5vw, 5rem); color: var(--white); margin-bottom: 5rem;">Trusted by Teams That
+          Cannot Afford Blind Spots</h2>
+        <div class="logo-grid">
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Aditya Birla Group.svg" alt="Aditya Birla Group"
+                style="--base-scale: 1.25;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Amazon.png" alt="Amazon" style="--base-scale: 1.25;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Unilever.avif" alt="Hindustan Unilever" class="fix-logo-grid"
+                style="--base-scale: 1.3;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Himalaya.png" alt="Himalaya"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/HDFC Securities.webp" alt="HDFC Securities"
+                style="--base-scale: 1.3;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Mastercard.png" alt="Mastercard" style="--base-scale: 1.3;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Uppercase.png" alt="Uppercase"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Tata Consumer.png" alt="Tata Consumer Products"
+                style="--base-scale: 1.5;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Tata Soulfull.png" alt="Tata Soulful" class="fix-logo-grid"
+                style="--base-scale: 1.6;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Bajaj.png" alt="Bajaj Group" class="fix-logo-grid"
+                style="--base-scale: 1.7;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Dmart.svg" alt="Dmart" style="--base-scale: 1.8;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Ola.png" alt="Ola" class="fix-logo-grid"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Chings.png" alt="Chings" class="fix-logo-grid"
+                style="--base-scale: 1.7;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/More.png" alt="More" class="fix-logo-grid"
+                style="--base-scale: 1.7;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/ABG Chemicals.png" alt="Aditya Birla Chemicals" class="fix-logo-grid"
+                style="--base-scale: 1.6;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Almex.jpg" alt="Hindalco Almex" class="fix-logo-grid"
+                style="--base-scale: 1.6;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Godrej.png" alt="Godrej Construction" class="fix-logo-grid"
+                style="--base-scale: 1.7;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Birla Cellulose.png" alt="Birla Cellulose" class="fix-logo-grid"
+                style="--base-scale: 1.8;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/ABPS.png" alt="Aditya Birla Public Schools" class="fix-logo-grid"
+                style="--base-scale: 1.8;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/TJSB.png" alt="TJSB" class="fix-logo-grid"
+                style="--base-scale: 1.7;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Navyasa.png" alt="Navyasa" class="fix-logo-grid"
+                style="--base-scale: 1.7;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Croda.png" alt="Croda" class="fix-logo-grid"
+                style="--base-scale: 1.8;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Qure.png" alt="Qure" class="fix-logo-grid"
+                style="--base-scale: 2.0;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Electromech.png" alt="Electromech" class="fix-logo-grid"
+                style="--base-scale: 2.0;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- RIGHT FOR YOU -->
+    <section class="svc-fit">
+      <div class="container">
+        <div class="svc-fit-grid">
+          <div>
+            <h2 class="svc-h2 split-text">Always-On Intelligence<br>Is Right for You If</h2>
+          </div>
+          <ul class="svc-fit-list">
+            <li>Your brand has a large consumer base.</li>
+            <li>Your campaign, product, or leadership visibility is high.</li>
+            <li>You have been surprised by a complaint, trend, or negative conversation before.</li>
+            <li>Your e-commerce reviews are revealing issues faster than internal teams can process them.</li>
+            <li>Your category moves quickly and competitors change direction often.</li>
+            <li>Your leadership team needs live visibility without raw dashboard clutter.</li>
+            <li>Your brand cannot afford to learn about reputation risk after everyone else has seen it.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- FINAL CTA -->
+    <section class="svc-final-cta glass-panel">
+      <div class="svc-final-cta-mark" aria-hidden="true">
+        <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+          <path class="svc-final-cta-path"
+            d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+            fill="none" />
+        </svg>
+      </div>
+      <div class="container">
+        <h2 class="split-text" style="font-size: clamp(2.8rem, 5vw, 5.5rem) !important; line-height: 1.1 !important;">
+          Build the System That<br>
+          Spots What<br>
+          <span style="color: var(--impulse-violet);">Matters.</span>
+        </h2>
+        <p class="svc-final-cta-body">Tell us what your brand cannot afford to miss. We will help define the signals,
+          alerts, dashboards, and reporting rhythm that keep your team ahead of the conversation.</p>
+        <div class="svc-final-cta-actions">
+          <a href="#connect" class="btn" data-cursor="BUILD">
+            <span class="btn-text">Build Your Intelligence System</span>
+            <div class="btn-fill"></div>
+          </a>
+          <a href="#connect" class="btn" data-cursor="HI">
+            <span class="btn-text">Talk to Impulse Digital</span>
+            <div class="btn-fill"></div>
+          </a>
+        </div>
+        <p class="svc-final-cta-footnote">No passive monitoring. No dashboard clutter. Just live intelligence built for
+          faster, sharper brand decisions.</p>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials glass-panel">
+      <div class="container" style="position: relative; z-index: 2;">
+        <h2 class="section-heading split-text">What working with us looked like.</h2>
+        <div class="testimonial-grid">
+          <div class="test-card-col">
+            <div class="test-card">
+              <div class="test-content">
+                <p class="quote" style="font-size: 1.05rem;">"I have worked with Impulse Digital team across different
+                  organizations and different kinds of business problems over the years. What I have always valued is
+                  that they do not look at a brief as just a task to complete. They try to understand what the brand
+                  needs, what the business is trying to achieve, and then come back with ideas that are practical,
+                  sharp, and executable.<br><br>From campaigns and creative work to tech-led implementation, the team
+                  has shown strong range, ownership, and consistency. Impulse Digital has been a partner I have gone
+                  back to across organizations because they bring both thinking and execution to the table."</p>
+                <div class="author-block">
+                  <img src="images/Sairam%20Krishnamurthy.png" alt="Sairam Krishnamurthy" class="author-img">
+                  <div class="author-info">
+                    <h4 class="author">Sairam Krishnamurthy</h4>
+                    <span class="role">Chief Executive Officer</span>
+                    <span class="company">Bombay Shirt Company</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card-col">
+            <div class="test-card">
+              <div class="test-content">
+                <p class="quote" style="font-size: 1.1rem;">"Impulse Digital has been a reliable partner in our social
+                  media journey. The team is innovative, dependable, humble, and highly collaborative, always taking
+                  full ownership of their work. With their creative insights and strong understanding of trends and
+                  technology in the social media space, they help us drive campaigns that deliver maximum impact."</p>
+                <div class="author-block">
+                  <img src="images/Rukmani%20Vishwanath.png" alt="Rukmani Vishwanath" class="author-img">
+                  <div class="author-info">
+                    <h4 class="author">Rukmani Vishwanath</h4>
+                    <span class="role">Head of Corporate Communications</span>
+                    <span class="company">Grasim Industries Limited | Pulp and Fibre</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card-col">
+            <div class="test-card">
+              <div class="test-content">
+                <p class="quote" style="font-size: 1.05rem; margin-bottom: 2rem;">"Impulse Digital has been a dependable
+                  partner for our social listening and category landscape needs. What stands out is their agility and
+                  flexibility, they consistently deliver high-quality outputs, often within tight timelines. They've
+                  also played a key role in tracking and evaluating our main campaign last year - Agent Chings - where
+                  their structured weekly updates on social presence, growth, and sentiment were particularly useful.
+                  Their approach is practical, client-centric, and focused on delivering actionable insights. Overall,
+                  they are reliable and easy to work with."</p>
+                <div class="author-block">
+                  <img src="images/Pratik%20Shetty.png" alt="Pratik Shetty" class="author-img">
+                  <div class="author-info">
+                    <h4 class="author">Pratik Shetty</h4>
+                    <span class="role">Senior Manager, Consumer Insights</span>
+                    <span class="company">Tata Consumer Products</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card-col">
+            <div class="test-card">
+              <div class="test-content">
+                <p class="quote" style="font-size: 1.05rem; margin-bottom: 2rem;">"I have had the opportunity to work
+                  with Impulse Digital team across different organizations and mandates over the years. What stands out
+                  for me is the way they approach a brief. They do not look at it as just another task to execute. They
+                  take the time to understand the business context, ask the right questions, and come back with ideas
+                  that are practical as well as well thought through. Across digital strategy, brand communication,
+                  content, and performance-led initiatives, the team has consistently brought clarity, creativity, and a
+                  strong sense of ownership. They are dependable, collaborative, and easy to work with."</p>
+                <div class="author-block">
+                  <img src="images/Ankit%20Meena.png" alt="Ankit Meena" class="author-img">
+                  <div class="author-info">
+                    <h4 class="author">Ankit Meena</h4>
+                    <span class="role">Lead - Digital Marketing and Transformation</span>
+                    <span class="company">Himalaya Wellness Company</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="connect" class="contact glass-panel">
+      <div class="container" style="display: flex; gap: 4rem;">
+        <div class="contact-left" style="width: 50%; position: relative; overflow: hidden;">
+          <h2 class="section-heading split-text" style="position: relative; z-index: 1;">Build
+            Your<br>Intelligence<br>System.</h2>
+          <div class="contact-details" style="margin-top: 3rem; position: relative; z-index: 1;">
+            <a href="tel:+919769285224" class="contact-channel">
+              <div class="contact-channel-icon"><i class="fas fa-phone"></i></div>
+              <div class="contact-channel-body">
+                <span class="contact-channel-label">Call us</span>
+                <span class="contact-channel-value">+91-9769285224</span>
+              </div>
+              <div class="contact-channel-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+            <a href="mailto:collabs@theimpulsedigital.com" class="contact-channel">
+              <div class="contact-channel-icon"><i class="fas fa-envelope"></i></div>
+              <div class="contact-channel-body">
+                <span class="contact-channel-label">Email us</span>
+                <span class="contact-channel-value">collabs@theimpulsedigital.com</span>
+              </div>
+              <div class="contact-channel-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+          </div>
+        </div>
+        <div class="contact-right" style="width: 50%;">
+          <form class="contact-form">
+            <input type="text" placeholder="Company" required>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="tel" placeholder="Phone">
+            <textarea placeholder="Message" rows="4"></textarea>
+            <button type="submit" class="btn" data-cursor="SEND"
+              style="width: 100%; border: 1px solid var(--impulse-violet);">
+              <span class="btn-text">Start the conversation</span>
+              <div class="btn-fill" style="background-color: var(--impulse-violet);"></div>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq glass-panel" id="faq">
+      <div class="container">
+        <h2 class="section-heading split-text">What to Know Before You Go Always-On</h2>
+        <div class="accordion">
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>What is Always-On Intelligence?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>Always-On Intelligence is a continuous monitoring programme that tracks brand health, consumer
+                conversations, marketplace sentiment, competitor activity, and reputation risks in real time.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>How is this different from social listening?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>Social listening is one part of it. Always-On Intelligence connects social conversations with reviews,
+                e-commerce signals, news, competitor movement, dashboards, alerts, and strategic interpretation.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>What can we track?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>You can track brand mentions, product conversations, competitor activity, campaign response, sentiment
+                shifts, reviews, ratings, complaint themes, category conversations, and high-priority risk topics.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>What do we receive?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>Depending on the engagement, you can receive live dashboards, custom alerts, weekly reports, monthly
+                deep dives, crisis watch notes, and leadership-ready summaries.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>How do alerts work?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>Alerts are designed around priority signals. These may include negative sentiment spikes, sudden volume
+                increases, recurring complaints, competitor moves, campaign issues, or high-risk mentions.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>Is this only for crisis management?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>No. Crisis tracking is one use case. Always-On Intelligence also helps with brand health, campaign
+                learning, e-commerce improvement, competitor movement, consumer sentiment, and opportunity spotting.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>Who should use this inside the organisation?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>Brand teams, digital teams, corporate communications, e-commerce teams, consumer insights teams,
+                leadership teams, and any function responsible for reputation, customer perception, or market response.
+              </p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>Is this a one-time project?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>No. This works best as an ongoing intelligence programme. The value comes from continuous visibility,
+                timely alerts, and regular interpretation of what is changing.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>When should we start?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>Start before a major campaign, product launch, category shift, crisis-sensitive period, or any moment
+                where being late to the signal could cost the brand.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="ImpulseDigital_Logo.svg" alt="Impulse Digital Logo" class="footer-logo">
+          <p class="footer-tagline">AI native growth intelligence for enterprise brands.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#cases-pin">Case Studies</a></li>
+            <li><a href="index.html#careers">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="index.html#blogs">Blog</a></li>
+            <li><a href="#">EBooks</a></li>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Slideshare ppt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Locations</h4>
+          <ul>
+            <li><a href="#">India</a></li>
+            <li><a href="#">Thane</a></li>
+            <li><a href="#">Navi Mumbai</a></li>
+            <li><a href="#">Pune</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-contact-col">
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+            <span class="contact-text">+91-9769285224</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+            <span class="contact-text">collabs@theimpulsedigital.com</span>
+          </div>
+          <div class="contact-item address-item">
+            <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+            <span class="contact-text">304 - 305, Chirag Infotech, Road No. 16/Z, Ambica Nagar, Wagle Industrial Estate,
+              Thane, Mumbai 400604</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Impulse Digital. All rights reserved.</p>
+      </div>
+      <div class="footer-divider"></div>
+    </div>
+    <div class="footer-etched" aria-hidden="true">
+      <svg id="footer-hover-svg" viewBox="0 0 2400 250" xmlns="http://www.w3.org/2000/svg"
+        class="select-none uppercase cursor-pointer" style="width: 100%; height: auto; display: block;">
+        <defs>
+          <linearGradient id="textGradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="25%" stop-color="#543D98" />
+            <stop offset="50%" stop-color="#8A5CF6" />
+            <stop offset="75%" stop-color="#543D98" />
+            <stop offset="100%" stop-color="#ffffff" />
+          </linearGradient>
+          <radialGradient id="revealMask" gradientUnits="userSpaceOnUse" r="20%" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="white" />
+            <stop offset="100%" stop-color="black" />
+          </radialGradient>
+          <mask id="textMask">
+            <rect x="0" y="0" width="100%" height="100%" fill="url(#revealMask)" />
+          </mask>
+        </defs>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start"
+          dominant-baseline="middle" font-size="160" stroke-width="0.3" class="svg-text-base">Momentum for brands with
+          appetite.</text>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start"
+          dominant-baseline="middle" font-size="160" stroke-width="0.3" class="svg-text-animated">Momentum for brands
+          with appetite.</text>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start"
+          dominant-baseline="middle" font-size="160" stroke="url(#textGradient)" stroke-width="0.3"
+          mask="url(#textMask)" class="svg-text-fill">Momentum for brands with appetite.</text>
+      </svg>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+  <script src="js/script.js?v=54"></script>
+
+  <script>
+    (function () {
+      const h = document.querySelector('.svc-hero-headline');
+      const d = document.querySelector('.svc-hero-page-desc');
+      if (h) h.classList.remove('split-text');
+      if (d) d.classList.remove('split-text');
+      const style = document.createElement('style');
+      style.textContent =
+        '.svc-hero-headline, .svc-hero-page-desc { visibility: hidden; }' +
+        '.svc-hero-cta-row .btn { opacity: 0; }';
+      document.head.appendChild(style);
+    })();
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+      const runHeroAnim = () => {
+        if (!window.gsap || !window.SplitType) return;
+        const heroHeadline = document.querySelector('.svc-hero-headline');
+        const heroDesc = document.querySelector('.svc-hero-page-desc');
+        const heroCtas = document.querySelectorAll('.svc-hero-cta-row .btn');
+
+        if (heroHeadline) heroHeadline.style.visibility = 'visible';
+        if (heroDesc) heroDesc.style.visibility = 'visible';
+
+        if (heroHeadline) {
+          const split = new SplitType(heroHeadline, { types: 'lines, words' });
+          split.lines.forEach((line) => {
+            const w = document.createElement('div');
+            w.classList.add('line-wrapper');
+            line.parentNode.insertBefore(w, line);
+            w.appendChild(line);
+          });
+          gsap.set(split.words, { yPercent: 120, opacity: 0 });
+          gsap.to(split.words, { yPercent: 0, opacity: 1, duration: 1.4, stagger: 0.09, ease: 'power4.out', delay: 0.15 });
+        }
+
+        if (heroDesc) {
+          const split = new SplitType(heroDesc, { types: 'lines, words' });
+          split.lines.forEach((line) => {
+            const w = document.createElement('div');
+            w.classList.add('line-wrapper');
+            line.parentNode.insertBefore(w, line);
+            w.appendChild(line);
+          });
+          gsap.set(split.lines, { y: 40, opacity: 0 });
+          gsap.to(split.lines, { y: 0, opacity: 1, duration: 0.9, stagger: 0.08, ease: 'power3.out', delay: 1.05 });
+        }
+
+        if (heroCtas.length) {
+          gsap.set(heroCtas, { scale: 0.85, opacity: 0 });
+          gsap.to(heroCtas, {
+            scale: 1, opacity: 1, duration: 0.8, stagger: 0.12, ease: 'back.out(1.6)', delay: 1.85,
+            onComplete: () => { if (window.ScrollTrigger) ScrollTrigger.refresh(); }
+          });
+        }
+      };
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(runHeroAnim);
+      } else {
+        setTimeout(runHeroAnim, 200);
+      }
+
+      const waitForGsap = setInterval(() => {
+        if (window.gsap && window.ScrollTrigger) {
+          clearInterval(waitForGsap);
+          const cosmosTrigger = document.querySelector('#warp-start');
+          if (!cosmosTrigger) return;
+
+          gsap.to(document.body, {
+            backgroundColor: '#000000',
+            scrollTrigger: { trigger: cosmosTrigger, start: 'top bottom', end: 'top top', scrub: true }
+          });
+
+          if (window.particlesMaterial) {
+            gsap.fromTo(window.particlesMaterial,
+              { opacity: 0.7 },
+              { opacity: 0, scrollTrigger: { trigger: cosmosTrigger, start: 'top 80%', end: 'top 20%', scrub: true } }
+            );
+          }
+        }
+      }, 80);
+      setTimeout(() => clearInterval(waitForGsap), 6000);
+
+      const vsSection = document.querySelector('.svc-vs');
+      if (vsSection && window.gsap && window.ScrollTrigger) {
+        const lineQuiet = vsSection.querySelector('.line-quiet');
+        const lineLoud = vsSection.querySelector('.svc-vs-line:not(.line-quiet)');
+        const strike = vsSection.querySelector('.svc-vs-strike');
+        const highlight = vsSection.querySelector('.svc-vs-highlight');
+        const closing = vsSection.querySelector('.svc-vs-closing');
+
+        gsap.set([lineQuiet, lineLoud, closing], { opacity: 0, y: 28 });
+
+        const strikeProxy = { w: 0 };
+        const highlightProxy = { w: 0 };
+
+        const strikeStyle = document.createElement('style');
+        strikeStyle.textContent =
+          '.svc-vs-strike::after { width: 0% !important; }' +
+          '.svc-vs-highlight::after { width: 0% !important; }';
+        document.head.appendChild(strikeStyle);
+
+        ScrollTrigger.create({
+          trigger: vsSection, start: 'top 60%', once: true,
+          onEnter: () => {
+            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+            tl.to(lineQuiet, { opacity: 0.7, y: 0, duration: 0.8 })
+              .to(lineLoud, { opacity: 1, y: 0, duration: 0.8 }, '+=0.3')
+              .to(strikeProxy, {
+                w: 108, duration: 0.7, ease: 'power2.inOut',
+                onUpdate: () => { strike.style.setProperty('--strike-w', strikeProxy.w + '%'); strikeStyle.sheet.cssRules[0].style.width = 'var(--strike-w, 0%)'; }
+              }, '+=0.2')
+              .to(highlightProxy, {
+                w: 100, duration: 0.7, ease: 'power3.out',
+                onUpdate: () => { highlight.style.setProperty('--hl-w', highlightProxy.w + '%'); strikeStyle.sheet.cssRules[1].style.width = 'var(--hl-w, 0%)'; }
+              }, '+=0.15')
+              .to(closing, { opacity: 1, y: 0, duration: 0.7 }, '+=0.3');
+          }
+        });
+      }
+
+      const vsSteps = document.querySelectorAll('.svc-vs-step');
+      if (vsSteps.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(vsSteps, { opacity: 0, x: -16 });
+        ScrollTrigger.create({
+          trigger: '.svc-vs-pipeline', start: 'top 65%', once: true,
+          onEnter: () => {
+            vsSteps.forEach((step, i) => {
+              gsap.to(step, {
+                opacity: 1, x: 0, duration: 0.6, delay: i * 0.22, ease: 'power3.out',
+                onStart: () => { setTimeout(() => step.classList.add('lit'), 250); }
+              });
+            });
+          }
+        });
+      }
+
+      const useCards = document.querySelectorAll('.svc-use-card');
+      if (useCards.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(useCards, { opacity: 0, y: 40 });
+        ScrollTrigger.create({
+          trigger: '.svc-uses-grid', start: 'top 58%', once: true,
+          onEnter: () => {
+            gsap.to(useCards, { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out' });
+          }
+        });
+      }
+
+      const gapItems = document.querySelectorAll('.svc-problem-gaps li');
+      if (gapItems.length && window.gsap && window.ScrollTrigger) {
+        ScrollTrigger.create({
+          trigger: '.svc-problem-gaps', start: 'top 58%', once: true,
+          onEnter: () => {
+            gapItems.forEach((item, i) => {
+              gsap.to(item, {
+                opacity: 0.85, x: 0, duration: 0.5, delay: i * 0.18, ease: 'power2.out'
+              });
+            });
+          }
+        });
+      }
+
+      const finalMarkPath = document.querySelector('.svc-final-cta-path');
+      if (finalMarkPath && window.gsap && window.ScrollTrigger) {
+        const finalLen = finalMarkPath.getTotalLength();
+        gsap.set(finalMarkPath, { strokeDasharray: finalLen, strokeDashoffset: finalLen });
+        ScrollTrigger.create({
+          trigger: '.svc-final-cta', start: 'top 65%', once: true,
+          onEnter: () => {
+            gsap.to(finalMarkPath, { strokeDashoffset: 0, duration: 3.2, ease: 'power2.inOut' });
+          }
+        });
+      }
+
+      const fitItems = document.querySelectorAll('.svc-fit-list li');
+      if (fitItems.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(fitItems, { opacity: 0, x: -12 });
+        ScrollTrigger.create({
+          trigger: '.svc-fit-list', start: 'top 55%', once: true,
+          onEnter: () => {
+            gsap.to(fitItems, { opacity: 1, x: 0, duration: 0.5, stagger: 0.1, ease: 'power2.out' });
+          }
+        });
+      }
+
+      const handoffs = document.querySelectorAll('.svc-handoff');
+      if (handoffs.length) {
+        const handoffObs = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              handoffObs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        handoffs.forEach((h) => handoffObs.observe(h));
+      }
+
+      document.querySelectorAll('.svc-use-card').forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+          card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+        });
+      });
+
+    });
+  </script>
+</body>
+
+</html>

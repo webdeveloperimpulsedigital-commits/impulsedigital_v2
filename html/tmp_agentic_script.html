@@ -1,0 +1,502 @@
+  <script>
+    // -- 0. PRE-DOM-READY: strip .split-text from the hero so the
+    // homepage's default fast word-stagger animation skips the hero.
+    // We'll run our own SplitType + slower, more deliberate choreography
+    // once fonts are loaded. This prevents the race-condition flicker.
+    (function () {
+      const h = document.querySelector('.svc-hero-headline');
+      const d = document.querySelector('.svc-hero-page-desc');
+      if (h) h.classList.remove('split-text');
+      if (d) d.classList.remove('split-text');
+      // Hide the hero text immediately so there's no flash of unstyled
+      // content before our SplitType + animation runs.
+      const style = document.createElement('style');
+      style.textContent =
+        '.svc-hero-headline, .svc-hero-page-desc { visibility: hidden; }' +
+        '.svc-hero-cta-row .btn { opacity: 0; }';
+      document.head.appendChild(style);
+    })();
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // --- 0a. Hero entry choreography ---
+      // Wait for fonts (so SplitType measures correctly), then reveal
+      // hero with our own custom timing.
+      const runHeroAnim = () => {
+        if (!window.gsap || !window.SplitType) return;
+        const heroHeadline = document.querySelector('.svc-hero-headline');
+        const heroDesc = document.querySelector('.svc-hero-page-desc');
+        const heroCtas = document.querySelectorAll('.svc-hero-cta-row .btn');
+
+        // Restore visibility now that we're about to control the entry
+        if (heroHeadline) heroHeadline.style.visibility = 'visible';
+        if (heroDesc) heroDesc.style.visibility = 'visible';
+
+        if (heroHeadline) {
+          const split = new SplitType(heroHeadline, { types: 'lines, words' });
+          split.lines.forEach((line) => {
+            const w = document.createElement('div');
+            w.classList.add('line-wrapper');
+            line.parentNode.insertBefore(w, line);
+            w.appendChild(line);
+          });
+          gsap.set(split.words, { yPercent: 120, opacity: 0 });
+          gsap.to(split.words, {
+            yPercent: 0,
+            opacity: 1,
+            duration: 1.4,
+            stagger: 0.09,
+            ease: 'power4.out',
+            delay: 0.15
+          });
+        }
+
+        if (heroDesc) {
+          const split = new SplitType(heroDesc, { types: 'lines, words' });
+          split.lines.forEach((line) => {
+            const w = document.createElement('div');
+            w.classList.add('line-wrapper');
+            line.parentNode.insertBefore(w, line);
+            w.appendChild(line);
+          });
+          gsap.set(split.lines, { y: 40, opacity: 0 });
+          gsap.to(split.lines, {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            stagger: 0.08,
+            ease: 'power3.out',
+            delay: 1.05
+          });
+        }
+
+        if (heroCtas.length) {
+          gsap.set(heroCtas, { scale: 0.85, opacity: 0 });
+          gsap.to(heroCtas, {
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: 'back.out(1.6)',
+            delay: 1.85,
+            onComplete: () => {
+              // Refresh ScrollTriggers now that hero layout is final
+              if (window.ScrollTrigger) ScrollTrigger.refresh();
+            }
+          });
+        }
+      };
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(runHeroAnim);
+      } else {
+        setTimeout(runHeroAnim, 200);
+      }
+
+      // --- 1. Stat counters ---
+      document.querySelectorAll('[data-stat-target]').forEach((el) => {
+        const target = parseFloat(el.getAttribute('data-stat-target'));
+        const suffix = el.getAttribute('data-stat-suffix') || '';
+        const decimals = parseInt(el.getAttribute('data-stat-decimals') || '0', 10);
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const proxy = { v: 0 };
+            gsap.to(proxy, {
+              v: target,
+              duration: 2.0,
+              ease: 'power3.out',
+              onUpdate: () => {
+                const val = decimals > 0 ? proxy.v.toFixed(decimals) : Math.round(proxy.v).toLocaleString();
+                el.textContent = val + suffix;
+              }
+            });
+            obs.unobserve(el);
+          });
+        }, { threshold: 0.4 });
+        obs.observe(el);
+      });
+
+      // --- 2. Use-case spotlight ---
+      document.querySelectorAll('.svc-use-card').forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+          card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+        });
+      });
+
+      // --- 3. Hero → next-section transition ---
+      // Lifted verbatim from the homepage's cosmosSection block, with
+      // the warp tunnel fade-in line removed. The drift-particle fade
+      // matches the homepage exactly so the sub-hero state on this
+      // page is the same subdued bgStars layer the homepage shows
+      // during its case-study section. No warp on service pages.
+      const waitForGsap = setInterval(() => {
+        if (window.gsap && window.ScrollTrigger) {
+          clearInterval(waitForGsap);
+          const cosmosTrigger = document.querySelector('#warp-start');
+          if (!cosmosTrigger) return;
+
+          // Background color inversion (matches homepage)
+          gsap.to(document.body, {
+            backgroundColor: '#000000',
+            scrollTrigger: {
+              trigger: cosmosTrigger,
+              start: 'top bottom',
+              end: 'top top',
+              scrub: true
+            }
+          });
+
+          // Drift particles fade out (matches homepage)
+          if (window.particlesMaterial) {
+            gsap.fromTo(window.particlesMaterial,
+              { opacity: 0.7 },
+              {
+                opacity: 0,
+                scrollTrigger: {
+                  trigger: cosmosTrigger,
+                  start: 'top 80%',
+                  end: 'top 20%',
+                  scrub: true
+                }
+              }
+            );
+          }
+
+          // Warp tunnel fade-in: REMOVED for service pages.
+        }
+      }, 80);
+      setTimeout(() => clearInterval(waitForGsap), 6000);
+
+      // --- 3b. Chatbot vs Agentic AI section reveal ---
+      // Strikethrough draws across "replies." as the agentic line lands.
+      // Violet underline draws beneath "the next step".
+      const vsSection = document.querySelector('.svc-vs');
+      if (vsSection && window.gsap && window.ScrollTrigger) {
+        const lineQuiet = vsSection.querySelector('.line-quiet');
+        const lineLoud = vsSection.querySelector('.svc-vs-line:not(.line-quiet)');
+        const strike = vsSection.querySelector('.svc-vs-strike');
+        const highlight = vsSection.querySelector('.svc-vs-highlight');
+        const closing = vsSection.querySelector('.svc-vs-closing');
+
+        gsap.set([lineQuiet, lineLoud, closing], { opacity: 0, y: 28 });
+
+        ScrollTrigger.create({
+          trigger: vsSection,
+          start: 'top 50%',
+          once: true,
+          onEnter: () => {
+            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+            tl.to(lineQuiet, { opacity: 0.7, y: 0, duration: 0.7 })
+              .to(lineLoud, { opacity: 1, y: 0, duration: 0.8 }, '+=0.25')
+              .fromTo(strike, { '--strike-w': '0%' },
+                {
+                  duration: 0.65,
+                  ease: 'power2.inOut',
+                  onUpdate: function () {
+                    strike.style.setProperty('--strike-w', (this.progress() * 108) + '%');
+                  }
+                }, '-=0.55')
+              .fromTo(highlight, { '--hl-w': '0%' },
+                {
+                  duration: 0.7,
+                  ease: 'power3.out',
+                  onUpdate: function () {
+                    highlight.style.setProperty('--hl-w', (this.progress() * 100) + '%');
+                  }
+                }, '-=0.3')
+              .to(closing, { opacity: 1, y: 0, duration: 0.7 }, '+=0.4');
+          }
+        });
+
+        // Bind the CSS pseudo-element widths to GSAP-driven custom props
+        const strikeStyle = document.createElement('style');
+        strikeStyle.textContent = `
+          .svc-vs-strike::after { width: var(--strike-w, 0%) !important; }
+          .svc-vs-highlight::after { width: var(--hl-w, 0%) !important; }
+        `;
+        document.head.appendChild(strikeStyle);
+      }
+
+      // --- 3c. Pipeline of next steps: sequential reveal + dot illumination ---
+      // Each step slides in, then its dot lights up violet with a glow,
+      // then its label brightens to white. A cinematic sequence that
+      // visualizes the agent doing each step in turn.
+      const vsSteps = document.querySelectorAll('.svc-vs-step');
+      if (vsSteps.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(vsSteps, { opacity: 0, x: -16 });
+        ScrollTrigger.create({
+          trigger: '.svc-vs-pipeline',
+          start: 'top 65%',
+          once: true,
+          onEnter: () => {
+            vsSteps.forEach((step, i) => {
+              gsap.to(step, {
+                opacity: 1,
+                x: 0,
+                duration: 0.6,
+                delay: i * 0.22,
+                ease: 'power3.out',
+                onStart: () => {
+                  // Light the dot ~250ms after the step has begun arriving
+                  setTimeout(() => step.classList.add('lit'), 250);
+                }
+              });
+            });
+          }
+        });
+      }
+
+      // --- 4. Channels convergence animation ---
+      const stage = document.getElementById('channels-stage');
+      const linesSvg = document.getElementById('channels-orbit-lines');
+      const centerEl = stage ? stage.querySelector('.svc-channels-center') : null;
+      const centerPath = centerEl ? centerEl.querySelector('path') : null;
+
+      if (stage && linesSvg && centerPath) {
+        let chipPositions = [];
+        let cx = 0, cy = 0;
+        let markRadius = 80;
+        let pulseTimer = null;
+        let convergenceActive = false;
+
+        const measure = () => {
+          const sr = stage.getBoundingClientRect();
+          linesSvg.setAttribute('viewBox', `0 0 ${sr.width} ${sr.height}`);
+          cx = sr.width / 2;
+          cy = sr.height / 2;
+          // Boundary radius = visible extent of the mark inside its 220px box.
+          // The brand mark fills roughly 70% of its container.
+          const centerRect = centerEl.getBoundingClientRect();
+          markRadius = Math.min(centerRect.width, centerRect.height) * 0.46;
+
+          chipPositions = [...stage.querySelectorAll('.svc-channel-chip')].map((chip) => {
+            const cr = chip.getBoundingClientRect();
+            const x = cr.left - sr.left + cr.width / 2;
+            const y = cr.top - sr.top + cr.height / 2;
+            // Boundary point: where the chip→center line meets the mark's edge.
+            const dx = cx - x;
+            const dy = cy - y;
+            const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+            const tx = x + dx * ((dist - markRadius) / dist);
+            const ty = y + dy * ((dist - markRadius) / dist);
+            return { x, y, tx, ty };
+          });
+
+          // Static dotted lines — chip → mark edge (NOT to the center).
+          linesSvg.querySelectorAll('line').forEach(l => l.remove());
+          chipPositions.forEach((p) => {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', p.x);
+            line.setAttribute('y1', p.y);
+            line.setAttribute('x2', p.tx);
+            line.setAttribute('y2', p.ty);
+            linesSvg.appendChild(line);
+          });
+        };
+
+        const flashCenter = () => {
+          // Stroke-only flash — no filter halos, no rectangular box.
+          gsap.fromTo(centerPath,
+            { strokeWidth: 6, stroke: 'rgba(138, 92, 246, 0.85)' },
+            {
+              strokeWidth: 11,
+              stroke: 'rgba(220, 200, 255, 1)',
+              duration: 0.18,
+              yoyo: true,
+              repeat: 1,
+              ease: 'power2.out'
+            }
+          );
+        };
+
+        const emitPulse = () => {
+          if (!chipPositions.length) return;
+          const idx = Math.floor(Math.random() * chipPositions.length);
+          const p = chipPositions[idx];
+          const pulse = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          pulse.setAttribute('cx', p.x);
+          pulse.setAttribute('cy', p.y);
+          pulse.setAttribute('r', 4.5);
+          pulse.setAttribute('class', 'svc-channels-pulse');
+          linesSvg.appendChild(pulse);
+
+          gsap.timeline({ onComplete: () => pulse.remove() })
+            .fromTo(pulse, { opacity: 0, attr: { r: 2 } }, { opacity: 1, attr: { r: 5 }, duration: 0.35, ease: 'power2.out' })
+            .to(pulse, {
+              // Travel to the mark's edge, not the center
+              attr: { cx: p.tx, cy: p.ty },
+              duration: 1.3,
+              ease: 'power2.in'
+            }, 0)
+            .to(pulse, { opacity: 0, attr: { r: 2 }, duration: 0.2, ease: 'power2.in' }, '-=0.18')
+            .add(flashCenter, '-=0.18');
+        };
+
+        const startConvergence = () => {
+          if (convergenceActive) return;
+          convergenceActive = true;
+          // Initial mark fade-in as first pulses begin to arrive
+          gsap.fromTo(centerPath,
+            { opacity: 0.15, strokeWidth: 4 },
+            { opacity: 1, strokeWidth: 6, duration: 1.6, ease: 'power2.out' }
+          );
+          pulseTimer = setInterval(emitPulse, 380);
+        };
+
+        const stopConvergence = () => {
+          convergenceActive = false;
+          if (pulseTimer) { clearInterval(pulseTimer); pulseTimer = null; }
+        };
+
+        // Initial measure (and a second pass after layout settles)
+        measure();
+        setTimeout(measure, 250);
+        setTimeout(measure, 800);
+        window.addEventListener('resize', measure);
+
+        // Only run while the section is in view
+        const sectionObs = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) startConvergence();
+            else stopConvergence();
+          });
+        }, { threshold: 0.2 });
+        sectionObs.observe(stage);
+
+        // Set initial dim state for the center mark
+        gsap.set(centerPath, { opacity: 0.15 });
+      }
+
+      // --- 5. Stats reveal sequence ---
+      const statsGrid = document.querySelector('.svc-stats-grid');
+      const statsCols = document.querySelectorAll('.svc-stat');
+      if (statsGrid && statsCols.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(statsCols, { opacity: 0, y: 32 });
+        ScrollTrigger.create({
+          trigger: statsGrid,
+          start: 'top 55%',
+          once: true,
+          onEnter: () => {
+            gsap.to(statsCols, {
+              opacity: 1, y: 0,
+              duration: 0.8,
+              stagger: 0.15,
+              ease: 'power3.out'
+            });
+          }
+        });
+      }
+
+      // --- 6. Problem broken-chain gaps reveal ---
+      const gapItems = document.querySelectorAll('.svc-problem-gaps li');
+      if (gapItems.length && window.gsap && window.ScrollTrigger) {
+        ScrollTrigger.create({
+          trigger: '.svc-problem-gaps',
+          start: 'top 58%',
+          once: true,
+          onEnter: () => {
+            gapItems.forEach((item, i) => {
+              gsap.to(item, {
+                opacity: 0.85,
+                x: 0,
+                duration: 0.5,
+                delay: i * 0.18,
+                ease: 'power2.out',
+                onStart: () => {
+                  setTimeout(() => item.classList.add('struck'), 200);
+                }
+              });
+            });
+          }
+        });
+      }
+
+      // --- 7. Connected Systems — static pills, no animation needed ---
+
+      // --- 8. Guardrails punchline sweep-in (Removed to keep text permanently visible) ---
+
+      // --- 9. Final CTA mark draws itself in ---
+      const finalMarkPath = document.querySelector('.svc-final-cta-path');
+      if (finalMarkPath && window.gsap && window.ScrollTrigger) {
+        const finalLen = finalMarkPath.getTotalLength();
+        gsap.set(finalMarkPath, {
+          strokeDasharray: finalLen,
+          strokeDashoffset: finalLen
+        });
+        ScrollTrigger.create({
+          trigger: '.svc-final-cta',
+          start: 'top 65%',
+          once: true,
+          onEnter: () => {
+            gsap.to(finalMarkPath, {
+              strokeDashoffset: 0,
+              duration: 3.2,
+              ease: 'power2.inOut'
+            });
+          }
+        });
+      }
+
+      // --- 10. Right-For-You — simple stagger reveal (no mark bullets) ---
+      const fitItems = document.querySelectorAll('.svc-fit-list li');
+      if (fitItems.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(fitItems, { opacity: 0, x: -12 });
+        ScrollTrigger.create({
+          trigger: '.svc-fit-list',
+          start: 'top 55%',
+          once: true,
+          onEnter: () => {
+            gsap.to(fitItems, {
+              opacity: 1, x: 0,
+              duration: 0.5,
+              stagger: 0.1,
+              ease: 'power2.out'
+            });
+          }
+        });
+      }
+
+      // --- 11. Use case cards cascade-in ---
+      const useCards = document.querySelectorAll('.svc-use-card');
+      if (useCards.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(useCards, { opacity: 0, y: 40 });
+        ScrollTrigger.create({
+          trigger: '.svc-uses-grid',
+          start: 'top 58%',
+          once: true,
+          onEnter: () => {
+            gsap.to(useCards, {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.12,
+              ease: 'power3.out'
+            });
+          }
+        });
+      }
+
+      // --- 12. Section handoffs activate on scroll-into-view ---
+      // Threshold kept low because the handoff is only 80px tall and sits
+      // between large sections; a higher threshold misses on fast scrolls.
+      const handoffs = document.querySelectorAll('.svc-handoff');
+      if (handoffs.length) {
+        const handoffObs = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              handoffObs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        handoffs.forEach((h) => handoffObs.observe(h));
+      }
+
+    });
+  </script>
+</body>
+
+</html>
