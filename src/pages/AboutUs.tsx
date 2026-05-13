@@ -367,32 +367,43 @@ const AboutUs: React.FC = () => {
       <ServiceHandoff />
 
       {/* Section 7: Fit / CTA */}
-      <section className="svc-section svc-final-cta glass-panel" style={{ padding: '8rem 0' }}>
+      <section className="svc-final-cta glass-panel">
         <div className="svc-final-cta-mark" aria-hidden="true">
           <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
             <path className="svc-final-cta-path" d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" fill="none" />
           </svg>
         </div>
-        <div className="container" style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 2 }}>
-          <h2 className="svc-h2 split-text" style={{ marginBottom: '2rem' }}>Built for brands that expect more.</h2>
-          <p style={{ fontSize: '1.15rem', color: 'var(--soft-grey)', lineHeight: 1.6, marginBottom: '1.5rem' }}>We are not the right fit for teams looking for a vendor to simply fulfil briefs.</p>
-          <p style={{ fontSize: '1.15rem', color: 'var(--white)', lineHeight: 1.6, marginBottom: '3rem' }}>We work best with brands that want a partner who can think with them, build with them, challenge weak assumptions, and reduce the weight marketing places on their internal team.</p>
+        <div className="container">
+          <style>{`.svc-final-cta .svc-final-cta-heading { font-size: clamp(2.8rem, 5vw, 5.5rem) !important; line-height: 1.1 !important; }`}</style>
+          <h2 className="split-text svc-final-cta-heading">
+            Built for<br />brands that<br /><span style={{ color: 'var(--impulse-violet)' }}>expect more.</span>
+          </h2>
+          
+          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <p className="svc-final-cta-body" style={{ marginBottom: '1.5rem', textAlign: 'center' }}>We are not the right fit for teams looking for a vendor to simply fulfil briefs.</p>
+            <p className="svc-final-cta-body" style={{ color: 'var(--white)', marginBottom: '3rem', textAlign: 'center' }}>We work best with brands that want a partner who can think with them, build with them, challenge weak assumptions, and reduce the weight marketing places on their internal team.</p>
+            
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', marginBottom: '3rem' }}>
+              <span style={{ padding: '0.8rem 1.5rem', background: 'rgba(255,255,255,0.05)', color: 'var(--white)', borderRadius: '30px', fontWeight: 500, border: '1px solid rgba(255,255,255,0.1)' }}>A sharper question.</span>
+              <span style={{ padding: '0.8rem 1.5rem', background: 'rgba(255,255,255,0.05)', color: 'var(--white)', borderRadius: '30px', fontWeight: 500, border: '1px solid rgba(255,255,255,0.1)' }}>A higher standard.</span>
+              <span style={{ padding: '0.8rem 1.5rem', background: 'rgba(255,255,255,0.05)', color: 'var(--white)', borderRadius: '30px', fontWeight: 500, border: '1px solid rgba(255,255,255,0.1)' }}>A willingness to improve.</span>
+            </div>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', marginBottom: '3rem' }}>
-            <span style={{ padding: '0.8rem 1.5rem', background: 'rgba(255,255,255,0.05)', color: 'var(--white)', borderRadius: '30px', fontWeight: 500, border: '1px solid rgba(255,255,255,0.1)' }}>A sharper question.</span>
-            <span style={{ padding: '0.8rem 1.5rem', background: 'rgba(255,255,255,0.05)', color: 'var(--white)', borderRadius: '30px', fontWeight: 500, border: '1px solid rgba(255,255,255,0.1)' }}>A higher standard.</span>
-            <span style={{ padding: '0.8rem 1.5rem', background: 'rgba(255,255,255,0.05)', color: 'var(--white)', borderRadius: '30px', fontWeight: 500, border: '1px solid rgba(255,255,255,0.1)' }}>A willingness to improve.</span>
+            <p style={{ fontSize: '1.25rem', color: 'var(--soft-grey)', marginBottom: '3rem', textAlign: 'center' }}>A need for marketing to move the business, not just fill the calendar.<br /><span style={{ color: 'var(--white)' }}>That is where Impulse fits best.</span></p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '4rem', background: 'var(--accent)', color: 'var(--bg-dark)', padding: '3rem', borderRadius: '24px', textAlign: 'center' }}>
+              <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', color: 'rgba(0,0,0,0.6)' }}>Move sharper.</h3>
+              <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', color: 'rgba(0,0,0,0.8)' }}>Move together.</h3>
+              <h3 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-heading)', color: '#000', marginTop: '0.5rem' }}>Move the business.</h3>
+            </div>
           </div>
 
-          <p style={{ fontSize: '1.25rem', color: 'var(--soft-grey)', marginBottom: '3rem' }}>A need for marketing to move the business, not just fill the calendar.<br /><span style={{ color: 'var(--white)' }}>That is where Impulse fits best.</span></p>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '4rem', background: 'var(--accent)', color: 'var(--bg-dark)', padding: '3rem', borderRadius: '24px' }}>
-            <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', color: 'rgba(0,0,0,0.6)' }}>Move sharper.</h3>
-            <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', color: 'rgba(0,0,0,0.8)' }}>Move together.</h3>
-            <h3 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-heading)', color: '#000', marginTop: '0.5rem' }}>Move the business.</h3>
+          <div className="svc-final-cta-actions">
+            <a href="#connect" className="btn" data-cursor="HI">
+              <span className="btn-text">Start the conversation</span>
+              <div className="btn-fill"></div>
+            </a>
           </div>
-
-          <a href="#connect" className="btn" data-cursor="HI">Start the conversation</a>
         </div>
       </section>
 
