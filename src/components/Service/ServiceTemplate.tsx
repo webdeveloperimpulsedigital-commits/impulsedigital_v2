@@ -123,7 +123,7 @@ export const ServiceLargeText: React.FC<{ data: any }> = ({ data }) => (
 
 export const ServiceVs: React.FC<{ data: any }> = ({ data }) => {
   useEffect(() => {
-    const { gsap, ScrollTrigger } = window as any;
+    const { gsap } = window as any;
     if (!gsap || !ScrollTrigger) return;
     
     const vsSection = document.querySelector('.svc-vs');
@@ -208,14 +208,14 @@ export const ServiceVs: React.FC<{ data: any }> = ({ data }) => {
         <div className="svc-vs-stack">
           <div className="svc-vs-line line-quiet">
             <div className="svc-vs-label">{data.leftLabel}</div>
-            <div className="svc-vs-statement" style={{ whiteSpace: 'nowrap' }}>
+            <div className="svc-vs-statement">
               <span className="svc-vs-strike">{data.leftStrike}</span>
             </div>
           </div>
           <div className="svc-vs-line">
             <div className="svc-vs-label">{data.rightLabel}</div>
-            <div className="svc-vs-statement" style={{ whiteSpace: 'nowrap', fontSize: 'clamp(1.8rem, 3vw, 3.2rem)' }}>
-              {data.rightText}<span className="svc-vs-highlight">{data.rightHighlight}</span>.
+            <div className="svc-vs-statement-loud">
+              {data.rightText}<span className="svc-vs-highlight" dangerouslySetInnerHTML={{ __html: data.rightHighlight }} />.
             </div>
           </div>
           {data.steps && data.steps.length > 0 && (
@@ -225,7 +225,7 @@ export const ServiceVs: React.FC<{ data: any }> = ({ data }) => {
                   <div className="step-marker"><span className="step-dot"></span></div>
                   <div className="step-content">
                     <span className="step-num">{step.num}</span>
-                    <span className="step-label">{step.text}</span>
+                    <span className="step-label" dangerouslySetInnerHTML={{ __html: step.text }} />
                   </div>
                 </div>
               ))}
@@ -240,7 +240,7 @@ export const ServiceVs: React.FC<{ data: any }> = ({ data }) => {
 
 export const ServiceUses: React.FC<{ data: any }> = ({ data }) => {
   useEffect(() => {
-    const { gsap, ScrollTrigger } = window as any;
+    const { gsap } = window as any;
     if (!gsap || !ScrollTrigger) return;
     const useCards = document.querySelectorAll('.svc-use-card');
     if (useCards.length) {
@@ -272,7 +272,7 @@ export const ServiceUses: React.FC<{ data: any }> = ({ data }) => {
               <div className="svc-use-corner"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></div>
               <h3 className="svc-use-title">{card.title}</h3>
               <p className="svc-use-body">{card.body}</p>
-              <div className="svc-use-outcome">{card.outcome}</div>
+              <div className="svc-use-outcome" dangerouslySetInnerHTML={{ __html: card.outcome }} />
             </div>
           ))}
         </div>
@@ -287,16 +287,31 @@ export const ServiceWhenToUse: React.FC<{ data: any }> = ({ data }) => (
       <div className="svc-systems-grid">
         <div className="svc-systems-intro">
           <h2 className="svc-h2 split-text" style={{ marginBottom: '2.5rem' }} dangerouslySetInnerHTML={{ __html: data.title }} />
-          {data.paragraphs.map((p: string, i: number) => <p key={i}>{p}</p>)}
+          {data.paragraphs && data.paragraphs.map((p: string, i: number) => <p key={i}>{p}</p>)}
           {data.closer && <p className="closer">{data.closer}</p>}
         </div>
         <div>
           {data.pillsHeading && <p style={{ fontSize: '0.75rem', color: 'var(--impulse-violet)', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '1.5rem' }}>{data.pillsHeading}</p>}
           <div className="svc-systems-pills">
-            {data.pills.map((pill: string, i: number) => <div className="svc-system-pill" key={i}>{pill}</div>)}
+            {data.pills && data.pills.map((pill: any, i: number) => (
+              <div className="svc-system-pill" key={i}>
+                {typeof pill === 'string' ? pill : (
+                  <>
+                    <strong>{pill.label}</strong>
+                    <span>{pill.desc}</span>
+                  </>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>
+      {data.punchline && (
+        <h3 className="svc-guard-punchline">
+          <span className="svc-guard-punchline-line"><span className="inner">{data.punchline[0]}</span></span>
+          <span className="svc-guard-punchline-line"><span className="inner accent" style={{ color: 'var(--impulse-violet)' }}>{data.punchline[1]}</span></span>
+        </h3>
+      )}
     </div>
   </section>
 );
@@ -330,12 +345,81 @@ export const ServiceGuardrails: React.FC<{ data: any }> = ({ data }) => (
 );
 
 export const ServiceProcess: React.FC<{ data: any }> = ({ data }) => {
+  const sectionRef = React.useRef<HTMLElement>(null);
+
   useEffect(() => {
-    setTimeout(() => { if (ScrollTrigger) ScrollTrigger.refresh(); }, 500);
+    const { gsap, ScrollTrigger } = window as any;
+    if (!gsap || !ScrollTrigger) return;
+    
+    const ctx = gsap.context(() => {
+      // Animate text fill
+      const textFills = gsap.utils.toArray('.scrub-container .text-fill');
+      textFills.forEach((fill: any) => {
+        gsap.to(fill, {
+          backgroundPositionX: '0%', ease: 'none',
+          scrollTrigger: { trigger: fill, scrub: 1, start: 'top 80%', end: 'top 20%' }
+        });
+      });
+
+      // Animate the text reveal
+      const items = gsap.utils.toArray('.scrub-item');
+      items.forEach((item: any) => {
+        const path = item.querySelector('.service-mark-svg-path') as SVGPathElement;
+        const numEl = item.querySelector('.service-num');
+        const titleEl = item.querySelector('.scrub-title');
+        const descEl = item.querySelector('.scrub-desc');
+
+        if (!numEl) return;
+
+        if (path) {
+          const pathLen = path.getTotalLength();
+          gsap.set(path, { strokeDasharray: pathLen, strokeDashoffset: pathLen });
+        }
+
+        gsap.set([numEl, titleEl], { opacity: 0, y: 28 });
+        gsap.set(descEl, { opacity: 0, y: 28 });
+
+        ScrollTrigger.create({
+          trigger: item,
+          start: 'top 76%',
+          once: true,
+          onEnter: () => {
+            const tl = gsap.timeline();
+            tl.to(titleEl, {
+                  opacity: 1, y: 0,
+                  duration: 0.55,
+                  ease: 'power3.out'
+              })
+              .to(descEl, {
+                  opacity: 0.8, y: 0,
+                  duration: 0.5,
+                  ease: 'power3.out'
+              }, '-=0.32')
+              .to(numEl, {
+                  opacity: 1, y: 0,
+                  duration: 0.45,
+                  ease: 'power3.out'
+              }, '-=0.3');
+              
+            if (path) {
+              tl.to(path, {
+                  strokeDashoffset: 0,
+                  duration: 1.15,
+                  ease: 'power2.inOut'
+              }, '+=0.2');
+            }
+          }
+        });
+      });
+
+      setTimeout(() => { if (ScrollTrigger) ScrollTrigger.refresh(); }, 500);
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section className="services glass-panel" id="process">
+    <section className="services glass-panel" id="process" ref={sectionRef}>
       <div className="container">
         <h2 className="section-heading split-text">{data.title}</h2>
         <div className="scrub-container">
@@ -350,8 +434,8 @@ export const ServiceProcess: React.FC<{ data: any }> = ({ data }) => {
                 <span className="service-num">{step.num}</span>
               </div>
               <div className="scrub-right">
-                <h3 className="scrub-title text-fill">{step.title}</h3>
-                <p className="scrub-desc">{step.desc}</p>
+                <h3 className="scrub-title text-fill" data-text={step.title}>{step.title}</h3>
+                <p className="scrub-desc" dangerouslySetInnerHTML={{ __html: step.desc }} />
               </div>
             </div>
           ))}
@@ -374,7 +458,7 @@ export const ServiceProcess: React.FC<{ data: any }> = ({ data }) => {
 
 export const ServiceFit: React.FC<{ data: any }> = ({ data }) => {
   useEffect(() => {
-    const { gsap, ScrollTrigger } = window as any;
+    const { gsap } = window as any;
     if (!gsap || !ScrollTrigger) return;
     const fitItems = document.querySelectorAll('.svc-fit-list li');
     if (fitItems.length) {
@@ -404,7 +488,7 @@ export const ServiceFit: React.FC<{ data: any }> = ({ data }) => {
             {data.closer && <p className="svc-fit-closer">{data.closer}</p>}
           </div>
           <ul className="svc-fit-list">
-            {data.list.map((item: string, i: number) => <li key={i}>{item}</li>)}
+            {data.list.map((item: string, i: number) => <li key={i} dangerouslySetInnerHTML={{ __html: item }} />)}
           </ul>
         </div>
       </div>
@@ -447,15 +531,21 @@ export const ServiceFinalCTA: React.FC<{ data: any }> = ({ data }) => {
       </div>
       <div className="container">
         <style>{`.svc-final-cta .svc-final-cta-heading { font-size: ${data.headingFontSize || 'clamp(2.8rem, 5vw, 5.5rem)'} !important; line-height: 1.1 !important; }`}</style>
-        <h2 className="split-text svc-final-cta-heading" dangerouslySetInnerHTML={{ __html: `${data.titleParts[0]}<span style="color: var(--impulse-violet);">${data.accent}</span>` }} />
+        <h2 className="split-text svc-final-cta-heading" dangerouslySetInnerHTML={{ __html: data.titleParts ? `${data.titleParts[0]}<span style="color: var(--impulse-violet);">${data.accent}</span>` : data.title || '' }} />
         <p className="svc-final-cta-body">{data.body}</p>
         <div className="svc-final-cta-actions">
-          {data.buttons.map((btn: any, i: number) => (
-            <a key={i} href={btn.link} className="btn" data-cursor={btn.cursor}>
+          {(data.buttons || []).map((btn: any, i: number) => (
+            <a key={i} href={btn.link || btn.url || '#'} className={`btn ${btn.primary ? 'btn-primary' : ''}`} data-cursor={btn.cursor || 'START'}>
               <span className="btn-text">{btn.text}</span>
               <div className="btn-fill"></div>
             </a>
           ))}
+          {!data.buttons && data.btnText && (
+            <a href={data.btnUrl || '#'} className="btn btn-primary" data-cursor="START">
+              <span className="btn-text">{data.btnText}</span>
+              <div className="btn-fill"></div>
+            </a>
+          )}
         </div>
         <p className="svc-final-cta-footnote">{data.footnote}</p>
       </div>
@@ -510,11 +600,108 @@ export const ServiceFAQ: React.FC<{ data: any }> = ({ data }) => {
   );
 };
 
+export const ServiceStats: React.FC<{ data: any }> = ({ data }) => {
+  useEffect(() => {
+    const { gsap, ScrollTrigger } = window as any;
+    if (!gsap || !ScrollTrigger) return;
+
+    // Stats reveal sequence
+    const statsGrid = document.querySelector('.svc-stats-grid');
+    const statsCols = document.querySelectorAll('.svc-stat');
+    if (statsGrid && statsCols.length) {
+      gsap.set(statsCols, { opacity: 0, y: 32 });
+      ScrollTrigger.create({
+        trigger: statsGrid,
+        start: 'top 55%',
+        once: true,
+        onEnter: () => {
+          gsap.to(statsCols, {
+            opacity: 1, y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out'
+          });
+        }
+      });
+    }
+
+    // Stat counters
+    document.querySelectorAll('[data-stat-target]').forEach((el) => {
+      const target = parseFloat(el.getAttribute('data-stat-target') || '0');
+      const suffix = el.getAttribute('data-stat-suffix') || '';
+      const decimals = parseInt(el.getAttribute('data-stat-decimals') || '0', 10);
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const proxy = { v: 0 };
+          gsap.to(proxy, {
+            v: target,
+            duration: 2.0,
+            ease: 'power3.out',
+            onUpdate: () => {
+              const val = decimals > 0 ? proxy.v.toFixed(decimals) : Math.round(proxy.v).toLocaleString();
+              el.textContent = val + suffix;
+            }
+          });
+          obs.unobserve(el);
+        });
+      }, { threshold: 0.4 });
+      obs.observe(el);
+    });
+  }, []);
+
+  return (
+    <section className="svc-stats" id="warp-start">
+      <div className="container">
+        <h2 className="svc-h2 split-text">{data.title}</h2>
+        <div className="svc-stats-grid">
+          {data.metrics.map((stat: any, i: number) => (
+            <div className="svc-stat" key={i}>
+              <div className="svc-stat-mark mark-glyph"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></div>
+              <div className="svc-stat-number" data-stat-target={stat.target} data-stat-suffix={stat.suffix} data-stat-decimals={stat.decimals}>0</div>
+              <p className="svc-stat-desc">{stat.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p className="svc-stats-footnote">{data.footnote}</p>
+      </div>
+    </section>
+  );
+};
+
 export const ServiceTemplate: React.FC<{ data: any }> = ({ data }) => {
   useEffect(() => {
     document.body.classList.add('service-page');
+    
+    const { gsap, ScrollTrigger, SplitType } = window as any;
+    if (gsap && ScrollTrigger && SplitType) {
+      setTimeout(() => {
+        const splitTexts = document.querySelectorAll('.split-text:not(.initialized)');
+        splitTexts.forEach(text => {
+          text.classList.add('initialized');
+          const split = new SplitType(text as HTMLElement, { types: 'lines, words' });
+          if (split.lines) {
+            split.lines.forEach((line: HTMLElement) => {
+              const wrapper = document.createElement('div');
+              wrapper.classList.add('line-wrapper');
+              line.parentNode?.insertBefore(wrapper, line);
+              wrapper.appendChild(line);
+            });
+          }
+          gsap.fromTo(split.words,
+            { yPercent: 120, opacity: 0 },
+            {
+              scrollTrigger: { trigger: text, start: 'top 75%', toggleActions: 'play none none reverse' },
+              yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.015, ease: 'power4.out'
+            }
+          );
+        });
+        ScrollTrigger.refresh();
+      }, 100);
+    }
+
     return () => document.body.classList.remove('service-page');
-  }, []);
+  }, [data]);
 
   return (
     <main id="main-content">
@@ -525,8 +712,20 @@ export const ServiceTemplate: React.FC<{ data: any }> = ({ data }) => {
         buttons={data.hero.buttons}
       />
       <ServiceHandoff />
-      <ServiceProblem data={data.problem} />
-      <ServiceHandoff />
+
+      {data.stats && (
+        <>
+          <ServiceStats data={data.stats} />
+          <ServiceHandoff />
+        </>
+      )}
+
+      {data.problem && (
+        <>
+          <ServiceProblem data={data.problem} />
+          <ServiceHandoff />
+        </>
+      )}
 
       {data.largeTextSection && (
         <>
@@ -535,38 +734,70 @@ export const ServiceTemplate: React.FC<{ data: any }> = ({ data }) => {
         </>
       )}
 
-      <ServiceVs data={data.vs} />
-      <ServiceHandoff />
-      <ServiceUses data={data.uses} />
-      <ServiceHandoff />
+      {data.vs && (
+        <>
+          <ServiceVs data={data.vs} />
+          <ServiceHandoff />
+        </>
+      )}
+
+      {data.uses && (
+        <>
+          <ServiceUses data={data.uses} />
+          <ServiceHandoff />
+        </>
+      )}
+
       {data.whenToUse && !data.whenToUseAfterGuardrails && (
         <>
           <ServiceWhenToUse data={data.whenToUse} />
           <ServiceHandoff />
         </>
       )}
+
       {data.guardrails && (
         <>
           <ServiceGuardrails data={data.guardrails} />
           <ServiceHandoff />
         </>
       )}
+
       {data.whenToUse && data.whenToUseAfterGuardrails && (
         <>
           <ServiceWhenToUse data={data.whenToUse} />
           <ServiceHandoff />
         </>
       )}
-      <ServiceProcess data={data.process} />
+
+      {data.process && (
+        <>
+          <ServiceProcess data={data.process} />
+        </>
+      )}
       
       <Logos title={data.logosTitle} />
       <ServiceHandoff />
-      <ServiceFit data={data.fit} />
-      <ServiceHandoff />
-      <ServiceFinalCTA data={data.finalCta} />
+
+      {data.fit && (
+        <>
+          <ServiceFit data={data.fit} />
+          <ServiceHandoff />
+        </>
+      )}
+
+      {data.finalCta && (
+        <ServiceFinalCTA data={data.finalCta} />
+      )}
+
       <Testimonials />
-      <Contact title={data.contactTitle} />
-      <ServiceFAQ data={data.faq} />
+      
+      {data.contactTitle && (
+        <Contact title={data.contactTitle} />
+      )}
+
+      {data.faq && (
+        <ServiceFAQ data={data.faq} />
+      )}
     </main>
   );
 };

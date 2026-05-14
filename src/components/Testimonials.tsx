@@ -1,8 +1,58 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+
+const { gsap, ScrollTrigger, SplitType } = window as any;
 
 const Testimonials: React.FC = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    if (!gsap || !ScrollTrigger) return;
+    const ctx = gsap.context(() => {
+      // SplitType for Testimonials heading
+      const text = sectionRef.current?.querySelector('.split-text') as HTMLElement;
+      if (text && SplitType) {
+        if (!text.classList.contains('split-done')) {
+          const split = new SplitType(text, { types: 'lines, words' });
+          split.lines?.forEach((line: any) => {
+              const wrapper = document.createElement('div');
+              wrapper.classList.add('line-wrapper');
+              line.parentNode?.insertBefore(wrapper, line);
+              wrapper.appendChild(line);
+          });
+          text.classList.add('split-done');
+          gsap.fromTo(split.words,
+            { yPercent: 120, opacity: 0 },
+            {
+                scrollTrigger: { trigger: text, start: 'top 85%', toggleActions: 'play none none reverse' },
+                yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.015, ease: 'power4.out'
+            }
+          );
+        }
+      }
+
+      // Testimonials Cards Reveal
+      const cards = gsap.utils.toArray('.test-card-col');
+      if (cards.length) {
+        gsap.set(cards, { autoAlpha: 0, y: 40 });
+        gsap.to(cards, {
+            scrollTrigger: {
+                trigger: ".testimonials",
+                start: "top 75%",
+                toggleActions: "play none none reverse"
+            },
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out"
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleScroll = () => {
     if (sliderRef.current) {
@@ -21,7 +71,7 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section className="testimonials glass-panel">
+    <section className="testimonials glass-panel" ref={sectionRef}>
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <h2 className="section-heading split-text">What working with us looked like.</h2>
         <div className="testimonial-grid" ref={sliderRef} onScroll={handleScroll}>

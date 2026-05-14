@@ -152,6 +152,6 @@ export const alwaysOnIntelligenceData = {
     ]
   },
   logosTitle: "Trusted by Teams That Cannot Afford Blind Spots",
-  contactTitle: "Build Your<br>Intelligence<br>System.",
+  contactTitle: "Build Your Intelligence System.",
   whenToUseAfterGuardrails: true
 };

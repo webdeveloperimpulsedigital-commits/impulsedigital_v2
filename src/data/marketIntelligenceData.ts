@@ -146,5 +146,5 @@ export const marketIntelligenceData = {
     ]
   },
   logosTitle: "Trusted by Teams That Need the Market to Make Sense",
-  contactTitle: "See What Your<br>Market Is Already<br>Telling You."
+  contactTitle: "See What Your Market Is Already Telling You."
 };

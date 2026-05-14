@@ -3,13 +3,14 @@ import React, { useEffect } from 'react';
 const { gsap, SplitType } = window as any;
 
 interface ServiceHeroProps {
-  headlineParts: string[];
-  headlineAccent: string;
+  headlineParts?: string[];
+  headlineAccent?: string;
+  headlineHtml?: string;
   description: string;
   buttons: { text: string; link: string; cursor: string }[];
 }
 
-const ServiceHero: React.FC<ServiceHeroProps> = ({ headlineParts, headlineAccent, description, buttons }) => {
+const ServiceHero: React.FC<ServiceHeroProps> = ({ headlineParts, headlineAccent, headlineHtml, description, buttons }) => {
   useEffect(() => {
     const heroHeadline = document.querySelector('.svc-hero-headline');
     const heroDesc = document.querySelector('.svc-hero-page-desc');
@@ -63,21 +64,23 @@ const ServiceHero: React.FC<ServiceHeroProps> = ({ headlineParts, headlineAccent
   return (
     <section className="svc-hero-page" id="hero">
       <div className="svc-hero-page-content">
-        <h1 className="svc-hero-headline" style={{ visibility: 'hidden' }}>
-          {headlineParts.map((part, i) => (
-            <React.Fragment key={i}>
-              {part === headlineAccent ? (
-                <span style={{ color: 'var(--impulse-violet)' }}>{part}</span>
-              ) : (
-                part
-              )}
-              {i < headlineParts.length - 1 && <br />}
-            </React.Fragment>
-          ))}
-        </h1>
-        <p className="svc-hero-page-desc" style={{ visibility: 'hidden' }}>
-          {description}
-        </p>
+        {headlineHtml ? (
+          <h1 className="svc-hero-headline" style={{ visibility: 'hidden' }} dangerouslySetInnerHTML={{ __html: headlineHtml }} />
+        ) : (
+          <h1 className="svc-hero-headline" style={{ visibility: 'hidden' }}>
+            {headlineParts?.map((part, i) => (
+              <React.Fragment key={i}>
+                {part === headlineAccent ? (
+                  <span style={{ color: 'var(--impulse-violet)' }}>{part}</span>
+                ) : (
+                  part
+                )}
+                {i < (headlineParts?.length || 0) - 1 && <br />}
+              </React.Fragment>
+            ))}
+          </h1>
+        )}
+        <p className="svc-hero-page-desc" style={{ visibility: 'hidden' }} dangerouslySetInnerHTML={{ __html: description }} />
         <div className="svc-hero-cta-row">
           {buttons.map((btn, idx) => (
             <a key={idx} href={btn.link} className="btn" data-cursor={btn.cursor} style={{ opacity: 0 }}>

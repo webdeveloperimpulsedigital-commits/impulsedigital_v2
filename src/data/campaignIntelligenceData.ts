@@ -150,6 +150,6 @@ export const campaignIntelligenceData = {
     ]
   },
   logosTitle: "Trusted by Teams That Need More Than Metrics",
-  contactTitle: "Decode<br>Campaign<br>Impact.",
+  contactTitle: "Decode Campaign Impact.",
   whenToUseAfterGuardrails: true
 };

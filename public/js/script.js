@@ -293,6 +293,7 @@ document.fonts.ready.then(() => {
         );
     });
 
+    window.initHomeDOMAnimations = () => {
     // ==========================================
     // CASE STUDIES: Center-to-Sides Cosmos Zoom
     // ==========================================
@@ -581,6 +582,9 @@ document.fonts.ready.then(() => {
     }
 
     setTimeout(() => { ScrollTrigger.refresh(); }, 500);
+
+    };
+    window.initHomeDOMAnimations();
 
     // Footer Hover SVG Effect
     const footerSvg = document.getElementById('footer-hover-svg');

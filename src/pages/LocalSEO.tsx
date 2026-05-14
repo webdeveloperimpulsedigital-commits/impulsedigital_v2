@@ -1,32 +1,28 @@
 import React, { useEffect } from 'react';
 import ServiceHero from '../components/Service/ServiceHero';
 import ServiceHandoff from '../components/Service/ServiceHandoff';
+import { 
+  ServiceProblem, 
+  ServiceVs, 
+  ServiceUses, 
+  ServiceProcess, 
+  ServiceGuardrails, 
+  ServiceFit, 
+  ServiceFinalCTA, 
+  ServiceFAQ, 
+  ServiceStats
+} from '../components/Service/ServiceTemplate';
 import Logos from '../components/Logos';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
+import { localSEOData as data } from '../data/localSEOData';
 
-import {
-  ServiceStats,
-  ServiceProblem,
-  ServiceVs,
-  ServiceUses,
-  ServiceWhenToUse,
-  ServiceGuardrails,
-  ServiceProcess,
-  ServiceFit,
-  ServiceFinalCTA,
-  ServiceFAQ
-} from '../components/Service/ServiceTemplate';
-
-import { agenticAiData } from '../data/agenticAiData';
-
-const { gsap, ScrollTrigger } = window as any;
-
-const AgenticAI: React.FC = () => {
+const LocalSEO: React.FC = () => {
   useEffect(() => {
-    document.body.classList.add('service-page');
-    
-    // Channels orbit animation
+    window.scrollTo(0, 0);
+    document.body.classList.add('service-page', 'seo-page');
+
+    const { gsap, ScrollTrigger } = window as any;
     const stage = document.getElementById('channels-stage');
     const linesSvg = document.getElementById('channels-orbit-lines');
     const centerEl = document.querySelector('.svc-channels-center');
@@ -142,7 +138,7 @@ const AgenticAI: React.FC = () => {
     }
 
     return () => {
-      document.body.classList.remove('service-page');
+      document.body.classList.remove('service-page', 'seo-page');
       window.removeEventListener('resize', measureFn);
       if (pulseTimer) clearInterval(pulseTimer);
       clearTimeout(measureTimeout1);
@@ -154,47 +150,79 @@ const AgenticAI: React.FC = () => {
   return (
     <main id="main-content">
       <ServiceHero 
-        headlineParts={agenticAiData.hero.headlineParts}
-        headlineAccent={agenticAiData.hero.headlineAccent}
-        description={agenticAiData.hero.description}
-        buttons={agenticAiData.hero.buttons}
+        headlineHtml={data.hero.headlineHtml}
+        headlineParts={data.hero.headlineParts}
+        headlineAccent={data.hero.headlineAccent}
+        description={data.hero.description}
+        buttons={data.hero.buttons}
       />
 
-      {/* STATS — Built to Reduce the Work That Slows Teams Down */}
-      <ServiceStats data={agenticAiData.stats} />
+      <ServiceStats data={data.stats} />
+      <ServiceHandoff />
+      
+      <ServiceProblem data={data.problem} />
+      <ServiceHandoff />
+      
+      <ServiceVs data={data.vs} />
+      <ServiceHandoff />
+
+      {/* CHANNELS Section specifically for Local SEO */}
+      {data.channels && (
+        <section className="svc-channels">
+          <div className="container">
+            <h2 className="svc-h2 split-text" style={{ maxWidth: '800px', marginBottom: '2.5rem' }}>{data.channels.title}</h2>
+            <p className="svc-channels-intro">{data.channels.intro1}</p>
+            <p className="svc-channels-intro" style={{ marginBottom: '5rem', color: 'var(--impulse-violet)', fontWeight: 600 }}>{data.channels.intro2}</p>
+            
+            <div className="svc-channels-stage" id="channels-stage">
+              <svg className="svc-channels-orbit-svg" id="channels-orbit-lines" aria-hidden="true"></svg>
+              <div className="svc-channels-center" aria-hidden="true">
+                <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+                </svg>
+              </div>
+              <div className="svc-channels-orbit">
+                {data.channels.list.map((item: any, i: number) => (
+                  <span key={i} className="svc-channel-chip" style={{ '--chip-left': item.pos.left, '--chip-top': item.pos.top } as React.CSSProperties}>
+                    {item.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+            {data.channels.outro && data.channels.outro.split('<br>').map((p: string, i: number) => (
+              <p className="svc-channels-intro" key={i} dangerouslySetInnerHTML={{ __html: p }}></p>
+            ))}
+          </div>
+        </section>
+      )}
 
       <ServiceHandoff />
-      
-      <ServiceProblem data={agenticAiData.problem} />
-      <ServiceHandoff />
-      
-      <ServiceVs data={agenticAiData.vs} />
-      <ServiceHandoff />
-      
-      <ServiceUses data={agenticAiData.uses} />
-      <ServiceHandoff />
-      
-      {/* CHANNELS — Built Across the Channels Your Customers Already Use */}
-      <section className="svc-channels">
+
+      {/* Connected Systems for Local SEO */}
+      <section className="svc-section glass-panel">
         <div className="container">
-          <h2 className="svc-h2 split-text">Built Across the Channels Your Customers Already Use</h2>
-          <p className="svc-channels-intro">Your customers do not think in channels. They message where it is convenient. Your AI system should keep the experience connected across:</p>
-          <div className="svc-channels-stage" id="channels-stage">
-            <svg className="svc-channels-orbit-svg" id="channels-orbit-lines" aria-hidden="true"></svg>
-            <div className="svc-channels-center" aria-hidden="true">
-              <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
-              </svg>
+          <div className="svc-systems-grid">
+            <div className="svc-systems-intro">
+              <h2 className="svc-h2 split-text" style={{ marginBottom: '2.5rem' }}>{data.channels.systemsTitle}</h2>
+              {data.channels.systemsParagraphs.map((p, i) => <p key={i}>{p}</p>)}
+              <p className="closer">{data.channels.closer}</p>
             </div>
-            <div className="svc-channels-orbit">
-              <span className="svc-channel-chip" style={{ '--chip-left': '22%', '--chip-top': '20%' } as React.CSSProperties}>WhatsApp</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '50%', '--chip-top': '12%' } as React.CSSProperties}>Email</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '78%', '--chip-top': '20%' } as React.CSSProperties}>Voice notes</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '85%', '--chip-top': '50%' } as React.CSSProperties}>Facebook Messenger</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '78%', '--chip-top': '80%' } as React.CSSProperties}>Instagram DM</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '50%', '--chip-top': '88%' } as React.CSSProperties}>SMS</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '22%', '--chip-top': '80%' } as React.CSSProperties}>Website chat</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '15%', '--chip-top': '50%' } as React.CSSProperties}>CRM workflows</span>
+            <div>
+              <p style={{ fontSize: '0.75rem', color: 'var(--impulse-violet)', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '1.5rem' }}>{data.channels.pillsHeading}</p>
+              <div className="svc-systems-pills">
+                {data.channels.pills.map((pill, i) => {
+                  if (typeof pill === 'string' && pill.includes(':')) {
+                    const [label, desc] = pill.split(':');
+                    return (
+                      <div className="svc-system-pill" key={i}>
+                        <strong>{label.trim()}:</strong>
+                        <span>{desc}</span>
+                      </div>
+                    );
+                  }
+                  return <div className="svc-system-pill" key={i}>{pill}</div>;
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -202,27 +230,27 @@ const AgenticAI: React.FC = () => {
 
       <ServiceHandoff />
       
-      <ServiceWhenToUse data={agenticAiData.whenToUse} />
+      <ServiceUses data={data.uses} />
       <ServiceHandoff />
 
-      <ServiceGuardrails data={agenticAiData.guardrails} />
+      <ServiceGuardrails data={data.guardrails} />
       <ServiceHandoff />
 
-      <ServiceProcess data={agenticAiData.process} />
+      <ServiceProcess data={data.process} />
       
-      <Logos title="Trusted by Teams That Expect Thinking Before Execution" />
+      <Logos title="Trusted by Brands That Need Local Search to Bring People In" />
       
       <Testimonials />
       <ServiceHandoff />
       
-      <ServiceFit data={agenticAiData.fit} />
+      <ServiceFit data={data.fit} />
       <ServiceHandoff />
-      
-      <ServiceFinalCTA data={agenticAiData.finalCta} />
+
+      <ServiceFinalCTA data={data.finalCta} />
       <Contact />
-      <ServiceFAQ data={agenticAiData.faq} />
+      <ServiceFAQ data={data.faq} />
     </main>
   );
 };
 
-export default AgenticAI;
+export default LocalSEO;

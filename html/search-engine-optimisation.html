@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEO Services in Thane and Mumbai | Search Engine Optimisation | Impulse Digital</title>
+  <meta name="description"
+    content="Build search visibility that turns buyer intent into serious enquiries. Impulse Digital helps brands improve technical SEO, content strategy, local visibility, ecommerce SEO, B2B SEO, enterprise SEO, and AI search readiness.">
+  <link rel="stylesheet" href="css/styles.css?v=80">
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/SVGLoader.js"></script>
+
+  <!-- Lenis -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- SplitType -->
+  <script src="https://unpkg.com/split-type"></script>
+</head>
+
+<body class="service-page seo-page">
+  <!-- 3D WebGL Canvas Background -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Global Mark Defs -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute;top:0;left:0;pointer-events:none;">
+    <defs>
+      <clipPath id="impulse-mark-clip">
+        <path
+          d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+      </clipPath>
+      <symbol id="impulse-mark" viewBox="801 344 274 272">
+        <path
+          d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Mark Cursor -->
+  <div class="cursor" aria-hidden="true">
+    <svg class="cursor-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+        class="cursor-mark-path" />
+    </svg>
+    <div class="cursor-text"></div>
+  </div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <!-- Page Scroll Progress -->
+  <div class="page-progress" aria-hidden="true">
+    <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+        class="page-progress-path" />
+    </svg>
+  </div>
+
+  <div class="noise-overlay"></div>
+
+  <!-- Navigation -->
+  <nav id="main-nav">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="index.html" class="logo"><img src="ImpulseDigital_Logo.svg" alt="Impulse Digital Logo"></a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-item" data-cursor="GO">Home</a>
+        <a href="index.html#about" class="nav-item" data-cursor="GO">About Us</a>
+        <div class="nav-dropdown">
+          <a href="index.html#services" class="nav-item" data-cursor="GO"
+            style="display: flex; align-items: center; gap: 4px;">
+            Services
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"
+              class="dropdown-arrow">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+          <div class="dropdown-content">
+            <div class="dropdown-col">
+              <h4>Growth Intelligence</h4>
+              <div class="dropdown-list">
+                <a href="consumer-intelligence.html" class="dropdown-item">Consumer Intelligence</a>
+                <a href="index.html#services" class="dropdown-item">Market and Competitive Intelligence</a>
+                <a href="index.html#services" class="dropdown-item">Always-On Intelligence</a>
+                <a href="index.html#services" class="dropdown-item">Campaign and Performance Intelligence</a>
+              </div>
+            </div>
+            <div class="dropdown-col">
+              <h4>AI Marketing Systems</h4>
+              <div class="dropdown-list">
+                <a href="archer-ai.html" class="dropdown-item">Archer AI</a>
+                <a href="agentic-ai.html" class="dropdown-item">Agentic AI</a>
+                <a href="ai-video-production.html" class="dropdown-item">Cinematic AI Production</a>
+                <a href="generative-search-optimisation.html" class="dropdown-item">Generative Search Optimisation</a>
+              </div>
+            </div>
+            <div class="dropdown-col">
+              <h4>Brand Infrastructure</h4>
+              <div class="dropdown-list">
+                <a href="search-engine-optimisation.html" class="dropdown-item">Search and Visibility</a>
+                <a href="index.html#services" class="dropdown-item">Content Strategy and Writing</a>
+                <a href="social-media-management.html" class="dropdown-item">Social Media</a>
+                <a href="index.html#services" class="dropdown-item">Video and Visual Content</a>
+                <a href="website-development.html" class="dropdown-item">Website Development</a>
+                <a href="branding.html" class="dropdown-item">Brand Identity</a>
+                <a href="employer-branding.html" class="dropdown-item">Employer Branding</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="index.html#cases-pin" class="nav-item" data-cursor="GO">Case Studies</a>
+        <a href="index.html#blogs" class="nav-item" data-cursor="GO">Blogs</a>
+        <a href="index.html#resources" class="nav-item" data-cursor="GO">Resources</a>
+        <a href="index.html#careers" class="nav-item" data-cursor="GO">Careers</a>
+      </div>
+      <div class="nav-right">
+        <a href="#connect" class="btn-nav" data-cursor="HI">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         HERO - Search Engine Optimisation
+         ============================================================ -->
+    <section class="svc-hero-page" id="hero">
+      <div class="svc-hero-page-content">
+        <h1 class="svc-hero-headline split-text">Your Website Is Not<br>the First Impression.<br>Search Is.</h1>
+        <p class="svc-hero-page-desc split-text"><span class="seo-hero-lead">Before a buyer reaches your website, search has already shaped the decision.</span> They have seen who appears, who sounds credible, who answers clearly, and who feels worth the click. Impulse Digital helps brands build search systems that make them easier to find, understand, and trust when buyers are already looking.</p>
+        <div class="svc-hero-cta-row">
+          <a href="#connect" class="btn" data-cursor="FIND">
+            <span class="btn-text">Find Your Search Gaps</span>
+            <div class="btn-fill"></div>
+          </a>
+          <a href="#process" class="btn" data-cursor="SEE">
+            <span class="btn-text">See How We Build SEO</span>
+            <div class="btn-fill"></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         STATS - Search Moves Before Sales Does
+         ============================================================ -->
+    <section class="svc-stats" id="warp-start">
+      <div class="container">
+        <h2 class="svc-h2 split-text">Search Moves Before Sales Does</h2>
+        <div class="svc-stats-grid">
+          <div class="svc-stat">
+            <div class="svc-stat-mark mark-glyph"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></div>
+            <div class="svc-stat-number" data-stat-target="97" data-stat-suffix="%">97%</div>
+            <p class="svc-stat-desc">clients achieved top 1st page search rankings for their target keywords.</p>
+          </div>
+          <div class="svc-stat">
+            <div class="svc-stat-mark mark-glyph"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></div>
+            <div class="svc-stat-number" data-stat-target="80" data-stat-suffix="%">80%</div>
+            <p class="svc-stat-desc">of our clients see improved results within the first 3 months.</p>
+          </div>
+          <div class="svc-stat">
+            <div class="svc-stat-mark mark-glyph"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></div>
+            <div class="svc-stat-number" data-stat-target="3.5" data-stat-suffix="X" data-stat-decimals="1">3.5X</div>
+            <p class="svc-stat-desc">business growth for our clients after leveraging our expert SEO services.</p>
+          </div>
+        </div>
+        <div class="svc-stats-footnote">
+          <p>Search does not wait for the sales cycle to begin. It starts earlier. Before the enquiry. Before the call. Before the deck. Before the shortlist reaches your inbox. If your search presence is unclear, incomplete, or unconvincing, your sales team starts with a disadvantage they did not create. SEO should not sit quietly inside monthly reports. It should make the first conversation easier before it even begins.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- ============================================================
+         PROBLEM - The Problem Is Not Traffic. It Is Doubt.
+         ============================================================ -->
+    <section class="svc-problem">
+      <div class="container">
+        <div class="svc-problem-grid">
+          <div>
+            <h2 class="svc-h2 split-text" style="margin-bottom: 0;">The Problem Is Not Traffic. It Is Doubt.</h2>
+          </div>
+          <div class="svc-problem-body">
+            <p>Most brands are not invisible everywhere.</p>
+            <p>They are visible in fragments.</p>
+            <ul class="svc-problem-gaps">
+              <li><span class="gap-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span><span class="gap-text">A page ranks, but does not persuade.</span></li>
+              <li><span class="gap-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span><span class="gap-text">A blog brings visits, but no conviction.</span></li>
+              <li><span class="gap-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span><span class="gap-text">A service page exists, but does not answer enough.</span></li>
+              <li><span class="gap-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span><span class="gap-text">A local listing appears, but does not earn the call.</span></li>
+              <li><span class="gap-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span><span class="gap-text">A product gets seen, but not chosen.</span></li>
+            </ul>
+            <p class="pivot">That is where search breaks.</p>
+            <p>Not because people cannot find you.</p>
+            <p>Because after finding you, they still keep looking.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- ============================================================
+         SEO, IN PLAIN ENGLISH
+         ============================================================ -->
+    <section class="svc-vs">
+      <div class="container">
+        <h2 class="svc-h2 split-text">SEO, in Plain English</h2>
+        <div class="svc-vs-stack">
+          <div class="svc-vs-line line-quiet seo-vs-full">
+            <div class="svc-vs-label">Search</div>
+            <div class="svc-vs-statement"><span class="svc-vs-strike">is the buyer revealing what they want.</span></div>
+          </div>
+          <div class="svc-vs-line seo-vs-full">
+            <div class="svc-vs-label">SEO</div>
+            <div class="svc-vs-statement"><span class="svc-vs-highlight">is how your brand becomes the answer they trust.</span></div>
+          </div>
+          <div class="svc-vs-pipeline">
+            <div class="svc-vs-step"><div class="step-marker"><span class="step-dot"></span></div><div class="step-content"><span class="step-num">01</span><span class="step-label">A keyword shows what someone typed.<br>Intent shows what they are trying to decide.</span></div></div>
+            <div class="svc-vs-step"><div class="step-marker"><span class="step-dot"></span></div><div class="step-content"><span class="step-num">02</span><span class="step-label">A ranking gets you seen.<br>A strong page gives the buyer a reason to stay.</span></div></div>
+            <div class="svc-vs-step"><div class="step-marker"><span class="step-dot"></span></div><div class="step-content"><span class="step-num">03</span><span class="step-label">A blog can bring traffic.<br>A content system builds authority.</span></div></div>
+            <div class="svc-vs-step"><div class="step-marker"><span class="step-dot"></span></div><div class="step-content"><span class="step-num">04</span><span class="step-label">A technical fix can improve access.<br>A clean search structure improves discovery.</span></div></div>
+            <div class="svc-vs-step"><div class="step-marker"><span class="step-dot"></span></div><div class="step-content"><span class="step-num">05</span><span class="step-label">A report can show movement.<br>A strategy should show what needs to change next.</span></div></div>
+          </div>
+          <p class="svc-vs-closing">The output is not more SEO activity.<br>It is a search presence that helps the right buyer move from looking to considering to enquiring.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- ============================================================
+         USE CASES - Where SEO Creates Business Leverage
+         ============================================================ -->
+    <section class="svc-uses glass-panel" id="use-cases">
+      <div class="container">
+        <h2 class="svc-h2 split-text">Where SEO Creates Business Leverage</h2>
+        <div class="svc-uses-grid">
+          <div class="svc-use-card" data-cursor="VIEW">
+            <div class="svc-use-corner">
+              <svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg>
+            </div>
+            <h3 class="svc-use-title">Technical SEO</h3>
+            <p class="svc-use-body">Make your website easier for search engines to crawl, read, and trust.</p>
+            <p class="svc-use-body">Useful when your site has pages, but visibility is blocked by structure, speed, duplication, crawl issues, or poor technical hygiene.</p>
+            <div class="svc-use-outcome">Output:<br>Technical audit, crawl diagnostics, site health recommendations, indexation fixes, internal linking inputs, and implementation guidance.</div>
+          </div>
+          <div class="svc-use-card" data-cursor="VIEW">
+            <div class="svc-use-corner">
+              <svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg>
+            </div>
+            <h3 class="svc-use-title">Content and Search Strategy</h3>
+            <p class="svc-use-body">Turn buyer questions into pages that help people decide.</p>
+            <p class="svc-use-body">Useful when your website has content, but not enough of it maps to real search intent, business priorities, or decision-stage needs.</p>
+            <div class="svc-use-outcome">Output:<br>Keyword clusters, topic architecture, content briefs, page recommendations, optimisation inputs, and search-led content calendars.</div>
+          </div>
+          <div class="svc-use-card" data-cursor="VIEW">
+            <div class="svc-use-corner">
+              <svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg>
+            </div>
+            <h3 class="svc-use-title">Local SEO</h3>
+            <p class="svc-use-body">Help nearby customers find, trust, and contact your business.</p>
+            <p class="svc-use-body">Useful when location, service area, branch visibility, calls, direction requests, or local enquiries matter.</p>
+            <div class="svc-use-outcome">Output:<br>Google Business Profile optimisation, location page inputs, local keyword mapping, citation recommendations, review guidance, and map visibility improvements.</div>
+          </div>
+          <div class="svc-use-card" data-cursor="VIEW">
+            <div class="svc-use-corner">
+              <svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg>
+            </div>
+            <h3 class="svc-use-title">eCommerce SEO</h3>
+            <p class="svc-use-body">Make product and category pages easier to discover and easier to buy from.</p>
+            <p class="svc-use-body">Useful when your store has products online, but organic discovery, category clarity, product visibility, or conversion paths are weak.</p>
+            <div class="svc-use-outcome">Output:<br>Product page recommendations, category architecture, metadata, schema inputs, internal linking, search-led merchandising, and content improvements.</div>
+          </div>
+          <div class="svc-use-card" data-cursor="VIEW">
+            <div class="svc-use-corner">
+              <svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg>
+            </div>
+            <h3 class="svc-use-title">B2B SEO</h3>
+            <p class="svc-use-body">Support long buying cycles with search visibility that builds trust before the sales conversation.</p>
+            <p class="svc-use-body">Useful when decision-makers research deeply, compare options, and need proof before they enquire.</p>
+            <div class="svc-use-outcome">Output:<br>Buyer-journey mapping, service page optimisation, thought-leadership themes, decision-stage content, authority signals, and lead-quality reporting.</div>
+          </div>
+          <div class="svc-use-card" data-cursor="VIEW">
+            <div class="svc-use-corner">
+              <svg viewBox="801 344 274 272">
+                <use href="#impulse-mark" />
+              </svg>
+            </div>
+            <h3 class="svc-use-title">Enterprise SEO</h3>
+            <p class="svc-use-body">Bring structure to large, complex search ecosystems.</p>
+            <p class="svc-use-body">Useful when your website has scale, multiple stakeholders, many service lines, multiple locations, or governance challenges.</p>
+            <div class="svc-use-outcome">Output:<br>Scalable SEO framework, technical governance inputs, page template recommendations, content architecture, structured data inputs, and reporting logic.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- ============================================================
+         BUYER MOMENTS - When Buyers Find You and Still Keep Looking
+         ============================================================ -->
+    <section class="svc-channels">
+      <div class="container">
+        <h2 class="svc-h2 split-text">When Buyers Find You and Still Keep Looking</h2>
+        <p class="svc-channels-intro">SEO matters when the market is already close, but not convinced.</p>
+        <p class="svc-channels-intro">Here’s a few use cases SEO can add value:</p>
+        <div class="svc-channels-stage" id="channels-stage">
+          <svg class="svc-channels-orbit-svg" id="channels-orbit-lines" aria-hidden="true"></svg>
+          <div class="svc-channels-center" aria-hidden="true">
+            <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+            </svg>
+          </div>
+          <div class="svc-channels-orbit seo-orbit">
+            <span class="svc-channel-chip" style="left: 16%; top: 14%;">Visits, not enough enquiries.</span>
+            <span class="svc-channel-chip" style="left: 50%; top: 6%;">Service pages lack clarity.</span>
+            <span class="svc-channel-chip" style="left: 84%; top: 14%;">Buyers compare before sales.</span>
+            <span class="svc-channel-chip" style="left: 95%; top: 44%;">Ready for AI-led discovery.</span>
+            <span class="svc-channel-chip" style="left: 84%; top: 82%;">Local presence is inconsistent.</span>
+            <span class="svc-channel-chip" style="left: 50%; top: 95%;">Product pages lack discovery.</span>
+            <span class="svc-channel-chip" style="left: 16%; top: 82%;">Content lacks authority.</span>
+            <span class="svc-channel-chip" style="left: 5%; top: 44%;">SEO must support revenue.</span>
+          </div>
+        </div>
+        <p class="svc-channels-intro">The issue is not always reach.</p>
+        <p class="svc-channels-intro">Sometimes the buyer has already reached you.<br>They just did not find enough reason to stop.</p>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- ============================================================
+         CONNECTED SYSTEMS
+         ============================================================ -->
+    <section class="svc-section glass-panel">
+      <div class="container">
+        <div class="svc-systems-grid">
+          <div class="svc-systems-intro">
+            <h2 class="svc-h2 split-text" style="margin-bottom: 2.5rem;">We Build Search Around the Buyer’s Next Question</h2>
+            <p>SEO becomes weak when the signals are scattered.</p>
+            <p>The homepage says one thing. The service page says another. The blogs chase keywords. The technical fixes sit pending. The reports show rankings, but not business movement.</p>
+            <p class="closer">We connect the signals that help search understand the brand and help buyers trust it.</p>
+          </div>
+          <div>
+            <p style="font-size: 0.75rem; color: var(--impulse-violet); font-weight: 700; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 1.5rem;">We connect:</p>
+            <div class="svc-systems-pills">
+              <div class="svc-system-pill"><strong>Search intent</strong><span>What people are asking, comparing, doubting, and trying to decide.</span></div>
+              <div class="svc-system-pill"><strong>Technical clarity</strong><span>How easily search engines can crawl, index, and understand the website.</span></div>
+              <div class="svc-system-pill"><strong>Content architecture</strong><span>How pages, topics, services, and questions connect into a larger search system.</span></div>
+              <div class="svc-system-pill"><strong>Authority signals</strong><span>How proof, expertise, backlinks, brand mentions, and useful content build trust.</span></div>
+              <div class="svc-system-pill"><strong>Conversion path</strong><span>What happens after the visitor lands on the page.</span></div>
+              <div class="svc-system-pill"><strong>Strategic interpretation</strong><span>So SEO becomes demand generation, not monthly optimisation theatre.</span></div>
+            </div>
+          </div>
+        </div>
+        <h3 class="svc-guard-punchline seo-systems-punchline">
+          <span class="svc-guard-punchline-line"><span class="inner">Not more traffic.</span></span>
+          <span class="svc-guard-punchline-line"><span class="inner accent" style="color: var(--impulse-violet);">Fewer reasons to leave.</span></span>
+        </h3>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- ============================================================
+         PROCESS - How We Build SEO That Compounds
+         ============================================================ -->
+    <section class="services glass-panel" id="process">
+      <div class="container">
+        <h2 class="section-heading split-text">How We Build SEO That Compounds</h2>
+        <div class="scrub-container">
+          <div class="scrub-item">
+            <div class="scrub-left">
+              <div class="service-mark-draw" aria-hidden="true">
+                <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path class="service-mark-svg-path"
+                    d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+                    fill="none" stroke="#543D98" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="service-num">1.</span>
+            </div>
+            <div class="scrub-right">
+              <h3 class="scrub-title text-fill">Read the Search Reality</h3>
+              <p class="scrub-desc">We study the website, category, competitors, search behaviour, current rankings, technical health, and business goals.</p>
+            </div>
+          </div>
+          <div class="scrub-item">
+            <div class="scrub-left">
+              <div class="service-mark-draw" aria-hidden="true">
+                <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path class="service-mark-svg-path"
+                    d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+                    fill="none" stroke="#543D98" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="service-num">2.</span>
+            </div>
+            <div class="scrub-right">
+              <h3 class="scrub-title text-fill">Map the Demand</h3>
+              <p class="scrub-desc">We identify where buyers are searching, what they are trying to solve, and which moments matter most to growth.</p>
+            </div>
+          </div>
+          <div class="scrub-item">
+            <div class="scrub-left">
+              <div class="service-mark-draw" aria-hidden="true">
+                <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path class="service-mark-svg-path"
+                    d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+                    fill="none" stroke="#543D98" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="service-num">3.</span>
+            </div>
+            <div class="scrub-right">
+              <h3 class="scrub-title text-fill">Fix the Foundations</h3>
+              <p class="scrub-desc">We improve crawlability, page structure, metadata, internal linking, technical hygiene, speed, schema inputs, and indexation issues.</p>
+            </div>
+          </div>
+          <div class="scrub-item">
+            <div class="scrub-left">
+              <div class="service-mark-draw" aria-hidden="true">
+                <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path class="service-mark-svg-path"
+                    d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+                    fill="none" stroke="#543D98" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="service-num">4.</span>
+            </div>
+            <div class="scrub-right">
+              <h3 class="scrub-title text-fill">Build the Content System</h3>
+              <p class="scrub-desc">We create and optimise pages around buyer intent, category relevance, authority, proof, and conversion paths.</p>
+            </div>
+          </div>
+          <div class="scrub-item">
+            <div class="scrub-left">
+              <div class="service-mark-draw" aria-hidden="true">
+                <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path class="service-mark-svg-path"
+                    d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+                    fill="none" stroke="#543D98" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span class="service-num">5.</span>
+            </div>
+            <div class="scrub-right">
+              <h3 class="scrub-title text-fill">Learn and Improve</h3>
+              <p class="scrub-desc">We track visibility, traffic quality, rankings, engagement, enquiries, local actions, product discovery, and conversion movement.</p>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; max-width: 800px; margin: 5rem auto 0; padding-top: 4rem; border-top: 1px solid rgba(255,255,255,0.08);">
+          <p style="font-size: 1.25rem; line-height: 1.6; color: var(--soft-grey); margin-bottom: 1rem; opacity: 0.85;">The aim is not to make search look busy.</p>
+          <p style="font-size: 1.4rem; line-height: 1.5; color: var(--white); font-family: var(--font-heading); font-weight: 600;">The aim is to make search carry more of the buyer journey.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TRUST - Trusted by Teams That Expect Thinking Before Execution
+         ============================================================ -->
+    <section class="logos">
+      <div class="container">
+        <h2 class="section-heading text-center split-text"
+          style="font-size: clamp(2rem, 5vw, 5rem); color: var(--white); margin-bottom: 5rem;">Trusted by Brands That Know Traffic Is Not the Prize</h2>
+        <div class="logo-grid">
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Aditya Birla Group.svg" alt="Aditya Birla Group"
+                style="--base-scale: 1.25;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Amazon.png" alt="Amazon" style="--base-scale: 1.25;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Unilever.avif" alt="Hindustan Unilever" class="fix-logo-grid"
+                style="--base-scale: 1.3;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Himalaya.png" alt="Himalaya"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/HDFC Securities.webp" alt="HDFC Securities"
+                style="--base-scale: 1.3;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Mastercard.png" alt="Mastercard" style="--base-scale: 1.3;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Uppercase.png" alt="Uppercase"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Tata Consumer.png" alt="Tata Consumer Products"
+                style="--base-scale: 1.5;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Tata Soulfull.png" alt="Tata Soulful" class="fix-logo-grid"
+                style="--base-scale: 1.6;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Bajaj.png" alt="Bajaj Group" class="fix-logo-grid"
+                style="--base-scale: 1.7;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Dmart.svg" alt="Dmart" style="--base-scale: 1.8;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Ola.png" alt="Ola" class="fix-logo-grid"></div>
+          </div>
+
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Chings.png" alt="Chings" class="fix-logo-grid"
+                style="--base-scale: 1.7;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/More.png" alt="More" class="fix-logo-grid"
+                style="--base-scale: 1.7;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/ABG Chemicals.png" alt="Aditya Birla Chemicals" class="fix-logo-grid"
+                style="--base-scale: 1.6;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Almex.jpg" alt="Hindalco Almex" class="fix-logo-grid"
+                style="--base-scale: 1.6;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Godrej.png" alt="Godrej Construction" class="fix-logo-grid"
+                style="--base-scale: 1.7;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Birla Cellulose.png" alt="Birla Cellulose" class="fix-logo-grid"
+                style="--base-scale: 1.8;"></div>
+          </div>
+
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/ABPS.png" alt="Aditya Birla Public Schools" class="fix-logo-grid"
+                style="--base-scale: 1.8;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/TJSB.png" alt="TJSB" class="fix-logo-grid"
+                style="--base-scale: 1.7;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Navyasa.png" alt="Navyasa" class="fix-logo-grid"
+                style="--base-scale: 1.7;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Croda.png" alt="Croda" class="fix-logo-grid"
+                style="--base-scale: 1.8;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Qure.png" alt="Qure" class="fix-logo-grid"
+                style="--base-scale: 2.0;"></div>
+          </div>
+          <div class="logo-card" data-cursor="VIEW">
+            <div class="logo-pane"><img src="logos/Electromech.png" alt="Electromech" class="fix-logo-grid"
+                style="--base-scale: 2.0;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TESTIMONIALS - 3 strongest, reused
+         ============================================================ -->
+    <section class="testimonials glass-panel">
+      <div class="container" style="position: relative; z-index: 2;">
+        <h2 class="section-heading split-text">What working with us looked like.</h2>
+        <div class="testimonial-grid">
+          <div class="test-card-col">
+            <div class="test-card">
+              <div class="test-content">
+                <p class="quote" style="font-size: 1.05rem;">"I have worked with Impulse Digital team across different
+                  organizations and different kinds of business problems over the years. What I have always valued is
+                  that they do not look at a brief as just a task to complete. They try to understand what the brand
+                  needs, what the business is trying to achieve, and then come back with ideas that are practical,
+                  sharp, and executable.<br><br>From campaigns and creative work to tech-led implementation, the team
+                  has shown strong range, ownership, and consistency. Impulse Digital has been a partner I have gone
+                  back to across organizations because they bring both thinking and execution to the table."</p>
+                <div class="author-block">
+                  <img src="images/Sairam%20Krishnamurthy.png" alt="Sairam Krishnamurthy" class="author-img">
+                  <div class="author-info">
+                    <h4 class="author">Sairam Krishnamurthy</h4>
+                    <span class="role">Chief Executive Officer</span>
+                    <span class="company">Bombay Shirt Company</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card-col">
+            <div class="test-card">
+              <div class="test-content">
+                <p class="quote" style="font-size: 1.1rem;">"Impulse Digital has been a reliable partner in our social
+                  media journey. The team is innovative, dependable, humble, and highly collaborative, always taking
+                  full ownership of their work. With their creative insights and strong understanding of trends and
+                  technology in the social media space, they help us drive campaigns that deliver maximum impact."</p>
+                <div class="author-block">
+                  <img src="images/Rukmani%20Vishwanath.png" alt="Rukmani Vishwanath" class="author-img">
+                  <div class="author-info">
+                    <h4 class="author">Rukmani Vishwanath</h4>
+                    <span class="role">Head of Corporate Communications</span>
+                    <span class="company">Grasim Industries Limited | Pulp and Fibre</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card-col">
+            <div class="test-card">
+              <div class="test-content">
+                <p class="quote" style="font-size: 1.05rem; margin-bottom: 2rem;">"Impulse Digital has been a dependable
+                  partner for our social listening and category landscape needs. What stands out is their agility and
+                  flexibility, they consistently deliver high-quality outputs, often within tight timelines. They've
+                  also played a key role in tracking and evaluating our main campaign last year - Agent Chings - where
+                  their structured weekly updates on social presence, growth, and sentiment were particularly useful.
+                  Their approach is practical, client-centric, and focused on delivering actionable insights. Overall,
+                  they are reliable and easy to work with."</p>
+                <div class="author-block">
+                  <img src="images/Pratik%20Shetty.png" alt="Pratik Shetty" class="author-img">
+                  <div class="author-info">
+                    <h4 class="author">Pratik Shetty</h4>
+                    <span class="role">Senior Manager, Consumer Insights</span>
+                    <span class="company">Tata Consumer Products</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card-col">
+            <div class="test-card">
+              <div class="test-content">
+                <p class="quote" style="font-size: 1.05rem; margin-bottom: 2rem;">"I have had the opportunity to work
+                  with Impulse Digital team across different organizations and mandates over the years. What stands out
+                  for me is the way they approach a brief. They do not look at it as just another task to execute. They
+                  take the time to understand the business context, ask the right questions, and come back with ideas
+                  that are practical as well as well thought through. Across digital strategy, brand communication,
+                  content, and performance-led initiatives, the team has consistently brought clarity, creativity, and a
+                  strong sense of ownership. They are dependable, collaborative, and easy to work with."</p>
+                <div class="author-block">
+                  <img src="images/Ankit%20Meena.png" alt="Ankit Meena" class="author-img">
+                  <div class="author-info">
+                    <h4 class="author">Ankit Meena</h4>
+                    <span class="role">Lead - Digital Marketing and Transformation</span>
+                    <span class="company">Himalaya Wellness Company</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- ============================================================
+         RIGHT FOR YOU - Search Engine Optimisation Is Right for You If
+         ============================================================ -->
+    <section class="svc-fit">
+      <div class="container">
+        <div class="svc-fit-grid">
+          <div>
+            <h2 class="svc-h2 split-text">Search Engine Optimisation Is Right for You If</h2>
+          </div>
+          <ul class="svc-fit-list">
+            <li>You do not want SEO reduced to keyword stuffing.</li>
+            <li>Your website needs qualified traffic, not empty visits.</li>
+            <li>Your category requires trust before enquiry.</li>
+            <li>Your content needs structure, not just volume.</li>
+            <li>Your technical setup is holding visibility back.</li>
+            <li>Your local, ecommerce, B2B, or enterprise search presence needs sharper direction.</li>
+            <li>Your leadership wants reports that explain what to do next.</li>
+            <li>Your brand is ready to build search as a long-term growth asset.</li>
+          </ul>
+          <div class="svc-fit-closer">
+            <p>This is not for brands looking for guaranteed-rank shortcuts.</p>
+            <p>It is for teams that want search to become a serious business lever.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- ============================================================
+         FINAL CTA - Turn Search Intent Into Serious Enquiries
+         ============================================================ -->
+    <section class="svc-final-cta glass-panel">
+      <div class="svc-final-cta-mark" aria-hidden="true">
+        <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+          <path class="svc-final-cta-path" d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" fill="none" />
+        </svg>
+      </div>
+      <div class="container">
+        <h2 class="split-text">Turn Search Intent Into Serious Enquiries.</h2>
+        <p class="svc-final-cta-body">Tell us what your buyers are searching for.<br>We will help identify where your website, content, technical setup, and search signals need to become clearer, stronger, and more convincing.</p>
+        <div class="svc-final-cta-actions">
+          <a href="#connect" class="btn" data-cursor="FIND">
+            <span class="btn-text">Find Your Search Gaps</span>
+            <div class="btn-fill"></div>
+          </a>
+          <a href="#connect" class="btn" data-cursor="HI">
+            <span class="btn-text">Talk to Impulse Digital</span>
+            <div class="btn-fill"></div>
+          </a>
+        </div>
+        <p class="svc-final-cta-footnote">No keyword stuffing. No ranking theatre. No empty traffic. Just search built to help the right buyer move closer.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT FORM - reused from homepage exactly
+         ============================================================ -->
+    <section id="connect" class="contact glass-panel">
+      <div class="container" style="display: flex; gap: 4rem;">
+        <div class="contact-left" style="width: 50%; position: relative; overflow: hidden;">
+          <h2 class="section-heading split-text">Let’s make search sell better.</h2>
+          <div class="contact-details" style="margin-top: 3rem; position: relative; z-index: 1;">
+            <a href="tel:+919769285224" class="contact-channel">
+              <div class="contact-channel-icon"><i class="fas fa-phone"></i></div>
+              <div class="contact-channel-body"><span class="contact-channel-label">Call us</span><span class="contact-channel-value">+91-9769285224</span></div>
+              <div class="contact-channel-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+            <a href="mailto:collabs@theimpulsedigital.com" class="contact-channel">
+              <div class="contact-channel-icon"><i class="fas fa-envelope"></i></div>
+              <div class="contact-channel-body"><span class="contact-channel-label">Email us</span><span class="contact-channel-value">collabs@theimpulsedigital.com</span></div>
+              <div class="contact-channel-arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+          </div>
+        </div>
+        <div class="contact-right" style="width: 50%;">
+          <form class="contact-form">
+            <input type="text" placeholder="Company" required>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="tel" placeholder="Phone">
+            <textarea placeholder="Message" rows="4"></textarea>
+            <button type="submit" class="btn" data-cursor="SEND" style="width: 100%; border: 1px solid var(--impulse-violet);">
+              <span class="btn-text">Start the conversation</span>
+              <div class="btn-fill" style="background-color: var(--impulse-violet);"></div>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FAQs - exact doc text
+         ============================================================ -->
+    <section class="faq glass-panel">
+      <div class="container">
+        <h2 class="section-heading split-text">What to Know Before You Optimise for Search</h2>
+        <div class="accordion">
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>What does SEO include?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>SEO includes the work needed to improve how your brand is found, understood, and trusted through search. This can include technical SEO, content strategy, on-page optimisation, local SEO, ecommerce SEO, B2B SEO, enterprise SEO, authority building, and AI search readiness.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>How is SEO different from just writing blogs?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>Blogs are one part of SEO. A serious SEO system connects search intent, website structure, technical health, authority, page experience, and conversion paths.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>How do you decide what SEO work matters first?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>We begin by finding the biggest constraint. Sometimes it is technical. Sometimes it is content. Sometimes it is poor page structure. Sometimes the brand has authority offline, but weak proof online.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>How long does SEO take to work?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>SEO usually compounds over time. Directional movement can begin within three to six months, but timelines depend on competition, website health, content depth, authority, and how quickly improvements are implemented.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>Do you guarantee first-page rankings?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>No.<br>Search does not work that way.<br>Any partner guaranteeing rankings without understanding your category, competition, website, keywords, and implementation control is selling certainty they do not own.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>What should SEO be measured by?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>Rankings matter, but they are not enough. We also look at qualified traffic, enquiry quality, engagement, local actions, conversion movement, product visibility, content performance, and what search is teaching the business.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>Can you handle local SEO?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>Yes. Local SEO helps businesses improve visibility across Google Business Profile, maps, local pages, citations, reviews, and location-led search behaviour.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>Can you handle ecommerce SEO?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>Yes. eCommerce SEO focuses on product visibility, category structure, metadata, internal linking, schema, search-led merchandising, and conversion paths.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>Can you handle B2B and enterprise SEO?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>Yes. B2B and enterprise SEO need more than rankings. They need authority, stakeholder intent mapping, technical governance, scalable content systems, and reporting that supports long buying cycles.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header">
+              <h3>Does AI change SEO?</h3><span class="acc-icon">+</span>
+            </div>
+            <div class="acc-content">
+              <p>Yes. Search is becoming more answer-led, conversational, and context-heavy. Brands need clearer entities, stronger proof, better structure, and content that helps both people and AI systems understand what they do.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-grid">
+        <!-- Logo Section -->
+        <div class="footer-col">
+          <img src="ImpulseDigital_Logo.svg" alt="Impulse Digital Logo" class="footer-logo">
+          <p class="footer-tagline">AI native growth intelligence for enterprise brands.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#cases-pin">Case Studies</a></li>
+            <li><a href="index.html#careers">Careers</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="index.html#blogs">Blog</a></li>
+            <li><a href="#">EBooks</a></li>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Slideshare ppt</a></li>
+          </ul>
+        </div>
+
+        <!-- Locations -->
+        <div class="footer-col">
+          <h4>Locations</h4>
+          <ul>
+            <li><a href="#">India</a></li>
+            <li><a href="#">Thane</a></li>
+            <li><a href="#">Navi Mumbai</a></li>
+            <li><a href="#">Pune</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Details -->
+        <div class="footer-col footer-contact-col">
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+            <span class="contact-text">+91-9769285224</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+            <span class="contact-text">collabs@theimpulsedigital.com</span>
+          </div>
+          <div class="contact-item address-item">
+            <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+            <span class="contact-text">304 - 305, Chirag Infotech, Road No. 16/Z, Ambica Nagar, Wagle Industrial Estate,
+              Thane, Mumbai 400604</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Impulse Digital. All rights reserved.</p>
+      </div>
+      <div class="footer-divider"></div>
+    </div>
+    <!-- Etched Momentum Section - outside footer-container to span full footer width -->
+    <div class="footer-etched" aria-hidden="true">
+      <svg id="footer-hover-svg" viewBox="0 0 2400 250" xmlns="http://www.w3.org/2000/svg"
+        class="select-none uppercase cursor-pointer" style="width: 100%; height: auto; display: block;">
+        <defs>
+          <linearGradient id="textGradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="25%" stop-color="#543D98" />
+            <stop offset="50%" stop-color="#8A5CF6" />
+            <stop offset="75%" stop-color="#543D98" />
+            <stop offset="100%" stop-color="#ffffff" />
+          </linearGradient>
+          <radialGradient id="revealMask" gradientUnits="userSpaceOnUse" r="20%" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="white" />
+            <stop offset="100%" stop-color="black" />
+          </radialGradient>
+          <mask id="textMask">
+            <rect x="0" y="0" width="100%" height="100%" fill="url(#revealMask)" />
+          </mask>
+        </defs>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start"
+          dominant-baseline="middle" font-size="160" stroke-width="0.3" class="svg-text-base">Momentum for brands with
+          appetite.</text>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start"
+          dominant-baseline="middle" font-size="160" stroke-width="0.3" class="svg-text-animated">Momentum for brands
+          with appetite.</text>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start"
+          dominant-baseline="middle" font-size="160" stroke="url(#textGradient)" stroke-width="0.3"
+          mask="url(#textMask)" class="svg-text-fill">Momentum for brands with appetite.</text>
+      </svg>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+  <script src="js/script.js?v=73"></script>
+
+  <!-- ========================================================
+       SERVICE PAGE INSTRUMENTATION
+       ======================================================== -->
+  <script>
+    // -- 0. PRE-DOM-READY: strip .split-text from the hero so the
+    // homepage's default fast word-stagger animation skips the hero.
+    // We'll run our own SplitType + slower, more deliberate choreography
+    // once fonts are loaded. This prevents the race-condition flicker.
+    (function () {
+      const h = document.querySelector('.svc-hero-headline');
+      const d = document.querySelector('.svc-hero-page-desc');
+      if (h) h.classList.remove('split-text');
+      if (d) d.classList.remove('split-text');
+      // Hide the hero text immediately so there's no flash of unstyled
+      // content before our SplitType + animation runs.
+      const style = document.createElement('style');
+      style.textContent =
+        '.svc-hero-headline, .svc-hero-page-desc { visibility: hidden; }' +
+        '.svc-hero-cta-row .btn { opacity: 0; }';
+      document.head.appendChild(style);
+    })();
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // --- 0a. Hero entry choreography ---
+      // Wait for fonts (so SplitType measures correctly), then reveal
+      // hero with our own custom timing.
+      const runHeroAnim = () => {
+        if (!window.gsap || !window.SplitType) return;
+        const heroHeadline = document.querySelector('.svc-hero-headline');
+        const heroDesc = document.querySelector('.svc-hero-page-desc');
+        const heroCtas = document.querySelectorAll('.svc-hero-cta-row .btn');
+
+        // Restore visibility now that we're about to control the entry
+        if (heroHeadline) heroHeadline.style.visibility = 'visible';
+        if (heroDesc) heroDesc.style.visibility = 'visible';
+
+        if (heroHeadline) {
+          const split = new SplitType(heroHeadline, { types: 'lines, words' });
+          split.lines.forEach((line) => {
+            const w = document.createElement('div');
+            w.classList.add('line-wrapper');
+            line.parentNode.insertBefore(w, line);
+            w.appendChild(line);
+          });
+          gsap.set(split.words, { yPercent: 120, opacity: 0 });
+          gsap.to(split.words, {
+            yPercent: 0,
+            opacity: 1,
+            duration: 1.4,
+            stagger: 0.09,
+            ease: 'power4.out',
+            delay: 0.15
+          });
+        }
+
+        if (heroDesc) {
+          const split = new SplitType(heroDesc, { types: 'lines, words' });
+          split.lines.forEach((line) => {
+            const w = document.createElement('div');
+            w.classList.add('line-wrapper');
+            line.parentNode.insertBefore(w, line);
+            w.appendChild(line);
+          });
+          gsap.set(split.lines, { y: 40, opacity: 0 });
+          gsap.to(split.lines, {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            stagger: 0.08,
+            ease: 'power3.out',
+            delay: 1.05
+          });
+        }
+
+        if (heroCtas.length) {
+          gsap.set(heroCtas, { scale: 0.85, opacity: 0 });
+          gsap.to(heroCtas, {
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: 'back.out(1.6)',
+            delay: 1.85,
+            onComplete: () => {
+              // Refresh ScrollTriggers now that hero layout is final
+              if (window.ScrollTrigger) ScrollTrigger.refresh();
+            }
+          });
+        }
+      };
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(runHeroAnim);
+      } else {
+        setTimeout(runHeroAnim, 200);
+      }
+
+      // --- 1. Stat counters ---
+      const formatStatValue = (value, decimals, trimZeros = false) => {
+        const fixed = decimals > 0 ? Number(value).toFixed(decimals) : Math.round(value).toLocaleString();
+        return trimZeros && decimals > 0 ? fixed.replace(/\.0+$/, '') : fixed;
+      };
+
+      const getStatDisplay = (el, rawValue) => {
+        const suffix = el.getAttribute('data-stat-suffix') || '';
+        const decimals = parseInt(el.getAttribute('data-stat-decimals') || '0', 10);
+        const displayDecimals = parseInt(el.getAttribute('data-stat-display-decimals') || String(decimals), 10);
+        const divisor = parseFloat(el.getAttribute('data-stat-divisor') || '1');
+        const trimZeros = el.getAttribute('data-stat-trim-zero') === 'true';
+        const displayValue = Number.isFinite(divisor) && divisor !== 0 ? rawValue / divisor : rawValue;
+        return formatStatValue(displayValue, displayDecimals, trimZeros) + suffix;
+      };
+
+      const animateStat = (el) => {
+        if (el.dataset.statDone === 'true') return;
+        el.dataset.statDone = 'true';
+
+        const target = parseFloat(el.getAttribute('data-stat-target'));
+        const finalValue = getStatDisplay(el, target);
+
+        if (!window.gsap || Number.isNaN(target)) {
+          el.textContent = finalValue;
+          return;
+        }
+
+        const proxy = { v: 0 };
+        gsap.to(proxy, {
+          v: target,
+          duration: 2.0,
+          ease: 'power3.out',
+          onUpdate: () => {
+            el.textContent = getStatDisplay(el, proxy.v);
+          },
+          onComplete: () => {
+            el.textContent = finalValue;
+          }
+        });
+      };
+
+      const statEls = document.querySelectorAll('[data-stat-target]');
+      statEls.forEach((el) => {
+        el.textContent = getStatDisplay(el, 0);
+      });
+
+      const statsGridEl = document.querySelector('.svc-stats-grid');
+      if (statEls.length && window.gsap && window.ScrollTrigger && statsGridEl) {
+        ScrollTrigger.create({
+          trigger: statsGridEl,
+          start: 'top 78%',
+          once: true,
+          onEnter: () => statEls.forEach(animateStat)
+        });
+      } else {
+        statEls.forEach((el) => {
+          if (!('IntersectionObserver' in window)) {
+            animateStat(el);
+            return;
+          }
+
+          const obs = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              animateStat(el);
+              obs.unobserve(el);
+            });
+          }, { threshold: 0.25, rootMargin: '0px 0px -4% 0px' });
+          obs.observe(el);
+        });
+      };
+
+      // --- 2. Use-case spotlight ---
+      document.querySelectorAll('.svc-use-card').forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+          card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+        });
+      });
+
+      // --- 3. Hero to next-section transition ---
+      // Lifted verbatim from the homepage's cosmosSection block, with
+      // the warp tunnel fade-in line removed. The drift-particle fade
+      // matches the homepage exactly so the sub-hero state on this
+      // page is the same subdued bgStars layer the homepage shows
+      // during its case-study section. No warp on service pages.
+      const waitForGsap = setInterval(() => {
+        if (window.gsap && window.ScrollTrigger) {
+          clearInterval(waitForGsap);
+          const cosmosTrigger = document.querySelector('#warp-start');
+          if (!cosmosTrigger) return;
+
+          // Background color inversion (matches homepage)
+          gsap.to(document.body, {
+            backgroundColor: '#000000',
+            scrollTrigger: {
+              trigger: cosmosTrigger,
+              start: 'top bottom',
+              end: 'top top',
+              scrub: true
+            }
+          });
+
+          // Drift particles fade out (matches homepage)
+          if (window.particlesMaterial) {
+            gsap.fromTo(window.particlesMaterial,
+              { opacity: 0.7 },
+              {
+                opacity: 0,
+                scrollTrigger: {
+                  trigger: cosmosTrigger,
+                  start: 'top 80%',
+                  end: 'top 20%',
+                  scrub: true
+                }
+              }
+            );
+          }
+
+          // Warp tunnel fade-in: REMOVED for service pages.
+        }
+      }, 80);
+      setTimeout(() => clearInterval(waitForGsap), 6000);
+
+      // --- 3b. Search vs SEO section reveal ---
+      // Text-decoration handles the strike so long copy never becomes a false underline.
+      // Violet underline draws beneath the trusted-answer line.
+      const vsSection = document.querySelector('.svc-vs');
+      if (vsSection && window.gsap && window.ScrollTrigger) {
+        const lineQuiet = vsSection.querySelector('.line-quiet');
+        const lineLoud = vsSection.querySelector('.svc-vs-line:not(.line-quiet)');
+        const strike = vsSection.querySelector('.svc-vs-strike');
+        const highlight = vsSection.querySelector('.svc-vs-highlight');
+        const closing = vsSection.querySelector('.svc-vs-closing');
+
+        gsap.set([lineQuiet, lineLoud, closing], { opacity: 0, y: 28 });
+
+        ScrollTrigger.create({
+          trigger: vsSection,
+          start: 'top 50%',
+          once: true,
+          onEnter: () => {
+            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+            // 1. Search row slides in
+            tl.to(lineQuiet, { opacity: 0.7, y: 0, duration: 0.7 })
+              // 2. Strike draws across the search line after it is fully visible
+              .add(() => {
+                let prog = { v: 0 };
+                gsap.to(prog, {
+                  v: 108,
+                  duration: 0.65,
+                  ease: 'power2.inOut',
+                  onUpdate: () => strike.style.setProperty('--strike-w', prog.v + '%')
+                });
+              }, '+=0.2')
+              // 3. SEO row slides in after the strike is done
+              .to(lineLoud, { opacity: 1, y: 0, duration: 0.8 }, '+=0.85')
+              // 4. Underline draws under the trusted-answer outcome after the SEO row is fully visible
+              .add(() => {
+                let prog = { v: 0 };
+                gsap.to(prog, {
+                  v: 100,
+                  duration: 0.7,
+                  ease: 'power3.out',
+                  onUpdate: () => highlight.style.setProperty('--hl-w', prog.v + '%')
+                });
+              }, '+=0.2')
+              .to(closing, { opacity: 1, y: 0, duration: 0.7 }, '+=1.0');
+          }
+        });
+
+        // Bind the CSS pseudo-element widths to GSAP-driven custom props
+        const strikeStyle = document.createElement('style');
+        strikeStyle.textContent = `
+          .svc-vs-strike::after { width: var(--strike-w, 0%) !important; }
+          .svc-vs-highlight::after { width: var(--hl-w, 0%) !important; }
+        `;
+        document.head.appendChild(strikeStyle);
+      }
+
+      // --- 3c. Pipeline of next steps: sequential reveal + dot illumination ---
+      // Each step slides in, then its dot lights up violet with a glow,
+      // then its label brightens to white. A cinematic sequence that
+      // visualizes the search system becoming clearer step by step.
+      const vsSteps = document.querySelectorAll('.svc-vs-step');
+      if (vsSteps.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(vsSteps, { opacity: 0, x: -16 });
+        ScrollTrigger.create({
+          trigger: '.svc-vs-pipeline',
+          start: 'top 65%',
+          once: true,
+          onEnter: () => {
+            vsSteps.forEach((step, i) => {
+              gsap.to(step, {
+                opacity: 1,
+                x: 0,
+                duration: 0.6,
+                delay: i * 0.22,
+                ease: 'power3.out',
+                onStart: () => {
+                  // Light the dot ~250ms after the step has begun arriving
+                  setTimeout(() => step.classList.add('lit'), 250);
+                }
+              });
+            });
+          }
+        });
+      }
+
+      // --- 4. Channels convergence animation ---
+      const stage = document.getElementById('channels-stage');
+      const linesSvg = document.getElementById('channels-orbit-lines');
+      const centerEl = stage ? stage.querySelector('.svc-channels-center') : null;
+      const centerPath = centerEl ? centerEl.querySelector('path') : null;
+
+      if (stage && linesSvg && centerPath) {
+        let chipPositions = [];
+        let cx = 0, cy = 0;
+        let markRadius = 80;
+        let pulseTimer = null;
+        let convergenceActive = false;
+
+        const measure = () => {
+          const sr = stage.getBoundingClientRect();
+          linesSvg.setAttribute('viewBox', `0 0 ${sr.width} ${sr.height}`);
+          cx = sr.width / 2;
+          cy = sr.height / 2;
+          // Boundary radius = visible extent of the mark inside its 220px box.
+          // The brand mark fills roughly 70% of its container.
+          const centerRect = centerEl.getBoundingClientRect();
+          markRadius = Math.min(centerRect.width, centerRect.height) * 0.46;
+
+          chipPositions = [...stage.querySelectorAll('.svc-channel-chip')].map((chip) => {
+            const cr = chip.getBoundingClientRect();
+            const x = cr.left - sr.left + cr.width / 2;
+            const y = cr.top - sr.top + cr.height / 2;
+            // Boundary point: where the chip-to-center line meets the mark's edge.
+            const dx = cx - x;
+            const dy = cy - y;
+            const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+            const tx = x + dx * ((dist - markRadius) / dist);
+            const ty = y + dy * ((dist - markRadius) / dist);
+            return { x, y, tx, ty };
+          });
+
+          // Static dotted lines - chip to mark edge (NOT to the center).
+          linesSvg.querySelectorAll('line').forEach(l => l.remove());
+          chipPositions.forEach((p) => {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', p.x);
+            line.setAttribute('y1', p.y);
+            line.setAttribute('x2', p.tx);
+            line.setAttribute('y2', p.ty);
+            linesSvg.appendChild(line);
+          });
+        };
+
+        const flashCenter = () => {
+          // Stroke-only flash - no filter halos, no rectangular box.
+          gsap.fromTo(centerPath,
+            { strokeWidth: 6, stroke: 'rgba(138, 92, 246, 0.85)' },
+            {
+              strokeWidth: 11,
+              stroke: 'rgba(220, 200, 255, 1)',
+              duration: 0.18,
+              yoyo: true,
+              repeat: 1,
+              ease: 'power2.out'
+            }
+          );
+        };
+
+        const emitPulse = () => {
+          if (!chipPositions.length) return;
+          const idx = Math.floor(Math.random() * chipPositions.length);
+          const p = chipPositions[idx];
+          const pulse = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          pulse.setAttribute('cx', p.x);
+          pulse.setAttribute('cy', p.y);
+          pulse.setAttribute('r', 4.5);
+          pulse.setAttribute('class', 'svc-channels-pulse');
+          linesSvg.appendChild(pulse);
+
+          gsap.timeline({ onComplete: () => pulse.remove() })
+            .fromTo(pulse, { opacity: 0, attr: { r: 2 } }, { opacity: 1, attr: { r: 5 }, duration: 0.35, ease: 'power2.out' })
+            .to(pulse, {
+              // Travel to the mark's edge, not the center
+              attr: { cx: p.tx, cy: p.ty },
+              duration: 1.3,
+              ease: 'power2.in'
+            }, 0)
+            .to(pulse, { opacity: 0, attr: { r: 2 }, duration: 0.2, ease: 'power2.in' }, '-=0.18')
+            .add(flashCenter, '-=0.18');
+        };
+
+        const startConvergence = () => {
+          if (convergenceActive) return;
+          convergenceActive = true;
+          // Initial mark fade-in as first pulses begin to arrive
+          gsap.fromTo(centerPath,
+            { opacity: 0.15, strokeWidth: 4 },
+            { opacity: 1, strokeWidth: 6, duration: 1.6, ease: 'power2.out' }
+          );
+          pulseTimer = setInterval(emitPulse, 380);
+        };
+
+        const stopConvergence = () => {
+          convergenceActive = false;
+          if (pulseTimer) { clearInterval(pulseTimer); pulseTimer = null; }
+        };
+
+        // Initial measure (and a second pass after layout settles)
+        measure();
+        setTimeout(measure, 250);
+        setTimeout(measure, 800);
+        window.addEventListener('resize', measure);
+
+        // Only run while the section is in view
+        const sectionObs = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) startConvergence();
+            else stopConvergence();
+          });
+        }, { threshold: 0.2 });
+        sectionObs.observe(stage);
+
+        // Set initial dim state for the center mark
+        gsap.set(centerPath, { opacity: 0.15 });
+      }
+
+      // --- 5. Stats reveal sequence ---
+      const statsGrid = document.querySelector('.svc-stats-grid');
+      const statsCols = document.querySelectorAll('.svc-stat');
+      if (statsGrid && statsCols.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(statsCols, { opacity: 0, y: 32 });
+        ScrollTrigger.create({
+          trigger: statsGrid,
+          start: 'top 55%',
+          once: true,
+          onEnter: () => {
+            gsap.to(statsCols, {
+              opacity: 1, y: 0,
+              duration: 0.8,
+              stagger: 0.15,
+              ease: 'power3.out'
+            });
+          }
+        });
+      }
+
+      // --- 6. Problem broken-chain gaps reveal ---
+      const gapItems = document.querySelectorAll('.svc-problem-gaps li');
+      if (gapItems.length && window.gsap && window.ScrollTrigger) {
+        ScrollTrigger.create({
+          trigger: '.svc-problem-gaps',
+          start: 'top 58%',
+          once: true,
+          onEnter: () => {
+            gapItems.forEach((item, i) => {
+              gsap.to(item, {
+                opacity: 0.85,
+                x: 0,
+                duration: 0.5,
+                delay: i * 0.18,
+                ease: 'power2.out',
+                onComplete: () => { }
+              });
+            });
+          }
+        });
+      }
+
+      // --- 7. Connected Systems - static pills, no animation needed ---
+
+      // --- 8. Guardrails punchline sweep-in (Removed to keep text permanently visible) ---
+
+      // --- 9. Final CTA mark draws itself in ---
+      const finalMarkPath = document.querySelector('.svc-final-cta-path');
+      if (finalMarkPath && window.gsap && window.ScrollTrigger) {
+        const finalLen = finalMarkPath.getTotalLength();
+        gsap.set(finalMarkPath, {
+          strokeDasharray: finalLen,
+          strokeDashoffset: finalLen
+        });
+        ScrollTrigger.create({
+          trigger: '.svc-final-cta',
+          start: 'top 65%',
+          once: true,
+          onEnter: () => {
+            gsap.to(finalMarkPath, {
+              strokeDashoffset: 0,
+              duration: 3.2,
+              ease: 'power2.inOut'
+            });
+          }
+        });
+      }
+
+      // --- 10. Right-For-You - simple stagger reveal (no mark bullets) ---
+      const fitItems = document.querySelectorAll('.svc-fit-list li');
+      if (fitItems.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(fitItems, { opacity: 0, x: -12 });
+        ScrollTrigger.create({
+          trigger: '.svc-fit-list',
+          start: 'top 55%',
+          once: true,
+          onEnter: () => {
+            gsap.to(fitItems, {
+              opacity: 1, x: 0,
+              duration: 0.5,
+              stagger: 0.1,
+              ease: 'power2.out'
+            });
+          }
+        });
+      }
+
+      // --- 11. Use case cards cascade-in ---
+      const useCards = document.querySelectorAll('.svc-use-card');
+      if (useCards.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(useCards, { opacity: 0, y: 40 });
+        ScrollTrigger.create({
+          trigger: '.svc-uses-grid',
+          start: 'top 58%',
+          once: true,
+          onEnter: () => {
+            gsap.to(useCards, {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.12,
+              ease: 'power3.out'
+            });
+          }
+        });
+      }
+
+      // --- 12. Section handoffs activate on scroll-into-view ---
+      // Threshold kept low because the handoff is only 80px tall and sits
+      // between large sections; a higher threshold misses on fast scrolls.
+      const handoffs = document.querySelectorAll('.svc-handoff');
+      if (handoffs.length) {
+        const handoffObs = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              handoffObs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        handoffs.forEach((h) => handoffObs.observe(h));
+      }
+
+    });
+  </script>
+</body>
+
+</html>

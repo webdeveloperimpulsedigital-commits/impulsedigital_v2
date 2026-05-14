@@ -1,7 +1,7 @@
 export const aiVideoProductionData = {
   hero: {
     headlineParts: ["Imagine More.", "Produce Faster."],
-    headlineAccent: "",
+    headlineAccent: "Produce Faster.",
     description: "Your best ideas can now travel further. Impulse Digital creates AI-led videos that turn one strong thought into campaign films, explainers, social assets, training videos, and multilingual versions. Human-led. AI-enabled. Built to scale.",
     buttons: [
       { text: "Start an AI Video Project", link: "#connect", cursor: "BUILD" },
@@ -42,7 +42,7 @@ export const aiVideoProductionData = {
     rightLabel: "Creative Direction",
     rightText: "tells ",
     rightHighlight: "a story",
-    closing: "AI can generate visuals, avatars, voiceovers, edits, and variations. But taste still matters. So does context. Emotion. Pacing. Brand tone. Audience understanding.<br><br>Impulse Digital brings the creative direction that makes AI-led video feel intentional, useful, and brand-ready.<br><br><span style=\"color: white; font-weight: 500;\">The goal is not AI-looking content. The goal is better video, made faster.</span>"
+    closing: "AI can generate visuals, avatars, voiceovers, edits, and variations. But taste still matters. So does context. Emotion. Pacing. Brand tone. Audience understanding.  Impulse Digital brings the creative direction that makes AI-led video feel intentional, useful, and brand-ready.  <span style=\"color: white; font-weight: 500;\">The goal is not AI-looking content. The goal is better video, made faster.</span>"
   },
   uses: {
     title: "Where AI Video Creates Business Leverage",
@@ -130,7 +130,7 @@ export const aiVideoProductionData = {
       { q: "Will the video look obviously AI-generated?", a: "Not if it is directed properly. We focus on scripting, visual treatment, editing, sound, and brand checks so the output feels intentional." },
       { q: "Can one video become multiple formats?", a: "Yes. One video direction can be adapted into vertical cuts, teasers, short-form edits, ad versions, internal videos, and presentation-ready assets." },
       { q: "What do you need from us to start?", a: "We need the objective, audience, message, brand guidelines, references, timelines, platforms, and any mandatory product, legal, or compliance details." },
-      { q: "Is AI video right for every brand?", a: "AI video is right when the idea benefits from speed, scale, flexibility, multilingual adaptation, or visual imagination.<br>It is not right when real people, live proof, or documentary credibility are essential." }
+      { q: "Is AI video right for every brand?", a: "AI video is right when the idea benefits from speed, scale, flexibility, multilingual adaptation, or visual imagination. It is not right when real people, live proof, or documentary credibility are essential." }
     ]
   }
 };

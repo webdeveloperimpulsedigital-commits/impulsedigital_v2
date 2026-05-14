@@ -1,7 +1,7 @@
 export const agenticAiData = {
   hero: {
     headlineParts: ["AI That Follows", "Through."],
-    headlineAccent: "",
+    headlineAccent: "Through.",
     description: "Leads come in. Customers ask questions. Teams get busy. Follow-ups slip. Agentic AI closes that gap. Impulse Digital builds AI agents that respond, qualify, follow up, update your systems, and bring your team in when human judgment matters. So your people spend less time chasing work and more time moving the business forward.",
     buttons: [
       { text: "Build Your First AI Workflow", link: "#connect", cursor: "BUILD" },

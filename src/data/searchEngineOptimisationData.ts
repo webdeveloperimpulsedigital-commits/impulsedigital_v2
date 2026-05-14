@@ -1,0 +1,274 @@
+export const searchEngineOptimisationData = {
+  "hero": {
+    "headlineParts": [
+      "Your Website Is Not",
+      "the First Impression.",
+      "Search Is."
+    ],
+    "headlineAccent": "Search Is.",
+    "description": "<span class=\"seo-hero-lead\">Before a buyer reaches your website, search has already shaped the decision.</span> They have seen who appears, who sounds credible, who answers clearly, and who feels worth the click. Impulse Digital helps brands build search systems that make them easier to find, understand, and trust when buyers are already looking.",
+    "buttons": [
+      {
+        "text": "Find Your Search Gaps",
+        "link": "#connect",
+        "cursor": "FIND"
+      },
+      {
+        "text": "See How We Build SEO",
+        "link": "#process",
+        "cursor": "SEE"
+      }
+    ]
+  },
+  "stats": {
+    "title": "Search Moves Before Sales Does",
+    "metrics": [
+      {
+        "target": 97,
+        "suffix": "%",
+        "decimals": 0,
+        "desc": "clients achieved top 1st page search rankings for their target keywords."
+      },
+      {
+        "target": 80,
+        "suffix": "%",
+        "decimals": 0,
+        "desc": "of our clients see improved results within the first 3 months."
+      },
+      {
+        "target": 3.5,
+        "suffix": "X",
+        "decimals": 1,
+        "desc": "business growth for our clients after leveraging our expert SEO services."
+      }
+    ],
+    "footnote": "Search does not wait for the sales cycle to begin. It starts earlier. Before the enquiry. Before the call. Before the deck. Before the shortlist reaches your inbox. If your search presence is unclear, incomplete, or unconvincing, your sales team starts with a disadvantage they did not create. SEO should not sit quietly inside monthly reports. It should make the first conversation easier before it even begins."
+  },
+  "problem": {
+    "title": "The Problem Is Not Traffic. It Is Doubt.",
+    "intro": [
+      "Most brands are not invisible everywhere.",
+      "They are visible in fragments."
+    ],
+    "pivot": "That is where search breaks.",
+    "gaps": [
+      "A page ranks, but does not persuade.",
+      "A blog brings visits, but no conviction.",
+      "A service page exists, but does not answer enough.",
+      "A local listing appears, but does not earn the call.",
+      "A product gets seen, but not chosen."
+    ],
+    "outro": [
+      "Not because people cannot find you.",
+      "Because after finding you, they still keep looking."
+    ]
+  },
+  "vs": {
+    "title": "SEO, in Plain English",
+    "leftLabel": "Search",
+    "leftStrike": "is the buyer revealing what they want.",
+    "rightLabel": "SEO",
+    "rightText": "is how your brand becomes the answer they ",
+    "rightHighlight": "trust",
+    "closing": "The output is not more SEO activity. It is a search presence that helps the right buyer move from looking to considering to enquiring.",
+    "steps": [
+      {
+        "num": "01",
+        "text": "A keyword shows what someone typed. Intent shows what they are trying to decide."
+      },
+      {
+        "num": "02",
+        "text": "A ranking gets you seen. A strong page gives the buyer a reason to stay."
+      },
+      {
+        "num": "03",
+        "text": "A blog can bring traffic. A content system builds authority."
+      },
+      {
+        "num": "04",
+        "text": "A technical fix can improve access. A clean search structure improves discovery."
+      },
+      {
+        "num": "05",
+        "text": "A report can show movement. A strategy should show what needs to change next."
+      }
+    ]
+  },
+  "uses": {
+    "title": "Where SEO Creates Business Leverage",
+    "cards": [
+      {
+        "title": "Technical SEO",
+        "body": "Make your website easier for search engines to crawl, read, and trust. Useful when your site has pages, but visibility is blocked by structure, speed, duplication, crawl issues, or poor technical hygiene.",
+        "outcome": "Output: Technical audit, crawl diagnostics, site health recommendations, indexation fixes, internal linking inputs, and implementation guidance."
+      },
+      {
+        "title": "Content and Search Strategy",
+        "body": "Turn buyer questions into pages that help people decide. Useful when your website has content, but not enough of it maps to real search intent, business priorities, or decision-stage needs.",
+        "outcome": "Output: Keyword clusters, topic architecture, content briefs, page recommendations, optimisation inputs, and search-led content calendars."
+      },
+      {
+        "title": "Local SEO",
+        "body": "Help nearby customers find, trust, and contact your business. Useful when location, service area, branch visibility, calls, direction requests, or local enquiries matter.",
+        "outcome": "Output: Google Business Profile optimisation, location page inputs, local keyword mapping, citation recommendations, review guidance, and map visibility improvements."
+      },
+      {
+        "title": "eCommerce SEO",
+        "body": "Make product and category pages easier to discover and easier to buy from. Useful when your store has products online, but organic discovery, category clarity, product visibility, or conversion paths are weak.",
+        "outcome": "Output: Product page recommendations, category architecture, metadata, schema inputs, internal linking, search-led merchandising, and content improvements."
+      },
+      {
+        "title": "B2B SEO",
+        "body": "Support long buying cycles with search visibility that builds trust before the sales conversation. Useful when decision-makers research deeply, compare options, and need proof before they enquire.",
+        "outcome": "Output: Buyer-journey mapping, service page optimisation, thought-leadership themes, decision-stage content, authority signals, and lead-quality reporting."
+      },
+      {
+        "title": "Enterprise SEO",
+        "body": "Bring structure to large, complex search ecosystems. Useful when your website has scale, multiple stakeholders, many service lines, multiple locations, or governance challenges.",
+        "outcome": "Output: Scalable SEO framework, technical governance inputs, page template recommendations, content architecture, structured data inputs, and reporting logic."
+      }
+    ]
+  },
+  "channels": {
+    "title": "When Buyers Find You and Still Keep Looking",
+    "intro": "SEO matters when the market is already close, but not convinced.\nHere’s a few use cases SEO can add value:",
+    "list": [
+      { "label": "Visits, not enough enquiries.", "pos": { "left": "16%", "top": "14%" } },
+      { "label": "Service pages lack clarity.", "pos": { "left": "50%", "top": "6%" } },
+      { "label": "Buyers compare before sales.", "pos": { "left": "84%", "top": "14%" } },
+      { "label": "Ready for AI-led discovery.", "pos": { "left": "95%", "top": "44%" } },
+      { "label": "Local presence is inconsistent.", "pos": { "left": "84%", "top": "82%" } },
+      { "label": "Product pages lack discovery.", "pos": { "left": "50%", "top": "95%" } },
+      { "label": "Content lacks authority.", "pos": { "left": "16%", "top": "82%" } },
+      { "label": "SEO must support revenue.", "pos": { "left": "5%", "top": "44%" } }
+    ],
+    "outro": "The issue is not always reach.\nSometimes the buyer has already reached you.\nThey just did not find enough reason to stop."
+  },
+  "whenToUse": {
+    "title": "We Build Search Around the Buyer’s Next Question",
+    "paragraphs": [
+      "SEO becomes weak when the signals are scattered.",
+      "The homepage says one thing. The service page says another. The blogs chase keywords. The technical fixes sit pending. The reports show rankings, but not business movement."
+    ],
+    "closer": "We connect the signals that help search understand the brand and help buyers trust it.",
+    "pillsHeading": "We connect:",
+    "pills": [
+      { "label": "Search intent", "desc": "What people are asking, comparing, doubting, and trying to decide." },
+      { "label": "Technical clarity", "desc": "How easily search engines can crawl, index, and understand the website." },
+      { "label": "Content architecture", "desc": "How pages, topics, services, and questions connect into a larger search system." },
+      { "label": "Authority signals", "desc": "How proof, expertise, backlinks, brand mentions, and useful content build trust." },
+      { "label": "Conversion path", "desc": "What happens after the visitor lands on the page." },
+      { "label": "Strategic interpretation", "desc": "So SEO becomes demand generation, not monthly optimisation theatre." }
+    ],
+    "punchline": ["Not more traffic.", "Fewer reasons to leave."]
+  },
+  "process": {
+    "title": "How We Build SEO That Compounds",
+    "steps": [
+      {
+        "num": "1.",
+        "title": "Read the Search Reality",
+        "desc": "We study the website, category, competitors, search behaviour, current rankings, technical health, and business goals."
+      },
+      {
+        "num": "2.",
+        "title": "Map the Demand",
+        "desc": "We identify where buyers are searching, what they are trying to solve, and which moments matter most to growth."
+      },
+      {
+        "num": "3.",
+        "title": "Fix the Foundations",
+        "desc": "We improve crawlability, page structure, metadata, internal linking, technical hygiene, speed, schema inputs, and indexation issues."
+      },
+      {
+        "num": "4.",
+        "title": "Build the Content System",
+        "desc": "We create and optimise pages around buyer intent, category relevance, authority, proof, and conversion paths."
+      },
+      {
+        "num": "5.",
+        "title": "Learn and Improve",
+        "desc": "We track visibility, traffic quality, rankings, engagement, enquiries, local actions, product discovery, and conversion movement."
+      }
+    ],
+    "footer": "The aim is not to make search look busy.\n\nThe aim is to make search carry more of the buyer journey."
+  },
+  "fit": {
+    "title": "Search Engine Optimisation Is Right for You If",
+    "list": [
+      "You do not want SEO reduced to keyword stuffing.",
+      "Your website needs qualified traffic, not empty visits.",
+      "Your category requires trust before enquiry.",
+      "Your content needs structure, not just volume.",
+      "Your technical setup is holding visibility back.",
+      "Your local, ecommerce, B2B, or enterprise search presence needs sharper direction.",
+      "Your leadership wants reports that explain what to do next.",
+      "Your brand is ready to build search as a long-term growth asset."
+    ],
+    "closer": "This is not for brands looking for guaranteed-rank shortcuts.\nIt is for teams that want search to become a serious business lever."
+  },
+  "finalCta": {
+    "title": "Turn Search Intent Into Serious Enquiries.",
+    "body": "Tell us what your buyers are searching for. We will help identify where your website, content, technical setup, and search signals need to become clearer, stronger, and more convincing.",
+    "buttons": [
+      {
+        "text": "Find Your Search Gaps",
+        "link": "#connect",
+        "cursor": "FIND",
+        "primary": false
+      },
+      {
+        "text": "Talk to Impulse Digital",
+        "link": "#connect",
+        "cursor": "HI",
+        "primary": false
+      }
+    ],
+    "footnote": "No keyword stuffing. No ranking theatre. No empty traffic. Just search built to help the right buyer move closer."
+  },
+  "faq": {
+    "title": "What to Know Before You Optimise for Search",
+    "items": [
+      {
+        "q": "What does SEO include?",
+        "a": "SEO includes the work needed to improve how your brand is found, understood, and trusted through search. This can include technical SEO, content strategy, on-page optimisation, local SEO, ecommerce SEO, B2B SEO, enterprise SEO, authority building, and AI search readiness."
+      },
+      {
+        "q": "How is SEO different from just writing blogs?",
+        "a": "Blogs are one part of SEO. A serious SEO system connects search intent, website structure, technical health, authority, page experience, and conversion paths."
+      },
+      {
+        "q": "How do you decide what SEO work matters first?",
+        "a": "We begin by finding the biggest constraint. Sometimes it is technical. Sometimes it is content. Sometimes it is poor page structure. Sometimes the brand has authority offline, but weak proof online."
+      },
+      {
+        "q": "How long does SEO take to work?",
+        "a": "SEO usually compounds over time. Directional movement can begin within three to six months, but timelines depend on competition, website health, content depth, authority, and how quickly improvements are implemented."
+      },
+      {
+        "q": "Do you guarantee first-page rankings?",
+        "a": "No. Search does not work that way. Any partner guaranteeing rankings without understanding your category, competition, website, keywords, and implementation control is selling certainty they do not own."
+      },
+      {
+        "q": "What should SEO be measured by?",
+        "a": "Rankings matter, but they are not enough. We also look at qualified traffic, enquiry quality, engagement, local actions, conversion movement, product visibility, content performance, and what search is teaching the business."
+      },
+      {
+        "q": "Can you handle local SEO?",
+        "a": "Yes. Local SEO helps businesses improve visibility across Google Business Profile, maps, local pages, citations, reviews, and location-led search behaviour."
+      },
+      {
+        "q": "Can you handle ecommerce SEO?",
+        "a": "Yes. eCommerce SEO focuses on product visibility, category structure, metadata, internal linking, schema, search-led merchandising, and conversion paths."
+      },
+      {
+        "q": "Can you handle B2B and enterprise SEO?",
+        "a": "Yes. B2B and enterprise SEO need more than rankings. They need authority, stakeholder intent mapping, technical governance, scalable content systems, and reporting that supports long buying cycles."
+      },
+      {
+        "q": "Does AI change SEO?",
+        "a": "Yes. Search is becoming more answer-led, conversational, and context-heavy. Brands need clearer entities, stronger proof, better structure, and content that helps both people and AI systems understand what they do."
+      }
+    ]
+  }
+};

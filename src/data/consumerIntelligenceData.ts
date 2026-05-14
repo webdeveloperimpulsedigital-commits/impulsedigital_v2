@@ -136,5 +136,5 @@ export const consumerIntelligenceData = {
     ]
   },
   logosTitle: "Trusted by Teams That Need More Than Research",
-  contactTitle: "Decode Your<br>Consumer."
+  contactTitle: "Decode Your Consumer."
 };

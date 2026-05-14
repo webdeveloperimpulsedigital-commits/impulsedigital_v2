@@ -10,7 +10,6 @@ import {
   ServiceProblem,
   ServiceVs,
   ServiceUses,
-  ServiceWhenToUse,
   ServiceGuardrails,
   ServiceProcess,
   ServiceFit,
@@ -18,11 +17,11 @@ import {
   ServiceFAQ
 } from '../components/Service/ServiceTemplate';
 
-import { agenticAiData } from '../data/agenticAiData';
+import { generativeSearchOptimisationData as data } from '../data/generativeSearchOptimisationData';
 
 const { gsap, ScrollTrigger } = window as any;
 
-const AgenticAI: React.FC = () => {
+const GenerativeSearchOptimisation: React.FC = () => {
   useEffect(() => {
     document.body.classList.add('service-page');
     
@@ -154,31 +153,32 @@ const AgenticAI: React.FC = () => {
   return (
     <main id="main-content">
       <ServiceHero 
-        headlineParts={agenticAiData.hero.headlineParts}
-        headlineAccent={agenticAiData.hero.headlineAccent}
-        description={agenticAiData.hero.description}
-        buttons={agenticAiData.hero.buttons}
+        headlineHtml={data.hero.headlineHtml}
+        headlineParts={data.hero.headlineParts}
+        headlineAccent={data.hero.headlineAccent}
+        description={data.hero.description}
+        buttons={data.hero.buttons}
       />
 
-      {/* STATS — Built to Reduce the Work That Slows Teams Down */}
-      <ServiceStats data={agenticAiData.stats} />
+      <ServiceStats data={data.stats} />
 
       <ServiceHandoff />
       
-      <ServiceProblem data={agenticAiData.problem} />
+      <ServiceProblem data={data.problem} />
       <ServiceHandoff />
       
-      <ServiceVs data={agenticAiData.vs} />
+      <ServiceVs data={data.vs} />
       <ServiceHandoff />
       
-      <ServiceUses data={agenticAiData.uses} />
+      <ServiceUses data={data.uses} />
       <ServiceHandoff />
-      
-      {/* CHANNELS — Built Across the Channels Your Customers Already Use */}
-      <section className="svc-channels">
+
+      {/* CHANNELS Section specifically for GSO */}
+      <section className="svc-channels gso-understanding">
         <div className="container">
-          <h2 className="svc-h2 split-text">Built Across the Channels Your Customers Already Use</h2>
-          <p className="svc-channels-intro">Your customers do not think in channels. They message where it is convenient. Your AI system should keep the experience connected across:</p>
+          <h2 className="svc-h2 split-text">{data.channels.title}</h2>
+          <p className="svc-channels-intro">{data.channels.intro1}</p>
+          <p className="svc-channels-intro gso-clarity-intro-secondary">{data.channels.intro2}</p>
           <div className="svc-channels-stage" id="channels-stage">
             <svg className="svc-channels-orbit-svg" id="channels-orbit-lines" aria-hidden="true"></svg>
             <div className="svc-channels-center" aria-hidden="true">
@@ -187,14 +187,43 @@ const AgenticAI: React.FC = () => {
               </svg>
             </div>
             <div className="svc-channels-orbit">
-              <span className="svc-channel-chip" style={{ '--chip-left': '22%', '--chip-top': '20%' } as React.CSSProperties}>WhatsApp</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '50%', '--chip-top': '12%' } as React.CSSProperties}>Email</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '78%', '--chip-top': '20%' } as React.CSSProperties}>Voice notes</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '85%', '--chip-top': '50%' } as React.CSSProperties}>Facebook Messenger</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '78%', '--chip-top': '80%' } as React.CSSProperties}>Instagram DM</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '50%', '--chip-top': '88%' } as React.CSSProperties}>SMS</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '22%', '--chip-top': '80%' } as React.CSSProperties}>Website chat</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '15%', '--chip-top': '50%' } as React.CSSProperties}>CRM workflows</span>
+              {data.channels.list.map((item: any, i: number) => (
+                <span key={i} className="svc-channel-chip" style={{ '--chip-left': item.pos.left, '--chip-top': item.pos.top } as React.CSSProperties}>
+                  {item.label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <ServiceHandoff />
+
+      {/* Connected Systems */}
+      <section className="svc-section glass-panel">
+        <div className="container">
+          <div className="svc-systems-grid">
+            <div className="svc-systems-intro">
+              <h2 className="svc-h2 split-text" style={{ marginBottom: '2.5rem' }}>{data.channels.systemsTitle}</h2>
+              {data.channels.systemsParagraphs.map((p, i) => <p key={i}>{p}</p>)}
+              <p className="closer">{data.channels.closer}</p>
+            </div>
+            <div>
+              <p style={{ fontSize: '0.75rem', color: 'var(--impulse-violet)', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '1.5rem' }}>{data.channels.pillsHeading}</p>
+              <div className="svc-systems-pills">
+                {data.channels.pills.map((pill, i) => {
+                  if (typeof pill === 'string' && pill.includes(':')) {
+                    const [label, desc] = pill.split(':');
+                    return (
+                      <div className="svc-system-pill" key={i}>
+                        <strong>{label.trim()}:</strong>
+                        <span>{desc}</span>
+                      </div>
+                    );
+                  }
+                  return <div className="svc-system-pill" key={i}>{pill}</div>;
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -202,27 +231,24 @@ const AgenticAI: React.FC = () => {
 
       <ServiceHandoff />
       
-      <ServiceWhenToUse data={agenticAiData.whenToUse} />
+      <ServiceGuardrails data={data.guardrails} />
       <ServiceHandoff />
 
-      <ServiceGuardrails data={agenticAiData.guardrails} />
-      <ServiceHandoff />
-
-      <ServiceProcess data={agenticAiData.process} />
+      <ServiceProcess data={data.process} />
       
-      <Logos title="Trusted by Teams That Expect Thinking Before Execution" />
+      <Logos title="Trusted by Teams That Need More From Search" />
       
       <Testimonials />
       <ServiceHandoff />
       
-      <ServiceFit data={agenticAiData.fit} />
+      <ServiceFit data={data.fit} />
       <ServiceHandoff />
-      
-      <ServiceFinalCTA data={agenticAiData.finalCta} />
+
+      <ServiceFinalCTA data={data.finalCta} />
       <Contact />
-      <ServiceFAQ data={agenticAiData.faq} />
+      <ServiceFAQ data={data.faq} />
     </main>
   );
 };
 
-export default AgenticAI;
+export default GenerativeSearchOptimisation;

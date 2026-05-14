@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 interface LogosProps {
   title?: string | null;
 }
+
+const { gsap, ScrollTrigger, SplitType } = window as any;
 
 const LOGOS = [
   { src: 'Aditya Birla Group.svg', alt: 'Aditya Birla Group', scale: 1.25 },
@@ -32,8 +34,58 @@ const LOGOS = [
 ];
 
 const Logos: React.FC<LogosProps> = ({ title }) => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!gsap || !ScrollTrigger) return;
+    const ctx = gsap.context(() => {
+      // SplitType for Logos heading
+      const text = sectionRef.current?.querySelector('.split-text') as HTMLElement;
+      if (text && SplitType) {
+        if (!text.classList.contains('split-done')) {
+          const split = new SplitType(text, { types: 'lines, words' });
+          split.lines?.forEach((line: any) => {
+              const wrapper = document.createElement('div');
+              wrapper.classList.add('line-wrapper');
+              line.parentNode?.insertBefore(wrapper, line);
+              wrapper.appendChild(line);
+          });
+          text.classList.add('split-done');
+          gsap.fromTo(split.words,
+            { yPercent: 120, opacity: 0 },
+            {
+                scrollTrigger: { trigger: text, start: 'top 85%', toggleActions: 'play none none reverse' },
+                yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.015, ease: 'power4.out'
+            }
+          );
+        }
+      }
+
+      // Logo Grid Reveal
+      const cards = gsap.utils.toArray('.logo-card');
+      if (cards.length) {
+        gsap.set(cards, { autoAlpha: 0, y: 30, scale: 0.95 });
+        gsap.to(cards, {
+          scrollTrigger: {
+            trigger: ".logos",
+            start: "top 75%",
+            toggleActions: "play none none reverse"
+          },
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          stagger: 0.03,
+          duration: 1,
+          ease: "back.out(1.4)"
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [title]);
+
   return (
-    <section className="logos">
+    <section className="logos" ref={sectionRef}>
       <style>{`
         @media (min-width: 769px) {
           .logo-duplicate { display: none !important; }
@@ -45,7 +97,7 @@ const Logos: React.FC<LogosProps> = ({ title }) => {
         <div className="logo-slider">
           <div className="logo-grid">
             {[...LOGOS, ...LOGOS].map((logo, idx) => (
-              <div key={idx} className={`logo-card ${idx >= LOGOS.length ? 'logo-duplicate' : ''}`} data-cursor="VIEW">
+              <div key={idx} className={`logo-card ${idx >= LOGOS.length ? 'logo-duplicate' : ''}`}>
                 <div className="logo-pane">
                   <img
                     src={`${import.meta.env.BASE_URL}logos/${logo.src}`}
