@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import ServiceHero from '../components/Service/ServiceHero';
-import ServiceHandoff from '../components/Service/ServiceHandoff';
 import Contact from '../components/Contact';
 
 const AboutUs: React.FC = () => {
@@ -9,177 +8,40 @@ const AboutUs: React.FC = () => {
 
     const { gsap, ScrollTrigger } = window as any;
 
-    // Final CTA SVG Animation
     if (gsap && ScrollTrigger) {
-      const finalMarkPath = document.querySelector('.svc-final-cta-path') as SVGPathElement;
-      if (finalMarkPath) {
-        const finalLen = finalMarkPath.getTotalLength();
-        gsap.set(finalMarkPath, {
-          strokeDasharray: finalLen,
-          strokeDashoffset: finalLen
-        });
-        ScrollTrigger.create({
-          trigger: '.svc-final-cta',
-          start: 'top 70%',
-          once: true,
-          onEnter: () => {
-            gsap.to(finalMarkPath, {
-              strokeDashoffset: 0,
-              duration: 3.2,
-              ease: 'power2.inOut'
-            });
-          }
-        });
-      }
-
-      // Leadership cards animation
-      const useCards = document.querySelectorAll('.svc-use-card');
-      if (useCards.length) {
-        gsap.set(useCards, { opacity: 0, y: 40 });
-        ScrollTrigger.create({
-          trigger: '.svc-uses-grid',
-          start: 'top 65%',
-          once: true,
-          onEnter: () => {
-            gsap.to(useCards, {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              stagger: 0.12,
-              ease: 'power3.out'
-            });
-          }
-        });
-      }
-    }
-
-    // Channels orbit animation
-    const stage = document.getElementById('channels-stage');
-    const linesSvg = document.getElementById('channels-orbit-lines');
-    const centerEl = document.querySelector('.svc-channels-center');
-    const centerPath = centerEl ? centerEl.querySelector('path') : null;
-
-    let pulseTimer: any = null;
-    let convergenceActive = false;
-    let measureTimeout1: any, measureTimeout2: any;
-    let sectionObs: IntersectionObserver | null = null;
-    let measureFn: () => void = () => { };
-
-    if (stage && linesSvg && centerEl && centerPath && gsap && ScrollTrigger) {
-      let chipPositions: any[] = [];
-      let cx = 0, cy = 0;
-      let markRadius = 80;
-
-      measureFn = () => {
-        const sr = stage.getBoundingClientRect();
-        linesSvg.setAttribute('viewBox', `0 0 ${sr.width} ${sr.height}`);
-        cx = sr.width / 2;
-        cy = sr.height / 2;
-        const centerRect = centerEl.getBoundingClientRect();
-        markRadius = Math.min(centerRect.width, centerRect.height) * 0.46;
-
-        chipPositions = [...stage.querySelectorAll('.svc-channel-chip')].map((chip) => {
-          const cr = chip.getBoundingClientRect();
-          const x = cr.left - sr.left + cr.width / 2;
-          const y = cr.top - sr.top + cr.height / 2;
-          const dx = cx - x;
-          const dy = cy - y;
-          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          const tx = x + dx * ((dist - markRadius) / dist);
-          const ty = y + dy * ((dist - markRadius) / dist);
-          return { x, y, tx, ty };
-        });
-
-        linesSvg.querySelectorAll('line').forEach((l: Element) => l.remove());
-        chipPositions.forEach((p) => {
-          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-          line.setAttribute('x1', String(p.x));
-          line.setAttribute('y1', String(p.y));
-          line.setAttribute('x2', String(p.tx));
-          line.setAttribute('y2', String(p.ty));
-          linesSvg.appendChild(line);
-        });
-      };
-
-      const flashCenter = () => {
-        gsap.fromTo(centerPath,
-          { strokeWidth: 6, stroke: 'rgba(138, 92, 246, 0.85)' },
-          {
-            strokeWidth: 11,
-            stroke: 'rgba(220, 200, 255, 1)',
-            duration: 0.18,
-            yoyo: true,
-            repeat: 1,
-            ease: 'power2.out'
+      gsap.utils.toArray('.animate-up').forEach((el: any) => {
+        gsap.fromTo(el, 
+          { y: 60, opacity: 0 },
+          { 
+            y: 0, opacity: 1, duration: 1.2, 
+            ease: 'power3.out', 
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+            }
           }
         );
-      };
-
-      const emitPulse = () => {
-        if (!chipPositions.length) return;
-        const idx = Math.floor(Math.random() * chipPositions.length);
-        const p = chipPositions[idx];
-        const pulse = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        pulse.setAttribute('cx', String(p.x));
-        pulse.setAttribute('cy', String(p.y));
-        pulse.setAttribute('r', '4.5');
-        pulse.setAttribute('class', 'svc-channels-pulse');
-        linesSvg.appendChild(pulse);
-
-        gsap.timeline({ onComplete: () => pulse.remove() })
-          .fromTo(pulse, { opacity: 0, attr: { r: 2 } }, { opacity: 1, attr: { r: 5 }, duration: 0.35, ease: 'power2.out' })
-          .to(pulse, {
-            attr: { cx: p.tx, cy: p.ty },
-            duration: 1.3,
-            ease: 'power2.in'
-          }, 0)
-          .to(pulse, { opacity: 0, attr: { r: 2 }, duration: 0.2, ease: 'power2.in' }, '-=0.18')
-          .add(flashCenter, '-=0.18');
-      };
-
-      const startConvergence = () => {
-        if (convergenceActive) return;
-        convergenceActive = true;
-        gsap.fromTo(centerPath,
-          { opacity: 0.15, strokeWidth: 4 },
-          { opacity: 1, strokeWidth: 6, duration: 1.6, ease: 'power2.out' }
-        );
-        pulseTimer = setInterval(emitPulse, 380);
-      };
-
-      const stopConvergence = () => {
-        convergenceActive = false;
-        if (pulseTimer) { clearInterval(pulseTimer); pulseTimer = null; }
-      };
-
-      measureFn();
-      measureTimeout1 = setTimeout(measureFn, 250);
-      measureTimeout2 = setTimeout(measureFn, 800);
-      window.addEventListener('resize', measureFn);
-
-      sectionObs = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) startConvergence();
-          else stopConvergence();
-        });
-      }, { threshold: 0.2 });
-      sectionObs.observe(stage);
-
-      gsap.set(centerPath, { opacity: 0.15 });
+      });
+      
+      gsap.to('.float-element', {
+        y: -20,
+        rotation: 2,
+        duration: 4,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        stagger: 0.5
+      });
     }
 
     return () => {
       document.body.classList.remove('service-page');
-      window.removeEventListener('resize', measureFn);
-      if (pulseTimer) clearInterval(pulseTimer);
-      clearTimeout(measureTimeout1);
-      clearTimeout(measureTimeout2);
-      if (sectionObs) sectionObs.disconnect();
     };
   }, []);
 
   return (
     <main id="main-content">
+      
       <ServiceHero
         headlineParts={["About Impulse", " Digital"]}
         headlineAccent="Momentum for brands with appetite."
@@ -189,255 +51,392 @@ const AboutUs: React.FC = () => {
           { text: "See how we think", link: "#cases-pin", cursor: "EXPLORE" }
         ]}
       />
-      <ServiceHandoff />
 
-      {/* Section 1: Maintenance - Manifesto Style */}
-      <section style={{ padding: '12rem 0 8rem 0', position: 'relative', overflow: 'hidden' }}>
-        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2 className="split-text" style={{ fontSize: 'clamp(3.5rem, 8vw, 6.5rem)', fontFamily: 'var(--font-heading)', fontWeight: 700, lineHeight: 1.05, marginBottom: '4rem', letterSpacing: '-0.02em', color: 'var(--white)' }}>
-            Marketing becomes<br />maintenance quietly.
-          </h2>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '6rem', alignItems: 'center' }}>
-            <div style={{ padding: '3.5rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '32px' }}>
-              <p style={{ fontSize: '1.25rem', color: 'var(--soft-grey)', lineHeight: 1.7 }}>
-                It rarely fails all at once. The calendar keeps moving. Campaigns keep launching. Reports keep getting made. Meetings keep happening.
-              </p>
-              <div style={{ width: '100%', height: '1px', background: 'linear-gradient(90deg, rgba(255,255,255,0.2), transparent)', margin: '2.5rem 0' }}></div>
-              <p style={{ fontSize: '1.3rem', color: 'var(--white)', fontWeight: 500, lineHeight: 1.7 }}>
-                But somewhere along the way, the work starts needing more explanation than it creates movement. Leadership starts asking harder questions.
-              </p>
-            </div>
-            
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <div style={{ borderLeft: '4px solid var(--accent)', paddingLeft: '3rem' }}>
-                <h3 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', fontFamily: 'var(--font-heading)', fontWeight: 600, color: 'var(--white)', lineHeight: 1.2 }}>
-                  That is the drift<br />
-                  <span style={{ color: 'var(--accent)' }}>Impulse exists to resist.</span>
-                </h3>
+      <style>{`
+        .stitch-ui {
+          --glass-bg: rgba(255, 255, 255, 0.03);
+          --glass-border: rgba(255, 255, 255, 0.08);
+          --accent-glow: rgba(138, 92, 246, 0.5);
+          font-family: 'Inter', sans-serif;
+        }
+        .glass-card {
+          background: var(--glass-bg);
+          border: 1px solid var(--glass-border);
+          backdrop-filter: blur(20px);
+          border-radius: 24px;
+          transition: all 0.4s ease;
+          position: relative;
+        }
+        .glass-card:hover {
+          background: rgba(255, 255, 255, 0.06);
+          border-color: rgba(138, 92, 246, 0.4);
+          transform: translateY(-5px);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(138, 92, 246, 0.1);
+        }
+        .gradient-text {
+          background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .split-heading {
+          font-family: var(--font-heading), 'Inter', sans-serif;
+          letter-spacing: -0.02em;
+          line-height: 1.1;
+        }
+        .neon-circle {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(100px);
+          z-index: 0;
+          pointer-events: none;
+        }
+        .section-padding {
+          padding: 8rem 2rem;
+        }
+        @media (min-width: 1024px) {
+          .section-padding {
+            padding: 12rem 4rem;
+          }
+        }
+        .container-stitch {
+          max-width: 1300px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 10;
+        }
+        .flex-col-gap { display: flex; flex-direction: column; gap: 2rem; }
+        .grid-2 { display: grid; gap: 4rem; }
+        @media (min-width: 1024px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+      `}</style>
+
+      <div className="stitch-ui">
+
+        {/* Section 1: Maintenance vs Momentum */}
+        <section className="section-padding" style={{ backgroundColor: '#050505', borderTop: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+          <div className="container-stitch grid-2" style={{ alignItems: 'center' }}>
+            <div className="animate-up">
+              <h2 className="split-heading" style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 700, marginBottom: '2rem' }}>
+                Marketing becomes<br/>maintenance quietly.
+              </h2>
+              <p style={{ fontSize: '1.5rem', color: '#a5b4fc', fontWeight: 500, marginBottom: '3rem' }}>It rarely fails all at once.</p>
+              
+              <div className="flex-col-gap" style={{ fontSize: '1.25rem', color: '#9ca3af', fontWeight: 300, lineHeight: 1.6 }}>
+                <p>The calendar keeps moving. Campaigns keep launching. Reports keep getting made. Meetings keep happening.</p>
+                <p>But somewhere along the way, the work starts needing more explanation than it creates movement.</p>
+                
+                <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                  <p style={{ color: '#fff', fontWeight: 500, fontSize: '1.5rem', marginBottom: '1.5rem' }}>Leadership starts asking harder questions.</p>
+                  <ul style={{ listStyleType: 'none', paddingLeft: '1.5rem', borderLeft: '2px solid rgba(138, 92, 246, 0.5)', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <li>What is this doing for the brand?</li>
+                    <li>What is this building over time?</li>
+                    <li>What is this helping us decide?</li>
+                    <li>What is this moving for the business?</li>
+                  </ul>
+                </div>
+                <p style={{ fontSize: '1.5rem', color: '#fff', fontWeight: 500, marginTop: '2rem' }}>That is the drift Impulse exists to resist.</p>
               </div>
             </div>
+            
+            <div className="glass-card animate-up" style={{ height: '600px', overflow: 'hidden', padding: 0 }}>
+              <img src={`${import.meta.env.BASE_URL}images/momentum_energy.png`} alt="Abstract Energy" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.6 }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #050505, transparent)' }}></div>
+              <img src={`${import.meta.env.BASE_URL}images/glass_shape.png`} alt="Floating Glass" className="float-element" style={{ position: 'absolute', top: '25%', left: '25%', width: '200px', opacity: 0.8, mixBlendMode: 'screen' }} />
+            </div>
           </div>
-        </div>
-        
-        {/* Abstract Background Element */}
-        <div style={{ position: 'absolute', top: '10%', right: '-10%', width: '50vw', height: '50vw', background: 'radial-gradient(circle, rgba(138, 92, 246, 0.15) 0%, transparent 70%)', borderRadius: '50%', zIndex: -1, pointerEvents: 'none' }}></div>
-      </section>
+        </section>
 
-      {/* Section 2: Appetite - High Contrast Statement */}
-      <section style={{ padding: '8rem 0', background: '#050505', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-            <h2 className="split-text" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontFamily: 'var(--font-heading)', fontWeight: 700, lineHeight: 1.1, marginBottom: '2rem', letterSpacing: '-0.02em', color: 'var(--white)' }}>
-              Appetite is not size.<br /><span style={{ color: 'var(--impulse-violet)' }}>It is willingness.</span>
+        {/* Section 2: Appetite */}
+        <section className="section-padding" style={{ backgroundColor: '#0a0a0a', position: 'relative' }}>
+          <div className="neon-circle" style={{ background: 'rgba(138, 92, 246, 0.15)', width: '800px', height: '800px', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}></div>
+          
+          <div className="container-stitch animate-up" style={{ textAlign: 'center' }}>
+            <h2 className="split-heading" style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 700, marginBottom: '3rem' }}>
+              Appetite is not size.<br/><span className="gradient-text">It is willingness.</span>
             </h2>
             
-            <p style={{ fontSize: '1.4rem', color: 'var(--soft-grey)', maxWidth: '800px', lineHeight: 1.6, marginBottom: '5rem' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.5rem', marginBottom: '4rem' }}>
+              {['A startup', 'A legacy business', 'A conglomerate', 'A founder-led company'].map((type, i) => (
+                <div key={i} style={{ padding: '0.8rem 1.5rem', borderRadius: '50px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)', fontSize: '1.2rem', color: '#d1d5db' }}>
+                  {type} can have it
+                </div>
+              ))}
+            </div>
+            
+            <p style={{ fontSize: '1.5rem', color: '#9ca3af', fontWeight: 300, maxWidth: '800px', margin: '0 auto 4rem auto', lineHeight: 1.6 }}>
               Appetite is the willingness to move, question, improve, experiment, challenge default thinking, and expect more from marketing.
             </p>
+            
+            <div className="glass-card" style={{ maxWidth: '800px', margin: '0 auto', padding: '4rem', textAlign: 'left' }}>
+              <h3 style={{ fontSize: '2rem', fontWeight: 600, color: '#fff', marginBottom: '1rem' }}>That is who we work best with.</h3>
+              <p style={{ fontSize: '1.25rem', color: '#9ca3af', marginBottom: '0.5rem' }}>Brands that do not want marketing to simply continue.</p>
+              <p style={{ fontSize: '1.25rem', color: '#a5b4fc', fontWeight: 500 }}>Brands that want it to create momentum.</p>
+            </div>
+          </div>
+        </section>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', width: '100%', marginBottom: '6rem' }}>
+        {/* Section 3: Formation & Clarity */}
+        <section className="section-padding" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+          <div className="container-stitch grid-2" style={{ alignItems: 'center' }}>
+            
+            {/* Left side: Images and abstract layers */}
+            <div className="animate-up" style={{ position: 'relative', height: '600px', order: 2 }}>
+              <div className="glass-card" style={{ position: 'absolute', inset: '0 2rem 2rem 0', overflow: 'hidden', padding: 0 }}>
+                <img src={`${import.meta.env.BASE_URL}images/team_formation.png`} alt="Team Formation" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(5,5,5,0.2), rgba(138, 92, 246, 0.2))' }}></div>
+              </div>
+              <div className="glass-card" style={{ position: 'absolute', bottom: '0', right: '0', width: '80%', padding: '2rem' }}>
+                <h4 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#fff', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <span style={{ display: 'block', width: '2rem', height: '2px', background: '#8b5cf6' }}></span> Built to perform.
+                </h4>
+                <p style={{ color: '#9ca3af', fontSize: '1.15rem', lineHeight: 1.6 }}>You get content, campaigns, websites, search systems, and AI-enabled workflows built to perform, not just exist.</p>
+              </div>
+            </div>
+            
+            <div className="animate-up" style={{ order: 1 }}>
+              <h2 className="split-heading" style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 700, marginBottom: '2rem' }}>
+                Teams go further<br/>in formation.
+              </h2>
+              <div className="flex-col-gap" style={{ fontSize: '1.25rem', color: '#9ca3af', fontWeight: 300, lineHeight: 1.6 }}>
+                <p>A brand rarely moves because one channel performs in isolation.</p>
+                <p style={{ color: '#fff' }}>Momentum is built when the thinking, the story, the search presence, the media, the website, the data, the technology, and the execution pull in the same direction.</p>
+                <p>That is why we do not treat strategy as a document and execution as a handoff.</p>
+                <p style={{ color: '#a5b4fc', fontWeight: 500, fontSize: '1.5rem', paddingTop: '1rem' }}>The work has to move together. Otherwise, it becomes activity.</p>
+              </div>
+
+              <div style={{ display: 'grid', gap: '2rem', marginTop: '3rem' }}>
+                <div style={{ paddingLeft: '1.5rem', borderLeft: '2px solid rgba(138, 92, 246, 0.5)' }}>
+                  <h4 style={{ fontSize: '1.25rem', color: '#fff', fontWeight: 600 }}>Less chasing. More clarity.</h4>
+                  <p style={{ color: '#9ca3af', marginTop: '0.5rem' }}>You get fewer loose ends, fewer avoidable calls, and fewer rounds caused by unclear thinking.</p>
+                </div>
+                <div style={{ paddingLeft: '1.5rem', borderLeft: '2px solid rgba(138, 92, 246, 0.5)' }}>
+                  <h4 style={{ fontSize: '1.25rem', color: '#fff', fontWeight: 600 }}>Strategy before the work.</h4>
+                  <p style={{ color: '#9ca3af', marginTop: '0.5rem' }}>Not as a post-rationalisation after the work is questioned.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* Section 3.5: Senior Thinking */}
+        <section className="section-padding" style={{ backgroundColor: '#0a0a0a', borderTop: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+          <div className="container-stitch grid-2" style={{ alignItems: 'center' }}>
+            
+            <div className="animate-up" style={{ order: 2 }}>
+              <div className="glass-card" style={{ height: '500px', overflow: 'hidden', padding: 0 }}>
+                <img src={`${import.meta.env.BASE_URL}images/senior_thinking.png`} alt="Senior Thinking" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.7 }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(10,10,10,0.8), transparent)' }}></div>
+              </div>
+            </div>
+
+            <div className="animate-up" style={{ order: 1 }}>
+              <h3 className="split-heading" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 700, color: '#fff', marginBottom: '1.5rem' }}>Senior thinking stays<br/>close to the work.</h3>
+              <p style={{ fontSize: '1.25rem', color: '#9ca3af', marginBottom: '2.5rem', lineHeight: 1.6 }}>Impulse is not built on the idea that strategy happens once and execution figures itself out. The work often needs judgment.</p>
+              
+              <div style={{ display: 'grid', gap: '1.5rem', marginBottom: '3rem' }}>
+                {['A campaign may need a sharper thought.', 'A website may need a clearer path.', 'A search strategy may need stronger commercial context.', 'An AI workflow may need a human filter.', 'A client conversation may need more honesty than polish.'].map((txt, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', padding: '1rem', background: 'rgba(255,255,255,0.02)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#8b5cf6', marginTop: '6px', flexShrink: 0 }}></div>
+                    <span style={{ color: '#d1d5db', fontSize: '1.1rem', lineHeight: 1.4 }}>{txt}</span>
+                  </div>
+                ))}
+              </div>
+              <p style={{ fontSize: '1.35rem', color: '#fff', fontWeight: 500, paddingLeft: '1.5rem', borderLeft: '4px solid #8b5cf6' }}>
+                That is why senior thinking stays close. Not to slow the work down. To keep it pointed in the right direction.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        {/* Section 4: Services Bento */}
+        <section className="section-padding" style={{ backgroundColor: '#030303', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+          <div className="container-stitch animate-up">
+            <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
+              <h2 className="split-heading" style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 700, marginBottom: '1.5rem' }}>
+                The service is not the story.<br/><span className="gradient-text">The movement is.</span>
+              </h2>
+              <p style={{ fontSize: '1.5rem', color: '#9ca3af', maxWidth: '800px', margin: '0 auto' }}>
+                Used separately, these can become tasks. <span style={{ color: '#fff' }}>Used with intent, they become momentum.</span>
+              </p>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+              
+              <div className="glass-card" style={{ gridColumn: '1 / -1', height: '400px', padding: 0, overflow: 'hidden' }}>
+                <img src={`${import.meta.env.BASE_URL}images/growth_dashboard.png`} alt="Dashboard" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.5, filter: 'brightness(0.8)' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(3,3,3,0.9) 0%, rgba(3,3,3,0.4) 50%, transparent 100%)' }}></div>
+                <div style={{ position: 'absolute', bottom: '3rem', left: '3rem', right: '3rem', zIndex: 10 }}>
+                  <h3 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#fff', marginBottom: '1rem', textShadow: '0 4px 12px rgba(0,0,0,0.5)' }}>Connected Growth Systems</h3>
+                  <p style={{ fontSize: '1.25rem', color: '#d1d5db', maxWidth: '800px', textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+                    Behind the scenes, there is process, data, automation, judgment, and senior thinking. On the surface, it should feel simple. The right work. Moving in the right direction. With fewer things falling through the cracks.
+                  </p>
+                </div>
+              </div>
+
               {[
-                { num: '01', title: 'A startup can have it' },
-                { num: '02', title: 'A legacy business can have it' },
-                { num: '03', title: 'A founder-led company can have it' }
-              ].map(item => (
-                <div key={item.num} style={{ padding: '3.5rem 2.5rem', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '24px', background: 'linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}>
-                  <div style={{ fontSize: '2.5rem', fontFamily: 'var(--font-heading)', color: 'var(--accent)', marginBottom: '1.5rem', opacity: 0.8 }}>{item.num}</div>
-                  <h3 style={{ fontSize: '1.4rem', fontWeight: 600, color: 'var(--white)' }}>{item.title}</h3>
+                { title: 'Brand Strategy', desc: 'Gives the work a commercial foundation.' },
+                { title: 'Content', desc: 'Builds authority, not just output.' },
+                { title: 'Search', desc: 'Compounds visibility that the brand owns.' },
+                { title: 'Performance', desc: 'Makes spend more accountable.' },
+                { title: 'Social Media', desc: 'Builds relevance, not just a posting rhythm.' },
+                { title: 'Websites', desc: 'The place where intent either lands or leaks.' },
+                { title: 'Analytics', desc: 'Turns data into clearer decisions.' },
+                { title: 'AI', desc: 'Makes the work faster, sharper, and more scalable without lowering the bar.' },
+              ].map((svc, i) => (
+                <div key={i} className="glass-card" style={{ padding: '2rem', minHeight: '200px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+                  <p style={{ color: '#9ca3af', fontSize: '1.1rem', marginBottom: '1rem' }}>{svc.desc}</p>
+                  <h4 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#fff', transition: 'color 0.3s' }} onMouseOver={e => e.currentTarget.style.color = '#a5b4fc'} onMouseOut={e => e.currentTarget.style.color = '#fff'}>
+                    {svc.title}
+                  </h4>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section 5: Leadership */}
+        <section className="section-padding" style={{ position: 'relative', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+          <div className="neon-circle" style={{ background: 'rgba(138, 92, 246, 0.1)', width: '1000px', height: '1000px', top: '0', left: '-20%' }}></div>
+          <div className="container-stitch animate-up">
+            <h2 className="split-heading" style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 700, marginBottom: '5rem', textAlign: 'center' }}>Our Leadership</h2>
+            
+            <style>
+              {`
+                .leader-card {
+                  position: relative;
+                  border-radius: 32px;
+                  overflow: hidden;
+                  aspect-ratio: 3/4;
+                  cursor: pointer;
+                  border: 1px solid rgba(255,255,255,0.08);
+                  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+                }
+                .leader-card:hover {
+                  border-color: rgba(138, 92, 246, 0.5);
+                  transform: translateY(-10px);
+                  box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 40px rgba(138, 92, 246, 0.2);
+                }
+                .leader-img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+                  filter: grayscale(20%) contrast(1.1);
+                }
+                .leader-card:hover .leader-img {
+                  transform: scale(1.08);
+                  filter: grayscale(0%) contrast(1.1);
+                }
+                .leader-overlay {
+                  position: absolute;
+                  inset: 0;
+                  background: linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.3) 50%, transparent 100%);
+                  transition: background 0.6s ease;
+                }
+                .leader-card:hover .leader-overlay {
+                  background: linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(138, 92, 246, 0.4) 60%, transparent 100%);
+                }
+                .leader-content {
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  width: 100%;
+                  padding: 3rem;
+                  transform: translateY(40px);
+                  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+                }
+                .leader-card:hover .leader-content {
+                  transform: translateY(0);
+                }
+                .leader-bio {
+                  opacity: 0;
+                  max-height: 0;
+                  overflow: hidden;
+                  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+                  color: rgba(255,255,255,0.8);
+                  line-height: 1.6;
+                  font-size: 1.15rem;
+                }
+                .leader-card:hover .leader-bio {
+                  opacity: 1;
+                  max-height: 200px;
+                  margin-top: 1.5rem;
+                }
+              `}
+            </style>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '3rem' }}>
+              {[
+                {
+                  name: 'Adwait Joshi',
+                  role: 'Founder',
+                  bio: 'Adwait brings visionary leadership and strategic direction, transforming how brands connect with their audiences in a digital-first world.',
+                  img: 'Adwait Joshi.png'
+                },
+                {
+                  name: 'Abhishek Arekar',
+                  role: 'Co-Founder',
+                  bio: 'Abhishek oversees operational excellence and ensures that creative ideation is matched with flawless execution across all channels.',
+                  img: 'Abhishek Arekar.png'
+                }
+              ].map((leader, i) => (
+                <div key={i} className="leader-card">
+                  <img src={`${import.meta.env.BASE_URL}images/${leader.img}`} alt={leader.name} className="leader-img" />
+                  <div className="leader-overlay"></div>
+                  <div className="leader-content">
+                    <div style={{ color: '#a5b4fc', fontSize: '1rem', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '0.8rem' }}>{leader.role}</div>
+                    <h3 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-heading)', color: '#fff', lineHeight: 1.1 }}>{leader.name}</h3>
+                    <div className="leader-bio">
+                      {leader.bio}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section 6: Final CTA */}
+        <section className="section-padding" style={{ backgroundColor: '#100826', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0, opacity: 0.2, backgroundImage: 'radial-gradient(circle at center, rgba(138,92,246,0.8) 0%, transparent 70%)' }}></div>
+          <div className="container-stitch animate-up" style={{ textAlign: 'center', maxWidth: '800px' }}>
+            <h2 className="split-heading" style={{ fontSize: 'clamp(3.5rem, 8vw, 6rem)', fontWeight: 700, marginBottom: '2.5rem', lineHeight: 1.05 }}>
+              Built for brands<br/>that <span className="gradient-text">expect more.</span>
+            </h2>
+            <p style={{ fontSize: '1.5rem', color: '#d1d5db', marginBottom: '2rem', fontWeight: 300 }}>
+              We are not the right fit for teams looking for a vendor to simply fulfil briefs.
+            </p>
+            <p style={{ fontSize: '1.25rem', color: '#9ca3af', marginBottom: '4rem', lineHeight: 1.6 }}>
+              We work best with brands that want a partner who can think with them, build with them, challenge weak assumptions, and reduce the weight marketing places on their internal team. The size of the brand matters less than the appetite behind it.
+            </p>
+            
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', marginBottom: '4rem' }}>
+              {['A sharper question.', 'A higher standard.', 'A willingness to improve.', 'A need to move the business.'].map((item, i) => (
+                <div key={i} style={{ padding: '0.8rem 1.5rem', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)', borderRadius: '50px', color: '#c4b5fd' }}>
+                  {item}
                 </div>
               ))}
             </div>
 
-            <div style={{ width: '2px', height: '100px', background: 'linear-gradient(180deg, transparent, var(--accent), transparent)', margin: '0 auto 4rem auto' }}></div>
+            <p style={{ fontSize: '2rem', fontWeight: 700, color: '#fff', marginBottom: '3rem' }}>That is where Impulse fits best.</p>
 
-            <h3 style={{ fontSize: '2.5rem', fontWeight: 600, color: 'var(--white)' }}>That is who we work best with.</h3>
-            <p style={{ fontSize: '1.25rem', color: 'var(--soft-grey)', marginTop: '1rem' }}>Brands that do not want marketing to simply continue. Brands that want it to create momentum.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 3: Formation - Diagonal Staggered Layout */}
-      <section style={{ padding: '10rem 0', position: 'relative' }}>
-        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'center' }}>
-            <div style={{ order: 2 }}>
-              <h2 className="split-text" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontFamily: 'var(--font-heading)', lineHeight: 1.1, marginBottom: '2rem', color: 'var(--white)' }}>Teams go further<br />in formation.</h2>
-              <div style={{ width: '60px', height: '4px', background: 'var(--accent)', marginBottom: '2.5rem' }}></div>
-              <p style={{ fontSize: '1.2rem', color: 'var(--soft-grey)', lineHeight: 1.7, marginBottom: '1.5rem' }}>A brand rarely moves because one channel performs in isolation. Momentum is built when the thinking, the story, the search presence, the media, the website, the data, the technology, and the execution pull in the same direction.</p>
-              <p style={{ fontSize: '1.2rem', color: 'var(--white)', fontWeight: 500, lineHeight: 1.7 }}>That is why we do not treat strategy as a document and execution as a handoff. The work has to move together. Otherwise, it becomes activity.</p>
-            </div>
-            
-            <div style={{ order: 1, position: 'relative' }}>
-              <div style={{ width: '120%', aspectRatio: '1/1', background: 'radial-gradient(circle at center, rgba(144, 98, 245, 0.15) 0%, transparent 70%)', position: 'absolute', top: '50%', left: '40%', transform: 'translate(-50%, -50%)', zIndex: -1 }}></div>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                <div style={{ padding: '2.5rem', background: 'rgba(255,255,255,0.03)', borderLeft: '4px solid var(--impulse-violet)', borderRadius: '0 24px 24px 0', backdropFilter: 'blur(10px)' }}>
-                  <p style={{ fontSize: '1.25rem', color: 'var(--white)', fontWeight: 600 }}>Less chasing. More clarity.</p>
-                  <p style={{ fontSize: '1.05rem', color: 'var(--soft-grey)', marginTop: '0.8rem', lineHeight: 1.5 }}>You get fewer loose ends, fewer avoidable calls, and fewer rounds caused by unclear thinking.</p>
-                </div>
-                <div style={{ padding: '2.5rem', background: 'rgba(255,255,255,0.03)', borderLeft: '4px solid var(--impulse-violet)', borderRadius: '0 24px 24px 0', marginLeft: '3rem', backdropFilter: 'blur(10px)' }}>
-                  <p style={{ fontSize: '1.25rem', color: 'var(--white)', fontWeight: 600 }}>Strategy before work.</p>
-                  <p style={{ fontSize: '1.05rem', color: 'var(--soft-grey)', marginTop: '0.8rem', lineHeight: 1.5 }}>Not as a post-rationalisation after the work is questioned.</p>
-                </div>
-                <div style={{ padding: '2.5rem', background: 'rgba(255,255,255,0.03)', borderLeft: '4px solid var(--impulse-violet)', borderRadius: '0 24px 24px 0', marginLeft: '6rem', backdropFilter: 'blur(10px)' }}>
-                  <p style={{ fontSize: '1.25rem', color: 'var(--white)', fontWeight: 600 }}>Built to perform.</p>
-                  <p style={{ fontSize: '1.05rem', color: 'var(--soft-grey)', marginTop: '0.8rem', lineHeight: 1.5 }}>Content, campaigns, websites, search systems, and AI workflows built to perform, not just exist.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 4: Momentum - White Bento Grid */}
-      <section style={{ padding: '10rem 0', background: 'var(--white)', color: 'var(--bg-dark)' }}>
-        <div className="container" style={{ maxWidth: '1300px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
-            <h2 className="split-text" style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontFamily: 'var(--font-heading)', fontWeight: 700, marginBottom: '1.5rem', color: 'var(--bg-dark)' }}>The service is not the story.<br />The movement is.</h2>
-            <p style={{ fontSize: '1.5rem', color: 'rgba(0,0,0,0.6)', fontWeight: 500 }}>Used separately, these can become tasks. Used with intent, they become momentum.</p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2px', background: 'rgba(0,0,0,0.1)', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '32px', overflow: 'hidden' }}>
-            {[
-              { svc: 'Brand Strategy', desc: 'Gives the work a commercial foundation.' },
-              { svc: 'Content', desc: 'Builds authority, not just output.' },
-              { svc: 'Search', desc: 'Compounds visibility that the brand owns.' },
-              { svc: 'Performance', desc: 'Makes spend more accountable.' },
-              { svc: 'Social Media', desc: 'Builds relevance, not just a posting rhythm.' },
-              { svc: 'Websites', desc: 'The place where intent either lands or leaks.' },
-              { svc: 'Analytics', desc: 'Turns data into clearer decisions.' },
-              { svc: 'AI Integration', desc: 'Makes the work faster, sharper, and more scalable.' }
-            ].map(item => (
-              <div key={item.svc} style={{ background: 'var(--white)', padding: '3.5rem 3rem', transition: 'all 0.3s ease' }}>
-                <h3 style={{ fontSize: '1.6rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--impulse-violet)', fontFamily: 'var(--font-heading)' }}>{item.svc}</h3>
-                <p style={{ fontSize: '1.15rem', color: 'rgba(0,0,0,0.7)', lineHeight: 1.5 }}>{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 5: Senior Thinking - Clean Typography Focus */}
-      <section style={{ padding: '10rem 0', position: 'relative' }}>
-        <div className="container" style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
-          <h2 className="split-text" style={{ fontSize: 'clamp(2.8rem, 5vw, 4.5rem)', fontFamily: 'var(--font-heading)', lineHeight: 1.1, marginBottom: '2rem', color: 'var(--white)' }}>Senior thinking<br />stays close to the work.</h2>
-          <p style={{ fontSize: '1.4rem', color: 'var(--soft-grey)', marginBottom: '5rem', maxWidth: '800px', margin: '0 auto 5rem auto' }}>Impulse is not built on the idea that strategy happens once and execution figures itself out.</p>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', alignItems: 'center' }}>
-            {[
-              "A campaign may need a sharper thought.",
-              "A website may need a clearer path.",
-              "A search strategy may need stronger commercial context.",
-              "An AI workflow may need a human filter.",
-              "A client conversation may need more honesty than polish."
-            ].map((text, i) => (
-              <div key={i} style={{ padding: '1.5rem 3rem', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '100px', fontSize: '1.2rem', color: 'var(--white)', background: 'rgba(255,255,255,0.02)', backdropFilter: 'blur(10px)' }}>
-                {text}
-              </div>
-            ))}
-          </div>
-
-          <div style={{ marginTop: '7rem', padding: '5rem', background: 'var(--accent)', color: '#000', borderRadius: '40px' }}>
-            <h3 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-heading)', fontWeight: 700, marginBottom: '1rem' }}>That is why senior thinking stays close.</h3>
-            <p style={{ fontSize: '1.3rem', fontWeight: 500, opacity: 0.8 }}>Not to slow the work down. To keep it pointed in the right direction.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 6: Founders - Editorial Staggered Layout */}
-      <section style={{ padding: '8rem 0', position: 'relative' }} id="leadership">
-        <div className="container" style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <h2 className="split-text" style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontFamily: 'var(--font-heading)', marginBottom: '8rem', color: 'var(--white)' }}>Our Leadership</h2>
-          
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}>
-            
-            {/* Founder 1 - Image Left */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '5rem', alignItems: 'center' }}>
-              <div style={{ position: 'relative' }}>
-                <div style={{ width: '100%', aspectRatio: '4/5', borderRadius: '32px', overflow: 'hidden', position: 'relative' }}>
-                  <img src={`${import.meta.env.BASE_URL}images/Sairam Krishnamurthy.png`} alt="Founder 1" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 40%)' }}></div>
-                </div>
-                <div style={{ position: 'absolute', bottom: '-30px', right: '-30px', width: '150px', height: '150px', background: 'var(--impulse-violet)', borderRadius: '50%', zIndex: -1, opacity: 0.5, filter: 'blur(40px)' }}></div>
-              </div>
-              <div>
-                <h3 style={{ fontSize: '3.5rem', fontFamily: 'var(--font-heading)', color: 'var(--white)', marginBottom: '0.5rem', lineHeight: 1.1 }}>Founder 1 Name</h3>
-                <div style={{ color: 'var(--accent)', fontSize: '1.2rem', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '2.5rem' }}>Co-Founder</div>
-                <p style={{ fontSize: '1.3rem', color: 'var(--soft-grey)', lineHeight: 1.7 }}>
-                  Insert separate founder bio here. Describe their strategic vision, their background, and how they contribute to the momentum of the brands they work with.
-                </p>
-                <div style={{ marginTop: '2.5rem', width: '60px', height: '3px', background: 'var(--accent)' }}></div>
-              </div>
-            </div>
-            
-            {/* Founder 2 - Image Right (Desktop) */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '5rem', alignItems: 'center' }}>
-              <div style={{ order: 2, position: 'relative' }}>
-                <div style={{ width: '100%', aspectRatio: '4/5', borderRadius: '32px', overflow: 'hidden', position: 'relative' }}>
-                  <img src={`${import.meta.env.BASE_URL}images/Pratik Shetty.png`} alt="Founder 2" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 40%)' }}></div>
-                </div>
-                <div style={{ position: 'absolute', top: '-30px', left: '-30px', width: '150px', height: '150px', background: 'var(--accent)', borderRadius: '50%', zIndex: -1, opacity: 0.4, filter: 'blur(40px)' }}></div>
-              </div>
-              <div style={{ order: 1 }}>
-                <h3 style={{ fontSize: '3.5rem', fontFamily: 'var(--font-heading)', color: 'var(--white)', marginBottom: '0.5rem', lineHeight: 1.1 }}>Founder 2 Name</h3>
-                <div style={{ color: 'var(--accent)', fontSize: '1.2rem', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '2.5rem' }}>Co-Founder</div>
-                <p style={{ fontSize: '1.3rem', color: 'var(--soft-grey)', lineHeight: 1.7 }}>
-                  Insert separate founder bio here. Describe their operational expertise, creative leadership, and how they ensure execution meets the high standards of the agency.
-                </p>
-                <div style={{ marginTop: '2.5rem', width: '60px', height: '3px', background: 'var(--impulse-violet)' }}></div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </section>
-
-      <ServiceHandoff />
-
-      {/* Section 7: Fit / CTA */}
-      <section className="svc-final-cta glass-panel">
-        <div className="svc-final-cta-mark" aria-hidden="true">
-          <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
-            <path className="svc-final-cta-path" d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" fill="none" />
-          </svg>
-        </div>
-        <div className="container">
-          <style>{`.svc-final-cta .svc-final-cta-heading { font-size: clamp(2.8rem, 5vw, 5.5rem) !important; line-height: 1.1 !important; }`}</style>
-          <h2 className="split-text svc-final-cta-heading">
-            Built for<br />brands that<br /><span style={{ color: 'var(--impulse-violet)' }}>expect more.</span>
-          </h2>
-          
-          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <p className="svc-final-cta-body" style={{ marginBottom: '1.5rem', textAlign: 'center' }}>We are not the right fit for teams looking for a vendor to simply fulfil briefs.</p>
-            <p className="svc-final-cta-body" style={{ color: 'var(--white)', marginBottom: '3rem', textAlign: 'center' }}>We work best with brands that want a partner who can think with them, build with them, challenge weak assumptions, and reduce the weight marketing places on their internal team.</p>
-            
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', marginBottom: '3rem' }}>
-              <span style={{ padding: '0.8rem 1.5rem', background: 'rgba(255,255,255,0.05)', color: 'var(--white)', borderRadius: '30px', fontWeight: 500, border: '1px solid rgba(255,255,255,0.1)' }}>A sharper question.</span>
-              <span style={{ padding: '0.8rem 1.5rem', background: 'rgba(255,255,255,0.05)', color: 'var(--white)', borderRadius: '30px', fontWeight: 500, border: '1px solid rgba(255,255,255,0.1)' }}>A higher standard.</span>
-              <span style={{ padding: '0.8rem 1.5rem', background: 'rgba(255,255,255,0.05)', color: 'var(--white)', borderRadius: '30px', fontWeight: 500, border: '1px solid rgba(255,255,255,0.1)' }}>A willingness to improve.</span>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '1.5rem', marginBottom: '4rem' }}>
+              <span style={{ fontSize: '1.5rem', fontWeight: 700, color: '#9ca3af' }}>Move sharper.</span>
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#8b5cf6' }}></span>
+              <span style={{ fontSize: '1.5rem', fontWeight: 700, color: '#9ca3af' }}>Move together.</span>
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#8b5cf6' }}></span>
+              <span style={{ fontSize: '1.5rem', fontWeight: 700, color: '#fff' }}>Move the business.</span>
             </div>
 
-            <p style={{ fontSize: '1.25rem', color: 'var(--soft-grey)', marginBottom: '3rem', textAlign: 'center' }}>A need for marketing to move the business, not just fill the calendar.<br /><span style={{ color: 'var(--white)' }}>That is where Impulse fits best.</span></p>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '4rem', background: 'var(--accent)', color: 'var(--bg-dark)', padding: '3rem', borderRadius: '24px', textAlign: 'center' }}>
-              <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', color: 'rgba(0,0,0,0.6)' }}>Move sharper.</h3>
-              <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', color: 'rgba(0,0,0,0.8)' }}>Move together.</h3>
-              <h3 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-heading)', color: '#000', marginTop: '0.5rem' }}>Move the business.</h3>
-            </div>
-          </div>
-
-          <div className="svc-final-cta-actions">
-            <a href="#connect" className="btn" data-cursor="HI">
-              <span className="btn-text">Start the conversation</span>
-              <div className="btn-fill"></div>
+            <a href="#contact" style={{ display: 'inline-block', padding: '1.2rem 3rem', background: '#8b5cf6', color: '#fff', fontSize: '1.25rem', fontWeight: 700, borderRadius: '50px', textDecoration: 'none', boxShadow: '0 0 40px rgba(138,92,246,0.4)', transition: 'transform 0.3s ease' }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}>
+              Start the conversation
             </a>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <Contact title="Let's talk about<br>what your<br>brand needs." />
+      </div>
+      <Contact />
     </main>
   );
 };
