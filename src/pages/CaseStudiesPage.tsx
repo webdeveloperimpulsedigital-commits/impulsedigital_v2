@@ -66,29 +66,42 @@ const CaseStudiesPage: React.FC = () => {
 
     // Hero title split text
     if (SplitType) {
-      const title = document.querySelector('.cs3-hero-title');
-      if (title) {
-        (title as HTMLElement).style.visibility = 'visible';
-        const split = new SplitType(title as HTMLElement, { types: 'lines, words' });
-        
+      const heroHeadline = document.querySelector('.cs3-hero-title');
+      const heroDesc = document.querySelector('.cs3-hero-desc');
+
+      if (heroHeadline && heroDesc) {
+        (heroHeadline as HTMLElement).style.visibility = 'visible';
+        (heroDesc as HTMLElement).style.visibility = 'visible';
+
+        const split = new SplitType(heroHeadline as HTMLElement, { types: 'lines,words' });
         split.lines?.forEach((line: HTMLElement) => {
-            const w = document.createElement('div');
-            w.classList.add('line-wrapper');
-            line.parentNode?.insertBefore(w, line);
-            w.appendChild(line);
+          const w = document.createElement('div');
+          w.classList.add('line-wrapper');
+          line.parentNode?.insertBefore(w, line);
+          w.appendChild(line);
         });
 
-        gsap.fromTo(split.words,
+        const descSplit = new SplitType(heroDesc as HTMLElement, { types: 'lines' });
+        descSplit.lines?.forEach((line: HTMLElement) => {
+          const w = document.createElement('div');
+          w.classList.add('line-wrapper');
+          line.parentNode?.insertBefore(w, line);
+          w.appendChild(line);
+        });
+
+        const tl = gsap.timeline({ delay: 0.2 });
+
+        tl.fromTo(split.words,
           { yPercent: 120, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 1.2, stagger: 0.03, ease: 'power4.out', delay: 0.2 }
+          { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.02, ease: 'power4.out' }
+        )
+        .fromTo(descSplit.lines,
+          { yPercent: 100, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: 'power3.out' },
+          "-=0.4"
         );
       }
     }
-
-    gsap.fromTo('.cs3-hero-desc',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1, delay: 0.8, ease: 'power3.out' }
-    );
 
     // Grid item entrance
     const items = document.querySelectorAll('.cs3-grid-item');
@@ -158,7 +171,7 @@ const CaseStudiesPage: React.FC = () => {
             <h1 className="cs3-hero-title" style={{ visibility: 'hidden' }}>
                 Work that earned<br/>its numbers.
             </h1>
-            <p className="cs3-hero-desc">
+            <p className="cs3-hero-desc" style={{ visibility: 'hidden' }}>
                 An archive of decisions, strategies, and executions that didn't just look good, but fundamentally moved the needle for the brands we partner with.
             </p>
         </div>

@@ -6,6 +6,7 @@ const caseStudiesData = [
     client: "Mastercard",
     title: "Priceless Experiences: Reimagining Global Loyalty",
     category: "Brand Infrastructure",
+    description: "90.9% merchant response rate through an AI-led WhatsApp cluster-head outreach strategy.",
     image: "/case studies/Mastercard.png",
     slug: "/case-studies/mastercard"
   },
@@ -13,6 +14,7 @@ const caseStudiesData = [
     client: "Dmart",
     title: "Digital Retail Transformation & E-Commerce Dominance",
     category: "Growth Intelligence",
+    description: "13.43 lakh unique reach and 53K clicks that drove measurable in-store footfall at scale.",
     image: "/case studies/Dmart.png",
     slug: "/case-studies/dmart"
   },
@@ -20,6 +22,7 @@ const caseStudiesData = [
     client: "Uppercase",
     title: "Sustainable Luggage: Launching a D2C Disruptor",
     category: "AI Marketing Systems",
+    description: "A complete brand film produced entirely with generative AI—script, visuals, voice, and edit.",
     image: "/case studies/Uppercase.webp",
     slug: "/case-studies/uppercase"
   },
@@ -27,6 +30,7 @@ const caseStudiesData = [
     client: "HUL",
     title: "Consumer Centricity at FMCG Scale",
     category: "Growth Intelligence",
+    description: "Geo-targeted digital coupon campaign delivering 90% higher CTR and 12,548 landing page sessions.",
     image: "/case studies/HUL.png",
     slug: "/case-studies/hul"
   },
@@ -34,6 +38,7 @@ const caseStudiesData = [
     client: "Fours For Good",
     title: "Purpose-Driven Storytelling & Social Impact",
     category: "Brand Infrastructure",
+    description: "Building an impactful social narrative through high-performance digital storytelling.",
     image: "/case studies/Fours for good.png",
     slug: "/case-studies/fours-for-good"
   },
@@ -41,6 +46,7 @@ const caseStudiesData = [
     client: "Brut",
     title: "Redefining Modern Men's Grooming",
     category: "Brand Infrastructure",
+    description: "Social impact content partnership with one of India's most-watched digital publishers.",
     image: "/case studies/Brut.png",
     slug: "/case-studies/brut"
   }
@@ -55,75 +61,69 @@ const CaseStudies: React.FC = () => {
     const { gsap, ScrollTrigger } = window as any;
     if (gsap && ScrollTrigger && containerRef.current) {
       // Intro Animation
-      const tl = gsap.timeline();
-      tl.fromTo('.work-hero-title .char', 
-        { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, stagger: 0.05, ease: 'power4.out', delay: 0.2 }
-      ).fromTo('.work-hero-desc',
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
-        '-=0.5'
-      );
+      const heroHeadline = containerRef.current.querySelector('.work-hero-title');
+      const heroDesc = containerRef.current.querySelector('.work-hero-desc');
+      
+      if (heroHeadline && heroDesc && (window as any).SplitType) {
+        (heroHeadline as HTMLElement).style.visibility = 'visible';
+        (heroDesc as HTMLElement).style.visibility = 'visible';
 
-      // Grid Scroll Reveal - Left/Right Wave Effect
-      const cards = containerRef.current.querySelectorAll('.work-card');
-      cards.forEach((card: any, index: number) => {
-        const isLeftColumn = index % 2 === 0;
-        
-        gsap.fromTo(card,
+        const split = new ((window as any).SplitType)(heroHeadline as HTMLElement, { types: 'lines,words' });
+        split.lines?.forEach((line: HTMLElement) => {
+          const w = document.createElement('div');
+          w.classList.add('line-wrapper');
+          line.parentNode?.insertBefore(w, line);
+          w.appendChild(line);
+        });
+
+        const descSplit = new ((window as any).SplitType)(heroDesc as HTMLElement, { types: 'lines' });
+        descSplit.lines?.forEach((line: HTMLElement) => {
+          const w = document.createElement('div');
+          w.classList.add('line-wrapper');
+          line.parentNode?.insertBefore(w, line);
+          w.appendChild(line);
+        });
+
+        const tl = gsap.timeline({ delay: 0.2 });
+
+        tl.fromTo(split.words,
+          { yPercent: 120, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.02, ease: 'power4.out' }
+        )
+        .fromTo(descSplit.lines,
+          { yPercent: 100, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: 'power3.out' },
+          "-=0.4"
+        );
+      }
+
+      // List Scroll Reveal
+      const items = containerRef.current.querySelectorAll('.work-list-item');
+      items.forEach((item: any) => {
+        gsap.fromTo(item,
           { 
-            x: isLeftColumn ? -120 : 120, 
-            y: 40,
+            y: 60,
             opacity: 0, 
-            scale: 0.95 
           },
           {
-            x: 0, 
             y: 0,
             opacity: 1, 
-            scale: 1,
-            duration: 1.4,
+            duration: 1.2,
             ease: 'power3.out',
             scrollTrigger: {
-              trigger: card,
+              trigger: item,
               start: 'top 85%',
             }
           }
         );
-      });
 
-      // Hover Parallax on Image
-      cards.forEach((card: any) => {
-        const img = card.querySelector('.work-card-img-inner');
-        const viewBtn = card.querySelector('.work-card-view-btn');
-        
-        card.addEventListener('mousemove', (e: MouseEvent) => {
-          const rect = card.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-          
-          gsap.to(img, {
-            x: x * 30,
-            y: y * 30,
-            scale: 1.1,
-            duration: 0.5,
-            ease: 'power2.out'
-          });
-
-          // Magnetic View Button
-          const btnX = e.clientX - rect.left;
-          const btnY = e.clientY - rect.top;
-          gsap.to(viewBtn, {
-            x: btnX - 60,
-            y: btnY - 60,
-            duration: 0.3,
-            ease: 'power2.out'
-          });
+        // Optional hover effect on image
+        const imgInner = item.querySelector('.work-list-img-inner');
+        item.addEventListener('mouseenter', () => {
+          gsap.to(imgInner, { scale: 1.05, duration: 0.8, ease: 'power2.out' });
         });
-
-        card.addEventListener('mouseleave', () => {
-          gsap.to(img, { x: 0, y: 0, scale: 1.05, duration: 0.8, ease: 'power3.out' });
-          gsap.to(viewBtn, { x: '50%', y: '50%', xPercent: -50, yPercent: -50, duration: 0.8, ease: 'power3.out' });
+        item.addEventListener('mouseleave', () => {
+          gsap.to(imgInner, { scale: 1, duration: 0.8, ease: 'power2.out' });
         });
       });
 
@@ -135,13 +135,7 @@ const CaseStudies: React.FC = () => {
     };
   }, []);
 
-  const renderTitle = (text: string) => {
-    return text.split('').map((char, i) => (
-      <span key={i} className="char" style={{ display: 'inline-block' }}>
-        {char === ' ' ? '\u00A0' : char}
-      </span>
-    ));
-  };
+
 
   return (
     <main id="main-content" className="work-wrapper" ref={containerRef}>
@@ -153,43 +147,50 @@ const CaseStudies: React.FC = () => {
       <section className="work-hero">
         <div className="work-container">
           <div className="work-hero-content">
-            <h1 className="work-hero-title">
-              {renderTitle('Case ')}
-              <span style={{ color: '#aa3bff' }}>{renderTitle('Studies.')}</span>
+            <h1 className="work-hero-title" style={{ visibility: 'hidden' }}>
+              Case <span style={{ color: '#aa3bff' }}>Studies.</span>
             </h1>
-            <p className="work-hero-desc">
+            <p className="work-hero-desc" style={{ visibility: 'hidden' }}>
               Discover how we build brand infrastructure and engineer growth for the world's most ambitious companies.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Grid Section */}
-      <section className="work-grid-section">
+      {/* List Section - White Background like reference */}
+      <section className="work-list-section">
         <div className="work-container">
-          <div className="work-grid">
+          <div className="work-list">
             {caseStudiesData.map((study, idx) => (
-              <a href={study.slug} className="work-card" key={idx} onClick={(e) => e.preventDefault()}>
-                <div className="work-card-img">
-                  <div 
-                    className="work-card-img-inner"
-                    style={{ backgroundImage: `url("${import.meta.env.BASE_URL}${study.image.replace(/^\//, '')}")` }}
-                  />
-                  <div className="work-card-overlay" />
-                  
-                  {/* Floating View CTA */}
-                  <div className="work-card-view-btn">
-                    <span>VIEW</span>
-                  </div>
-                </div>
+              <a href={study.slug} className="work-list-item" key={idx} style={{ textDecoration: 'none', color: 'inherit' }}>
                 
-                <div className="work-card-content">
-                  <div className="work-card-meta">
-                    <span className="work-card-client">{study.client}</span>
-                    <span className="work-card-category">{study.category}</span>
+                {/* Left Text Content */}
+                <div className="work-list-left">
+                  <div className="work-list-meta">
+                    <span className="meta-client">{study.category}</span>
                   </div>
-                  <h2 className="work-card-title">{study.title}</h2>
+                  <h2 className="work-list-title" style={{ textTransform: 'uppercase' }}>{study.client}</h2>
                 </div>
+
+                {/* Right Image Gallery */}
+                <div className="work-list-right">
+                  <div className="work-list-gallery">
+                    <div className="work-list-main-img">
+                      <div 
+                        className="work-list-img-inner"
+                        style={{ backgroundImage: `url("${import.meta.env.BASE_URL}${study.image.replace(/^\//, '')}")` }}
+                      />
+                    </div>
+                    {/* Simulated peek effect for carousel look */}
+                    <div className="work-list-peek-img">
+                       <div 
+                        className="work-list-img-inner peek"
+                        style={{ backgroundImage: `url("${import.meta.env.BASE_URL}${study.image.replace(/^\//, '')}")` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
               </a>
             ))}
           </div>
@@ -244,148 +245,135 @@ const CaseStudies: React.FC = () => {
           font-weight: 300;
         }
 
-        /* Grid */
-        .work-grid-section {
-          padding: 4rem 0;
+        /* List Layout */
+        .work-list-section {
+          padding: 8rem 0;
+          background-color: transparent;
+          color: #ffffff;
         }
 
-        .work-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 6rem 3rem; /* Much larger vertical gap */
+        .work-list {
+          display: flex;
+          flex-direction: column;
+          gap: 8rem;
         }
 
-        .work-card {
-          display: block;
-          text-decoration: none;
-          color: inherit;
-          position: relative;
-          border-radius: 20px;
-          overflow: hidden;
-          group;
-        }
-
-        /* Image Wrapper */
-        .work-card-img {
-          position: relative;
+        .work-list-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 4rem;
           width: 100%;
-          padding-top: 75%; /* Exact 4:3 landscape ratio to perfectly fit the thumbnails */
-          border-radius: 20px;
-          overflow: hidden;
-          background: #111;
+        }
+
+        /* Left Side */
+        .work-list-left {
+          flex: 0 0 35%;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .work-list-meta {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
           margin-bottom: 2rem;
-        }
-
-        .work-card-img-inner {
-          position: absolute;
-          top: -5%;
-          left: -5%;
-          width: 110%;
-          height: 110%;
-          background-size: cover;
-          background-position: center;
-          transition: filter 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .work-card-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5));
-          opacity: 0;
-          transition: opacity 0.5s ease;
-        }
-
-        .work-card:hover .work-card-overlay {
-          opacity: 1;
-        }
-
-        .work-card:hover .work-card-img-inner {
-          filter: brightness(0.7) contrast(1.1);
-        }
-
-        /* Floating CTA */
-        .work-card-view-btn {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 120px;
-          height: 120px;
-          background: rgba(170, 59, 255, 0.9);
-          backdrop-filter: blur(10px);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-family: var(--font-sans, sans-serif);
-          font-weight: 700;
-          font-size: 1.1rem;
-          letter-spacing: 0.1em;
-          color: #fff;
-          opacity: 0;
-          transform: scale(0.5);
-          transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          pointer-events: none; /* Let mouse move freely */
-          z-index: 10;
-        }
-
-        .work-card:hover .work-card-view-btn {
-          opacity: 1;
-          transform: scale(1);
-        }
-
-        /* Content */
-        .work-card-content {
-          padding: 0 1rem;
-        }
-
-        .work-card-meta {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          margin-bottom: 1rem;
-        }
-
-        .work-card-client {
           font-family: var(--font-mono, monospace);
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           text-transform: uppercase;
           letter-spacing: 0.1em;
-          color: #fff;
+          color: #ffffff;
           font-weight: 600;
+          border-bottom: 1px solid rgba(255,255,255,0.1);
+          padding-bottom: 1rem;
         }
 
-        .work-card-category {
-          font-size: 0.9rem;
-          color: var(--impulse-violet, #aa3bff);
-          font-weight: 500;
+        .meta-client {
+          color: #aa3bff;
         }
 
-        .work-card-meta::before {
-          content: '';
-          width: 30px;
-          height: 1px;
-          background: rgba(255,255,255,0.3);
-        }
-
-        .work-card-title {
+        .work-list-title {
           font-family: var(--font-heading, sans-serif);
-          font-size: clamp(1.4rem, 2vw, 2.2rem); /* Smaller font size */
+          font-size: clamp(2.5rem, 4vw, 3.5rem);
+          font-weight: 800;
+          line-height: 1.1;
+          letter-spacing: -0.03em;
+          margin-bottom: 1.5rem;
+          color: #ffffff;
+        }
+
+        .work-list-desc {
+          font-size: 1.15rem;
+          line-height: 1.6;
+          color: rgba(255,255,255,0.7);
+          font-weight: 400;
+        }
+
+        .work-list-readmore {
+          color: #ffffff;
           font-weight: 700;
-          line-height: 1.2;
-          letter-spacing: -0.01em;
-          color: #fff;
+          text-decoration: none;
+          margin-left: 0.5rem;
           transition: color 0.3s ease;
         }
 
-        .work-card:hover .work-card-title {
-          color: rgba(255,255,255,0.8);
+        .work-list-readmore:hover {
+          color: #aa3bff;
+        }
+
+        /* Right Side Gallery */
+        .work-list-right {
+          flex: 1;
+          width: 100%;
+          min-width: 0; /* allows flex children to shrink */
+        }
+
+        .work-list-gallery {
+          display: flex;
+          gap: 1rem;
+          width: 100%;
+          height: 500px;
+        }
+
+        .work-list-main-img {
+          flex: 1;
+          height: 100%;
+          border-radius: 8px;
+          overflow: hidden;
+          position: relative;
+        }
+
+        .work-list-peek-img {
+          flex: 0 0 15%; /* Just a sliver peeking */
+          height: 100%;
+          border-radius: 8px;
+          overflow: hidden;
+          position: relative;
+        }
+
+        .work-list-img-inner {
+          position: absolute;
+          inset: 0;
+          background-size: cover;
+          background-position: center;
+          transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .work-list-img-inner.peek {
+          filter: brightness(0.6);
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
-          .work-grid {
-            grid-template-columns: 1fr;
-            gap: 4rem;
+          .work-list-item {
+            flex-direction: column;
+            gap: 2rem;
+          }
+          .work-list-left {
+            flex: 1;
+            width: 100%;
+          }
+          .work-list-gallery {
+            height: 400px;
           }
         }
 
@@ -398,11 +386,11 @@ const CaseStudies: React.FC = () => {
             font-size: clamp(3rem, 15vw, 4.5rem);
             margin-bottom: 1.5rem;
           }
-          .work-card-view-btn {
-            display: none; /* Hide custom cursor on mobile */
+          .work-list-gallery {
+            height: 250px;
           }
-          .work-card-title {
-            font-size: 2rem;
+          .work-list-section {
+            padding: 4rem 0;
           }
         }
       `}</style>

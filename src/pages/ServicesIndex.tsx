@@ -53,23 +53,41 @@ const ServicesIndex: React.FC = () => {
     if (gsap && ScrollTrigger && containerRef.current) {
       
       // Hero text split animation
-      if ((window as any).SplitType) {
-        const titleSplit = new ((window as any).SplitType)('.aww3-hero-title', { types: 'lines, words, chars' });
-        gsap.fromTo(titleSplit.chars, 
-          { y: 150, opacity: 0, rotateX: -90, transformOrigin: "0% 50% -50" },
-          { y: 0, opacity: 1, rotateX: 0, duration: 1.5, stagger: 0.02, ease: "expo.out" }
-        );
-      } else {
-        gsap.fromTo('.aww3-hero-title',
-          { y: 100, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1.5, ease: "expo.out" }
+      const heroHeadline = document.querySelector('.aww3-hero-title');
+      const heroDesc = document.querySelector('.aww3-hero-desc');
+      
+      if (heroHeadline && heroDesc && (window as any).SplitType) {
+        (heroHeadline as HTMLElement).style.visibility = 'visible';
+        (heroDesc as HTMLElement).style.visibility = 'visible';
+
+        const split = new ((window as any).SplitType)(heroHeadline as HTMLElement, { types: 'lines,words' });
+        split.lines?.forEach((line: HTMLElement) => {
+          const w = document.createElement('div');
+          w.classList.add('line-wrapper');
+          line.parentNode?.insertBefore(w, line);
+          w.appendChild(line);
+        });
+
+        const descSplit = new ((window as any).SplitType)(heroDesc as HTMLElement, { types: 'lines' });
+        descSplit.lines?.forEach((line: HTMLElement) => {
+          const w = document.createElement('div');
+          w.classList.add('line-wrapper');
+          line.parentNode?.insertBefore(w, line);
+          w.appendChild(line);
+        });
+
+        const tl = gsap.timeline({ delay: 0.2 });
+
+        tl.fromTo(split.words,
+          { yPercent: 120, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.02, ease: 'power4.out' }
+        )
+        .fromTo(descSplit.lines,
+          { yPercent: 100, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: 'power3.out' },
+          "-=0.4"
         );
       }
-
-      gsap.fromTo('.aww3-hero-desc',
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, delay: 0.6, ease: "power3.out" }
-      );
 
       // Section Entrance Animations
       const sections = containerRef.current.querySelectorAll('.aww3-category-section');
@@ -163,11 +181,11 @@ const ServicesIndex: React.FC = () => {
         </div>
         <div className="aww3-container">
           <div className="aww3-hero-content">
-            <h1 className="aww3-hero-title">
+            <h1 className="aww3-hero-title" style={{ visibility: 'hidden' }}>
               Beyond <br className="aww3-mobile-break" />
               <span style={{ color: '#aa3bff' }}>Execution.</span>
             </h1>
-            <p className="aww3-hero-desc">
+            <p className="aww3-hero-desc" style={{ visibility: 'hidden' }}>
               We architect intelligent growth systems. Explore our comprehensive suite of AI-native marketing, search dominance, and elite brand infrastructure.
             </p>
           </div>
@@ -402,13 +420,13 @@ const ServicesIndex: React.FC = () => {
         }
 
         .aww3-cat-title.text-fill {
-          background: linear-gradient(to right, #ffffff 50%, rgba(255, 255, 255, 0.1) 50%) !important;
-          background-size: 200% 100% !important;
-          background-position: 100% 0 !important;
-          -webkit-background-clip: text !important;
-          background-clip: text !important;
-          color: transparent !important;
-          -webkit-text-fill-color: transparent !important;
+          background: linear-gradient(to right, #ffffff 50%, rgba(255, 255, 255, 0.1) 50%);
+          background-size: 200% 100%;
+          background-position: 100% 0;
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          -webkit-text-fill-color: transparent;
         }
 
         .aww3-header-right {
