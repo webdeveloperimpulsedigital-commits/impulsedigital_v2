@@ -3196,22 +3196,22 @@ button,
     }
 
     .svc-channels-stage {
-        aspect-ratio: 1 / 2;
+        aspect-ratio: 1 / 1.25;
     }
 
     .svc-channels-center {
-        width: 110px;
-        height: 110px;
+        width: 90px;
+        height: 90px;
     }
 
     .svc-channel-chip {
-        font-size: 0.6rem;
-        padding: 0.4rem 0.6rem;
-        letter-spacing: 0.3px;
-        max-width: 125px;
-        line-height: 1.35;
-        left: clamp(70px, var(--chip-left, 50%), calc(100% - 70px));
-        top: clamp(35px, var(--chip-top, 50%), calc(100% - 35px));
+        font-size: 0.55rem;
+        padding: 0.35rem 0.5rem;
+        letter-spacing: 0.2px;
+        max-width: 110px;
+        line-height: 1.25;
+        left: clamp(55px, var(--chip-left, 50%), calc(100% - 55px));
+        top: clamp(25px, var(--chip-top, 50%), calc(100% - 25px));
     }
 
     /* Consistent reduced gaps between sections on mobile/tablet */

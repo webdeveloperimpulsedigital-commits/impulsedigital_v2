@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import React, { useEffect } from 'react';
 import ServiceHero from '../components/Service/ServiceHero';
 import ServiceHandoff from '../components/Service/ServiceHandoff';
@@ -104,6 +105,32 @@ const ArcherAI: React.FC = () => {
 
   return (
     <main id="main-content">
+      <Helmet>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <title>Archer A I | Impulse Digital</title>
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="1 day" />
+        <meta name="language" content="English" />
+        <meta name="generator" content="N/A" />
+
+        <meta property="og:title" content="Archer A I | Impulse Digital" />
+        <meta property="og:description" content="" />
+        <meta property="og:url" content="https://www.theimpulsedigital.com/services/archer-ai" />
+        <meta property="og:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
+        <meta property="og:site_name" content="Impulse Digital" />
+        <meta property="og:type" content="website" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@impulsedigi" />
+        <meta name="twitter:creator" content="@impulsedigi" />
+        <meta name="twitter:title" content="Archer A I | Impulse Digital" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
+        <meta name="twitter:url" content="https://www.theimpulsedigital.com/services/archer-ai" />
+
+        <link rel="canonical" href="https://www.theimpulsedigital.com/services/archer-ai" />
+      </Helmet>
       <ServiceHero 
         headlineParts={archerAiData.hero.headlineParts}
         headlineAccent={archerAiData.hero.headlineAccent}

@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import React, { useEffect } from 'react';
 import Contact from '../components/Contact';
 
@@ -125,6 +126,32 @@ const CaseStudiesPage: React.FC = () => {
 
   return (
     <main id="main-content" className="cs3-page">
+      <Helmet>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <title>Case Studies Page | Impulse Digital</title>
+        <meta name="robots" content="index, follow" />
+        <meta name="revisit-after" content="1 day" />
+        <meta name="language" content="English" />
+        <meta name="generator" content="N/A" />
+
+        <meta property="og:title" content="Case Studies Page | Impulse Digital" />
+        <meta property="og:description" content="" />
+        <meta property="og:url" content="https://www.theimpulsedigital.com/case-studies-page" />
+        <meta property="og:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
+        <meta property="og:site_name" content="Impulse Digital" />
+        <meta property="og:type" content="website" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@impulsedigi" />
+        <meta name="twitter:creator" content="@impulsedigi" />
+        <meta name="twitter:title" content="Case Studies Page | Impulse Digital" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
+        <meta name="twitter:url" content="https://www.theimpulsedigital.com/case-studies-page" />
+
+        <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies-page" />
+      </Helmet>
       {/* HERO SECTION */}
       <section className="cs3-hero">
         <div className="cs3-hero-container">
