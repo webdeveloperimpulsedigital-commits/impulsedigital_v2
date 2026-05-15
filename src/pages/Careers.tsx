@@ -716,6 +716,37 @@ const Careers: React.FC = () => {
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
+
+        /* Comprehensive Mobile Responsiveness for Careers Page */
+        @media (max-width: 768px) {
+          .svc-hero-headline { font-size: 3.5rem !important; margin-bottom: 2rem !important; line-height: 1.1 !important; }
+          .bento-card { grid-column: span 1 !important; grid-row: span 1 !important; }
+          .bento-grid, .values-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+          .container { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+          .grid-2, .grid-3 { grid-template-columns: 1fr !important; }
+          .aww3-card { min-height: 300px !important; grid-column: span 1 !important; }
+          .aww3-card-desc, .aww3-cat-desc { font-size: 1rem !important; }
+          .values-bento-grid { grid-template-columns: 1fr !important; display: flex !important; flex-direction: column !important; }
+          .values-bento-grid .aww3-card { grid-column: span 1 !important; grid-row: auto !important; height: auto !important; min-height: auto !important; }
+          .aww3-cat-title { font-size: 2.5rem !important; }
+          .expectations-number { font-size: 3rem !important; }
+          .section-padding { padding: 4rem 1.5rem !important; }
+          .aww3-hover-logo { width: 80% !important; height: 80% !important; }
+          .svc-hero-cta-row { flex-direction: column; gap: 1rem; }
+          .svc-hero-cta-row .btn { width: 100%; text-align: center; justify-content: center; }
+          .magazine-grid { grid-template-columns: 1fr !important; display: flex !important; flex-direction: column !important; }
+          .magazine-grid > div { grid-column: span 1 !important; grid-row: auto !important; height: 300px !important; }
+          .job-listing-card { padding: 1.5rem !important; }
+          .job-header { flex-direction: column; align-items: flex-start !important; gap: 1rem; }
+          .job-actions { width: 100%; }
+          .job-actions .btn { width: 100%; justify-content: center; }
+          .cta-glow-card { padding: 2.5rem 1.5rem !important; }
+          .cta-glow-card h2 { font-size: 2.5rem !important; line-height: 1.2 !important; }
+        }
+        @media (max-width: 480px) {
+          .svc-hero-headline { font-size: 2.5rem !important; }
+          .bento-title, .aww3-cat-title, h2.split-heading, .cta-glow-card h2, h2.svc-h2 { font-size: 2rem !important; line-height: 1.2 !important; }
+        }
       `}</style>
 
       {/* Culture Section - Magazine Grid (21st.dev Inspired) */}
