@@ -723,11 +723,18 @@ const Careers: React.FC = () => {
           .bento-card { grid-column: span 1 !important; grid-row: span 1 !important; }
           .bento-grid, .values-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
           .container { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+          
+          /* Override all inline grids to 1 column on mobile */
+          div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+          .responsive-grid { grid-template-columns: 1fr !important; }
+
           .grid-2, .grid-3 { grid-template-columns: 1fr !important; }
           .aww3-card { min-height: 300px !important; grid-column: span 1 !important; }
           .aww3-card-desc, .aww3-cat-desc { font-size: 1rem !important; }
+          
+          /* Force Values Bento Grid to single column vertical stack */
           .values-bento-grid { grid-template-columns: 1fr !important; display: flex !important; flex-direction: column !important; }
-          .values-bento-grid .aww3-card { grid-column: span 1 !important; grid-row: auto !important; height: auto !important; min-height: auto !important; }
+          .values-bento-grid > div { grid-column: span 1 !important; grid-row: auto !important; height: auto !important; min-height: auto !important; }
           .aww3-cat-title { font-size: 2.5rem !important; }
           .expectations-number { font-size: 3rem !important; }
           .section-padding { padding: 4rem 1.5rem !important; }
@@ -746,6 +753,9 @@ const Careers: React.FC = () => {
         @media (max-width: 480px) {
           .svc-hero-headline { font-size: 2.5rem !important; }
           .bento-title, .aww3-cat-title, h2.split-heading, .cta-glow-card h2, h2.svc-h2 { font-size: 2rem !important; line-height: 1.2 !important; }
+          
+          /* Specific padding overrides for very small screens */
+          div[style*="padding: 3rem"], div[style*="padding: 3.5rem"] { padding: 1.5rem !important; }
         }
       `}</style>
 
@@ -766,7 +776,7 @@ const Careers: React.FC = () => {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '3rem', alignItems: 'stretch' }}>
+          <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem', alignItems: 'stretch' }}>
 
             {/* Left: Magazine Image Card */}
             <div className="reveal-blur" style={{ position: 'relative', borderRadius: '24px', overflow: 'hidden', minHeight: '600px', border: '1px solid rgba(255,255,255,0.08)' }}>
