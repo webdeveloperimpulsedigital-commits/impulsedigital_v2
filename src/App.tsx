@@ -20,6 +20,7 @@ import WebsiteDevelopment from './pages/WebsiteDevelopment';
 import AIVideoProduction from './pages/AIVideoProduction';
 import ECommerceSEO from './pages/ECommerceSEO';
 import LocalSEO from './pages/LocalSEO';
+import Careers from './pages/Careers';
 import { useLocation } from 'react-router-dom';
 
 const ScrollToTop = () => {
@@ -103,6 +104,7 @@ const App: React.FC = () => {
         <Route path="/branding" element={<Branding />} />
         <Route path="/employer-branding" element={<EmployerBranding />} />
         <Route path="/ai-video-production" element={<AIVideoProduction />} />
+        <Route path="/careers" element={<Careers />} />
       </Routes>
       <Footer />
     </Router>
