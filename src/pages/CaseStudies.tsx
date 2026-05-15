@@ -85,16 +85,44 @@ const CaseStudies: React.FC = () => {
         });
 
         const tl = gsap.timeline({ delay: 0.2 });
-
-        tl.fromTo(split.words,
-          { yPercent: 120, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.02, ease: 'power4.out' }
+        tl.fromTo(split.lines,
+          { y: 100, opacity: 0, rotateX: -20 },
+          { y: 0, opacity: 1, rotateX: 0, duration: 1.2, stagger: 0.15, ease: 'power4.out' }
         )
         .fromTo(descSplit.lines,
-          { yPercent: 100, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: 'power3.out' },
-          "-=0.4"
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: 'power3.out' },
+          "-=0.8"
         );
+
+        // Background color inversion & particle fade (like agentic-ai.html)
+        const firstSection = document.querySelector('.work-list-section');
+        if (firstSection) {
+          gsap.to(document.body, {
+            backgroundColor: '#000000',
+            scrollTrigger: {
+              trigger: firstSection,
+              start: 'top bottom',
+              end: 'top top',
+              scrub: true
+            }
+          });
+
+          if ((window as any).particlesMaterial) {
+            gsap.fromTo((window as any).particlesMaterial,
+              { opacity: 0.6 },
+              {
+                opacity: 0,
+                scrollTrigger: {
+                  trigger: firstSection,
+                  start: 'top 80%',
+                  end: 'top 20%',
+                  scrub: true
+                }
+              }
+            );
+          }
+        }
       }
 
       // List Scroll Reveal
@@ -132,6 +160,11 @@ const CaseStudies: React.FC = () => {
 
     return () => {
       document.body.classList.remove('work-page');
+      gsap.to(document.body, { backgroundColor: '#020018', duration: 0 });
+      if ((window as any).particlesMaterial) {
+        gsap.to((window as any).particlesMaterial, { opacity: 0.6, duration: 0 });
+      }
+      ScrollTrigger.getAll().forEach((t: any) => t.kill());
     };
   }, []);
 
@@ -172,21 +205,18 @@ const CaseStudies: React.FC = () => {
                   <h2 className="work-list-title" style={{ textTransform: 'uppercase' }}>{study.client}</h2>
                 </div>
 
-                {/* Right Image Gallery */}
+                {/* Right Image Gallery (Continuous Marquee) */}
                 <div className="work-list-right">
                   <div className="work-list-gallery">
-                    <div className="work-list-main-img">
-                      <div 
-                        className="work-list-img-inner"
-                        style={{ backgroundImage: `url("${import.meta.env.BASE_URL}${study.image.replace(/^\//, '')}")` }}
-                      />
-                    </div>
-                    {/* Simulated peek effect for carousel look */}
-                    <div className="work-list-peek-img">
-                       <div 
-                        className="work-list-img-inner peek"
-                        style={{ backgroundImage: `url("${import.meta.env.BASE_URL}${study.image.replace(/^\//, '')}")` }}
-                      />
+                    <div className="work-list-track">
+                      {/* We duplicate the same image 4 times to create an infinite loop */}
+                      {[1, 2, 3, 4, 5, 6].map((num) => (
+                        <div 
+                          key={num}
+                          className="work-list-slide"
+                          style={{ backgroundImage: `url("${import.meta.env.BASE_URL}${study.image.replace(/^\//, '')}")` }}
+                        />
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -325,41 +355,54 @@ const CaseStudies: React.FC = () => {
           flex: 1;
           width: 100%;
           min-width: 0; /* allows flex children to shrink */
+          overflow: hidden;
         }
 
         .work-list-gallery {
-          display: flex;
-          gap: 1rem;
           width: 100%;
           height: 500px;
-        }
-
-        .work-list-main-img {
-          flex: 1;
-          height: 100%;
-          border-radius: 8px;
-          overflow: hidden;
           position: relative;
-        }
-
-        .work-list-peek-img {
-          flex: 0 0 15%; /* Just a sliver peeking */
-          height: 100%;
-          border-radius: 8px;
           overflow: hidden;
-          position: relative;
+          border-radius: 8px;
         }
 
-        .work-list-img-inner {
-          position: absolute;
-          inset: 0;
+        .work-list-track {
+          display: flex;
+          gap: 2rem;
+          width: max-content;
+          height: 100%;
+          animation: marqueeScroll 25s linear infinite;
+        }
+
+        /* Hover on gallery pauses the loop */
+        .work-list-gallery:hover .work-list-track {
+          animation-play-state: paused;
+        }
+
+        .work-list-slide {
+          height: 100%;
+          aspect-ratio: 16 / 10;
           background-size: cover;
           background-position: center;
-          transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+          border-radius: 8px;
+          flex-shrink: 0;
+          transition: transform 0.5s ease, filter 0.5s ease;
         }
 
-        .work-list-img-inner.peek {
-          filter: brightness(0.6);
+        .work-list-slide:hover {
+          transform: scale(1.02);
+          filter: brightness(1.1);
+        }
+
+        @keyframes marqueeScroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            /* Transform exactly by half the total width of the track (including gap) */
+            /* Since we render 6 items, half is 3 items + 3 gaps */
+            transform: translateX(calc(-50% - 1rem)); 
+          }
         }
 
         /* Responsive */

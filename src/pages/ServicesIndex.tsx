@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
@@ -44,8 +44,29 @@ const servicesData = [
   }
 ];
 
-const ServicesIndex: React.FC = () => {
+interface ServicesIndexProps {
+  categoryFilter?: string;
+}
+
+const ServicesIndex: React.FC<ServicesIndexProps> = ({ categoryFilter }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const displayData = categoryFilter 
+    ? servicesData.filter(c => c.category === categoryFilter)
+    : servicesData;
+
+  useLayoutEffect(() => {
+    const resetScroll = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      if ((window as any).globalLenis) {
+        (window as any).globalLenis.scrollTo('top', { immediate: true, force: true });
+      }
+    };
+
+    resetScroll();
+  }, [categoryFilter]);
 
   useEffect(() => {
     document.body.classList.add('services-index-page');
@@ -77,23 +98,50 @@ const ServicesIndex: React.FC = () => {
         });
 
         const tl = gsap.timeline({ delay: 0.2 });
-
-        tl.fromTo(split.words,
-          { yPercent: 120, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.02, ease: 'power4.out' }
+        tl.fromTo(split.lines,
+          { y: 100, opacity: 0, rotateX: -20 },
+          { y: 0, opacity: 1, rotateX: 0, duration: 1.2, stagger: 0.15, ease: 'power4.out' }
         )
         .fromTo(descSplit.lines,
-          { yPercent: 100, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: 'power3.out' },
-          "-=0.4"
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: 'power3.out' },
+          "-=0.8"
         );
+
+        // Background color inversion & particle fade (like agentic-ai.html)
+        const firstSection = document.querySelector('.aww3-main-content');
+        if (firstSection) {
+          gsap.to(document.body, {
+            backgroundColor: '#000000',
+            scrollTrigger: {
+              trigger: firstSection,
+              start: 'top bottom',
+              end: 'top top',
+              scrub: true
+            }
+          });
+
+          if ((window as any).particlesMaterial) {
+            gsap.fromTo((window as any).particlesMaterial,
+              { opacity: 0.6 },
+              {
+                opacity: 0,
+                scrollTrigger: {
+                  trigger: firstSection,
+                  start: 'top 80%',
+                  end: 'top 20%',
+                  scrub: true
+                }
+              }
+            );
+          }
+        }
       }
 
-      // Section Entrance Animations
       const sections = containerRef.current.querySelectorAll('.aww3-category-section');
       sections.forEach((sec: any) => {
         const header = sec.querySelector('.aww3-section-header');
-        const cards = sec.querySelectorAll('.aww3-card');
+        const cards = sec.querySelectorAll('.aww3-stripe-item');
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -129,25 +177,18 @@ const ServicesIndex: React.FC = () => {
         });
       });
 
-      // Hover magnetic orb
-      const cards = containerRef.current.querySelectorAll('.aww3-card');
-      cards.forEach((card: any) => {
-        const orb = card.querySelector('.aww3-orb');
-        if (orb) {
-          card.addEventListener('mousemove', (e: MouseEvent) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            gsap.to(orb, { x, y, duration: 0.6, ease: "power2.out" });
-          });
-        }
-      });
-      
-      ScrollTrigger.refresh();
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 150);
     }
 
     return () => {
       document.body.classList.remove('services-index-page');
+      gsap.to(document.body, { backgroundColor: '#020018', duration: 0 });
+      if ((window as any).particlesMaterial) {
+        gsap.to((window as any).particlesMaterial, { opacity: 0.6, duration: 0 });
+      }
+      ScrollTrigger.getAll().forEach((t: any) => t.kill());
     };
   }, []);
 
@@ -176,17 +217,26 @@ const ServicesIndex: React.FC = () => {
 
       {/* Immersive Hero */}
       <section className="aww3-hero">
-        <div className="aww3-hero-bg">
-          <div className="aww3-mesh"></div>
-        </div>
+
         <div className="aww3-container">
           <div className="aww3-hero-content">
             <h1 className="aww3-hero-title" style={{ visibility: 'hidden' }}>
-              Beyond <br className="aww3-mobile-break" />
-              <span style={{ color: '#aa3bff' }}>Execution.</span>
+              {categoryFilter ? (
+                <>
+                  {categoryFilter.split(' ')[0]} <br className="aww3-mobile-break" />
+                  <span style={{ color: '#aa3bff' }}>{categoryFilter.substring(categoryFilter.indexOf(' ') + 1)}</span>
+                </>
+              ) : (
+                <>
+                  Beyond <br className="aww3-mobile-break" />
+                  <span style={{ color: '#aa3bff' }}>Execution.</span>
+                </>
+              )}
             </h1>
             <p className="aww3-hero-desc" style={{ visibility: 'hidden' }}>
-              We architect intelligent growth systems. Explore our comprehensive suite of AI-native marketing, search dominance, and elite brand infrastructure.
+              {categoryFilter 
+                ? displayData[0]?.description
+                : "We architect intelligent growth systems. Explore our comprehensive suite of AI-native marketing, search dominance, and elite brand infrastructure."}
             </p>
           </div>
         </div>
@@ -198,7 +248,7 @@ const ServicesIndex: React.FC = () => {
 
       {/* Grid Layout Content */}
       <div className="aww3-main-content">
-        {servicesData.map((category, idx) => (
+        {displayData.map((category, idx) => (
           <section key={idx} className="aww3-category-section">
             <div className="aww3-container">
               
@@ -213,36 +263,31 @@ const ServicesIndex: React.FC = () => {
                 </div>
               </div>
 
-              {/* Bento Grid */}
-              <div className="aww3-grid">
+              {/* Powerful Interactive Stripe Layout (No Images) */}
+              <div className="aww3-stripe-list">
                 {category.items.map((item, itemIdx) => (
                   <Link 
                     to={item.path} 
-                    key={itemIdx} 
-                    className={`aww3-card ${item.span === 2 ? 'aww3-span-2' : ''}`}
+                    key={`stripe-${itemIdx}`} 
+                    className="aww3-stripe-item"
                   >
-                    {/* Magnetic Orb (Now exclusively Impulse Purple) */}
-                    <div className="aww3-orb" style={{ background: "#aa3bff" }}></div>
-                    <div className="aww3-card-noise"></div>
-                    
-                    {/* Hover Logo Drawing */}
-                    <svg viewBox="801 344 274 272" className="aww3-hover-logo" preserveAspectRatio="xMidYMid meet">
-                      <path pathLength="1" d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
-                    </svg>
-                    
-                    <div className="aww3-card-content">
-                      <div className="aww3-card-header">
-                        <div className="aww3-card-arrow">
-                          <span className="aww3-card-hover-text">Know More</span>
+                    <div className="aww3-stripe-bg"></div>
+                    <div className="aww3-stripe-content">
+                      <div className="aww3-stripe-top">
+                        <div className="aww3-stripe-index">{(itemIdx + 1).toString().padStart(2, '0')}</div>
+                        <h3 className="aww3-stripe-title">{item.title}</h3>
+                        <div className="aww3-stripe-arrow">
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 19L19 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             <path d="M7 5H19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           </svg>
                         </div>
                       </div>
-                      <div className="aww3-card-body">
-                        <h3 className="aww3-card-title">{item.title}</h3>
-                        <p className="aww3-card-desc">{item.desc}</p>
+                      <div className="aww3-stripe-bottom">
+                        <div className="aww3-stripe-bottom-inner">
+                          <p className="aww3-stripe-desc">{item.desc}</p>
+                          <span className="aww3-stripe-cta">Explore Service</span>
+                        </div>
                       </div>
                     </div>
                   </Link>
@@ -260,7 +305,7 @@ const ServicesIndex: React.FC = () => {
           color: #fff;
           position: relative;
           z-index: 2;
-          overflow: hidden;
+          overflow: clip;
           padding-bottom: 12rem;
         }
 
@@ -280,30 +325,7 @@ const ServicesIndex: React.FC = () => {
           position: relative;
         }
 
-        .aww3-hero-bg {
-          position: absolute;
-          inset: 0;
-          z-index: -1;
-          overflow: hidden;
-        }
 
-        .aww3-mesh {
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: 
-            radial-gradient(circle at 50% 50%, rgba(170, 59, 255, 0.15), transparent 40%),
-            radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1), transparent 30%);
-          filter: blur(80px);
-          animation: aww3-drift 20s infinite linear alternate;
-        }
-
-        @keyframes aww3-drift {
-          0% { transform: translate(0, 0) rotate(0deg); }
-          100% { transform: translate(5%, 5%) rotate(5deg); }
-        }
 
         .aww3-hero-content {
           max-width: 1000px;
@@ -439,214 +461,165 @@ const ServicesIndex: React.FC = () => {
           color: rgba(255,255,255,0.5);
         }
 
-        /* Grid System */
-        .aww3-grid {
+        /* Powerful Interactive Stripe Layout */
+        .aww3-stripe-list {
+          display: flex;
+          flex-direction: column;
+          border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .aww3-stripe-item {
+          position: relative;
+          display: block;
+          text-decoration: none;
+          color: #fff;
+          border-bottom: 1px solid rgba(255,255,255,0.1);
+          padding: 2.5rem 0;
+          transition: padding 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .aww3-stripe-bg {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(90deg, rgba(170, 59, 255, 0.08) 0%, transparent 100%);
+          transform: scaleY(0);
+          transform-origin: bottom;
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        .aww3-stripe-item:hover .aww3-stripe-bg {
+          transform: scaleY(1);
+          transform-origin: top;
+        }
+
+        .aww3-stripe-content {
+          position: relative;
+          z-index: 1;
+          padding: 0 2rem;
+        }
+
+        .aww3-stripe-top {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: 60px 1fr 60px;
+          align-items: center;
           gap: 2rem;
         }
 
-        @media (min-width: 1400px) {
-          .aww3-grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
-        }
-
-        /* Premium Large Cards */
-        .aww3-card {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          height: 420px;
-          background: rgba(10, 10, 15, 0.4);
-          border: 1px solid rgba(255, 255, 255, 0.04);
-          border-radius: 24px;
-          overflow: hidden;
-          text-decoration: none;
-          color: #fff;
-          transform-style: preserve-3d;
-          transition: border-color 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* Span Controls for Desktop Bento */
-        @media (min-width: 1024px) {
-          .aww3-span-2 {
-            grid-column: span 2;
-          }
-        }
-
-        /* Noise Texture */
-        .aww3-card-noise {
-          position: absolute;
-          inset: 0;
-          opacity: 0.15;
-          z-index: 1;
-          pointer-events: none;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        /* Hover Logo Animation */
-        .aww3-hover-logo {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 50%;
-          height: 50%;
-          opacity: 0;
-          pointer-events: none;
-          z-index: 1;
-          transform: translate(-50%, -50%) rotate(-5deg);
-          transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .aww3-hover-logo path {
-          fill: none;
-          stroke: rgba(255, 255, 255, 0.4);
-          stroke-width: 3;
-          stroke-dasharray: 1;
-          stroke-dashoffset: 1;
-          transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .aww3-card:hover .aww3-hover-logo {
-          opacity: 1;
-          transform: translate(-50%, -50%) rotate(0deg);
-        }
-
-        .aww3-card:hover .aww3-hover-logo path {
-          stroke-dashoffset: 0;
-        }
-
-        /* Magnetic Orb */
-        .aww3-orb {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 250px;
-          height: 250px;
-          border-radius: 50%;
-          transform: translate(-50%, -50%);
-          filter: blur(80px);
-          opacity: 0;
-          transition: opacity 0.5s ease;
-          pointer-events: none;
-          z-index: 0;
-          mix-blend-mode: screen;
-        }
-
-        .aww3-card:hover {
-          border-color: rgba(255,255,255,0.15);
-          transform: translateY(-8px);
-        }
-
-        .aww3-card:hover .aww3-orb {
-          opacity: 0.7;
-        }
-
-        /* Dim Siblings Effect */
-        .aww3-grid:hover .aww3-card:not(:hover) {
-          opacity: 0.4;
-          filter: grayscale(100%);
-        }
-
-        /* Card Content */
-        .aww3-card-content {
-          position: relative;
-          z-index: 2;
-          padding: 3rem;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-
-        .aww3-card-header {
-          display: flex;
-          justify-content: flex-end;
-          align-items: flex-start;
-        }
-
-        .aww3-card-index {
+        .aww3-stripe-index {
           font-family: var(--font-mono, monospace);
-          font-size: 1rem;
-          color: rgba(255,255,255,0.4);
-          letter-spacing: 0.05em;
-        }
-
-        .aww3-card-arrow {
-          width: 56px;
-          height: 56px;
-          border-radius: 50%;
-          border: 1px solid rgba(255,255,255,0.1);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.4s ease;
-          background: rgba(255,255,255,0.02);
-          backdrop-filter: blur(10px);
-          position: relative;
-        }
-
-        .aww3-card-hover-text {
-          position: absolute;
-          opacity: 0;
-          color: #fff;
-          font-family: var(--font-sans, sans-serif);
-          font-size: 0.45rem;
-          font-weight: 700;
-          text-align: center;
-          white-space: nowrap;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          transition: opacity 0.4s ease, transform 0.4s ease;
-          transform: scale(0.8);
-          pointer-events: none;
-        }
-
-        .aww3-card-arrow svg {
-          width: 20px;
-          height: 20px;
-          position: absolute;
-          transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-
-        .aww3-card:hover .aww3-card-arrow {
-          background: rgba(255,255,255,0.1);
-          border-color: rgba(255,255,255,0.4);
-        }
-
-        .aww3-card:hover .aww3-card-arrow svg {
-          opacity: 0;
-          transform: scale(0.5);
-        }
-
-        .aww3-card:hover .aww3-card-hover-text {
-          opacity: 1;
-          transform: scale(1);
-        }
-
-        .aww3-card-body {
-          max-width: 90%;
-        }
-
-        .aww3-span-2 .aww3-card-body {
-          max-width: 70%;
-        }
-
-        .aww3-card-title {
-          font-family: var(--font-heading, sans-serif);
-          font-size: clamp(1.8rem, 2.5vw, 2.5rem);
-          font-weight: 700;
-          letter-spacing: -0.02em;
-          line-height: 1.1;
-          margin-bottom: 1rem;
+          font-size: 1.2rem;
+          color: rgba(255,255,255,0.3);
           transition: color 0.4s ease;
         }
 
-        .aww3-card-desc {
-          font-size: clamp(1rem, 1.1vw, 1.15rem);
+        .aww3-stripe-item:hover .aww3-stripe-index {
+          color: #aa3bff;
+        }
+
+        .aww3-stripe-title {
+          font-family: var(--font-heading, sans-serif);
+          font-size: clamp(2rem, 3.5vw, 4rem);
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          line-height: 1.1;
+          margin: 0;
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
+        }
+
+        .aww3-stripe-item:hover .aww3-stripe-title {
+          transform: translateX(20px);
+        }
+
+        .aww3-stripe-arrow {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          border: 1px solid rgba(255,255,255,0.2);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .aww3-stripe-arrow svg {
+          width: 24px;
+          height: 24px;
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .aww3-stripe-item:hover .aww3-stripe-arrow {
+          background: #aa3bff;
+          border-color: #aa3bff;
+          transform: scale(1.1) rotate(45deg);
+        }
+
+        .aww3-stripe-bottom {
+          display: grid;
+          grid-template-rows: 0fr;
+          transition: grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+          padding-left: calc(60px + 2rem);
+        }
+
+        .aww3-stripe-item:hover .aww3-stripe-bottom {
+          grid-template-rows: 1fr;
+        }
+
+        .aww3-stripe-bottom-inner {
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .aww3-stripe-desc {
+          font-size: 1.3rem;
           line-height: 1.6;
-          color: rgba(255,255,255,0.6);
+          color: rgba(255,255,255,0.7);
+          max-width: 600px;
+          margin: 0;
+          padding-top: 1.5rem;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+        }
+
+        .aww3-stripe-item:hover .aww3-stripe-desc {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .aww3-stripe-cta {
+          font-family: var(--font-sans, sans-serif);
+          font-size: 0.9rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: #aa3bff;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+        }
+
+        .aww3-stripe-item:hover .aww3-stripe-cta {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .aww3-stripe-cta::after {
+          content: '';
+          width: 30px;
+          height: 1px;
+          background: #aa3bff;
+          transition: width 0.4s ease;
+        }
+
+        .aww3-stripe-item:hover .aww3-stripe-cta::after {
+          width: 50px;
         }
 
         /* Responsive */
@@ -660,11 +633,12 @@ const ServicesIndex: React.FC = () => {
             flex: none;
             width: 100%;
           }
-          .aww3-grid {
-            grid-template-columns: repeat(2, 1fr);
+          .aww3-stripe-top {
+            grid-template-columns: 40px 1fr 50px;
+            gap: 1.5rem;
           }
-          .aww3-span-2 {
-            grid-column: span 2;
+          .aww3-stripe-bottom {
+            padding-left: calc(40px + 1.5rem);
           }
         }
 
@@ -696,30 +670,24 @@ const ServicesIndex: React.FC = () => {
             padding-bottom: 1.5rem;
             gap: 1rem;
           }
-          .aww3-grid {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+          .aww3-stripe-content {
+            padding: 0 1rem;
           }
-          .aww3-span-2 {
-            grid-column: span 1;
+          .aww3-stripe-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
           }
-          .aww3-card {
-            height: auto;
-            min-height: 320px;
+          .aww3-stripe-index {
+            width: 100%;
+            margin-bottom: 0.5rem;
           }
-          .aww3-card-content {
-            padding: 1.5rem;
+          .aww3-stripe-title {
+            width: calc(100% - 60px);
+            font-size: 2.2rem;
           }
-          .aww3-span-2 .aww3-card-body {
-            max-width: 100%;
-          }
-          .aww3-card-arrow {
-            width: 48px;
-            height: 48px;
-          }
-          .aww3-hover-logo {
-            width: 70%;
-            height: 70%;
+          .aww3-stripe-bottom {
+            padding-left: 0;
           }
         }
       `}</style>

@@ -207,6 +207,7 @@ document.fonts.ready.then(() => {
         direction: 'vertical',
         smooth: true,
     });
+    window.globalLenis = lenis;
 
 
     gsap.registerPlugin(ScrollTrigger);

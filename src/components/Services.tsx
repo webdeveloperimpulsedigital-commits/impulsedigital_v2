@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Services: React.FC = () => {
   return (
@@ -6,7 +7,11 @@ const Services: React.FC = () => {
       <div className="container">
         <h2 className="section-heading split-text">Three ways growth<br />leaders work with us.</h2>
         <div className="scrub-container">
-          <div className="scrub-item">
+          <Link 
+            to="/services/growth-intelligence" 
+            className="scrub-item" 
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
             <div className="scrub-left">
               <div className="service-mark-draw" aria-hidden="true">
                 <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -20,8 +25,12 @@ const Services: React.FC = () => {
               <div className="scrub-label">Find the signal before you make the move.</div>
               <p className="scrub-desc">Marketing analytics, campaign intelligence, consumer insights, and competitive sensing that help enterprise marketing teams act on evidence rather than instinct. This is not a dashboard. It is a decision engine.</p>
             </div>
-          </div>
-          <div className="scrub-item">
+          </Link>
+          <Link 
+            to="/services/ai-marketing-systems" 
+            className="scrub-item" 
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
             <div className="scrub-left">
               <div className="service-mark-draw" aria-hidden="true">
                 <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -35,8 +44,12 @@ const Services: React.FC = () => {
               <div className="scrub-label">AI built into the way marketing actually works.</div>
               <p className="scrub-desc">Agentic AI for marketing operations, fully AI-produced cinematic brand content, and Generative Search Optimisation for brands that need to move faster than their category allows.</p>
             </div>
-          </div>
-          <div className="scrub-item">
+          </Link>
+          <Link 
+            to="/services/brand-infrastructure" 
+            className="scrub-item" 
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
             <div className="scrub-left">
               <div className="service-mark-draw" aria-hidden="true">
                 <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -50,7 +63,7 @@ const Services: React.FC = () => {
               <div className="scrub-label">The assets, channels, and content systems that make your brand visible, credible, and ready for market.</div>
               <p className="scrub-desc">Social media, performance marketing, content, website development, and branding, deployed as the execution layer of a strategic engagement.</p>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </section>

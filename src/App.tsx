@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Background from './components/Background';
 import Navbar from './components/Navbar';
@@ -29,7 +29,7 @@ import Careers from './pages/Careers';
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Disable browser automatic scroll restoration
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
@@ -42,7 +42,7 @@ const ScrollToTop = () => {
 
       if ((window as any).globalLenis) {
         (window as any).globalLenis.stop();
-        (window as any).globalLenis.scrollTo(0, { immediate: true, force: true });
+        (window as any).globalLenis.scrollTo('top', { immediate: true, force: true });
         (window as any).globalLenis.start();
       }
     };
@@ -90,7 +90,7 @@ const App: React.FC = () => {
     // We append the script here to ensure it runs after all React components
     // have been fully mounted and their DOM nodes exist.
     const script = document.createElement('script');
-    script.src = `${import.meta.env.BASE_URL}js/script.js?v=54`;
+    script.src = `${import.meta.env.BASE_URL}js/script.js?v=55`;
     script.async = true;
     document.body.appendChild(script);
 
@@ -126,6 +126,9 @@ const App: React.FC = () => {
         <Route path="/services/branding" element={<Branding />} />
         <Route path="/services/employer-branding" element={<EmployerBranding />} />
         <Route path="/services/ai-video-production" element={<AIVideoProduction />} />
+        <Route path="/services/growth-intelligence" element={<ServicesIndex categoryFilter="Growth Intelligence" />} />
+        <Route path="/services/ai-marketing-systems" element={<ServicesIndex categoryFilter="AI Marketing Systems" />} />
+        <Route path="/services/brand-infrastructure" element={<ServicesIndex categoryFilter="Brand Infrastructure" />} />
         <Route path="/services" element={<ServicesIndex />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/careers" element={<Careers />} />

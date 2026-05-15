@@ -48,16 +48,14 @@ const Navbar: React.FC = () => {
           <Link to="/" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Home</Link>
           <Link to="/about" className="nav-item" data-cursor="GO" onClick={handleNavClick}>About Us</Link>
           <div className="nav-dropdown" onMouseLeave={handleDropdownMouseLeave}>
-            <Link 
-              to="/services"
+            <a 
+              href="#"
               className={`nav-item services-toggle ${isMobileServicesOpen ? 'active' : ''}`} 
               data-cursor="GO" 
               onClick={(e) => {
+                e.preventDefault();
                 if (window.innerWidth <= 1024) {
-                  e.preventDefault();
                   setIsMobileServicesOpen(!isMobileServicesOpen);
-                } else {
-                  handleNavClick();
                 }
               }}
             >
@@ -65,7 +63,7 @@ const Navbar: React.FC = () => {
               <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" className="dropdown-arrow">
                 <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </Link>
+            </a>
             <div className={`dropdown-content ${isMobileServicesOpen ? 'mobile-expanded' : ''}`} style={(!isMobileServicesOpen && isDropdownSuspended) ? { display: 'none' } : {}}>
               <div className="dropdown-col">
                 <h4 onClick={(e) => toggleSubMenu('growth', e)} className={openSubMenu === 'growth' ? 'active' : ''}>
@@ -107,9 +105,7 @@ const Navbar: React.FC = () => {
                   <Link to="/services/employer-branding" className="dropdown-item" onClick={handleNavClick}>Employer Branding</Link>
                 </div>
               </div>
-              <div className="dropdown-col mobile-only-all-services">
-                <Link to="/services" className="dropdown-item" style={{ color: '#aa3bff', fontWeight: 'bold' }} onClick={handleNavClick}>Explore All Services ➔</Link>
-              </div>
+              
             </div>
           </div>
           <Link to="/case-studies" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Case Studies</Link>
