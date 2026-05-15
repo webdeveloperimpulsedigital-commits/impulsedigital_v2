@@ -95,13 +95,13 @@ const Careers: React.FC = () => {
       const textFills = document.querySelectorAll('.text-fill');
       textFills.forEach((fill: any) => {
         gsap.to(fill, {
-          backgroundPositionX: '0%', 
+          backgroundPositionX: '0%',
           ease: 'none',
-          scrollTrigger: { 
-            trigger: fill, 
-            scrub: 1, 
-            start: 'top 85%', 
-            end: 'top 20%' 
+          scrollTrigger: {
+            trigger: fill,
+            scrub: 1,
+            start: 'top 85%',
+            end: 'top 20%'
           }
         });
       });
@@ -208,7 +208,7 @@ const Careers: React.FC = () => {
     "images/Career Page Images-06.webp",
     "images/Untitled-1-01.webp",
     "images/Untitled-1-02.webp",
-    "images/Artboard 2 copy 15.webp"
+    "images/20251017_131126373_iOS.jpg"
   ];
 
   const openPositions = [
@@ -594,6 +594,18 @@ const Careers: React.FC = () => {
           transform: scale(1.03);
         }
         
+        .aww3-photo-cover {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .aww3-card:hover .aww3-photo-cover {
+          transform: scale(1.03);
+        }
+        
         /* Shiny Text */
         .shiny-text {
           background: linear-gradient(120deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 60%);
@@ -810,7 +822,7 @@ const Careers: React.FC = () => {
               <div key={i} className="aww3-card" style={{ minHeight: '300px', display: 'flex', flexDirection: 'column', padding: '3rem', zIndex: 2 }}>
                 <div className="aww3-orb"></div>
                 <div className="aww3-card-noise"></div>
-                
+
                 {/* Hover Logo Drawing */}
                 <svg viewBox="801 344 274 272" className="aww3-hover-logo" preserveAspectRatio="xMidYMid meet">
                   <path pathLength="1" d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
@@ -822,8 +834,8 @@ const Careers: React.FC = () => {
                     <div className="aww3-card-arrow">
                       <span className="aww3-card-hover-text">Know More</span>
                       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 19L19 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M7 5H19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M5 19L19 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M7 5H19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
                   </div>
@@ -883,7 +895,7 @@ const Careers: React.FC = () => {
             <div className="reveal-blur aww3-card" style={{ gridColumn: 'span 7', minHeight: '420px', padding: '3.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', zIndex: 2 }}>
               <div className="aww3-orb"></div>
               <div className="aww3-card-noise"></div>
-              
+
               {/* Hover Logo Drawing */}
               <svg viewBox="801 344 274 272" className="aww3-hover-logo" preserveAspectRatio="xMidYMid meet">
                 <path pathLength="1" d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
@@ -897,8 +909,8 @@ const Careers: React.FC = () => {
                   <div className="aww3-card-arrow">
                     <span className="aww3-card-hover-text">Value</span>
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 19L19 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M7 5H19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M5 19L19 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M7 5H19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                 </div>
@@ -920,21 +932,23 @@ const Careers: React.FC = () => {
               </div>
             </div>
 
-            {/* Image 1 (Span 5) - Increased width to prevent clipping, object-fit cover to fill nicely */}
-            <div className="reveal-blur aww3-card" style={{ gridColumn: 'span 5', minHeight: '420px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img className="aww3-image-cover" src={`${import.meta.env.BASE_URL}images/Artboard 2 copy 21.webp`} alt="Value 1" />
+            {/* Image 1 (Span 5) - Full bleed photo */}
+            <div className="reveal-blur aww3-card" style={{ gridColumn: 'span 5', minHeight: '420px', padding: 0, overflow: 'hidden', position: 'relative' }}>
+              <div className="aww3-orb"></div>
+              <img className="aww3-photo-cover" src={`${import.meta.env.BASE_URL}images/20251017_131126373_iOS.jpg`} alt="Team gathering" />
             </div>
 
-            {/* Image 2 (Span 6) */}
-            <div className="reveal-blur aww3-card" style={{ gridColumn: 'span 6', minHeight: '420px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img className="aww3-image-cover" src={`${import.meta.env.BASE_URL}images/Artboard 2 copy 22.webp`} alt="Value 2" />
+            {/* Image 2 (Span 6) - Full bleed photo */}
+            <div className="reveal-blur aww3-card" style={{ gridColumn: 'span 6', minHeight: '420px', padding: 0, overflow: 'hidden', position: 'relative' }}>
+              <div className="aww3-orb"></div>
+              <img className="aww3-photo-cover" src={`${import.meta.env.BASE_URL}images/2025-07-11.webp`} alt="Think before you make" />
             </div>
 
             {/* 2. Think before you make (Span 6) */}
             <div className="reveal-blur aww3-card" style={{ gridColumn: 'span 6', minHeight: '420px', padding: '3.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', zIndex: 2 }}>
               <div className="aww3-orb"></div>
               <div className="aww3-card-noise"></div>
-              
+
               {/* Hover Logo Drawing */}
               <svg viewBox="801 344 274 272" className="aww3-hover-logo" preserveAspectRatio="xMidYMid meet">
                 <path pathLength="1" d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
@@ -948,8 +962,8 @@ const Careers: React.FC = () => {
                   <div className="aww3-card-arrow">
                     <span className="aww3-card-hover-text">Value</span>
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 19L19 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M7 5H19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M5 19L19 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M7 5H19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                 </div>
@@ -973,7 +987,7 @@ const Careers: React.FC = () => {
             <div className="reveal-blur aww3-card" style={{ gridColumn: 'span 7', minHeight: '420px', padding: '3.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', zIndex: 2 }}>
               <div className="aww3-orb"></div>
               <div className="aww3-card-noise"></div>
-              
+
               {/* Hover Logo Drawing */}
               <svg viewBox="801 344 274 272" className="aww3-hover-logo" preserveAspectRatio="xMidYMid meet">
                 <path pathLength="1" d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
@@ -987,8 +1001,8 @@ const Careers: React.FC = () => {
                   <div className="aww3-card-arrow">
                     <span className="aww3-card-hover-text">Value</span>
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 19L19 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M7 5H19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M5 19L19 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M7 5H19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                 </div>
@@ -1009,16 +1023,17 @@ const Careers: React.FC = () => {
               </div>
             </div>
 
-            {/* Image 3 (Span 5) */}
-            <div className="reveal-blur aww3-card" style={{ gridColumn: 'span 5', minHeight: '420px' }}>
-              <img className="aww3-image-cover" src={`${import.meta.env.BASE_URL}images/Artboard 2 copy 23.webp`} alt="Value 3" />
+            {/* Image 3 (Span 5) - Full bleed photo */}
+            <div className="reveal-blur aww3-card" style={{ gridColumn: 'span 5', minHeight: '420px', padding: 0, overflow: 'hidden', position: 'relative' }}>
+              <div className="aww3-orb"></div>
+              <img className="aww3-photo-cover" src={`${import.meta.env.BASE_URL}images/DSC00319.JPG.jpg`} alt="Use AI without losing judgment" />
             </div>
 
             {/* 4. Take feedback like someone who wants to grow (Span 12) */}
             <div className="reveal-blur aww3-card" style={{ gridColumn: 'span 12', minHeight: '380px', padding: '4rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', zIndex: 2 }}>
               <div className="aww3-orb"></div>
               <div className="aww3-card-noise"></div>
-              
+
               {/* Hover Logo Drawing */}
               <svg viewBox="801 344 274 272" className="aww3-hover-logo" preserveAspectRatio="xMidYMid meet">
                 <path pathLength="1" d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
@@ -1028,8 +1043,8 @@ const Careers: React.FC = () => {
                 <div className="aww3-card-arrow">
                   <span className="aww3-card-hover-text">Value</span>
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 19L19 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M7 5H19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M5 19L19 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M7 5H19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
               </div>
