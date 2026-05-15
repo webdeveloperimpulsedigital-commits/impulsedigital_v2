@@ -726,6 +726,28 @@ const Careers: React.FC = () => {
           line-height: 1.1; font-weight: 700; letter-spacing: -0.02em;
         }
         .text-muted { color: var(--text-secondary); font-size: 1.125rem; line-height: 1.6; }
+        
+        /* Force uniform section title font size across the page */
+        h2.svc-h2,
+        .svc-process-container h2,
+        .svc-final-cta-heading,
+        h2.split-heading {
+          font-size: clamp(2.2rem, 8vw, 4.5rem) !important;
+        }
+
+        /* Mobile specific spacing */
+        @media (max-width: 768px) {
+          .aww3-card {
+            padding: 2rem !important;
+          }
+          .section-padding {
+            padding-top: 4rem !important;
+            padding-bottom: 4rem !important;
+          }
+          h2.svc-h2, .svc-process-container h2, .svc-final-cta-heading, h2.split-heading {
+            margin-bottom: 1.5rem !important;
+          }
+        }
         .gradient-text {
           background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
           -webkit-background-clip: text;
@@ -885,6 +907,9 @@ const Careers: React.FC = () => {
             @media (max-width: 768px) {
               .values-bento-grid {
                 grid-template-columns: 1fr;
+              }
+              .values-bento-grid > div {
+                min-height: 300px !important;
               }
             }
           `}</style>
@@ -1149,14 +1174,89 @@ const Careers: React.FC = () => {
         </div>
       </section>
 
-      {/* Fit Check List */}
-      <ServiceFit data={fitCheckData} />
+      {/* Fit Check List - Timeline Design */}
+      <section className="section-padding" style={{ backgroundColor: '#050505', borderTop: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflow: 'hidden' }}>
+        {/* Background glow */}
+        <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translate(-50%, -50%)', width: '800px', height: '800px', background: 'radial-gradient(circle, rgba(138, 92, 246, 0.05) 0%, transparent 70%)', pointerEvents: 'none' }}></div>
+
+        <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+          <div className="reveal-blur" style={{ textAlign: 'center', marginBottom: '6rem' }}>
+            <h2 className="svc-h2 split-text" style={{ color: '#fff', marginBottom: '1rem', lineHeight: 1.1 }}>
+              You may fit <span style={{ color: '#8b5cf6' }}>here if</span>
+            </h2>
+            <p style={{ fontSize: '1.2rem', color: '#9ca3af', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
+              We don't care about the pedigree of your resume. We care about the velocity of your thinking and your appetite for great work.
+            </p>
+          </div>
+
+          <div className="timeline-container" style={{ position: 'relative', maxWidth: '900px', margin: '0 auto' }}>
+            {/* Center Line */}
+            <div style={{ position: 'absolute', top: 0, bottom: 0, left: '50px', width: '2px', background: 'linear-gradient(to bottom, transparent, rgba(138, 92, 246, 0.3) 10%, rgba(138, 92, 246, 0.3) 90%, transparent)' }} className="timeline-line"></div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+              {fitCheck.map((item, i) => (
+                <div key={i} className="timeline-item reveal-blur" style={{ display: 'flex', alignItems: 'center', gap: '3rem', position: 'relative' }}>
+                  {/* Node */}
+                  <div style={{ width: '100px', flexShrink: 0, display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 2 }}>
+                    <div className="timeline-node" style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#050505', border: '2px solid #8b5cf6', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 20px rgba(138, 92, 246, 0.2)', transition: 'all 0.4s ease' }}>
+                      <span style={{ color: '#fff', fontFamily: 'monospace', fontSize: '0.9rem', fontWeight: 700 }}>0{i + 1}</span>
+                    </div>
+                  </div>
+
+                  {/* Content Box */}
+                  <div className="timeline-content" style={{ flexGrow: 1, background: 'rgba(255,255,255,0.02)', padding: '2.5rem 3rem', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)', transition: 'all 0.4s ease', position: 'relative', overflow: 'hidden' }}>
+                    <div className="timeline-glow" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(90deg, rgba(138, 92, 246, 0.1) 0%, transparent 100%)', opacity: 0, transition: 'opacity 0.4s ease' }}></div>
+                    <h3 style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', fontWeight: 500, color: '#e5e7eb', margin: 0, lineHeight: 1.4, position: 'relative', zIndex: 2 }}>
+                      {item}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <style>{`
+          .timeline-item:hover .timeline-node {
+            background: #8b5cf6 !important;
+            transform: scale(1.2);
+            box-shadow: 0 0 30px rgba(138, 92, 246, 0.6) !important;
+          }
+          .timeline-item:hover .timeline-content {
+            transform: translateX(15px);
+            border-color: rgba(138, 92, 246, 0.3) !important;
+          }
+          .timeline-item:hover .timeline-glow {
+            opacity: 1 !important;
+          }
+
+          @media (max-width: 768px) {
+            .timeline-container { padding-left: 10px; }
+            .timeline-line { left: 25px !important; }
+            .timeline-item { gap: 1.5rem !important; }
+            .timeline-item > div:first-child { width: 50px !important; }
+            .timeline-node { width: 32px !important; height: 32px !important; }
+            .timeline-content { padding: 1.5rem !important; }
+            .timeline-item:hover .timeline-content { transform: translateX(5px); }
+          }
+        `}</style>
+      </section>
 
       {/* Cinematic Appetite Banner */}
       <section className="section-padding" style={{ backgroundColor: '#050505', position: 'relative', borderTop: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden' }}>
+        <style>{`
+          .appetite-banner-card {
+            padding: 6rem 2rem;
+          }
+          @media (max-width: 768px) {
+            .appetite-banner-card {
+              padding: 3rem 1.5rem;
+            }
+          }
+        `}</style>
         <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-          <div className="reveal-blur" style={{ padding: '6rem 2rem', background: 'radial-gradient(ellipse at center, rgba(138, 92, 246, 0.1) 0%, transparent 60%)', textAlign: 'center', borderTop: '1px solid rgba(138,92,246,0.1)', borderBottom: '1px solid rgba(138,92,246,0.1)', borderRadius: '32px' }}>
-            <h3 className="shiny-text" style={{ fontSize: 'clamp(3rem, 6vw, 5.5rem)', fontWeight: 800, marginBottom: '2.5rem', letterSpacing: '-0.04em', background: 'linear-gradient(135deg, #fff 0%, #a5b4fc 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+          <div className="reveal-blur appetite-banner-card" style={{ background: 'radial-gradient(ellipse at center, rgba(138, 92, 246, 0.1) 0%, transparent 60%)', textAlign: 'center', borderTop: '1px solid rgba(138,92,246,0.1)', borderBottom: '1px solid rgba(138,92,246,0.1)', borderRadius: '32px' }}>
+            <h3 className="shiny-text" style={{ fontSize: 'clamp(2rem, 8vw, 5.5rem)', fontWeight: 800, marginBottom: '2.5rem', letterSpacing: '-0.04em', background: 'linear-gradient(135deg, #fff 0%, #a5b4fc 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               You have appetite.
             </h3>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginBottom: '4rem', flexWrap: 'wrap' }}>
@@ -1167,7 +1267,7 @@ const Careers: React.FC = () => {
                 <span style={{ color: '#d1d5db', fontSize: '1.2rem', fontWeight: 500 }}>Loud appetite is fine.</span>
               </div>
             </div>
-            <p style={{ color: '#a5b4fc', fontSize: '1.5rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '6px', margin: 0 }}>
+            <p style={{ color: '#a5b4fc', fontSize: 'clamp(1rem, 4vw, 1.5rem)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '6px', margin: 0 }}>
               But there has to be appetite.
             </p>
           </div>
@@ -1424,8 +1524,32 @@ const Careers: React.FC = () => {
           </div>
         </div>
 
-        {/* Ambient Glow */}
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '80%', height: '80%', background: 'radial-gradient(circle, rgba(138,92,246,0.12) 0%, transparent 60%)', filter: 'blur(80px)', zIndex: 1, pointerEvents: 'none' }}></div>
+        {/* Animated Background Shapes */}
+        <div className="animated-shapes-container" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', overflow: 'hidden', zIndex: 1, pointerEvents: 'none' }}>
+          <div className="moving-shape shape-1" style={{ position: 'absolute', width: '60vw', height: '60vw', maxWidth: '700px', maxHeight: '700px', background: '#8b5cf6', opacity: 0.25, borderRadius: '50%', filter: 'blur(100px)' }}></div>
+          <div className="moving-shape shape-2" style={{ position: 'absolute', width: '50vw', height: '50vw', maxWidth: '600px', maxHeight: '600px', background: '#d946ef', opacity: 0.2, borderRadius: '50%', filter: 'blur(100px)' }}></div>
+        </div>
+
+        <style>{`
+          .moving-shape.shape-1 {
+            animation: moveShape1 20s infinite alternate ease-in-out;
+            top: -10%; left: -10%;
+          }
+          .moving-shape.shape-2 {
+            animation: moveShape2 25s infinite alternate ease-in-out;
+            bottom: -10%; right: -10%;
+          }
+          @keyframes moveShape1 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30vw, 30vh) scale(1.3); }
+            100% { transform: translate(10vw, 60vh) scale(1); }
+          }
+          @keyframes moveShape2 {
+            0% { transform: translate(0, 0) scale(1.2); }
+            50% { transform: translate(-40vw, -40vh) scale(0.8); }
+            100% { transform: translate(-20vw, -10vh) scale(1.2); }
+          }
+        `}</style>
 
         <div className="container" style={{ position: 'relative', zIndex: 10, textAlign: 'center', maxWidth: '900px' }}>
 
