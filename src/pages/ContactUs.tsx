@@ -35,7 +35,7 @@ const ContactUs: React.FC = () => {
     }
 
     const waitForGsap = setInterval(() => {
-      if (window.gsap && window.ScrollTrigger) {
+      if ((window as any).gsap && (window as any).ScrollTrigger) {
         clearInterval(waitForGsap);
         const trigger = document.querySelector('#warp-start');
         if (!trigger) return;
@@ -58,7 +58,7 @@ const ContactUs: React.FC = () => {
     const hero = document.querySelector('.contact-hero');
     const mark = document.querySelector('.contact-hero-mark');
     const form = document.querySelector('.contact-shell-form');
-    if (hero && mark && form && window.gsap && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (hero && mark && form && (window as any).gsap && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       let cx = 0, cy = 0, tx = 0, ty = 0;
       const moveHandler = (event: MouseEvent) => {
         const rect = hero.getBoundingClientRect();
@@ -89,7 +89,7 @@ const ContactUs: React.FC = () => {
     });
 
     const filterCards = document.querySelectorAll('.contact-filter-card');
-    if (filterCards.length && window.gsap && window.ScrollTrigger) {
+    if (filterCards.length && (window as any).gsap && (window as any).ScrollTrigger) {
       gsap.set(filterCards, { y: 56 });
       ScrollTrigger.create({
         trigger: '.contact-filter-cards',
@@ -100,7 +100,7 @@ const ContactUs: React.FC = () => {
     }
 
     const mapShell = document.querySelector('.contact-map-shell');
-    if (mapShell && window.gsap && window.ScrollTrigger) {
+    if (mapShell && (window as any).gsap && (window as any).ScrollTrigger) {
       gsap.fromTo(mapShell, { clipPath: 'inset(18% 18% 18% 18% round 22px)' }, {
         clipPath: 'inset(0% 0% 0% 0% round 22px)',
         ease: 'power3.out',

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 
@@ -139,7 +139,7 @@ const CaseStudyRow = ({ study, isReady }: { study: any, isReady: boolean }) => {
     <>
       <div className="work-list-left">
         <h2 className="work-list-title" style={{ textTransform: 'uppercase', display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-start' }}>
-          {allNames.map((name, i) => (
+          {allNames.map((name: string, i: number) => (
             <span 
               key={i} 
               onMouseEnter={() => handleHover(i)}

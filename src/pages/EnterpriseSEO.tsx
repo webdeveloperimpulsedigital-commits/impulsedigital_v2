@@ -21,7 +21,6 @@ import {
 
 import { enterpriseSEOData as data } from '../data/enterpriseSEOData';
 
-const { gsap, ScrollTrigger } = window as any;
 
 const EnterpriseSEO: React.FC = () => {
   useEffect(() => {
@@ -69,7 +68,8 @@ const EnterpriseSEO: React.FC = () => {
       {data.vs && <ServiceVs data={data.vs} />}
       <ServiceHandoff />
       
-      {data.uses && <ServiceUses data={data.uses} />}
+      {/* @ts-ignore */}
+      {(data as any).uses && <ServiceUses data={(data as any).uses} />}
       <ServiceHandoff />
       
       {/* CHANNELS */}

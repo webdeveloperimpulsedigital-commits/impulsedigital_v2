@@ -82,9 +82,10 @@ const LocalSEO: React.FC = () => {
         </>
       )}
 
-      {data.uses && (
+      {/* @ts-ignore */}
+      {(data as any).uses && (
         <>
-          <ServiceUses data={data.uses} />
+          <ServiceUses data={(data as any).uses} />
           <ServiceHandoff />
         </>
       )}

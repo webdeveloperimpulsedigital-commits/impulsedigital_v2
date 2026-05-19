@@ -21,7 +21,6 @@ import {
 
 import { b2bSEOData as data } from '../data/b2bSEOData';
 
-const { gsap, ScrollTrigger } = window as any;
 
 const B2BSEO: React.FC = () => {
   useEffect(() => {

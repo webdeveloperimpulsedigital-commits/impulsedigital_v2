@@ -5,7 +5,19 @@ import Contact from '../components/Contact';
 
 // Brands with multiple case studies get an `imgs` array (up to 3 shown stacked)
 // Single-case brands get one entry in the array
-const caseStudies = [
+type CaseStudyItem = {
+  id: number;
+  client: string;
+  category: string;
+  description: string;
+  imgs: string[];
+  theme: string;
+  accent: string;
+  subLinks: { label: string; href: string }[];
+  primaryLink: string;
+};
+
+const caseStudies: CaseStudyItem[] = [
   {
     id: 1,
     client: 'ABG × Brut India',

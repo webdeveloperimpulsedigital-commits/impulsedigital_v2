@@ -10,7 +10,6 @@ import {
   ServiceStats,
   ServiceProblem,
   ServiceVs,
-  ServiceUses,
   ServiceWhenToUse,
   ServiceProcess,
   ServiceFit,
@@ -21,7 +20,6 @@ import {
 
 import { ecommerceSEOData as data } from '../data/ecommerceSEOData';
 
-const { gsap, ScrollTrigger } = window as any;
 
 const ECommerceSEO: React.FC = () => {
   useEffect(() => {
