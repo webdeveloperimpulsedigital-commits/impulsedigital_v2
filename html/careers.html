@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers at Impulse Digital</title>
+  <meta name="description"
+    content="For people who want more from the work. Not just a job that fills the day. Impulse is for people who want their work to mean something.">
+  <link rel="stylesheet" href="css/styles.css?v=74">
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/SVGLoader.js"></script>
+
+  <!-- Lenis -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- SplitType -->
+  <script src="https://unpkg.com/split-type"></script>
+</head>
+
+<body class="service-page careers-page">
+  <!-- 3D WebGL Canvas Background -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Global Mark Defs -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute;top:0;left:0;pointer-events:none;">
+    <defs>
+      <clipPath id="impulse-mark-clip">
+        <path
+          d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+      </clipPath>
+      <symbol id="impulse-mark" viewBox="801 344 274 272">
+        <path
+          d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Mark Cursor -->
+  <div class="cursor" aria-hidden="true">
+    <svg class="cursor-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+        class="cursor-mark-path" />
+    </svg>
+    <div class="cursor-text"></div>
+  </div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <!-- Page Scroll Progress -->
+  <div class="page-progress" aria-hidden="true">
+    <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+        class="page-progress-path" />
+    </svg>
+  </div>
+
+  <div class="noise-overlay"></div>
+
+  <!-- Navigation -->
+  <nav id="main-nav">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="index.html" class="logo"><img src="ImpulseDigital_Logo.svg" alt="Impulse Digital Logo"></a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-item" data-cursor="GO">Home</a>
+        <a href="about-us.html" class="nav-item" data-cursor="GO">About Us</a>
+        <div class="nav-dropdown">
+          <a href="index.html#services" class="nav-item" data-cursor="GO"
+            style="display: flex; align-items: center; gap: 4px;">
+            Services
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"
+              class="dropdown-arrow">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+          <div class="dropdown-content">
+            <div class="dropdown-col">
+              <h4>Growth Intelligence</h4>
+              <div class="dropdown-list">
+                <a href="consumer-intelligence.html" class="dropdown-item">Consumer Intelligence</a>
+                <a href="index.html#services" class="dropdown-item">Market and Competitive Intelligence</a>
+                <a href="index.html#services" class="dropdown-item">Always-On Intelligence</a>
+                <a href="index.html#services" class="dropdown-item">Campaign and Performance Intelligence</a>
+              </div>
+            </div>
+            <div class="dropdown-col">
+              <h4>AI Marketing Systems</h4>
+              <div class="dropdown-list">
+                <a href="archer-ai.html" class="dropdown-item">Archer AI</a>
+                <a href="agentic-ai.html" class="dropdown-item">Agentic AI</a>
+                <a href="ai-video-production.html" class="dropdown-item">Cinematic AI Production</a>
+                <a href="index.html#services" class="dropdown-item">Generative Search Optimisation</a>
+              </div>
+            </div>
+            <div class="dropdown-col">
+              <h4>Brand Infrastructure</h4>
+              <div class="dropdown-list">
+                <a href="index.html#services" class="dropdown-item">Search and Visibility</a>
+                <a href="index.html#services" class="dropdown-item">Content Strategy and Writing</a>
+                <a href="index.html#services" class="dropdown-item">Social Media</a>
+                <a href="index.html#services" class="dropdown-item">Video and Visual Content</a>
+                <a href="index.html#services" class="dropdown-item">Website Development</a>
+                <a href="index.html#services" class="dropdown-item">Brand Identity</a>
+                <a href="index.html#services" class="dropdown-item">Employer Branding</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="index.html#cases-pin" class="nav-item" data-cursor="GO">Case Studies</a>
+        <a href="index.html#blogs" class="nav-item" data-cursor="GO">Blogs</a>
+        <a href="index.html#resources" class="nav-item" data-cursor="GO">Resources</a>
+        <a href="careers.html" class="nav-item" data-cursor="GO">Careers</a>
+      </div>
+      <div class="nav-right">
+        <a href="#connect" class="btn-nav" data-cursor="HI">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="svc-hero-page car-hero" id="hero">
+      <div class="car-hero-watermark" aria-hidden="true">
+        <svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg>
+      </div>
+      <div class="svc-hero-page-content">
+        <h1 class="svc-hero-headline car-hero-headline">
+          For people who want<br>
+          more from the work.
+        </h1>
+        <p class="car-hero-sub">Not just a job that fills the day.</p>
+        <p class="svc-hero-page-desc car-hero-desc">
+          We are interested in people who want to think harder, take ownership, ask better questions, and leave behind work they are proud of.
+        </p>
+        <p class="car-hero-anchor">Impulse is for people who want their work to mean something.</p>
+        <div class="svc-hero-cta-row">
+          <a href="#how-we-work" class="btn" data-cursor="EXPLORE">
+            <span class="btn-text">See how we work</span>
+            <div class="btn-fill"></div>
+          </a>
+          <a href="#connect" class="btn" data-cursor="WRITE">
+            <span class="btn-text">Write to us</span>
+            <div class="btn-fill"></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BETTER WORK — five questions
+         ============================================================ -->
+    <section class="car-better" id="warp-start">
+      <div class="container car-better-grid">
+        <div class="car-better-left">
+          <p class="car-statement car-statement-lg">
+            <span class="car-line">Some work keeps you busy.</span>
+            <span class="car-line car-line-loud">Some work makes you better.</span>
+          </p>
+          <p class="car-statement car-statement-mid">
+            <span class="car-line">We are interested in the second kind.</span>
+          </p>
+          <p class="car-statement">
+            <span class="car-line">The kind where you stop asking only, &ldquo;What needs to be done?&rdquo;</span>
+            <span class="car-line">And start asking better questions.</span>
+          </p>
+        </div>
+
+        <div class="car-better-right">
+          <div class="car-questions-rail" aria-hidden="true"><span class="car-questions-rail-fill"></span></div>
+          <ul class="car-questions" aria-label="Better questions">
+            <li class="car-q"><span class="car-q-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span><span class="car-q-text">Why will someone care?</span></li>
+            <li class="car-q"><span class="car-q-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span><span class="car-q-text">What is the real problem here?</span></li>
+            <li class="car-q"><span class="car-q-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span><span class="car-q-text">What are we trying to change?</span></li>
+            <li class="car-q"><span class="car-q-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span><span class="car-q-text">Is this clear?</span></li>
+            <li class="car-q"><span class="car-q-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span><span class="car-q-text">Is this good enough to put our name on?</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container car-better-closing">
+        <p class="car-statement">
+          <span class="car-line">That is the kind of work we want people to experience here.</span>
+          <span class="car-line car-line-dim">Not because it is always easy.</span>
+          <span class="car-line car-line-loud">Because it changes the way you think.</span>
+        </p>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- ============================================================
+         CLOSE TO BUSINESS — six translations
+         ============================================================ -->
+    <section class="car-translate" id="how-we-work">
+      <div class="container">
+        <div class="car-translate-intro">
+          <p class="car-statement car-statement-lg">
+            <span class="car-line car-line-loud">The work sits close to business.</span>
+            <span class="car-line">We do not make things just to finish a list.</span>
+          </p>
+        </div>
+
+        <ul class="car-translate-list" aria-label="What the work has to do">
+          <li class="car-translate-row">
+            <span class="car-translate-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+            <span class="car-translate-text">A post has to say something.</span>
+          </li>
+          <li class="car-translate-row">
+            <span class="car-translate-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+            <span class="car-translate-text">A website has to make action easier.</span>
+          </li>
+          <li class="car-translate-row">
+            <span class="car-translate-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+            <span class="car-translate-text">A search strategy has to build demand.</span>
+          </li>
+          <li class="car-translate-row">
+            <span class="car-translate-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+            <span class="car-translate-text">A film has to make a story travel.</span>
+          </li>
+          <li class="car-translate-row">
+            <span class="car-translate-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+            <span class="car-translate-text">A report has to make the next decision clearer.</span>
+          </li>
+          <li class="car-translate-row">
+            <span class="car-translate-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+            <span class="car-translate-text">An AI workflow has to save time without killing judgment.</span>
+          </li>
+        </ul>
+
+        <div class="car-translate-outro">
+          <p class="car-line car-line-dim">The format may change.</p>
+          <p class="car-line car-line-loud">The point does not.</p>
+          <p class="car-trio">
+            <span>Make the work clearer.</span>
+            <span>Make it sharper.</span>
+            <span>Make it useful.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- ============================================================
+         WHAT WE VALUE — four panels
+         ============================================================ -->
+    <section class="car-values" id="values">
+      <div class="car-values-watermark" aria-hidden="true">
+        <svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg>
+      </div>
+      <div class="container">
+        <h2 class="car-section-title">What we value</h2>
+
+        <div class="car-values-grid">
+          <article class="car-value">
+            <div class="car-value-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></div>
+            <h3 class="car-value-title">Care before someone checks.</h3>
+            <p class="car-value-body">The best people here do not wait for someone senior to find the mistake.</p>
+            <p class="car-value-body car-value-loud">They see it first.</p>
+            <ul class="car-value-list">
+              <li>A weak line.</li>
+              <li>A careless typo.</li>
+              <li>A lazy reference.</li>
+              <li>A confusing update.</li>
+              <li>A missing follow-up.</li>
+            </ul>
+            <p class="car-value-foot">Small things say a lot about how seriously someone takes the work.</p>
+          </article>
+
+          <article class="car-value">
+            <div class="car-value-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></div>
+            <h3 class="car-value-title">Think before you make.</h3>
+            <p class="car-value-body">Speed matters here.</p>
+            <p class="car-value-body">But fast work without thought usually creates more work for everyone else.</p>
+            <p class="car-value-body car-value-loud">Before the file opens, the thinking should begin.</p>
+            <ul class="car-value-list">
+              <li>Who is this for?</li>
+              <li>Why should they care?</li>
+              <li>What needs to change?</li>
+              <li>What would make this better?</li>
+            </ul>
+          </article>
+
+          <article class="car-value">
+            <div class="car-value-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></div>
+            <h3 class="car-value-title">Use AI. Do not hide behind it.</h3>
+            <p class="car-value-body">AI is part of how we work.</p>
+            <p class="car-value-body">It helps us research faster, explore more routes, reduce repetitive work, and build better systems.</p>
+            <p class="car-value-body">But AI does not know when a line is technically correct and still completely dead.</p>
+            <p class="car-value-body car-value-loud">That part is human.</p>
+            <p class="car-value-body car-value-loud">That part is yours.</p>
+          </article>
+
+          <article class="car-value">
+            <div class="car-value-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></div>
+            <h3 class="car-value-title">Take feedback without falling apart.</h3>
+            <p class="car-value-body">Your first draft may not survive.</p>
+            <ul class="car-value-list">
+              <li>Your idea may be questioned.</li>
+              <li>Your line may be rewritten.</li>
+              <li>Your structure may be pulled apart.</li>
+            </ul>
+            <p class="car-value-body car-value-dim">That is not personal.</p>
+            <p class="car-value-body car-value-loud">That is the work asking to become better.</p>
+            <p class="car-value-body">People who grow here are not the ones who get everything right the first time.</p>
+            <p class="car-value-body car-value-loud">They are the ones who come back sharper the next time.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- ============================================================
+         WHAT YOU CAN EXPECT
+         ============================================================ -->
+    <section class="car-expect">
+      <div class="container car-expect-grid">
+        <div class="car-expect-left">
+          <h2 class="car-section-title">What you can expect here</h2>
+          <p class="car-statement car-statement-lg">
+            <span class="car-line car-line-loud">You can expect real work.</span>
+          </p>
+          <ul class="car-expect-nots">
+            <li>Not fake responsibility.</li>
+            <li>Not exposure that means nothing.</li>
+            <li>Not learning that only exists in onboarding slides.</li>
+          </ul>
+        </div>
+
+        <div class="car-expect-right">
+          <ul class="car-expect-list">
+            <li>
+              <span class="car-expect-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+              <span>You will see how serious brands think.</span>
+            </li>
+            <li>
+              <span class="car-expect-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+              <span>You will understand why some ideas survive and others die in the room.</span>
+            </li>
+            <li>
+              <span class="car-expect-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+              <span>You will learn why clarity beats decoration.</span>
+            </li>
+            <li>
+              <span class="car-expect-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+              <span>You will see why speed needs structure.</span>
+            </li>
+            <li>
+              <span class="car-expect-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+              <span>You will understand how client trust is built in small moments, not big speeches.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container car-expect-closing">
+        <p class="car-line car-line-dim">Some days will be heavy.</p>
+        <p class="car-line">That is the honest part.</p>
+        <p class="car-line">The promise is not that this place will always be comfortable.</p>
+        <p class="car-line car-line-loud">The promise is that the work will ask more of you, and you will get better if you meet it properly.</p>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- ============================================================
+         LIFE AT IMPULSE — gallery
+         ============================================================ -->
+    <section class="car-life" id="life">
+      <div class="container">
+        <div class="car-life-header">
+          <!-- "Life at Impulse" is the corporate cliché being rejected.
+               It appears first, then a thick strike draws through it,
+               then "The Part You Actually Join" reveals as the truth. -->
+          <div class="car-life-jab" aria-label="Life at Impulse — struck through">
+            <span class="car-life-jab-text" aria-hidden="true">Life at Impulse</span>
+            <span class="car-life-jab-strike" aria-hidden="true"></span>
+          </div>
+          <h2 class="car-life-title">The Part You Actually Join</h2>
+        </div>
+
+        <div class="car-life-grid">
+          <div class="car-life-copy">
+            <p class="car-line car-line-loud">You do not just join a company.</p>
+            <ul class="car-life-list">
+              <li>You join the people.</li>
+              <li>The pace.</li>
+              <li>The pressure.</li>
+              <li>The jokes between reviews.</li>
+              <li>The small saves before deadlines.</li>
+              <li>The honest feedback.</li>
+              <li>The strange satisfaction of making something better than it was yesterday.</li>
+            </ul>
+            <p class="car-line">That is the real part.</p>
+            <p class="car-line car-line-dim">Not the culture line.</p>
+            <p class="car-line car-line-loud">The room.</p>
+          </div>
+
+          <div class="car-life-gallery" aria-label="Life at Impulse Digital">
+            <figure class="car-life-img car-life-img-1">
+              <img src="Career Images/ChatGPT Image May 16, 2026, 10_17_32 AM (2).png" alt="Inside Impulse Digital" loading="lazy">
+            </figure>
+            <figure class="car-life-img car-life-img-2">
+              <img src="Career Images/ChatGPT Image May 16, 2026, 10_17_35 AM (5).png" alt="Inside Impulse Digital" loading="lazy">
+            </figure>
+            <figure class="car-life-img car-life-img-3">
+              <img src="Career Images/ChatGPT Image May 16, 2026, 10_17_37 AM (9).png" alt="Inside Impulse Digital" loading="lazy">
+            </figure>
+            <figure class="car-life-img car-life-img-4">
+              <img src="Career Images/ChatGPT Image May 16, 2026, 10_17_38 AM (10).png" alt="Inside Impulse Digital" loading="lazy">
+            </figure>
+            <figure class="car-life-img car-life-img-5">
+              <img src="Career Images/ChatGPT Image May 16, 2026, 11_16_44 AM (5).png" alt="Inside Impulse Digital" loading="lazy">
+            </figure>
+            <figure class="car-life-img car-life-img-6">
+              <img src="Career Images/ChatGPT Image May 16, 2026, 11_16_44 AM (6).png" alt="Inside Impulse Digital" loading="lazy">
+            </figure>
+            <figure class="car-life-img car-life-img-7">
+              <img src="Career Images/ChatGPT Image May 16, 2026, 11_16_44 AM (7).png" alt="Inside Impulse Digital" loading="lazy">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- ============================================================
+         FIT — You may fit here if
+         ============================================================ -->
+    <section class="car-fit" id="fit">
+      <div class="container">
+        <h2 class="car-section-title">You may fit here if</h2>
+        <p class="car-fit-lead">You want to get better at what you do.</p>
+
+        <ul class="car-fit-list">
+          <li>
+            <span class="car-fit-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+            <span>You like being trusted.</span>
+          </li>
+          <li>
+            <span class="car-fit-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+            <span>You ask questions before making assumptions.</span>
+          </li>
+          <li>
+            <span class="car-fit-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+            <span>You care about the reason behind the work.</span>
+          </li>
+          <li>
+            <span class="car-fit-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+            <span>You can take feedback without turning it into a personal injury.</span>
+          </li>
+          <li>
+            <span class="car-fit-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+            <span>You are curious about brands, people, culture, technology, and growth.</span>
+          </li>
+          <li>
+            <span class="car-fit-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+            <span>You want to use AI to do better work, not to avoid thinking.</span>
+          </li>
+          <li>
+            <span class="car-fit-mark"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></span>
+            <span>You do not need someone watching you every hour to care about quality.</span>
+          </li>
+        </ul>
+
+        <div class="car-appetite">
+          <div class="car-appetite-mark" aria-hidden="true"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></div>
+          <p class="car-line car-line-loud car-appetite-loud">You have appetite.</p>
+          <p class="car-line car-line-dim">It can be quiet.</p>
+          <p class="car-line car-line-dim">It can be loud.</p>
+          <p class="car-line">But it has to be there.</p>
+          <p class="car-appetite-final">Bring appetite. We will bring the standard.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="svc-handoff" aria-hidden="true">
+      <div class="svc-handoff-line"></div>
+      <div class="svc-handoff-mark"><svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg></div>
+    </div>
+
+    <!-- ============================================================
+         FINAL CTA — Send us / Email
+         ============================================================ -->
+    <section class="car-final" id="connect">
+      <div class="container car-final-grid">
+        <div class="car-final-copy">
+          <p class="car-statement car-statement-lg">
+            <span class="car-line car-line-loud">We are not looking for people who are simply available.</span>
+            <span class="car-line">We are looking for people who read this and feel something familiar.</span>
+          </p>
+          <ul class="car-final-feels">
+            <li>A little discomfort.</li>
+            <li>A little excitement.</li>
+            <li>A little sense that this place may ask more of them than their current one does.</li>
+          </ul>
+          <p class="car-line car-line-dim">That is intentional.</p>
+          <p class="car-line">Impulse is not being built for people who only want a place to work.</p>
+          <p class="car-line car-line-loud">It is being built for people who want a place that makes them harder to ignore.</p>
+        </div>
+
+        <aside class="car-final-card">
+          <div class="car-final-spotlight" aria-hidden="true"></div>
+          <p class="car-final-instruction">Send us your resume, portfolio, or a short note about the kind of work you want to do.</p>
+          <p class="car-final-warn">Do not send a template.</p>
+          <ul class="car-final-tells">
+            <li>Tell us what you are good at.</li>
+            <li>Tell us what you are trying to get better at.</li>
+            <li>Tell us why this feels like the kind of room you want to be in.</li>
+          </ul>
+
+          <a class="car-final-contact" href="mailto:hr@theimpulsedigital.com?subject=I%20want%20the%20room%20that%20refuses%20average">
+            <div class="car-final-row">
+              <span class="car-final-label">Email</span>
+              <span class="car-final-value">hr@theimpulsedigital.com</span>
+            </div>
+            <div class="car-final-row">
+              <span class="car-final-label">Subject line</span>
+              <span class="car-final-value car-final-subject">I want the room that refuses average</span>
+            </div>
+          </a>
+
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         OPEN POSITIONS
+         ============================================================ -->
+    <section class="car-positions" id="open-positions" aria-labelledby="car-positions-title">
+      <div class="car-positions-scroll-mark" aria-hidden="true">
+        <svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg>
+      </div>
+
+      <div class="container">
+        <div class="car-positions-head">
+          <h2 class="car-section-title" id="car-positions-title">Open Positions</h2>
+        </div>
+
+        <div class="car-jobs-list" aria-label="Open positions">
+          <article class="car-job-card" data-job-card>
+            <div class="car-job-visual" aria-hidden="true">
+              <span class="car-job-index">01</span>
+              <svg class="car-job-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+                <path class="car-job-mark-path"
+                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+              </svg>
+            </div>
+            <div class="car-job-main">
+              <h3>Social Media Content Writer</h3>
+              <div class="car-job-tags">
+                <span>Full-Time</span>
+                <span>Mumbai, India</span>
+                <span>4+ years</span>
+              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              <div class="car-job-actions">
+                <a class="car-job-apply-btn" href="mailto:hr@theimpulsedigital.com?subject=Social%20Media%20Content%20Writer">Apply</a>
+                <button class="car-job-toggle" type="button" aria-expanded="false" aria-controls="job-social-writer" aria-label="Toggle Social Media Content Writer details">
+                  <svg viewBox="0 0 10 6" aria-hidden="true" focusable="false">
+                    <path d="M1 1L5 5L9 1" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="car-job-details" id="job-social-writer">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet.</p>
+              <div class="car-job-detail-grid">
+                <div>
+                  <h4>KEY RESPONSIBILITIES</h4>
+                  <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    <li>Praesent mauris fusce nec tellus sed augue semper porta.</li>
+                    <li>Curabitur sodales ligula in libero sed dignissim lacinia.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>CANDIDATE REQUIREMENTS</h4>
+                  <ul>
+                    <li>Class aptent taciti sociosqu ad litora torquent per conubia.</li>
+                    <li>Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in.</li>
+                    <li>Morbi lectus risus, iaculis vel, suscipit quis, luctus non.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="car-job-card" data-job-card>
+            <div class="car-job-visual" aria-hidden="true">
+              <span class="car-job-index">02</span>
+              <svg class="car-job-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+                <path class="car-job-mark-path"
+                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+              </svg>
+            </div>
+            <div class="car-job-main">
+              <h3>SEO Executive</h3>
+              <div class="car-job-tags">
+                <span>Full-time</span>
+                <span>Mumbai, India</span>
+                <span>2-3 years</span>
+              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              <div class="car-job-actions">
+                <a class="car-job-apply-btn" href="mailto:hr@theimpulsedigital.com?subject=SEO%20Executive">Apply</a>
+                <button class="car-job-toggle" type="button" aria-expanded="false" aria-controls="job-seo-executive" aria-label="Toggle SEO Executive details">
+                  <svg viewBox="0 0 10 6" aria-hidden="true" focusable="false">
+                    <path d="M1 1L5 5L9 1" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="car-job-details" id="job-seo-executive">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet.</p>
+              <div class="car-job-detail-grid">
+                <div>
+                  <h4>KEY RESPONSIBILITIES</h4>
+                  <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    <li>Praesent mauris fusce nec tellus sed augue semper porta.</li>
+                    <li>Curabitur sodales ligula in libero sed dignissim lacinia.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>CANDIDATE REQUIREMENTS</h4>
+                  <ul>
+                    <li>Class aptent taciti sociosqu ad litora torquent per conubia.</li>
+                    <li>Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in.</li>
+                    <li>Morbi lectus risus, iaculis vel, suscipit quis, luctus non.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="car-job-card" data-job-card>
+            <div class="car-job-visual" aria-hidden="true">
+              <span class="car-job-index">03</span>
+              <svg class="car-job-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+                <path class="car-job-mark-path"
+                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+              </svg>
+            </div>
+            <div class="car-job-main">
+              <h3>HR Executive</h3>
+              <div class="car-job-tags">
+                <span>Full-time</span>
+                <span>Mumbai, India</span>
+                <span>1-2 years</span>
+              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              <div class="car-job-actions">
+                <a class="car-job-apply-btn" href="mailto:hr@theimpulsedigital.com?subject=HR%20Executive">Apply</a>
+                <button class="car-job-toggle" type="button" aria-expanded="false" aria-controls="job-hr-executive" aria-label="Toggle HR Executive details">
+                  <svg viewBox="0 0 10 6" aria-hidden="true" focusable="false">
+                    <path d="M1 1L5 5L9 1" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="car-job-details" id="job-hr-executive">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet.</p>
+              <div class="car-job-detail-grid">
+                <div>
+                  <h4>KEY RESPONSIBILITIES</h4>
+                  <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    <li>Praesent mauris fusce nec tellus sed augue semper porta.</li>
+                    <li>Curabitur sodales ligula in libero sed dignissim lacinia.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>CANDIDATE REQUIREMENTS</h4>
+                  <ul>
+                    <li>Class aptent taciti sociosqu ad litora torquent per conubia.</li>
+                    <li>Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in.</li>
+                    <li>Morbi lectus risus, iaculis vel, suscipit quis, luctus non.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="car-job-card" data-job-card>
+            <div class="car-job-visual" aria-hidden="true">
+              <span class="car-job-index">04</span>
+              <svg class="car-job-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+                <path class="car-job-mark-path"
+                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+              </svg>
+            </div>
+            <div class="car-job-main">
+              <h3>Social Media Intern</h3>
+              <div class="car-job-tags">
+                <span>Internship</span>
+                <span>Mumbai, India</span>
+                <span>Fresher</span>
+              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              <div class="car-job-actions">
+                <a class="car-job-apply-btn" href="mailto:hr@theimpulsedigital.com?subject=Social%20Media%20Intern">Apply</a>
+                <button class="car-job-toggle" type="button" aria-expanded="false" aria-controls="job-social-intern" aria-label="Toggle Social Media Intern details">
+                  <svg viewBox="0 0 10 6" aria-hidden="true" focusable="false">
+                    <path d="M1 1L5 5L9 1" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="car-job-details" id="job-social-intern">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet.</p>
+              <div class="car-job-detail-grid">
+                <div>
+                  <h4>KEY RESPONSIBILITIES</h4>
+                  <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    <li>Praesent mauris fusce nec tellus sed augue semper porta.</li>
+                    <li>Curabitur sodales ligula in libero sed dignissim lacinia.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>CANDIDATE REQUIREMENTS</h4>
+                  <ul>
+                    <li>Class aptent taciti sociosqu ad litora torquent per conubia.</li>
+                    <li>Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in.</li>
+                    <li>Morbi lectus risus, iaculis vel, suscipit quis, luctus non.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-grid">
+        <!-- Logo Section -->
+        <div class="footer-col">
+          <img src="ImpulseDigital_Logo.svg" alt="Impulse Digital Logo" class="footer-logo">
+          <p class="footer-tagline">AI native growth intelligence for enterprise brands.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#cases-pin">Case Studies</a></li>
+            <li><a href="index.html#careers">Careers</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="index.html#blogs">Blog</a></li>
+            <li><a href="#">EBooks</a></li>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Slideshare ppt</a></li>
+          </ul>
+        </div>
+
+        <!-- Locations -->
+        <div class="footer-col">
+          <h4>Locations</h4>
+          <ul>
+            <li><a href="#">India</a></li>
+            <li><a href="#">Thane</a></li>
+            <li><a href="#">Navi Mumbai</a></li>
+            <li><a href="#">Pune</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Details -->
+        <div class="footer-col footer-contact-col">
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+            <span class="contact-text">+91-9769285224</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+            <span class="contact-text">collabs@theimpulsedigital.com</span>
+          </div>
+          <div class="contact-item address-item">
+            <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+            <span class="contact-text">304 - 305, Chirag Infotech, Road No. 16/Z, Ambica Nagar, Wagle Industrial Estate, Thane, Mumbai 400604</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Impulse Digital. All rights reserved.</p>
+      </div>
+      <div class="footer-divider"></div>
+    </div>
+    <!-- Etched Momentum Section — outside footer-container to span full footer width -->
+    <div class="footer-etched" aria-hidden="true">
+      <svg id="footer-hover-svg" viewBox="0 0 2400 250" xmlns="http://www.w3.org/2000/svg"
+        class="select-none uppercase cursor-pointer" style="width: 100%; height: auto; display: block;">
+        <defs>
+          <linearGradient id="textGradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="25%" stop-color="#543D98" />
+            <stop offset="50%" stop-color="#8A5CF6" />
+            <stop offset="75%" stop-color="#543D98" />
+            <stop offset="100%" stop-color="#ffffff" />
+          </linearGradient>
+          <radialGradient id="revealMask" gradientUnits="userSpaceOnUse" r="20%" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="white" />
+            <stop offset="100%" stop-color="black" />
+          </radialGradient>
+          <mask id="textMask">
+            <rect x="0" y="0" width="100%" height="100%" fill="url(#revealMask)" />
+          </mask>
+        </defs>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start" dominant-baseline="middle" font-size="160" stroke-width="0.3" class="svg-text-base">Momentum for brands with appetite.</text>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start" dominant-baseline="middle" font-size="160" stroke-width="0.3" class="svg-text-animated">Momentum for brands with appetite.</text>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start" dominant-baseline="middle" font-size="160" stroke="url(#textGradient)" stroke-width="0.3" mask="url(#textMask)" class="svg-text-fill">Momentum for brands with appetite.</text>
+      </svg>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+  <script src="js/script.js?v=74"></script>
+
+  <!-- ========================================================
+       CAREERS PAGE INSTRUMENTATION
+       ======================================================== -->
+  <script>
+    // -- 0. PRE-DOM-READY: hide hero so we can run our own choreography
+    (function () {
+      const h = document.querySelector('.car-hero-headline');
+      const d = document.querySelector('.car-hero-desc');
+      const s = document.querySelector('.car-hero-sub');
+      const a = document.querySelector('.car-hero-anchor');
+      [h, d, s, a].forEach(el => { if (el) el.style.visibility = 'hidden'; });
+      const style = document.createElement('style');
+      style.textContent = '.car-hero .svc-hero-cta-row .btn { opacity: 0; }';
+      document.head.appendChild(style);
+    })();
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // --- HERO ENTRY ---
+      const runHero = () => {
+        if (!window.gsap || !window.SplitType) return;
+        const headline = document.querySelector('.car-hero-headline');
+        const sub = document.querySelector('.car-hero-sub');
+        const desc = document.querySelector('.car-hero-desc');
+        const anchor = document.querySelector('.car-hero-anchor');
+        const ctas = document.querySelectorAll('.car-hero .svc-hero-cta-row .btn');
+
+        [headline, sub, desc, anchor].forEach(el => { if (el) el.style.visibility = 'visible'; });
+
+        if (headline) {
+          const split = new SplitType(headline, { types: 'lines, words' });
+          split.lines.forEach((line) => {
+            const w = document.createElement('div');
+            w.classList.add('line-wrapper');
+            line.parentNode.insertBefore(w, line);
+            w.appendChild(line);
+          });
+          gsap.set(split.words, { yPercent: 120, opacity: 0 });
+          gsap.to(split.words, {
+            yPercent: 0, opacity: 1,
+            duration: 1.4, stagger: 0.07,
+            ease: 'power4.out', delay: 0.25
+          });
+        }
+
+        [sub, desc, anchor].forEach((el, i) => {
+          if (!el) return;
+          const split = new SplitType(el, { types: 'lines' });
+          split.lines.forEach((line) => {
+            const w = document.createElement('div');
+            w.classList.add('line-wrapper');
+            line.parentNode.insertBefore(w, line);
+            w.appendChild(line);
+          });
+          gsap.set(split.lines, { y: 30, opacity: 0 });
+          gsap.to(split.lines, {
+            y: 0, opacity: 1,
+            duration: 0.9, stagger: 0.06,
+            ease: 'power3.out',
+            delay: 1.1 + i * 0.18
+          });
+        });
+
+        if (ctas.length) {
+          gsap.set(ctas, { scale: 0.9, opacity: 0 });
+          gsap.to(ctas, {
+            scale: 1, opacity: 1,
+            duration: 0.8, stagger: 0.12,
+            ease: 'back.out(1.6)',
+            delay: 2.0,
+            onComplete: () => { if (window.ScrollTrigger) ScrollTrigger.refresh(); }
+          });
+        }
+      };
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(runHero);
+      } else {
+        setTimeout(runHero, 100);
+      }
+
+      // --- BACKGROUND TRANSITION — purple → black, drift fades ---
+      const waitForGsap = setInterval(() => {
+        if (window.gsap && window.ScrollTrigger) {
+          clearInterval(waitForGsap);
+          const trigger = document.querySelector('#warp-start');
+          if (!trigger) return;
+
+          gsap.to(document.body, {
+            backgroundColor: '#000000',
+            scrollTrigger: {
+              trigger: trigger,
+              start: 'top bottom',
+              end: 'top top',
+              scrub: true
+            }
+          });
+
+          if (window.particlesMaterial) {
+            gsap.fromTo(window.particlesMaterial,
+              { opacity: 0.7 },
+              {
+                opacity: 0,
+                scrollTrigger: {
+                  trigger: trigger,
+                  start: 'top 80%',
+                  end: 'top 20%',
+                  scrub: true
+                }
+              }
+            );
+          }
+        }
+      }, 80);
+      setTimeout(() => clearInterval(waitForGsap), 6000);
+
+      // --- HANDOFFS — same activation pattern as service pages ---
+      const handoffs = document.querySelectorAll('.svc-handoff');
+      if (handoffs.length) {
+        const handoffObs = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              handoffObs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        handoffs.forEach((h) => handoffObs.observe(h));
+      }
+
+      // --- QUESTION LIST — illuminate sequentially ---
+      const qs = document.querySelectorAll('.car-q');
+      if (qs.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(qs, { opacity: 0, x: -20 });
+        ScrollTrigger.create({
+          trigger: '.car-questions',
+          start: 'top 70%',
+          once: true,
+          onEnter: () => {
+            qs.forEach((q, i) => {
+              gsap.to(q, {
+                opacity: 1, x: 0,
+                duration: 0.6,
+                delay: i * 0.18,
+                ease: 'power3.out',
+                onStart: () => setTimeout(() => q.classList.add('lit'), 220)
+              });
+            });
+          }
+        });
+      }
+
+      // --- TRANSLATION ROWS — reveal with stagger ---
+      const tRows = document.querySelectorAll('.car-translate-row');
+      if (tRows.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(tRows, { opacity: 0, y: 24 });
+        ScrollTrigger.create({
+          trigger: '.car-translate-list',
+          start: 'top 65%',
+          once: true,
+          onEnter: () => {
+            gsap.to(tRows, {
+              opacity: 1, y: 0,
+              duration: 0.7, stagger: 0.1,
+              ease: 'power3.out'
+            });
+          }
+        });
+      }
+
+      // --- VALUE CARDS — cascade in ---
+      const values = document.querySelectorAll('.car-value');
+      if (values.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(values, { opacity: 0, y: 40 });
+        ScrollTrigger.create({
+          trigger: '.car-values-grid',
+          start: 'top 60%',
+          once: true,
+          onEnter: () => {
+            gsap.to(values, {
+              opacity: 1, y: 0,
+              duration: 0.9, stagger: 0.15,
+              ease: 'power3.out'
+            });
+          }
+        });
+      }
+
+      // --- EXPECT LIST — reveal each row ---
+      const exItems = document.querySelectorAll('.car-expect-list li');
+      if (exItems.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(exItems, { opacity: 0, x: -18 });
+        ScrollTrigger.create({
+          trigger: '.car-expect-list',
+          start: 'top 65%',
+          once: true,
+          onEnter: () => {
+            gsap.to(exItems, {
+              opacity: 1, x: 0,
+              duration: 0.6, stagger: 0.12,
+              ease: 'power3.out'
+            });
+          }
+        });
+      }
+
+      // --- GALLERY — staggered reveal + light parallax ---
+      const gImgs = document.querySelectorAll('.car-life-img');
+      if (gImgs.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(gImgs, { opacity: 0, y: 60, scale: 0.96 });
+        ScrollTrigger.create({
+          trigger: '.car-life-gallery',
+          start: 'top 70%',
+          once: true,
+          onEnter: () => {
+            gsap.to(gImgs, {
+              opacity: 1, y: 0, scale: 1,
+              duration: 1.1, stagger: 0.12,
+              ease: 'power3.out'
+            });
+          }
+        });
+
+        // Light parallax: each image drifts upward slightly while in view
+        gImgs.forEach((img, i) => {
+          const depth = (i % 3) * 18 + 12;
+          gsap.to(img, {
+            y: -depth,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: img,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true
+            }
+          });
+        });
+      }
+
+      // --- FIT LIST ---
+      const fitItems = document.querySelectorAll('.car-fit-list li');
+      if (fitItems.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(fitItems, { opacity: 0, x: -14 });
+        ScrollTrigger.create({
+          trigger: '.car-fit-list',
+          start: 'top 65%',
+          once: true,
+          onEnter: () => {
+            gsap.to(fitItems, {
+              opacity: 1, x: 0,
+              duration: 0.55, stagger: 0.1,
+              ease: 'power3.out'
+            });
+          }
+        });
+      }
+
+      // --- APPETITE BLOCK ---
+      const appetite = document.querySelector('.car-appetite');
+      if (appetite && window.gsap && window.ScrollTrigger) {
+        const lines = appetite.querySelectorAll('p');
+        gsap.set(lines, { opacity: 0, y: 22 });
+        ScrollTrigger.create({
+          trigger: appetite,
+          start: 'top 70%',
+          once: true,
+          onEnter: () => {
+            gsap.to(lines, {
+              opacity: 1, y: 0,
+              duration: 0.8, stagger: 0.18,
+              ease: 'power3.out'
+            });
+          }
+        });
+      }
+
+      // --- FINAL CARD reveal ---
+      const finalCard = document.querySelector('.car-final-card');
+      if (finalCard && window.gsap && window.ScrollTrigger) {
+        gsap.set(finalCard, { opacity: 0, y: 50 });
+        ScrollTrigger.create({
+          trigger: finalCard,
+          start: 'top 75%',
+          once: true,
+          onEnter: () => {
+            gsap.to(finalCard, {
+              opacity: 1, y: 0,
+              duration: 1.0,
+              ease: 'power3.out'
+            });
+          }
+        });
+      }
+
+      // =====================================================
+      // IMMERSIVE LAYER — pointer spotlights, scroll rails,
+      // magnetic CTAs, watermark drift, scrubbed illumination.
+      // =====================================================
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isDesktop = window.innerWidth > 900;
+
+      // --- Hero: faint watermark fade-in + drift parallax ---
+      const heroWm = document.querySelector('.car-hero-watermark');
+      const heroSection = document.querySelector('.car-hero');
+      if (heroWm && window.gsap) {
+        gsap.to(heroWm, { opacity: 0.07, duration: 2.4, delay: 0.6, ease: 'power2.out' });
+      }
+      if (heroSection && window.gsap && !prefersReduced && isDesktop) {
+        const heroContent = heroSection.querySelector('.svc-hero-page-content');
+        let hx = 0, hy = 0, tx = 0, ty = 0;
+        heroSection.addEventListener('mousemove', (e) => {
+          const r = heroSection.getBoundingClientRect();
+          tx = ((e.clientX - r.left) / r.width - 0.5);
+          ty = ((e.clientY - r.top) / r.height - 0.5);
+        });
+        gsap.ticker.add(() => {
+          hx += (tx - hx) * 0.08;
+          hy += (ty - hy) * 0.08;
+          if (heroWm) gsap.set(heroWm, { x: hx * -40, y: hy * -40 });
+          if (heroContent) gsap.set(heroContent, { x: hx * 10, y: hy * 8 });
+        });
+      }
+
+      // --- Questions: scroll-progress rail fill ---
+      const rail = document.querySelector('.car-questions-rail');
+      const railFill = document.querySelector('.car-questions-rail-fill');
+      const questionsList = document.querySelector('.car-questions');
+      if (rail && railFill && questionsList && window.gsap && window.ScrollTrigger) {
+        ScrollTrigger.create({
+          trigger: questionsList,
+          start: 'top 75%',
+          end: 'bottom 55%',
+          scrub: 0.4,
+          onUpdate: (self) => {
+            railFill.style.setProperty('--rail-progress', (self.progress * 100) + '%');
+          }
+        });
+      }
+
+      // --- Translate rows: scroll-scrubbed illumination per row ---
+      document.querySelectorAll('.car-translate-row').forEach((row) => {
+        ScrollTrigger.create({
+          trigger: row,
+          start: 'top 70%',
+          end: 'bottom 30%',
+          onEnter: () => row.classList.add('lit'),
+          onEnterBack: () => row.classList.add('lit'),
+          onLeave: () => {},
+          onLeaveBack: () => row.classList.remove('lit')
+        });
+      });
+
+      // --- Value cards: pointer spotlight + VanillaTilt ---
+      const valueCards = document.querySelectorAll('.car-value');
+      valueCards.forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          const r = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', (e.clientX - r.left) + 'px');
+          card.style.setProperty('--mouse-y', (e.clientY - r.top) + 'px');
+        });
+      });
+      if (window.VanillaTilt && isDesktop && valueCards.length) {
+        VanillaTilt.init(valueCards, {
+          max: 4,
+          speed: 600,
+          glare: false,
+          perspective: 1400,
+          scale: 1.012,
+          'reset-to-start': true
+        });
+      }
+
+      // --- Final card: pointer spotlight tracking ---
+      if (finalCard && !prefersReduced) {
+        finalCard.addEventListener('mousemove', (e) => {
+          const r = finalCard.getBoundingClientRect();
+          finalCard.style.setProperty('--mouse-x', (e.clientX - r.left) + 'px');
+          finalCard.style.setProperty('--mouse-y', (e.clientY - r.top) + 'px');
+        });
+      }
+
+      // Note: gallery hover/dim is handled in CSS to avoid conflicts
+      // with the GSAP parallax tweens on .car-life-img.
+
+      // --- "Life at Impulse" jab: scroll-triggered strikethrough sequence ---
+      // Sequence: corporate label fades in faintly → thick line draws L→R
+      // through it (rejection) → "The Part You Actually Join" slams up.
+      const jabWrap = document.querySelector('.car-life-jab');
+      const jabText = document.querySelector('.car-life-jab-text');
+      const jabStrike = document.querySelector('.car-life-jab-strike');
+      const lifeTitle = document.querySelector('.car-life-title');
+      if (jabWrap && jabStrike && lifeTitle && window.gsap && window.ScrollTrigger) {
+        // Inject CSS custom property driver for strike width
+        const strikeStyleTag = document.createElement('style');
+        strikeStyleTag.textContent = '.car-life-jab-strike { width: var(--strike-w, 0%); }';
+        document.head.appendChild(strikeStyleTag);
+
+        ScrollTrigger.create({
+          trigger: '.car-life-header',
+          start: 'top 60%',
+          once: true,
+          onEnter: () => {
+            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+            gsap.set(jabWrap, { y: 18 });
+
+            // 1. Corporate label arrives first, large enough to feel deliberate.
+            tl.to(jabWrap, { opacity: 1, y: 0, duration: 0.65 })
+
+            // 2. The Impulse purple strike rejects the corporate line.
+              .add(() => {
+                const prog = { v: 0 };
+                gsap.to(prog, {
+                  v: 106,
+                  duration: 0.58,
+                  ease: 'power3.inOut',
+                  onUpdate: () => jabStrike.style.setProperty('--strike-w', prog.v + '%')
+                });
+              }, '+=0.35')
+              .to(jabText, {
+                opacity: 0.38,
+                duration: 0.28,
+                ease: 'power2.out'
+              }, '+=0.35')
+
+            // 3. The real title appears in Impulse purple.
+              .to(lifeTitle, {
+                opacity: 1,
+                y: 0,
+                duration: 0.85,
+                ease: 'power4.out'
+              }, '-=0.05');
+          }
+        });
+      }
+
+      // --- Open positions: hover preview, click/tap lock, center mark reveal ---
+      const positionsSection = document.querySelector('.car-positions');
+      const jobCards = document.querySelectorAll('[data-job-card]');
+      if (jobCards.length) {
+        jobCards.forEach((card) => {
+          const toggle = card.querySelector('.car-job-toggle');
+          const setOpen = (open) => {
+            card.classList.toggle('is-open', open);
+            if (toggle) toggle.setAttribute('aria-expanded', String(open));
+            if (window.ScrollTrigger) setTimeout(() => ScrollTrigger.refresh(), 320);
+          };
+
+          if (toggle) {
+            toggle.addEventListener('click', (event) => {
+              event.preventDefault();
+              const shouldOpen = !card.classList.contains('is-open');
+              jobCards.forEach((other) => {
+                if (other !== card) {
+                  other.classList.remove('is-open');
+                  const otherToggle = other.querySelector('.car-job-toggle');
+                  if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+                }
+              });
+              setOpen(shouldOpen);
+            });
+          }
+
+          const markPath = card.querySelector('.car-job-mark-path');
+          if (markPath && window.gsap) {
+            const pathLen = markPath.getTotalLength();
+            gsap.set(markPath, { strokeDasharray: pathLen, strokeDashoffset: pathLen });
+
+            const drawMark = () => {
+              gsap.killTweensOf(markPath);
+              gsap.to(markPath, {
+                strokeDashoffset: 0,
+                duration: 1.05,
+                ease: 'power2.inOut'
+              });
+            };
+
+            const resetMark = () => {
+              gsap.killTweensOf(markPath);
+              gsap.to(markPath, {
+                strokeDashoffset: pathLen,
+                duration: 0.35,
+                ease: 'power2.out'
+              });
+            };
+
+            card.addEventListener('mouseenter', drawMark);
+            card.addEventListener('mouseleave', resetMark);
+            card.addEventListener('focusin', drawMark);
+            card.addEventListener('focusout', (event) => {
+              if (!card.contains(event.relatedTarget)) resetMark();
+            });
+          }
+        });
+
+        if (window.gsap && window.ScrollTrigger) {
+          ScrollTrigger.create({
+            trigger: '.car-jobs-list',
+            start: 'top 72%',
+            once: true,
+            onEnter: () => {
+              gsap.from(jobCards, {
+                y: 30,
+                duration: 0.95,
+                stagger: 0.12,
+                clearProps: 'transform',
+                ease: 'power3.out'
+              });
+            }
+          });
+        }
+      }
+
+      if (positionsSection) {
+        if (window.ScrollTrigger) {
+          ScrollTrigger.create({
+            trigger: positionsSection,
+            start: 'top 68%',
+            end: 'bottom 35%',
+            onEnter: () => positionsSection.classList.add('mark-visible'),
+            onEnterBack: () => positionsSection.classList.add('mark-visible'),
+            onLeave: () => positionsSection.classList.remove('mark-visible'),
+            onLeaveBack: () => positionsSection.classList.remove('mark-visible')
+          });
+        } else {
+          const markObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => positionsSection.classList.toggle('mark-visible', entry.isIntersecting));
+          }, { threshold: 0.2 });
+          markObserver.observe(positionsSection);
+        }
+      }
+
+      // --- Section title: split-line stagger reveal on enter ---
+      // Exclude .car-life-title — it is handled by the jab sequence above.
+      document.querySelectorAll('.car-section-title').forEach((el) => {
+        if (!window.SplitType || !window.gsap || !window.ScrollTrigger) return;
+        if (el.closest('.car-positions')) return;
+        const split = new SplitType(el, { types: 'lines, words' });
+        split.lines.forEach((line) => {
+          const w = document.createElement('div');
+          w.classList.add('line-wrapper');
+          line.parentNode.insertBefore(w, line);
+          w.appendChild(line);
+        });
+        gsap.set(split.words, { yPercent: 110, opacity: 0 });
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 80%',
+          once: true,
+          onEnter: () => {
+            gsap.to(split.words, {
+              yPercent: 0, opacity: 1,
+              duration: 1.0, stagger: 0.05,
+              ease: 'power4.out'
+            });
+          }
+        });
+      });
+
+    });
+  </script>
+</body>
+
+</html>

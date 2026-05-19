@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import ServiceHero from './ServiceHero';
 import ServiceHandoff from './ServiceHandoff';
 import Logos from '../Logos';
@@ -82,13 +83,15 @@ export const ServiceProblem: React.FC<{ data: any }> = ({ data }) => {
               <ul className="svc-problem-gaps">
                 {data.gaps.map((gap: string, i: number) => (
                   <li key={i}>
-                    <span className="gap-mark">
-                      {data.gapIconSvg ? (
-                        <svg viewBox={data.gapIconViewBox || "0 0 24 24"} dangerouslySetInnerHTML={{ __html: data.gapIconSvg }} />
-                      ) : (
-                        <svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg>
-                      )}
-                    </span>
+                    {data.gapIconSvg !== 'none' && (
+                      <span className="gap-mark">
+                        {data.gapIconSvg ? (
+                          <svg viewBox={data.gapIconViewBox || "0 0 24 24"} dangerouslySetInnerHTML={{ __html: data.gapIconSvg }} />
+                        ) : (
+                          <svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg>
+                        )}
+                      </span>
+                    )}
                     <span className="gap-text">{gap}</span>
                   </li>
                 ))}
@@ -142,7 +145,8 @@ export const ServiceVs: React.FC<{ data: any }> = ({ data }) => {
         once: true,
         onEnter: () => {
           const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-          tl.to(lineQuiet, { opacity: 0.7, y: 0, duration: 0.7 })
+          tl.to(lineQuiet, { opacity: 0.7, y: 0, duration: 0.7 }, 0)
+            .to(lineLoud, { opacity: 1, y: 0, duration: 0.8 }, 0.2)
             .add(() => {
               if(!strike) return;
               let prog = { v: 0 };
@@ -152,8 +156,7 @@ export const ServiceVs: React.FC<{ data: any }> = ({ data }) => {
                 ease: 'power2.inOut',
                 onUpdate: () => strike.style.setProperty('--strike-w', prog.v + '%')
               });
-            }, '+=0.2')
-            .to(lineLoud, { opacity: 1, y: 0, duration: 0.8 }, '+=0.85')
+            }, 1.2)
             .add(() => {
               if(!highlight) return;
               let prog = { v: 0 };
@@ -163,8 +166,8 @@ export const ServiceVs: React.FC<{ data: any }> = ({ data }) => {
                 ease: 'power3.out',
                 onUpdate: () => highlight.style.setProperty('--hl-w', prog.v + '%')
               });
-            }, '+=0.2')
-            .to(closing, { opacity: 1, y: 0, duration: 0.7 }, '+=1.0');
+            }, 1.6)
+            .to(closing, { opacity: 1, y: 0, duration: 0.7 }, 2.4);
         }
       });
 
@@ -215,7 +218,7 @@ export const ServiceVs: React.FC<{ data: any }> = ({ data }) => {
           <div className="svc-vs-line">
             <div className="svc-vs-label">{data.rightLabel}</div>
             <div className="svc-vs-statement-loud">
-              {data.rightText}<span className="svc-vs-highlight" dangerouslySetInnerHTML={{ __html: data.rightHighlight }} />.
+              <span dangerouslySetInnerHTML={{ __html: data.rightText }} /><span className="svc-vs-highlight" dangerouslySetInnerHTML={{ __html: data.rightHighlight }} />.
             </div>
           </div>
           {data.steps && data.steps.length > 0 && (
@@ -265,14 +268,22 @@ export const ServiceUses: React.FC<{ data: any }> = ({ data }) => {
   return (
     <section className="svc-uses glass-panel" id="use-cases">
       <div className="container">
-        <h2 className="svc-h2 split-text">{data.title}</h2>
+        <h2 className="svc-h2 split-text" dangerouslySetInnerHTML={{ __html: data.title }} />
         <div className="svc-uses-grid">
           {data.cards.map((card: any, i: number) => (
-            <div className="svc-use-card" data-cursor="VIEW" key={i}>
+            <div className="svc-use-card" data-cursor={card.link ? "VIEW" : "DEFAULT"} key={i}>
               <div className="svc-use-corner"><svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg></div>
               <h3 className="svc-use-title">{card.title}</h3>
               <p className="svc-use-body">{card.body}</p>
               <div className="svc-use-outcome" dangerouslySetInnerHTML={{ __html: card.outcome }} />
+              {card.link && (
+                <div style={{ marginTop: '2rem' }}>
+                  <Link to={card.link} className="btn" data-cursor="VIEW">
+                    <span className="btn-text">Know More</span>
+                    <div className="btn-fill"></div>
+                  </Link>
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -282,7 +293,7 @@ export const ServiceUses: React.FC<{ data: any }> = ({ data }) => {
 };
 
 export const ServiceWhenToUse: React.FC<{ data: any }> = ({ data }) => (
-  <section className="svc-section glass-panel">
+  <section className={`svc-section glass-panel ${data.customClass || ''}`}>
     <div className="container">
       <div className="svc-systems-grid">
         <div className="svc-systems-intro">
@@ -336,10 +347,13 @@ export const ServiceGuardrails: React.FC<{ data: any }> = ({ data }) => (
           </div>
         ))}
       </div>
-      <h3 className="svc-guard-punchline">
-        <span className="svc-guard-punchline-line"><span className="inner">{data.punchlineLine1}</span></span>
-        <span className="svc-guard-punchline-line"><span className="inner accent" style={{ color: 'var(--impulse-violet)' }}>{data.punchlineLine2}</span></span>
-      </h3>
+        <h3 className="svc-guard-punchline">
+          <span className="svc-guard-punchline-line" style={data.punchlineLine1Style}><span className="inner" dangerouslySetInnerHTML={{ __html: data.punchlineLine1 }} /></span>
+          <span className="svc-guard-punchline-line" style={data.punchlineLine2Style}><span className="inner accent" style={{ color: 'var(--impulse-violet)' }} dangerouslySetInnerHTML={{ __html: data.punchlineLine2 }} /></span>
+          {data.punchlineLine3 && (
+            <span className="svc-guard-punchline-line" style={data.punchlineLine3Style}><span className="inner accent" style={{ color: 'var(--impulse-violet)' }} dangerouslySetInnerHTML={{ __html: data.punchlineLine3 }} /></span>
+          )}
+        </h3>
     </div>
   </section>
 );
@@ -530,7 +544,7 @@ export const ServiceFinalCTA: React.FC<{ data: any }> = ({ data }) => {
         </svg>
       </div>
       <div className="container">
-        <style>{`.svc-final-cta .svc-final-cta-heading { font-size: ${data.headingFontSize || 'clamp(2.8rem, 5vw, 5.5rem)'} !important; line-height: 1.1 !important; }`}</style>
+        {data.headingFontSize && <style>{`.svc-final-cta .svc-final-cta-heading { font-size: ${data.headingFontSize} !important; }`}</style>}
         <h2 className="split-text svc-final-cta-heading" dangerouslySetInnerHTML={{ __html: data.titleParts ? `${data.titleParts[0]}<span style="color: var(--impulse-violet);">${data.accent}</span>` : data.title || '' }} />
         <p className="svc-final-cta-body">{data.body}</p>
         <div className="svc-final-cta-actions">
@@ -548,6 +562,60 @@ export const ServiceFinalCTA: React.FC<{ data: any }> = ({ data }) => {
           )}
         </div>
         <p className="svc-final-cta-footnote">{data.footnote}</p>
+      </div>
+    </section>
+  );
+};
+
+export const ServiceTextList: React.FC<{ data: any }> = ({ data }) => {
+  useEffect(() => {
+    const { gsap, ScrollTrigger } = window as any;
+    if (!gsap || !ScrollTrigger) return;
+    
+    // We scope the query to this specific component instance if possible, 
+    // but a unique class or specific selector is better. We'll rely on ScrollTrigger batching or simple fromTo.
+    const listItems = document.querySelectorAll('.svc-text-list-wrapper .svc-fit-list li');
+    if (listItems.length) {
+      gsap.set(listItems, { opacity: 0, x: -12 });
+      ScrollTrigger.create({
+        trigger: '.svc-text-list-wrapper',
+        start: 'top 65%',
+        once: true,
+        onEnter: () => {
+          gsap.to(listItems, {
+            opacity: 1, x: 0,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: 'power2.out'
+          });
+        }
+      });
+    }
+  }, []);
+
+  return (
+    <section className="svc-fit svc-text-list-wrapper">
+      <div className="container">
+        <div className="svc-fit-grid">
+          <div>
+            <h2 className="svc-h2 split-text" dangerouslySetInnerHTML={{ __html: data.title }} />
+            {data.intro && data.intro.split('\n').map((p: string, i: number) => (
+              <p key={i} style={{ color: 'var(--impulse-violet)', fontWeight: 600, marginTop: i === 0 ? '1rem' : '0.5rem', fontSize: '1.1rem' }} dangerouslySetInnerHTML={{ __html: p }}></p>
+            ))}
+          </div>
+          <div>
+            <ul className="svc-fit-list">
+              {data.list.map((item: string, i: number) => <li key={i} dangerouslySetInnerHTML={{ __html: item }} />)}
+            </ul>
+            {data.outro && (
+              <div className="svc-fit-closer" style={{ marginTop: '3rem' }}>
+                {data.outro.split('\n').map((p: string, i: number) => (
+                  <p key={i} dangerouslySetInnerHTML={{ __html: p }}></p>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -653,7 +721,7 @@ export const ServiceStats: React.FC<{ data: any }> = ({ data }) => {
   return (
     <section className="svc-stats" id="warp-start">
       <div className="container">
-        <h2 className="svc-h2 split-text">{data.title}</h2>
+        <h2 className="svc-h2 split-text" dangerouslySetInnerHTML={{ __html: data.title }} />
         <div className="svc-stats-grid">
           {data.metrics.map((stat: any, i: number) => (
             <div className="svc-stat" key={i}>

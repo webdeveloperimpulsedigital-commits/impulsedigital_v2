@@ -11,11 +11,11 @@ export const localSEOData = {
     "buttons": [
       {
         "text": "Find Your Local Search Gaps",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "FIND"
       },
       {
-        "text": "See How Local SEO Works",
+        "text": "See the Impact in Numbers",
         "link": "#process",
         "cursor": "SEE",
         "primary": false
@@ -79,72 +79,40 @@ export const localSEOData = {
     ],
     "closing": "The output is not just a better map listing. It is a local search presence built to help nearby customers move."
   },
-  "uses": {
-    "title": "Where Local SEO Creates Business Leverage",
-    "cards": [
-      {
-        "title": "Google Business Profile Optimisation",
-        "body": "Make your business easier to find, understand, and contact on Google Search and Maps. Useful when people search locally, but your profile is incomplete, outdated, inconsistent, or not convincing enough.",
-        "outcome": "Output: Profile optimisation, category inputs, description improvements, photo guidance, service updates, Q&A inputs, post recommendations, and action-focused profile hygiene."
-      },
-      {
-        "title": "Maps Visibility",
-        "body": "Improve how your business appears when customers search by location, category, or nearby need. Useful when competitors are showing up more strongly in map results for high-intent local searches.",
-        "outcome": "Output: Map visibility review, local keyword mapping, proximity and category checks, location signal recommendations, and ranking opportunity areas."
-      },
-      {
-        "title": "Local Pages and Service-Area SEO",
-        "body": "Build pages that help customers in specific locations understand what you offer and why you are relevant to them. Useful when your business serves multiple areas, branches, neighbourhoods, or service zones.",
-        "outcome": "Output: Location page structure, service-area content, local keyword mapping, page recommendations, internal linking, and enquiry-focused page inputs."
-      },
-      {
-        "title": "Citation and NAP Consistency",
-        "body": "Make your business information consistent across directories, listings, and local search surfaces. Useful when inconsistent names, addresses, phone numbers, timings, or listings are weakening trust.",
-        "outcome": "Output: Citation audit, NAP consistency checks, correction recommendations, listing hygiene inputs, and local trust-signal improvements."
-      },
-      {
-        "title": "Review and Reputation Signals",
-        "body": "Turn customer feedback into a stronger trust layer for local discovery. Useful when customers compare ratings, review quality, response behaviour, and recent activity before calling or visiting.",
-        "outcome": "Output: Review acquisition guidance, response framework, sentiment themes, reputation hygiene, and trust-building recommendations."
-      },
-      {
-        "title": "Local Conversion Support",
-        "body": "Make the path from discovery to action easier. Useful when people find your business, but do not get enough clarity to call, visit, book, or enquire.",
-        "outcome": "Output: Local FAQ inputs, service explanations, offer messaging, contact-path improvements, call-to-action guidance, and conversion opportunity mapping."
-      }
-    ]
-  },
   "channels": {
     "title": "When Nearby Customers Find Everyone Else First",
-    "intro1": "Local SEO matters when nearby demand exists, but action is going elsewhere.",
-    "intro2": "Use it when:",
-    "systemsTitle": "We Turn Nearby Intent Into Calls, Visits, and Enquiries.",
-    "systemsParagraphs": [
-      "Local SEO becomes weak when the signals are scattered.",
-      "A listing says one thing. A website says another. Timings are outdated. Photos are old. Reviews go unanswered. Local pages are thin. The map appears, but does not persuade.",
-      "We connect the signals that help nearby customers trust the business faster."
-    ],
-    "closer": "Strategic interpretation: So local SEO becomes customer movement, not just map visibility.",
-    "pillsHeading": "We focus on:",
+    "intro": "Local SEO matters when nearby demand exists, but action is going elsewhere.\nUse it when:",
     "list": [
-      { "label": "Maps present, calls weak", "pos": { "left": "22%", "top": "20%" } },
-      { "label": "Profile incomplete", "pos": { "left": "50%", "top": "12%" } },
-      { "label": "Competitors stronger locally", "pos": { "left": "78%", "top": "20%" } },
-      { "label": "Reviews visible, not working", "pos": { "left": "85%", "top": "50%" } },
-      { "label": "Multiple service areas", "pos": { "left": "78%", "top": "80%" } },
-      { "label": "Local pages thin", "pos": { "left": "50%", "top": "88%" } },
-      { "label": "Customers search before visiting", "pos": { "left": "22%", "top": "80%" } },
-      { "label": "Strong location, weak visibility", "pos": { "left": "15%", "top": "50%" } }
+      "Your business appears on maps, but calls are weak.",
+      "Your Google Business Profile is incomplete or inconsistent.",
+      "Your competitors show up more often for local searches.",
+      "Your reviews are visible, but not working hard enough.",
+      "Your business has multiple locations or service areas.",
+      "Your local pages do not explain enough.",
+      "Your customers search before they call or visit.",
+      "Your location is strong, but your local visibility is not.",
+      "Your leadership wants more visits, calls, appointments, and enquiries from local discovery."
     ],
+    "outro": "The issue is not always distance.\nSometimes the customer is close.\nThey just choose someone clearer."
+  },
+  "whenToUse": {
+    "title": "We Turn Nearby Intent Into Calls, Visits, and Enquiries.",
+    "paragraphs": [
+      "Local SEO becomes weak when the signals are scattered.",
+      "A listing says one thing. A website says another. Timings are outdated. Photos are old. Reviews go unanswered. Local pages are thin. The map appears, but does not persuade."
+    ],
+    "closer": "We connect the signals that help nearby customers trust the business faster.",
+    "pillsHeading": "We focus on:",
     "pills": [
-      "Local intent: What customers nearby are searching, comparing, and trying to do.",
-      "Profile clarity: How clearly your Google Business Profile explains your business, services, timings, location, and next steps.",
-      "Location signals: How consistently your business information appears across maps, listings, directories, and local pages.",
-      "Review trust: How ratings, review quality, recency, and responses shape confidence.",
-      "Local content: How pages answer the real questions customers ask before visiting, calling, or booking.",
-      "Conversion path: How easily people move from search to call, direction request, appointment, visit, or enquiry."
+      { "label": "Local intent", "desc": "What customers nearby are searching, comparing, and trying to do." },
+      { "label": "Profile clarity", "desc": "How clearly your Google Business Profile explains your business, services, timings, location, and next steps." },
+      { "label": "Location signals", "desc": "How consistently your business information appears across maps, listings, directories, and local pages." },
+      { "label": "Review trust", "desc": "How ratings, review quality, recency, and responses shape confidence." },
+      { "label": "Local content", "desc": "How pages answer the real questions customers ask before visiting, calling, or booking." },
+      { "label": "Conversion path", "desc": "How easily people move from search to call, direction request, appointment, visit, or enquiry." },
+      { "label": "Strategic interpretation", "desc": "So local SEO becomes customer movement, not just map visibility." }
     ],
-    "outro": "The issue is not always distance. Sometimes the customer is close. They just choose someone clearer."
+    "punchline": ["Not more map presence.", "More nearby customers taking action."]
   },
   "guardrails": {
     "title": "Not more map presence. More nearby customers taking action.",
@@ -228,13 +196,13 @@ export const localSEOData = {
     "buttons": [
       {
         "text": "Find Your Local Search Gaps",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "FIND",
         "primary": false
       },
       {
-        "text": "Talk to Impulse Digital",
-        "link": "#connect",
+        "text": "Start a Conversation",
+        "link": "/contact-us/",
         "cursor": "HI",
         "primary": false
       }

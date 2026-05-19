@@ -155,30 +155,22 @@ const AgenticAI: React.FC = () => {
   return (
     <main id="main-content">
       <Helmet>
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <title>Agentic A I | Impulse Digital</title>
-        <meta name="robots" content="index, follow" />
-        <meta name="revisit-after" content="1 day" />
-        <meta name="language" content="English" />
-        <meta name="generator" content="N/A" />
-
-        <meta property="og:title" content="Agentic A I | Impulse Digital" />
-        <meta property="og:description" content="" />
-        <meta property="og:url" content="https://www.theimpulsedigital.com/services/agentic-ai" />
-        <meta property="og:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
-        <meta property="og:site_name" content="Impulse Digital" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@impulsedigi" />
-        <meta name="twitter:creator" content="@impulsedigi" />
-        <meta name="twitter:title" content="Agentic A I | Impulse Digital" />
-        <meta name="twitter:description" content="" />
-        <meta name="twitter:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
-        <meta name="twitter:url" content="https://www.theimpulsedigital.com/services/agentic-ai" />
-
-        <link rel="canonical" href="https://www.theimpulsedigital.com/services/agentic-ai" />
+        <title>Agentic AI Agency | Intelligent Agentic AI Service for Growth</title>
+<meta name="description" content="Impulse Digital is a leading agentic ai agency delivering advanced agentic ai service that powers smart, autonomous customer engagement across WhatsApp, email, voice, and social. Boosting conversions, sales efficiency, and ROI with agentic ai service." />
+<meta name="keywords" content="agentic ai agency, agentic ai service, agentic ai comapny, multilingual ai agents, lead conversion ai, mumbai, india, impulse digital" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/services/agentic-ai/" />
+<meta property="og:title" content="Agentic AI Agency | Intelligent Agentic AI Service for Growth" />
+<meta property="og:description" content="Impulse Digital is a leading agentic AI agency delivering advanced agentic AI service that powers smart, autonomous customer engagement across WhatsApp, email, voice, and social. Boosting conversions, sales efficiency, and ROI with agentic ai service." />
+<meta property="og:image" content="https://www.theimpulsedigital.com/agentic-a.jfif" />
+<meta property="og:url" content="https://www.theimpulsedigital.com/services/agentic-ai/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Impulse Digital" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Agentic AI Agency | Intelligent Agentic AI Service for Growth" />
+<meta name="twitter:description" content="Impulse Digital is a leading agentic AI agency delivering advanced agentic AI service that powers smart, autonomous customer engagement across WhatsApp, email, voice, and social. Boosting conversions, sales efficiency, and ROI with agentic ai service." />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/agentic-a.jfif" />
+<meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 
         headlineParts={agenticAiData.hero.headlineParts}
@@ -246,7 +238,7 @@ const AgenticAI: React.FC = () => {
       <ServiceHandoff />
       
       <ServiceFinalCTA data={agenticAiData.finalCta} />
-      <Contact />
+      <Contact title="Let’s give your team<br/>its time back." />
       <ServiceFAQ data={agenticAiData.faq} />
     </main>
   );

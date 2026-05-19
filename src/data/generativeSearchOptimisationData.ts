@@ -10,18 +10,18 @@ export const generativeSearchOptimisationData = {
     "buttons": [
       {
         "text": "Improve Your AI Search Visibility",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "BUILD"
       },
       {
         "text": "See How AI Search Works",
-        "link": "#use-cases",
+        "link": "#process",
         "cursor": "EXPLORE"
       }
     ]
   },
   "stats": {
-    "title": "Built for Search That Now Answers Back",
+    "title": "Built for Search That Now<br/>Answers Back",
     "metrics": [
       {
         "target": 3.4,
@@ -46,6 +46,12 @@ export const generativeSearchOptimisationData = {
   },
   "problem": {
     "title": "Search Is No Longer Just a List of Websites.",
+    "intro": [
+      "Your buyer may not scroll through results the way they used to.",
+      "They may ask AI for a comparison. They may read a summary. They may trust a recommendation. They may shortlist brands before visiting a single website."
+    ],
+    "pivot": "That changes the job of SEO.",
+    "gapIconSvg": "none",
     "gaps": [
       "Your category is researched through answers.",
       "Your proof is summarised before a click.",
@@ -53,10 +59,7 @@ export const generativeSearchOptimisationData = {
       "Your brand may be shortlisted before a visit.",
       "Your expertise needs to be machine-readable."
     ],
-    "intro": [
-      "Your buyer may not scroll through results the way they used to.",
-      "They may ask AI for a comparison. They may read a summary. They may trust a recommendation. They may shortlist brands before visiting a single website.",
-      "That changes the job of SEO.",
+    "outro": [
       "It is no longer enough to be present.",
       "Your brand needs to be understood."
     ]
@@ -146,8 +149,8 @@ export const generativeSearchOptimisationData = {
     ]
   },
   "guardrails": {
-    "title": "Not Just More Rankings. Clearer Discovery.",
-    "intro": "The goal is not to chase every new search trend.The goal is to make your brand easier to find, understand, and trust.AI search visibility improves when these signals work together:",
+    "title": "Not Just More Rankings.<br/>Clearer Discovery.",
+    "intro": "The goal is not to chase every new search trend. The goal is to make your brand easier to find, understand, and trust. AI search visibility improves when these signals work together:",
     "rows": [
       {
         "title": "Search intent",
@@ -201,7 +204,8 @@ export const generativeSearchOptimisationData = {
         "title": "Track and Improve",
         "desc": "We monitor organic visibility, rankings, brand mentions, AI visibility signals, engagement, and conversion movement."
       }
-    ]
+    ],
+    "footer": "The aim is not to satisfy algorithms alone.\n\nThe aim is to become easier for buyers and AI systems to understand."
   },
   "fit": {
     "title": "AI Search Optimisation Is Right for You If",
@@ -224,13 +228,13 @@ export const generativeSearchOptimisationData = {
     "buttons": [
       {
         "text": "Improve Your AI Search Visibility",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "START",
         "primary": false
       },
       {
-        "text": "Talk to Impulse Digital",
-        "link": "#connect",
+        "text": "Start a Conversation",
+        "link": "/contact-us/",
         "cursor": "HI",
         "primary": false
       }

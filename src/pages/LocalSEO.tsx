@@ -7,11 +7,13 @@ import {
   ServiceVs, 
   ServiceUses, 
   ServiceProcess, 
-  ServiceGuardrails, 
   ServiceFit, 
   ServiceFinalCTA, 
   ServiceFAQ, 
-  ServiceStats
+  ServiceStats,
+  ServiceTextList,
+  ServiceWhenToUse,
+  ServiceGuardrails
 } from '../components/Service/ServiceTemplate';
 import Logos from '../components/Logos';
 import Testimonials from '../components/Testimonials';
@@ -23,158 +25,30 @@ const LocalSEO: React.FC = () => {
     window.scrollTo(0, 0);
     document.body.classList.add('service-page', 'seo-page');
 
-    const { gsap, ScrollTrigger } = window as any;
-    const stage = document.getElementById('channels-stage');
-    const linesSvg = document.getElementById('channels-orbit-lines');
-    const centerEl = document.querySelector('.svc-channels-center');
-    const centerPath = centerEl ? centerEl.querySelector('path') : null;
-
-    let pulseTimer: any = null;
-    let convergenceActive = false;
-    let measureTimeout1: any, measureTimeout2: any;
-    let sectionObs: IntersectionObserver | null = null;
-    let measureFn: () => void = () => {};
-
-    if (stage && linesSvg && centerEl && centerPath && gsap && ScrollTrigger) {
-      let chipPositions: any[] = [];
-      let cx = 0, cy = 0;
-      let markRadius = 80;
-
-      measureFn = () => {
-        const sr = stage.getBoundingClientRect();
-        linesSvg.setAttribute('viewBox', `0 0 ${sr.width} ${sr.height}`);
-        cx = sr.width / 2;
-        cy = sr.height / 2;
-        const centerRect = centerEl.getBoundingClientRect();
-        markRadius = Math.min(centerRect.width, centerRect.height) * 0.46;
-
-        chipPositions = [...stage.querySelectorAll('.svc-channel-chip')].map((chip) => {
-          const cr = chip.getBoundingClientRect();
-          const x = cr.left - sr.left + cr.width / 2;
-          const y = cr.top - sr.top + cr.height / 2;
-          const dx = cx - x;
-          const dy = cy - y;
-          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          const tx = x + dx * ((dist - markRadius) / dist);
-          const ty = y + dy * ((dist - markRadius) / dist);
-          return { x, y, tx, ty };
-        });
-
-        linesSvg.querySelectorAll('line').forEach(l => l.remove());
-        chipPositions.forEach((p) => {
-          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-          line.setAttribute('x1', p.x);
-          line.setAttribute('y1', p.y);
-          line.setAttribute('x2', p.tx);
-          line.setAttribute('y2', p.ty);
-          linesSvg.appendChild(line);
-        });
-      };
-
-      const flashCenter = () => {
-        gsap.fromTo(centerPath,
-          { strokeWidth: 6, stroke: 'rgba(138, 92, 246, 0.85)' },
-          {
-            strokeWidth: 11,
-            stroke: 'rgba(220, 200, 255, 1)',
-            duration: 0.18,
-            yoyo: true,
-            repeat: 1,
-            ease: 'power2.out'
-          }
-        );
-      };
-
-      const emitPulse = () => {
-        if (!chipPositions.length) return;
-        const idx = Math.floor(Math.random() * chipPositions.length);
-        const p = chipPositions[idx];
-        const pulse = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        pulse.setAttribute('cx', String(p.x));
-        pulse.setAttribute('cy', String(p.y));
-        pulse.setAttribute('r', '4.5');
-        pulse.setAttribute('class', 'svc-channels-pulse');
-        linesSvg.appendChild(pulse);
-
-        gsap.timeline({ onComplete: () => pulse.remove() })
-          .fromTo(pulse, { opacity: 0, attr: { r: 2 } }, { opacity: 1, attr: { r: 5 }, duration: 0.35, ease: 'power2.out' })
-          .to(pulse, {
-            attr: { cx: p.tx, cy: p.ty },
-            duration: 1.3,
-            ease: 'power2.in'
-          }, 0)
-          .to(pulse, { opacity: 0, attr: { r: 2 }, duration: 0.2, ease: 'power2.in' }, '-=0.18')
-          .add(flashCenter, '-=0.18');
-      };
-
-      const startConvergence = () => {
-        if (convergenceActive) return;
-        convergenceActive = true;
-        gsap.fromTo(centerPath,
-          { opacity: 0.15, strokeWidth: 4 },
-          { opacity: 1, strokeWidth: 6, duration: 1.6, ease: 'power2.out' }
-        );
-        pulseTimer = setInterval(emitPulse, 380);
-      };
-
-      const stopConvergence = () => {
-        convergenceActive = false;
-        if (pulseTimer) { clearInterval(pulseTimer); pulseTimer = null; }
-      };
-
-      measureFn();
-      measureTimeout1 = setTimeout(measureFn, 250);
-      measureTimeout2 = setTimeout(measureFn, 800);
-      window.addEventListener('resize', measureFn);
-
-      sectionObs = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) startConvergence();
-          else stopConvergence();
-        });
-      }, { threshold: 0.2 });
-      sectionObs.observe(stage);
-
-      gsap.set(centerPath, { opacity: 0.15 });
-    }
-
     return () => {
       document.body.classList.remove('service-page', 'seo-page');
-      window.removeEventListener('resize', measureFn);
-      if (pulseTimer) clearInterval(pulseTimer);
-      clearTimeout(measureTimeout1);
-      clearTimeout(measureTimeout2);
-      if (sectionObs) sectionObs.disconnect();
     };
   }, []);
 
   return (
     <main id="main-content">
       <Helmet>
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <title>Local S E O | Impulse Digital</title>
-        <meta name="robots" content="index, follow" />
-        <meta name="revisit-after" content="1 day" />
-        <meta name="language" content="English" />
-        <meta name="generator" content="N/A" />
-
-        <meta property="og:title" content="Local S E O | Impulse Digital" />
-        <meta property="og:description" content="" />
-        <meta property="og:url" content="https://www.theimpulsedigital.com/services/search-engine-optimisation/local-seo" />
-        <meta property="og:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
-        <meta property="og:site_name" content="Impulse Digital" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@impulsedigi" />
-        <meta name="twitter:creator" content="@impulsedigi" />
-        <meta name="twitter:title" content="Local S E O | Impulse Digital" />
-        <meta name="twitter:description" content="" />
-        <meta name="twitter:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
-        <meta name="twitter:url" content="https://www.theimpulsedigital.com/services/search-engine-optimisation/local-seo" />
-
-        <link rel="canonical" href="https://www.theimpulsedigital.com/services/search-engine-optimisation/local-seo" />
+        <title>Local SEO Services in Mumbai | Local SEO Agency</title>
+<meta name="description" content="Impulse Digital is one of the best local SEO company in Mumbai that offers end to end local SEO services in Mumbai, India. At Impulse Digital, we fuel all your local SEO dreams and bring them to life. We strive to offer you the local SEO services that promote all your business locations optimally." />
+<meta name="keywords" content="local seo services in mumbai, local seo company in mumbai, local seo agency in mumbai, local search engine optimization services, india, impulse digital" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/services/search-engine-optimization/local-seo-services/" />
+<meta property="og:title" content="Local SEO Services in Mumbai | Local SEO Agency" />
+<meta property="og:description" content="Impulse Digital is one of the best local SEO company in Mumbai that offers end to end local SEO services in Mumbai, India. At Impulse Digital, we fuel all your local SEO dreams and bring them to life. We strive to offer you the local SEO services that promote all your business locations optimally." />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:url" content="https://www.theimpulsedigital.com/services/search-engine-optimization/local-seo-services/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Impulse Digital" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Local SEO Services in Mumbai | Local SEO Agency" />
+<meta name="twitter:description" content="Impulse Digital is one of the best local SEO company in Mumbai that offers end to end local SEO services in Mumbai, India. At Impulse Digital, we fuel all your local SEO dreams and bring them to life. We strive to offer you the local SEO services that promote all your business locations optimally." />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 
         headlineHtml={data.hero.headlineHtml}
@@ -184,86 +58,38 @@ const LocalSEO: React.FC = () => {
         buttons={data.hero.buttons}
       />
 
-      <ServiceStats data={data.stats} />
+      {data.stats && <ServiceStats data={data.stats} />}
       <ServiceHandoff />
       
-      <ServiceProblem data={data.problem} />
+      {data.problem && <ServiceProblem data={data.problem} />}
       <ServiceHandoff />
       
-      <ServiceVs data={data.vs} />
+      {data.vs && <ServiceVs data={data.vs} />}
       <ServiceHandoff />
 
-      {/* CHANNELS Section specifically for Local SEO */}
-      {data.channels && (
-        <section className="svc-channels">
-          <div className="container">
-            <h2 className="svc-h2 split-text" style={{ maxWidth: '800px', marginBottom: '2.5rem' }}>{data.channels.title}</h2>
-            <p className="svc-channels-intro">{data.channels.intro1}</p>
-            <p className="svc-channels-intro" style={{ marginBottom: '5rem', color: 'var(--impulse-violet)', fontWeight: 600 }}>{data.channels.intro2}</p>
-            
-            <div className="svc-channels-stage" id="channels-stage">
-              <svg className="svc-channels-orbit-svg" id="channels-orbit-lines" aria-hidden="true"></svg>
-              <div className="svc-channels-center" aria-hidden="true">
-                <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
-                </svg>
-              </div>
-              <div className="svc-channels-orbit">
-                {data.channels.list.map((item: any, i: number) => (
-                  <span key={i} className="svc-channel-chip" style={{ '--chip-left': item.pos.left, '--chip-top': item.pos.top } as React.CSSProperties}>
-                    {item.label}
-                  </span>
-                ))}
-              </div>
-            </div>
-            {data.channels.outro && data.channels.outro.split('<br>').map((p: string, i: number) => (
-              <p className="svc-channels-intro" key={i} dangerouslySetInnerHTML={{ __html: p }}></p>
-            ))}
-          </div>
-        </section>
+      {/* CHANNELS Section */}
+      {data.channels && <ServiceTextList data={data.channels} />}
+      <ServiceHandoff />
+
+      {/* Connected Systems */}
+      {data.whenToUse && <ServiceWhenToUse data={data.whenToUse} />}
+      <ServiceHandoff />
+      
+      {data.guardrails && (
+        <>
+          <ServiceGuardrails data={data.guardrails} />
+          <ServiceHandoff />
+        </>
       )}
 
-      <ServiceHandoff />
+      {data.uses && (
+        <>
+          <ServiceUses data={data.uses} />
+          <ServiceHandoff />
+        </>
+      )}
 
-      {/* Connected Systems for Local SEO */}
-      <section className="svc-section glass-panel">
-        <div className="container">
-          <div className="svc-systems-grid">
-            <div className="svc-systems-intro">
-              <h2 className="svc-h2 split-text" style={{ marginBottom: '2.5rem' }}>{data.channels.systemsTitle}</h2>
-              {data.channels.systemsParagraphs.map((p, i) => <p key={i}>{p}</p>)}
-              <p className="closer">{data.channels.closer}</p>
-            </div>
-            <div>
-              <p style={{ fontSize: '0.75rem', color: 'var(--impulse-violet)', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '1.5rem' }}>{data.channels.pillsHeading}</p>
-              <div className="svc-systems-pills">
-                {data.channels.pills.map((pill, i) => {
-                  if (typeof pill === 'string' && pill.includes(':')) {
-                    const [label, desc] = pill.split(':');
-                    return (
-                      <div className="svc-system-pill" key={i}>
-                        <strong>{label.trim()}:</strong>
-                        <span>{desc}</span>
-                      </div>
-                    );
-                  }
-                  return <div className="svc-system-pill" key={i}>{pill}</div>;
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <ServiceHandoff />
-      
-      <ServiceUses data={data.uses} />
-      <ServiceHandoff />
-
-      <ServiceGuardrails data={data.guardrails} />
-      <ServiceHandoff />
-
-      <ServiceProcess data={data.process} />
+      {data.process && <ServiceProcess data={data.process} />}
       
       <Logos title="Trusted by Brands That Need Local Search to Bring People In" />
       
@@ -274,7 +100,7 @@ const LocalSEO: React.FC = () => {
       <ServiceHandoff />
 
       <ServiceFinalCTA data={data.finalCta} />
-      <Contact />
+      <Contact title="Let’s make<br/>&ldquo;near me&rdquo; lead to you" />
       <ServiceFAQ data={data.faq} />
     </main>
   );

@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
         
         <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
           <Link to="/" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Home</Link>
-          <Link to="/about" className="nav-item" data-cursor="GO" onClick={handleNavClick}>About Us</Link>
+          <Link to="/about-us/" className="nav-item" data-cursor="GO" onClick={handleNavClick}>About Us</Link>
           <div className="nav-dropdown" onMouseLeave={handleDropdownMouseLeave}>
             <a 
               href="#"
@@ -70,10 +70,10 @@ const Navbar: React.FC = () => {
                   Growth Intelligence <span className="mobile-only-icon">{openSubMenu === 'growth' ? '−' : '+'}</span>
                 </h4>
                 <div className={`dropdown-list ${openSubMenu === 'growth' ? 'mobile-open' : ''}`}>
-                  <Link to="/services/consumer-intelligence" className="dropdown-item" onClick={handleNavClick}>Consumer Intelligence</Link>
-                  <Link to="/services/market-intelligence" className="dropdown-item" onClick={handleNavClick}>Market and Competitive Intelligence</Link>
-                  <Link to="/services/always-on-intelligence" className="dropdown-item" onClick={handleNavClick}>Always-On Intelligence</Link>
-                  <Link to="/services/campaign-intelligence" className="dropdown-item" onClick={handleNavClick}>Campaign and Performance Intelligence</Link>
+                  <Link to="/growth-intelligence/consumer-intelligence/" className="dropdown-item" onClick={handleNavClick}>Consumer Intelligence</Link>
+                  <Link to="/growth-intelligence/market-intelligence/" className="dropdown-item" onClick={handleNavClick}>Market and Competitive Intelligence</Link>
+                  <Link to="/growth-intelligence/always-on-intelligence/" className="dropdown-item" onClick={handleNavClick}>Always-On Intelligence</Link>
+                  <Link to="/growth-intelligence/campaign-intelligence/" className="dropdown-item" onClick={handleNavClick}>Campaign and Performance Intelligence</Link>
                 </div>
               </div>
               <div className="dropdown-col">
@@ -81,10 +81,10 @@ const Navbar: React.FC = () => {
                   AI Marketing Systems <span className="mobile-only-icon">{openSubMenu === 'ai' ? '−' : '+'}</span>
                 </h4>
                 <div className={`dropdown-list ${openSubMenu === 'ai' ? 'mobile-open' : ''}`}>
-                  <Link to="/services/archer-ai" className="dropdown-item" onClick={handleNavClick}>Archer AI</Link>
-                  <Link to="/services/agentic-ai" className="dropdown-item" onClick={handleNavClick}>Agentic AI</Link>
-                  <Link to="/services/ai-video-production" className="dropdown-item" onClick={handleNavClick}>Cinematic AI Production</Link>
-                  <Link to="/services/generative-search-optimisation" className="dropdown-item" onClick={handleNavClick}>Generative Search Optimisation</Link>
+                  <Link to="/ai-marketing-systems/archer-ai/" className="dropdown-item" onClick={handleNavClick}>Archer AI</Link>
+                  <Link to="/ai-marketing-systems/agentic-ai/" className="dropdown-item" onClick={handleNavClick}>Agentic AI</Link>
+                  <Link to="/ai-marketing-systems/ai-video-production/" className="dropdown-item" onClick={handleNavClick}>AI Video Production</Link>
+                  <Link to="/ai-marketing-systems/generative-search-optimisation/" className="dropdown-item" onClick={handleNavClick}>Generative Search Optimisation</Link>
                 </div>
               </div>
               <div className="dropdown-col">
@@ -92,29 +92,23 @@ const Navbar: React.FC = () => {
                   Brand Infrastructure <span className="mobile-only-icon">{openSubMenu === 'brand' ? '−' : '+'}</span>
                 </h4>
                 <div className={`dropdown-list ${openSubMenu === 'brand' ? 'mobile-open' : ''}`}>
-                  <Link to="/services/search-engine-optimisation" className="dropdown-item" onClick={handleNavClick}>Search and Visibility</Link>
-                  <Link to="/services/search-engine-optimisation/ecommerce-seo" className="dropdown-item sub-item" onClick={handleNavClick}>eCommerce SEO</Link>
-                  <Link to="/services/search-engine-optimisation/local-seo" className="dropdown-item sub-item" onClick={handleNavClick}>Local SEO</Link>
-                  <Link to="/services/search-engine-optimisation/enterprise-seo" className="dropdown-item sub-item" onClick={handleNavClick}>Enterprise SEO</Link>
-                  <Link to="/services/search-engine-optimisation/b2b-seo" className="dropdown-item sub-item" onClick={handleNavClick}>B2B SEO</Link>
-                  <a href="#services" className="dropdown-item" onClick={handleNavClick}>Content Strategy and Writing</a>
-                  <Link to="/services/social-media-management" className="dropdown-item" onClick={handleNavClick}>Social Media</Link>
-                  <a href="#services" className="dropdown-item" onClick={handleNavClick}>Video and Visual Content</a>
-                  <Link to="/services/website-development" className="dropdown-item" onClick={handleNavClick}>Website Development</Link>
-                  <Link to="/services/branding" className="dropdown-item" onClick={handleNavClick}>Brand Identity</Link>
-                  <Link to="/services/employer-branding" className="dropdown-item" onClick={handleNavClick}>Employer Branding</Link>
+                  <Link to="/brand-infrastructure/search-engine-optimisation/" className="dropdown-item" onClick={handleNavClick}>Search and Visibility</Link>
+                  <Link to="/brand-infrastructure/social-media-management/" className="dropdown-item" onClick={handleNavClick}>Social Media</Link>
+                  <Link to="/brand-infrastructure/video-production/" className="dropdown-item" onClick={handleNavClick}>Video Production</Link>
+                  <Link to="/brand-infrastructure/website-development/" className="dropdown-item" onClick={handleNavClick}>Website Development</Link>
+                  <Link to="/brand-infrastructure/branding/" className="dropdown-item" onClick={handleNavClick}>Brand Identity</Link>
+                  <Link to="/brand-infrastructure/employer-branding/" className="dropdown-item" onClick={handleNavClick}>Employer Branding</Link>
                 </div>
               </div>
               
             </div>
           </div>
-          <Link to="/case-studies" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Case Studies</Link>
+          <Link to="/case-studies/" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Case Studies</Link>
           <a href="#blogs" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Blogs</a>
-          <a href="#resources" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Resources</a>
-          <Link to="/careers" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Careers</Link>
+          <Link to="/careers/" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Careers</Link>
         </div>
         <div className="nav-right">
-          <a href="#connect" className="btn-nav" data-cursor="HI" onClick={handleNavClick}>Contact Us</a>
+          <Link to="/contact-us/" className="btn-nav" data-cursor="HI" onClick={handleNavClick}>Contact Us</Link>
           
           <button className={`mobile-menu-toggle ${isMobileMenuOpen ? 'open' : ''}`} onClick={toggleMobileMenu} aria-label="Toggle Menu">
             <span></span>

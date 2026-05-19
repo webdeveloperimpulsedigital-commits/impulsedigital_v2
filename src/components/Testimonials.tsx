@@ -73,7 +73,7 @@ const Testimonials: React.FC = () => {
   return (
     <section className="testimonials glass-panel" ref={sectionRef}>
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        <h2 className="section-heading split-text">What working with us looked like.</h2>
+        <h2 className="section-heading split-text">What Good Work Leaves Behind</h2>
         <div className="testimonial-grid" ref={sliderRef} onScroll={handleScroll}>
           <div className="test-card-col">
             <div className="test-card">

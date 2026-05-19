@@ -4,12 +4,12 @@ export const campaignIntelligenceData = {
     headlineAccent: "Victory.",
     description: "A campaign can be watched, clicked, shared, and still leave nothing behind. Impulse Digital helps brands understand what people remembered, what they felt, what moved them, and what the next campaign should do differently.",
     buttons: [
-      { text: "Decode Campaign Impact", link: "#connect", cursor: "DECODE" },
+      { text: "Decode Campaign Impact", link: "/contact-us/", cursor: "DECODE" },
       { text: "See What Actually Landed", link: "#use-cases", cursor: "EXPLORE" }
     ]
   },
   problem: {
-    title: "Built to Measure<br/>What Moved,<br/>Not Just What Delivered",
+    title: "<span style='white-space: nowrap;'>Built to Measure</span><br/><span style='white-space: nowrap;'>What Moved,</span><br/><span style='white-space: nowrap;'>Not Just What </span><br/>Delivered</span>",
     intro: "Campaign and Performance Intelligence helps teams move beyond surface-level reporting. It gives brands:",
     gaps: [
       "Clearer understanding of what actually landed",
@@ -100,7 +100,7 @@ export const campaignIntelligenceData = {
       { title: "The next campaign brief needs to start from real audience response", desc: "" },
       { title: "Your team needs to know what to repeat, refine, or stop", desc: "" }
     ],
-    punchlineLine1: "The campaign may be over.",
+    punchlineLine1: "The\u00A0campaign\u00A0may\u00A0be\u00A0over.",
     punchlineLine2: "The learning should not be."
   },
   process: {
@@ -131,8 +131,8 @@ export const campaignIntelligenceData = {
     accent: "Next One.",
     body: "Tell us what your campaign was meant to change. We will help you understand what landed, what faded, and what should shape the next brief, creator choice, and budget decision.",
     buttons: [
-      { text: "Decode Campaign Impact", link: "#connect", cursor: "DECODE" },
-      { text: "Talk to Impulse Digital", link: "#connect", cursor: "HI" }
+      { text: "Decode<br/>Campaign<br/>Impact", link: "/contact-us/", cursor: "DECODE" },
+      { text: "Start a<br/>Conversation", link: "/contact-us/", cursor: "HI" }
     ],
     footnote: "No vanity reporting. No post-campaign theatre. Just sharper intelligence for the next marketing decision."
   },
@@ -150,6 +150,6 @@ export const campaignIntelligenceData = {
     ]
   },
   logosTitle: "Trusted by Teams That Need More Than Metrics",
-  contactTitle: "Decode Campaign Impact.",
+  contactTitle: "Decode<br/>Campaign<br/>Impact.",
   whenToUseAfterGuardrails: true
 };

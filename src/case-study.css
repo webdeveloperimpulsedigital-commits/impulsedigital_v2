@@ -1,0 +1,783 @@
+/* ============================================================
+   CASE STUDY PAGE STYLES
+   All .cs-* classes used across every case study component
+   ============================================================ */
+
+/* Redesigned Hero Section */
+.cs-hero {
+  position: relative;
+  padding: 200px 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+}
+
+.cs-hero-header {
+  margin-bottom: 5rem;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.cs-hero-client {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--impulse-violet);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.cs-hero-title {
+  font-size: clamp(4rem, 12vw, 12rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
+  color: var(--white);
+}
+
+.cs-hero-subtitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--soft-grey);
+  font-weight: 400;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.3;
+}
+
+/* Feature Image Reveal */
+.cs-feature-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  z-index: 10;
+  height: calc(1100px + 100vh);
+}
+
+.cs-feature-image {
+  width: 100%;
+  height: 100vh;
+  border-radius: 0;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  background: #111;
+  will-change: clip-path, transform;
+  clip-path: polygon(25% 25%, 75% 25%, 75% 75%, 25% 75%);
+}
+
+.cs-feature-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  will-change: transform;
+}
+
+@media (min-width: 769px) {
+  .cs-feature-image {
+    transform-origin: center center;
+  }
+  .cs-feature-image img {
+    transform: scale(1.35);
+    transform-origin: center center;
+  }
+}
+
+@media (max-width: 768px) {
+  .cs-feature-wrapper {
+    height: auto;
+    padding: 0 1rem;
+  }
+  .cs-feature-image {
+    position: relative;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    clip-path: none;
+    border-radius: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-feature-image,
+  .cs-feature-image img {
+    transition: none;
+  }
+  .cs-feature-image {
+    clip-path: none !important;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    transform: none;
+  }
+  .cs-feature-image img {
+    transform: none;
+  }
+}
+
+/* Intro Block */
+.cs-intro-block {
+  padding: 8rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.cs-intro-text {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.2;
+  color: var(--white);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 3rem;
+}
+
+/* Intelligent Results Module */
+.cs-results-module {
+  margin: 0 auto 8rem;
+  max-width: 1400px;
+  padding: 6rem 2rem;
+  background: transparent;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3rem;
+  position: relative;
+  z-index: 10;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cs-results-title {
+  width: 100%;
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.cs-result-item {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding-left: 2rem;
+}
+
+.cs-result-item:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+/* Target the first cs-result-item after the title without :first-child (since title is first child) */
+.cs-results-module .cs-result-item:nth-child(2) {
+  border-left: none;
+  padding-left: 0;
+}
+
+.cs-result-number {
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 6vw, 6rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: baseline;
+  letter-spacing: -0.02em;
+}
+
+.cs-result-suffix {
+  color: var(--impulse-violet);
+  font-size: clamp(2rem, 3vw, 3rem);
+  margin-left: 4px;
+  font-weight: 600;
+}
+
+.cs-result-word {
+  font-size: clamp(2.8rem, 4vw, 4.6rem);
+  letter-spacing: -0.04em;
+}
+
+.cs-result-label {
+  font-size: 1.1rem;
+  color: var(--soft-grey);
+  line-height: 1.5;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cs-result-banner {
+  width: 100%;
+  text-align: left;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cs-result-banner span {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: rgba(84, 61, 152, 0.1);
+  border: 1px solid rgba(84, 61, 152, 0.5);
+  border-radius: 50px;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Section */
+.cs-section {
+  padding: 8rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* Split Layout */
+.cs-split {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: 6rem;
+  margin-bottom: 10rem;
+}
+
+@media (max-width: 900px) {
+  .cs-split {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.cs-h2 {
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.1;
+  position: sticky;
+  top: 150px;
+  letter-spacing: -0.02em;
+}
+
+.cs-p {
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  line-height: 1.5;
+  color: var(--soft-grey);
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+
+.cs-p strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.cs-p.highlight {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  color: var(--white);
+  line-height: 1.3;
+  margin-bottom: 3rem;
+  border-left: 4px solid var(--impulse-violet);
+  padding-left: 2rem;
+}
+
+/* List */
+.cs-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .cs-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cs-list li {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--white);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+/* Proof Module */
+.cs-proof-module {
+  max-width: 1400px;
+  margin: -2rem auto 9rem;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.cs-proof-module.reverse {
+  grid-template-columns: 5fr 7fr;
+}
+
+.cs-proof-module.reverse .cs-proof-copy {
+  order: 1;
+}
+
+.cs-proof-module.reverse .cs-proof-media {
+  order: 2;
+}
+
+.cs-proof-media {
+  overflow: hidden;
+  border-radius: 8px;
+  background: #111;
+}
+
+.cs-proof-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.cs-proof-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3vw, 3.4rem);
+  line-height: 1.05;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.cs-proof-text {
+  font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+  line-height: 1.55;
+  color: var(--soft-grey);
+}
+
+@media (max-width: 900px) {
+  .cs-proof-module,
+  .cs-proof-module.reverse {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 6rem;
+  }
+  .cs-proof-module.reverse .cs-proof-copy,
+  .cs-proof-module.reverse .cs-proof-media {
+    order: initial;
+  }
+  .cs-proof-media img {
+    min-height: 260px;
+  }
+}
+
+/* Journey Flow */
+.cs-journey-wrapper {
+  padding: 8rem 0;
+  background: #050505;
+  position: relative;
+  z-index: 10;
+}
+
+.cs-journey-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: 6rem;
+}
+
+@media (max-width: 900px) {
+  .cs-journey-container {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+
+.cs-journey-left {
+  position: sticky;
+  top: 150px;
+  height: max-content;
+}
+
+.cs-journey-title {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  color: var(--white);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.cs-journey-desc {
+  font-size: 1.25rem;
+  color: var(--soft-grey);
+  margin-top: 2rem;
+  line-height: 1.6;
+}
+
+.cs-journey-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.cs-journey-step {
+  background: linear-gradient(145deg, rgba(6, 6, 8, 0.96), rgba(0, 0, 0, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px 64px 8px 64px;
+  padding: 4rem 3rem;
+  transition: all 0.4s ease;
+}
+
+.cs-journey-step:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(138, 92, 246, 0.72);
+  box-shadow:
+    0 0 0 1px rgba(138, 92, 246, 0.28),
+    0 0 28px rgba(138, 92, 246, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateX(10px);
+}
+
+.cs-journey-num {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--impulse-violet);
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.cs-journey-text {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.cs-journey-step.highlight {
+  background: linear-gradient(135deg, rgba(84, 61, 152, 0.2), rgba(0, 0, 0, 0));
+  border: 1px solid rgba(84, 61, 152, 0.6);
+}
+
+.cs-journey-step.highlight .cs-journey-text {
+  color: var(--white);
+  font-size: 2.5rem;
+}
+
+/* Final Editorial Section */
+.cs-final {
+  text-align: center;
+  padding: 12rem 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.cs-final-heading {
+  font-size: clamp(3rem, 7vw, 6rem);
+  color: var(--white);
+  margin-bottom: 3rem;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.cs-final-text {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  color: var(--soft-grey);
+  max-width: 900px;
+  margin: 0 auto 4rem;
+  line-height: 1.5;
+}
+
+.cs-final-punch {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--white);
+  font-weight: 600;
+  padding: 4rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: inline-block;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.cs-final-punch span {
+  color: var(--impulse-violet);
+}
+
+/* Legacy CTA block */
+.cs-cta {
+  margin: 0 auto;
+  padding: 10rem 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: #000;
+}
+
+.cs-cta h2 {
+  font-size: clamp(4rem, 8vw, 8rem);
+  color: var(--white);
+  margin-bottom: 2rem;
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.cs-cta p {
+  font-size: 1.5rem;
+  color: var(--soft-grey);
+  margin-bottom: 4rem;
+}
+
+/* Animation Utilities */
+.line-wrapper {
+  overflow: hidden;
+  display: block;
+}
+
+/* Search Proof Slider (Automag India) */
+.cs-search-proof {
+  max-width: 1400px;
+  margin: -4rem auto 9rem;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.cs-search-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cs-search-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cs-search-count {
+  min-width: 3.5rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.cs-search-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--white);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+.cs-search-nav-btn:hover:not(:disabled) {
+  background: rgba(84, 61, 152, 0.22);
+  border-color: rgba(84, 61, 152, 0.72);
+  transform: translateY(-1px);
+}
+
+.cs-search-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.cs-search-track {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  padding: 1rem 0 2rem;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cs-search-track::-webkit-scrollbar {
+  display: none;
+}
+
+.cs-search-track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+.cs-search-card {
+  flex: 0 0 min(76vw, 1080px);
+  scroll-snap-align: center;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.cs-search-card img {
+  width: 100%;
+  display: block;
+}
+
+.cs-search-card:nth-child(even) {
+  transform: translateY(2rem);
+}
+
+.cs-search-progress {
+  height: 4px;
+  width: 100%;
+  margin-top: 0.5rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cs-search-progress-fill {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--impulse-violet);
+  transform-origin: left center;
+  transform: scaleX(0.14);
+  transition: transform 0.2s ease;
+}
+
+@media (max-width: 900px) {
+  .cs-search-card {
+    flex-basis: 88vw;
+  }
+  .cs-search-card:nth-child(even) {
+    transform: none;
+  }
+}
+
+/* Automag-specific results grid */
+.automag-results {
+  display: grid;
+  grid-template-columns: 0.9fr 1.2fr 1fr 1fr;
+  column-gap: clamp(1.75rem, 3vw, 3.5rem);
+  row-gap: 3rem;
+}
+
+.automag-results .cs-results-title {
+  grid-column: 1 / -1;
+  margin-bottom: 1.5rem;
+}
+
+.automag-results .cs-result-item {
+  min-width: 0;
+  width: 100%;
+  padding-left: clamp(1.25rem, 2vw, 2rem);
+}
+
+.automag-results .cs-result-item:nth-of-type(1) {
+  border-left: none;
+  padding-left: 0;
+}
+
+.automag-results .cs-result-number {
+  width: 100%;
+  min-width: 0;
+  white-space: nowrap;
+  font-size: clamp(3.1rem, 4.4vw, 4.85rem);
+  letter-spacing: -0.045em;
+}
+
+.automag-results .cs-result-item:nth-of-type(2) .cs-result-number {
+  font-size: clamp(3rem, 4vw, 4.5rem);
+}
+
+.automag-results .cs-result-suffix {
+  flex: 0 0 auto;
+  font-size: clamp(1.55rem, 1.9vw, 2.15rem);
+  letter-spacing: -0.02em;
+  margin-left: 0.14em;
+}
+
+.automag-results .cs-result-label {
+  max-width: 15rem;
+}
+
+.automag-results .cs-result-banner {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 1100px) {
+  .automag-results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .automag-results .cs-result-item:nth-of-type(3) {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .automag-results {
+    grid-template-columns: 1fr;
+  }
+  .automag-results .cs-result-item {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+/* GSAP fade-up utility */
+.gsap-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.gsap-fade-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* gsap-item for list stagger */
+.gsap-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.gsap-item.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}

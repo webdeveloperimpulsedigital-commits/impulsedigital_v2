@@ -4,12 +4,12 @@ export const marketIntelligenceData = {
     headlineAccent: "Surprise You.",
     description: "Competitors shift. Search behaviour changes. New signals appear before reports catch up. Impulse Digital helps brands read the market early, so positioning, content, e-commerce, and category decisions are made with sharper intelligence.",
     buttons: [
-      { text: "Map Your Market", link: "#connect", cursor: "MAP" },
+      { text: "Map Your Market", link: "/contact-us/", cursor: "MAP" },
       { text: "See What You're Missing", link: "#use-cases", cursor: "EXPLORE" }
     ]
   },
   problem: {
-    title: "The Problem Is Not<br/>Competition.<br/>It Is Being Late to the Signal.",
+    title: "<span style='white-space: nowrap;'>The Problem Is Not</span><br/>Competition.<br/><span style='white-space: nowrap;'>It Is Being Late to the</span><br/>Signal.",
     intro: "Most teams already know who they compete with. The harder part is knowing what is changing before it shows up in sales.",
     gaps: [
       "A competitor changes its claim.",
@@ -122,12 +122,12 @@ export const marketIntelligenceData = {
     ]
   },
   finalCta: {
-    titleParts: ["See What Your<br/>Market Is Already<br/>", "Telling You."],
+    titleParts: ["See What Your Market<br/>Is Already<br/>", "Telling You."],
     accent: "Telling You.",
     body: "Tell us the category you are competing in. We will help identify the signals your team should be watching before the next strategic decision.",
     buttons: [
-      { text: "Map Your Market", link: "#connect", cursor: "MAP" },
-      { text: "Talk to Impulse Digital", link: "#connect", cursor: "HI" }
+      { text: "Map Your Market", link: "/contact-us/", cursor: "MAP" },
+      { text: "Start a Conversation", link: "/contact-us/", cursor: "HI" }
     ],
     footnote: "No static competitor dump. No screenshot archive. Just clearer market intelligence built for positioning, strategy, and growth decisions."
   },

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Impulse Digital | Start the Conversation</title>
+  <meta name="description"
+    content="Have a growth, brand, content, SEO, AI, video, website, or marketing problem worth solving? Write to Impulse Digital and tell us what you can no longer ignore.">
+  <link rel="stylesheet" href="css/styles.css?v=81">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/SVGLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="service-page contact-page">
+  <canvas id="webgl-canvas"></canvas>
+
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute;top:0;left:0;pointer-events:none;">
+    <defs>
+      <clipPath id="impulse-mark-clip">
+        <path
+          d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+      </clipPath>
+      <symbol id="impulse-mark" viewBox="801 344 274 272">
+        <path
+          d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="cursor" aria-hidden="true">
+    <svg class="cursor-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+        class="cursor-mark-path" />
+    </svg>
+    <div class="cursor-text"></div>
+  </div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <div class="page-progress" aria-hidden="true">
+    <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+        class="page-progress-path" />
+    </svg>
+  </div>
+
+  <div class="noise-overlay"></div>
+
+  <nav id="main-nav">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="index.html" class="logo"><img src="ImpulseDigital_Logo.svg" alt="Impulse Digital Logo"></a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-item" data-cursor="GO">Home</a>
+        <a href="about-us.html" class="nav-item" data-cursor="GO">About Us</a>
+        <div class="nav-dropdown">
+          <a href="index.html#services" class="nav-item" data-cursor="GO"
+            style="display: flex; align-items: center; gap: 4px;">
+            Services
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"
+              class="dropdown-arrow">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+          <div class="dropdown-content">
+            <div class="dropdown-col">
+              <h4>Growth Intelligence</h4>
+              <div class="dropdown-list">
+                <a href="consumer-intelligence.html" class="dropdown-item">Consumer Intelligence</a>
+                <a href="market-intelligence.html" class="dropdown-item">Market and Competitive Intelligence</a>
+                <a href="always-on-intelligence.html" class="dropdown-item">Always-On Intelligence</a>
+                <a href="campaign-intelligence.html" class="dropdown-item">Campaign and Performance Intelligence</a>
+              </div>
+            </div>
+            <div class="dropdown-col">
+              <h4>AI Marketing Systems</h4>
+              <div class="dropdown-list">
+                <a href="archer-ai.html" class="dropdown-item">Archer AI</a>
+                <a href="agentic-ai.html" class="dropdown-item">Agentic AI</a>
+                <a href="ai-video-production.html" class="dropdown-item">Cinematic AI Production</a>
+                <a href="generative-search-optimisation.html" class="dropdown-item">Generative Search Optimisation</a>
+              </div>
+            </div>
+            <div class="dropdown-col">
+              <h4>Brand Infrastructure</h4>
+              <div class="dropdown-list">
+                <a href="search-engine-optimisation.html" class="dropdown-item">Search and Visibility</a>
+                <a href="index.html#services" class="dropdown-item">Content Strategy and Writing</a>
+                <a href="social-media-management.html" class="dropdown-item">Social Media</a>
+                <a href="index.html#services" class="dropdown-item">Video and Visual Content</a>
+                <a href="website-development.html" class="dropdown-item">Website Development</a>
+                <a href="branding.html" class="dropdown-item">Brand Identity</a>
+                <a href="employer-branding.html" class="dropdown-item">Employer Branding</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="index.html#cases-pin" class="nav-item" data-cursor="GO">Case Studies</a>
+        <a href="index.html#blogs" class="nav-item" data-cursor="GO">Blogs</a>
+        <a href="index.html#resources" class="nav-item" data-cursor="GO">Resources</a>
+        <a href="careers.html" class="nav-item" data-cursor="GO">Careers</a>
+      </div>
+      <div class="nav-right">
+        <a href="#contact-form" class="btn-nav" data-cursor="WRITE">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <section class="contact-hero">
+      <div class="contact-hero-mark" aria-hidden="true">
+        <svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg>
+      </div>
+      <div class="contact-hero-grid">
+        <div class="contact-hero-copy">
+          <h1 class="contact-headline">Bring Us the Problem You Can No Longer Ignore.</h1>
+          <div class="contact-lede">
+            <p>Most good conversations do not begin with a service name.</p>
+            <p>They begin with a problem that has become too expensive to keep carrying.</p>
+            <p>Tell us what that problem is. We will tell you if we are the right room for it.</p>
+          </div>
+        </div>
+
+        <div class="contact-filter-cards" id="warp-start">
+          <article class="contact-filter-card">
+            <h2>We Only Take Work We Can Do Justice To.</h2>
+            <p>We are not built to say yes to everything.</p>
+            <p>There is work we can do extremely well, and there is work someone else may be better suited for.</p>
+            <p>So we will look at what you share and respond honestly.</p>
+          </article>
+
+          <article class="contact-filter-card contact-filter-card-alert">
+            <h2>This Form Is Not for Job Applications.</h2>
+            <p>If you are applying for a role, do not use this form.</p>
+            <p>Applications sent here will not reach HR. They will not be reviewed. They will not be considered.</p>
+            <p>Please apply only through the Careers page or the hiring email mentioned there.</p>
+            <p>This form is for business enquiries only.</p>
+          </article>
+        </div>
+
+        <div class="contact-hero-right">
+          <form class="contact-shell-form" id="contact-form" enctype="multipart/form-data">
+            <div class="contact-form-grid">
+              <label>
+                <span>Company name (Mandatory)</span>
+                <input type="text" name="company" autocomplete="organization" required>
+              </label>
+              <label>
+                <span>Your name (Mandatory)</span>
+                <input type="text" name="name" autocomplete="name" required>
+              </label>
+              <label>
+                <span>Email (Mandatory)</span>
+                <input type="email" name="email" autocomplete="email" required>
+              </label>
+              <label>
+                <span>Phone number (Mandatory)</span>
+                <input type="tel" name="phone" autocomplete="tel" required>
+              </label>
+            </div>
+            <label class="contact-message-field">
+              <span>Message, optional</span>
+              <textarea name="message" rows="5" placeholder="What is the problem you want us to understand?"></textarea>
+            </label>
+            <label class="contact-upload-field">
+              <span>Upload brief, RFQ, deck, or note, optional</span>
+              <input type="file" name="brief">
+              <strong>Have a brief, RFQ, deck, or note? Attach it here.</strong>
+              <em>No brief yet? That is fine. The problem is enough.</em>
+            </label>
+            <button type="submit" class="contact-submit">
+              <span>Start the Conversation</span>
+              <svg viewBox="801 344 274 272" aria-hidden="true">
+                <use href="#impulse-mark" />
+              </svg>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-location">
+      <div class="container contact-location-grid">
+        <div class="contact-info-row">
+          <div class="contact-direct-copy">
+            <p class="contact-kicker">Prefer To Connect Directly?</p>
+            <p class="contact-address" style="margin-bottom: 2rem;">For business enquiries, you can also reach us here.
+            </p>
+            <div class="contact-direct-links">
+              <a href="mailto:collabs@theimpulsedigital.com" class="contact-direct-link">
+                <span class="contact-direct-label">Email</span>
+                <span class="contact-direct-value">collabs@theimpulsedigital.com</span>
+              </a>
+              <a href="tel:+919769285224" class="contact-direct-link">
+                <span class="contact-direct-label">Phone</span>
+                <span class="contact-direct-value">+91-9769285224</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-location-copy">
+            <p class="contact-kicker">Where You’ll Find Us</p>
+            <p class="contact-address">304/305, Chirag Infotech, Road No. 16/Z, Ambica Nagar, Wagle Industrial Estate,
+              Thane (W), 400604.</p>
+          </div>
+        </div>
+        <div class="contact-map-shell" aria-label="Map embed placeholder">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.423719830889!2d72.9554104!3d19.1984954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b92138bc5b4b%3A0x6b63e795c6c8eec9!2sImpulse%20Digital!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+            width="100%" height="100%"
+            style="border:0; position:absolute; top:0; left:0; z-index:2; filter: grayscale(100%) invert(90%) opacity(0.8);"
+            allowfullscreen="" loading="lazy"></iframe>
+          <div class="contact-map-grid" aria-hidden="true" style="z-index: 1;"></div>
+          <svg viewBox="801 344 274 272" aria-hidden="true" style="z-index: 3; pointer-events: none; opacity: 0.5;">
+            <use href="#impulse-mark" />
+          </svg>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="ImpulseDigital_Logo.svg" alt="Impulse Digital Logo" class="footer-logo">
+          <p class="footer-tagline">AI native growth intelligence for enterprise brands.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#cases-pin">Case Studies</a></li>
+            <li><a href="careers.html">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="index.html#blogs">Blog</a></li>
+            <li><a href="#">EBooks</a></li>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Slideshare ppt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Locations</h4>
+          <ul>
+            <li><a href="#">India</a></li>
+            <li><a href="#">Thane</a></li>
+            <li><a href="#">Navi Mumbai</a></li>
+            <li><a href="#">Pune</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-contact-col">
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+            <span class="contact-text">+91-9769285224</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+            <span class="contact-text">collabs@theimpulsedigital.com</span>
+          </div>
+          <div class="contact-item address-item">
+            <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+            <span class="contact-text">304 - 305, Chirag Infotech, Road No. 16/Z, Ambica Nagar, Wagle Industrial Estate,
+              Thane, Mumbai 400604</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Impulse Digital. All rights reserved.</p>
+      </div>
+      <div class="footer-divider"></div>
+    </div>
+    <div class="footer-etched" aria-hidden="true">
+      <svg id="footer-hover-svg" viewBox="0 0 2400 250" xmlns="http://www.w3.org/2000/svg"
+        class="select-none uppercase cursor-pointer" style="width: 100%; height: auto; display: block;">
+        <defs>
+          <linearGradient id="textGradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="25%" stop-color="#543D98" />
+            <stop offset="50%" stop-color="#8A5CF6" />
+            <stop offset="75%" stop-color="#543D98" />
+            <stop offset="100%" stop-color="#ffffff" />
+          </linearGradient>
+          <radialGradient id="revealMask" gradientUnits="userSpaceOnUse" r="20%" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="white" />
+            <stop offset="100%" stop-color="black" />
+          </radialGradient>
+          <mask id="textMask">
+            <rect x="0" y="0" width="100%" height="100%" fill="url(#revealMask)" />
+          </mask>
+        </defs>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start"
+          dominant-baseline="middle" font-size="160" stroke-width="0.3" class="svg-text-base">Momentum for brands with
+          appetite.</text>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start"
+          dominant-baseline="middle" font-size="160" stroke-width="0.3" class="svg-text-animated">Momentum for brands
+          with appetite.</text>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start"
+          dominant-baseline="middle" font-size="160" stroke="url(#textGradient)" stroke-width="0.3"
+          mask="url(#textMask)" class="svg-text-fill">Momentum for brands with appetite.</text>
+      </svg>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+  <script src="js/script.js?v=81"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const runContactIntro = () => {
+        if (!window.gsap) return;
+        const headline = document.querySelector('.contact-headline');
+        const lede = document.querySelector('.contact-lede');
+        const form = document.querySelector('.contact-shell-form');
+
+        if (headline) {
+          gsap.fromTo(headline,
+            { y: 34 },
+            { y: 0, duration: 1.05, ease: 'power3.out', delay: 0.12 }
+          );
+        }
+
+        if (lede) {
+          gsap.fromTo(lede.querySelectorAll('p'), { y: 24 }, { y: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out', delay: 0.75 });
+        }
+        if (form) {
+          gsap.fromTo(form, { y: 38, scale: 0.985 }, { y: 0, scale: 1, duration: 1.1, ease: 'power3.out', delay: 0.45 });
+        }
+      };
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(runContactIntro);
+      } else {
+        setTimeout(runContactIntro, 120);
+      }
+
+      const waitForGsap = setInterval(() => {
+        if (window.gsap && window.ScrollTrigger) {
+          clearInterval(waitForGsap);
+          const trigger = document.querySelector('#warp-start');
+          if (!trigger) return;
+
+          gsap.to(document.body, {
+            backgroundColor: '#000000',
+            scrollTrigger: { trigger: trigger, start: 'top bottom', end: 'top top', scrub: true }
+          });
+
+          if (window.particlesMaterial) {
+            gsap.fromTo(window.particlesMaterial,
+              { opacity: 0.68 },
+              { opacity: 0, scrollTrigger: { trigger: trigger, start: 'top 85%', end: 'top 25%', scrub: true } }
+            );
+          }
+        }
+      }, 80);
+      setTimeout(() => clearInterval(waitForGsap), 6000);
+
+      const hero = document.querySelector('.contact-hero');
+      const mark = document.querySelector('.contact-hero-mark');
+      const form = document.querySelector('.contact-shell-form');
+      if (hero && mark && form && window.gsap && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        let cx = 0, cy = 0, tx = 0, ty = 0;
+        hero.addEventListener('mousemove', (event) => {
+          const rect = hero.getBoundingClientRect();
+          tx = ((event.clientX - rect.left) / rect.width) - 0.5;
+          ty = ((event.clientY - rect.top) / rect.height) - 0.5;
+        });
+        gsap.ticker.add(() => {
+          cx += (tx - cx) * 0.08;
+          cy += (ty - cy) * 0.08;
+          gsap.set(mark, { x: cx * -34, y: cy * -28, rotate: cx * 4 });
+          gsap.set(form, { x: cx * 8, y: cy * 6 });
+        });
+      }
+
+      document.querySelectorAll('.contact-shell-form input, .contact-shell-form textarea').forEach((field) => {
+        field.addEventListener('focus', () => field.closest('label')?.classList.add('active'));
+        field.addEventListener('blur', () => field.closest('label')?.classList.toggle('active', Boolean(field.value)));
+      });
+
+      const filterCards = document.querySelectorAll('.contact-filter-card');
+      if (filterCards.length && window.gsap && window.ScrollTrigger) {
+        gsap.set(filterCards, { y: 56 });
+        ScrollTrigger.create({
+          trigger: '.contact-filter-cards',
+          start: 'top 70%',
+          once: true,
+          onEnter: () => gsap.to(filterCards, { y: 0, duration: 0.9, stagger: 0.16, ease: 'power3.out' })
+        });
+      }
+
+      const mapShell = document.querySelector('.contact-map-shell');
+      if (mapShell && window.gsap && window.ScrollTrigger) {
+        gsap.fromTo(mapShell, { clipPath: 'inset(18% 18% 18% 18% round 22px)' }, {
+          clipPath: 'inset(0% 0% 0% 0% round 22px)',
+          ease: 'power3.out',
+          scrollTrigger: { trigger: mapShell, start: 'top 78%', end: 'top 42%', scrub: 0.6 }
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

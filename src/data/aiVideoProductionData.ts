@@ -4,8 +4,8 @@ export const aiVideoProductionData = {
     headlineAccent: "Produce Faster.",
     description: "Your best ideas can now travel further. Impulse Digital creates AI-led videos that turn one strong thought into campaign films, explainers, social assets, training videos, and multilingual versions. Human-led. AI-enabled. Built to scale.",
     buttons: [
-      { text: "Start an AI Video Project", link: "#connect", cursor: "BUILD" },
-      { text: "See What AI Video Can Do", link: "#use-cases", cursor: "EXPLORE" }
+      { text: "Start an AI Video Project", link: "/contact-us/", cursor: "BUILD" },
+      { text: "See What AI Video Can Do", link: "#process", cursor: "EXPLORE" }
     ]
   },
   stats: {
@@ -24,7 +24,7 @@ export const aiVideoProductionData = {
       "It should become:"
     ],
     gapIconViewBox: "0 0 24 24",
-    gapIconSvg: '<path d="M12 2L22 22H2L12 2Z" />',
+    gapIconSvg: 'none',
     gaps: [
       "A campaign film, a product story",
       "A teaser, a vertical cut",
@@ -82,10 +82,11 @@ export const aiVideoProductionData = {
       { title: "Human editing and final polish", desc: "" },
       { title: "Brand-safe review", desc: "" }
     ],
-    punchlineLine1: "The tool creates the asset.",
-    punchlineLine2: "The thinking decides whether it is worth watching.",
-    punchlineLine1Style: { fontSize: "0.8em", marginBottom: "0.2em" },
-    punchlineLine2Style: { fontSize: "0.7em" }
+    punchlineLine1: "AI gives it form.",
+    punchlineLine2: "The idea gives it impact.",
+    punchlineLine1Style: { fontSize: "1em", marginBottom: "0.2em", display: "block", whiteSpace: "nowrap" },
+    punchlineLine2Style: { fontSize: "0.75em", display: "block", whiteSpace: "nowrap" },
+    punchlineLine3Style: { fontSize: "0.75em", display: "block", whiteSpace: "nowrap" }
   },
   process: {
     title: "How We Build AI-Led Videos",
@@ -116,8 +117,8 @@ export const aiVideoProductionData = {
     accent: "",
     body: "Tell us what the video needs to achieve. We will help you decide whether AI video, traditional production, or a hybrid route gives you the strongest creative and commercial outcome.",
     buttons: [
-      { text: "Start an AI Video Project", link: "#connect", cursor: "START" },
-      { text: "Talk to Impulse Digital", link: "#connect", cursor: "HI" }
+      { text: "Start an AI Video Project", link: "/contact-us/", cursor: "START" },
+      { text: "Start a Conversation", link: "/contact-us/", cursor: "HI" }
     ],
     footnote: "No generic templates. No AI gimmicks. Just sharper visual storytelling, built faster."
   },

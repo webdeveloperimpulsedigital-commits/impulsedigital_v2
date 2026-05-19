@@ -1,65 +1,158 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Contact from '../components/Contact';
 
+// Brands with multiple case studies get an `imgs` array (up to 3 shown stacked)
+// Single-case brands get one entry in the array
 const caseStudies = [
   {
     id: 1,
-    client: 'HUL',
-    category: 'Campaign Intelligence',
-    description: 'Geo-targeted digital coupon campaign delivering 90% higher CTR and 12,548 landing page sessions.',
-    img: 'case studies/HUL.png',
+    client: 'ABG × Brut India',
+    category: 'Brand Campaign',
+    description: '10 changemakers. 27M+ views. One purpose made human.',
+    imgs: [
+      'case studies/Written Content/ABG x Brut India/ABG Brut India Title.png',
+    ],
     theme: 'dark',
-    accent: '#6B3FA0'
+    accent: '#6B3FA0',
+    subLinks: [],
+    primaryLink: '/case-studies/abg-brut-india',
+  },
+  {
+    id: 11,
+    client: 'ABG × KBC',
+    category: 'Brand Campaign',
+    description: 'A question on KBC became a child’s shot at education.',
+    imgs: [
+      'case studies/Written Content/ABG x KBC/ABG x KBC Title.png',
+    ],
+    theme: 'dark',
+    accent: '#6B3FA0',
+    subLinks: [],
+    primaryLink: '/case-studies/abg-kbc',
+  },
+  {
+    id: 12,
+    client: 'Fours for Good',
+    category: 'Social Impact',
+    description: 'Every four became a chance for 200+ children to train like cricketers.',
+    imgs: [
+      'case studies/Written Content/Fours for good/Fours for good title.png',
+    ],
+    theme: 'dark',
+    accent: '#6B3FA0',
+    subLinks: [],
+    primaryLink: '/case-studies/fours-for-good',
   },
   {
     id: 2,
-    client: 'Mastercard',
-    category: 'Agentic AI',
-    description: '90.9% merchant response rate through an AI-led WhatsApp cluster-head outreach strategy.',
-    img: 'case studies/Mastercard.png',
-    theme: 'light',
-    accent: '#000000'
+    client: 'Automag India',
+    category: 'SEO',
+    description: 'B2B SEO that turned 1–2 leads a month into 45-50 qualified leads from buyers already searching.',
+    imgs: [
+      'case studies/Written Content/Automag India/Automag SEO/Automag Title.jpg'
+    ],
+    theme: 'dark',
+    accent: '#1a1a2e',
+    subLinks: [],
+    primaryLink: '/case-studies/automag-india',
+  },
+  {
+    id: 21,
+    client: 'Automag × Bajaj Auto',
+    category: 'Brand Film',
+    description: 'The system worked. The film made buyers understand what changed in the Bajaj Auto plant.',
+    imgs: [
+      'case studies/Written Content/Automag India/Automag x Bajaj Auto title.png',
+    ],
+    theme: 'dark',
+    accent: '#1a1a2e',
+    subLinks: [],
+    primaryLink: '/case-studies/automag-bajaj-auto',
   },
   {
     id: 3,
-    client: 'DMart',
-    category: 'Market Intelligence',
-    description: '13.43 lakh unique reach and 53K clicks that drove measurable in-store footfall at scale.',
-    img: 'case studies/Dmart.png',
-    theme: 'light',
-    accent: '#0F4C3A'
+    client: 'HUL',
+    category: 'Campaign Intelligence',
+    description: 'Geo-targeted digital coupon campaign delivering 90% higher CTR and 12,548 landing page sessions.',
+    imgs: ['case studies/Written Content/HUL 1/HUL 1 Title.png'],
+    theme: 'dark',
+    accent: '#6B3FA0',
+    subLinks: [],
+    primaryLink: '/case-studies/hul',
   },
   {
     id: 4,
-    client: 'Uppercase',
-    category: 'AI Video Production',
-    description: 'A complete brand film produced entirely with generative AI—script, visuals, voice, and edit.',
-    img: 'case studies/Uppercase.webp',
-    theme: 'dark',
-    accent: '#3D2200'
+    client: 'Mastercard',
+    category: 'Merchant Outreach',
+    description: '90.9% merchant response rate through WhatsApp cluster-head outreach and real testimonial video.',
+    imgs: ['case studies/Written Content/Mastercard/Mastercard Title.png'],
+    theme: 'light',
+    accent: '#000000',
+    subLinks: [],
+    primaryLink: '/case-studies/mastercard',
   },
   {
     id: 5,
-    client: 'Brut India',
-    category: 'Consumer Intelligence',
-    description: 'Social impact content partnership with one of India\'s most-watched digital publishers.',
-    img: 'case studies/Brut.png',
-    theme: 'dark',
-    accent: '#0D1F3C'
+    client: 'DMart',
+    category: 'Digital-to-Store',
+    description: '13.43 lakh unique reach and 53K clicks driving measurable in-store footfall across Pune.',
+    imgs: ['case studies/Written Content/Dmart/Dmart Title.png'],
+    theme: 'light',
+    accent: '#0F4C3A',
+    subLinks: [],
+    primaryLink: '/case-studies/dmart',
   },
   {
     id: 6,
-    client: 'Fours for Good',
-    category: 'Always-On Intelligence',
-    description: 'Building an impactful social narrative through high-performance digital storytelling.',
-    img: 'case studies/Fours for good.png',
-    theme: 'light',
-    accent: '#1A3322'
+    client: 'Uppercase',
+    category: 'AI Video Production',
+    description: 'A New Year brand film built entirely with AI — 5.49M plays, 868K+ views, 100K+ likes.',
+    imgs: ['case studies/Written Content/Uppercase/Uppercase Title.png'],
+    theme: 'dark',
+    accent: '#3D2200',
+    subLinks: [],
+    primaryLink: '/case-studies/uppercase',
+  },
+  {
+    id: 7,
+    client: 'Laljee Godhoo',
+    category: 'Brand Campaign',
+    description: 'Celebrating the women who make Diwali feel alive for a 130-year-old heritage food brand.',
+    imgs: ['case studies/Written Content/LG/LG title.png'],
+    theme: 'dark',
+    accent: '#aa3bff',
+    subLinks: [],
+    primaryLink: '/case-studies/lg-hing',
+  },
+  {
+    id: 8,
+    client: 'Qure.ai',
+    category: 'Healthcare SEO',
+    description: 'From a thin US presence to a search-led pipeline — 20 organic leads, 31% organic sessions, DA 46 to 49.',
+    imgs: ['case studies/Written Content/Qure.ai/QureAI Title.png'],
+    theme: 'dark',
+    accent: '#aa3bff',
+    subLinks: [],
+    primaryLink: '/case-studies/qure-ai',
+  },
+  {
+    id: 9,
+    client: 'ElectroMech',
+    category: 'B2B Digital',
+    description: '20x verified leads growth and 200% increase in first-page rankings through website restructuring and SEO.',
+    imgs: ['case studies/Written Content/ElectroMech/ElectroMech title.png'],
+    theme: 'dark',
+    accent: '#aa3bff',
+    subLinks: [],
+    primaryLink: '/case-studies/electromech',
   },
 ];
 
 const CaseStudiesPage: React.FC = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const { gsap, ScrollTrigger, SplitType } = window as any;
     if (!gsap || !ScrollTrigger) return;
@@ -90,15 +183,13 @@ const CaseStudiesPage: React.FC = () => {
         });
 
         const tl = gsap.timeline({ delay: 0.2 });
-
         tl.fromTo(split.words,
           { yPercent: 120, opacity: 0 },
           { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.02, ease: 'power4.out' }
-        )
-        .fromTo(descSplit.lines,
+        ).fromTo(descSplit.lines,
           { yPercent: 100, opacity: 0 },
           { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: 'power3.out' },
-          "-=0.4"
+          '-=0.4'
         );
       }
     }
@@ -106,22 +197,22 @@ const CaseStudiesPage: React.FC = () => {
     // Grid item entrance
     const items = document.querySelectorAll('.cs3-grid-item');
     items.forEach((item) => {
-        gsap.fromTo(item, 
-            { opacity: 0, y: 100 },
-            { 
-                opacity: 1, 
-                y: 0, 
-                duration: 1.2, 
-                ease: 'expo.out',
-                scrollTrigger: {
-                    trigger: item,
-                    start: 'top 85%',
-                }
-            }
-        );
+      gsap.fromTo(item,
+        { opacity: 0, y: 100 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 85%',
+          }
+        }
+      );
     });
 
-    // Custom cursor on hover
+    // Hover zoom on media
     items.forEach((item) => {
       const el = item as HTMLElement;
       el.addEventListener('mouseenter', () => {
@@ -134,88 +225,264 @@ const CaseStudiesPage: React.FC = () => {
       });
     });
 
+    // Separator reveal
+    const separators = document.querySelectorAll('.work-list-separator');
+    separators.forEach((sep: any) => {
+      ScrollTrigger.create({
+        trigger: sep,
+        start: 'top 95%',
+        onEnter: () => sep.classList.add('active'),
+        once: true
+      });
+    });
+
     setTimeout(() => { if (ScrollTrigger) ScrollTrigger.refresh(); }, 300);
   }, []);
+
+  const base = import.meta.env.BASE_URL;
 
   return (
     <main id="main-content" className="cs3-page">
       <Helmet>
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <title>Case Studies Page | Impulse Digital</title>
-        <meta name="robots" content="index, follow" />
-        <meta name="revisit-after" content="1 day" />
-        <meta name="language" content="English" />
-        <meta name="generator" content="N/A" />
-
-        <meta property="og:title" content="Case Studies Page | Impulse Digital" />
-        <meta property="og:description" content="" />
-        <meta property="og:url" content="https://www.theimpulsedigital.com/case-studies-page" />
-        <meta property="og:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
-        <meta property="og:site_name" content="Impulse Digital" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@impulsedigi" />
-        <meta name="twitter:creator" content="@impulsedigi" />
-        <meta name="twitter:title" content="Case Studies Page | Impulse Digital" />
-        <meta name="twitter:description" content="" />
-        <meta name="twitter:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
-        <meta name="twitter:url" content="https://www.theimpulsedigital.com/case-studies-page" />
-
-        <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies-page" />
+        <title>Client Success Stories | Impulse Digital Case Studies</title>
+<meta name="description" content="Explore real client success stories from Impulse Digital’s digital marketing case studies across SEO, performance marketing, branding, and web strategy delivering measurable growth." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/casestudies/" />
+<meta property="og:title" content="Client Success Stories | Impulse Digital Case Studies" />
+<meta property="og:description" content="Explore real client success stories from Impulse Digital’s digital marketing case studies across SEO, performance marketing, branding, and web strategy delivering measurable growth." />
+<meta property="og:image" content="https://www.theimpulsedigital.com/Amazon%20EVP.jpg" />
+<meta property="og:url" content="https://www.theimpulsedigital.com/casestudies/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Impulse Digital" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Client Success Stories | Impulse Digital Case Studies" />
+<meta name="twitter:description" content="Explore real client success stories from Impulse Digital’s digital marketing case studies across SEO, performance marketing, branding, and web strategy delivering measurable growth." />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/Amazon%20EVP.jpg" />
+<meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
-      {/* HERO SECTION */}
+
+      {/* HERO */}
       <section className="cs3-hero">
         <div className="cs3-hero-container">
-            <h1 className="cs3-hero-title" style={{ visibility: 'hidden' }}>
-                Work that earned<br/>its numbers.
-            </h1>
-            <p className="cs3-hero-desc" style={{ visibility: 'hidden' }}>
-                An archive of decisions, strategies, and executions that didn't just look good, but fundamentally moved the needle for the brands we partner with.
-            </p>
+          <h1 className="cs3-hero-title" style={{ visibility: 'hidden' }}>
+            Work that earned<br/>its numbers.
+          </h1>
+          <p className="cs3-hero-desc" style={{ visibility: 'hidden' }}>
+            An archive of decisions, strategies, and executions that didn't just look good, but fundamentally moved the needle for the brands we partner with.
+          </p>
         </div>
       </section>
 
-      {/* EDITORIAL GRID */}
+      {/* GRID */}
+      <style>{`
+        .work-list-separator {
+          width: 100%;
+          height: 1px;
+          background: rgba(138, 92, 246, 0.8);
+          box-shadow: 0 0 15px rgba(138, 92, 246, 0.6);
+          margin: 0;
+          display: block;
+        }
+
+        /* Multi-image stacked layout */
+        .cs3-multi-stack {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          min-height: 280px;
+        }
+
+        .cs3-multi-stack .cs3-stack-img {
+          position: absolute;
+          border-radius: 8px;
+          overflow: hidden;
+          background: #111;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+          transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .cs3-multi-stack .cs3-stack-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        /* 3-image layout */
+        .cs3-multi-stack.count-3 .cs3-stack-img:nth-child(1) {
+          width: 70%; height: 65%;
+          top: 0; left: 0;
+          z-index: 3;
+        }
+        .cs3-multi-stack.count-3 .cs3-stack-img:nth-child(2) {
+          width: 55%; height: 55%;
+          top: 15%; right: 0;
+          z-index: 2;
+        }
+        .cs3-multi-stack.count-3 .cs3-stack-img:nth-child(3) {
+          width: 50%; height: 45%;
+          bottom: 0; left: 20%;
+          z-index: 1;
+        }
+
+        /* 2-image layout */
+        .cs3-multi-stack.count-2 .cs3-stack-img:nth-child(1) {
+          width: 75%; height: 70%;
+          top: 0; left: 0;
+          z-index: 2;
+        }
+        .cs3-multi-stack.count-2 .cs3-stack-img:nth-child(2) {
+          width: 65%; height: 60%;
+          bottom: 0; right: 0;
+          z-index: 1;
+        }
+
+        /* Hover: fan out */
+        .cs3-grid-item:hover .cs3-multi-stack.count-3 .cs3-stack-img:nth-child(1) { transform: translate(-4%, -4%) rotate(-3deg); }
+        .cs3-grid-item:hover .cs3-multi-stack.count-3 .cs3-stack-img:nth-child(2) { transform: translate(3%, 3%) rotate(4deg); }
+        .cs3-grid-item:hover .cs3-multi-stack.count-3 .cs3-stack-img:nth-child(3) { transform: translate(0%, 5%) rotate(-2deg); }
+
+        .cs3-grid-item:hover .cs3-multi-stack.count-2 .cs3-stack-img:nth-child(1) { transform: translate(-4%, -4%) rotate(-4deg); }
+        .cs3-grid-item:hover .cs3-multi-stack.count-2 .cs3-stack-img:nth-child(2) { transform: translate(4%, 4%) rotate(3deg); }
+
+        /* Sub-links for multi-case brands */
+        .cs3-sub-links {
+          display: flex;
+          gap: 0.75rem;
+          flex-wrap: wrap;
+          margin-top: 1rem;
+        }
+        .cs3-sub-link {
+          font-size: 0.75rem;
+          font-weight: 600;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.5);
+          padding: 0.35rem 0.9rem;
+          border: 1px solid rgba(255,255,255,0.15);
+          border-radius: 100px;
+          text-decoration: none;
+          transition: color 0.25s, border-color 0.25s, background 0.25s;
+        }
+        .cs3-sub-link:hover {
+          color: #fff;
+          border-color: var(--impulse-violet, #7c3aed);
+          background: rgba(124,58,237,0.12);
+        }
+        .theme-light .cs3-sub-link {
+          color: rgba(0,0,0,0.45);
+          border-color: rgba(0,0,0,0.15);
+        }
+        .theme-light .cs3-sub-link:hover {
+          color: #000;
+          border-color: #000;
+          background: rgba(0,0,0,0.06);
+        }
+      `}</style>
+
       <section className="cs3-grid-wrapper">
         <div className="cs3-grid">
-            {caseStudies.map((cs) => (
-                <div key={cs.id} className={`cs3-grid-item theme-${cs.theme}`}>
-                    <div className="cs3-item-header">
-                        <h2 className="cs3-client">{cs.client}</h2>
-                        <p className="cs3-desc">{cs.description}</p>
-                    </div>
+          {/* Top Separator */}
+          <div style={{ gridColumn: '1 / -1', width: '100%', margin: '0' }}>
+            <div className="work-list-separator"></div>
+          </div>
+          
+          {caseStudies.map((cs, idx) => {
+            const isMulti = cs.imgs.length > 1;
+            const countClass = `count-${cs.imgs.length}`;
 
-                    <div className="cs3-media-container">
-                        <div className="cs3-media-wrapper">
-                            <img src={`${import.meta.env.BASE_URL}${cs.img}`} alt={cs.client} className="cs3-hover-media" />
-                            {/* Hover Play Indicator */}
-                            <div className="cs3-play-indicator">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M8 5v14l11-7z" fill="currentColor"/>
-                                </svg>
+            return (
+              <React.Fragment key={cs.id}>
+                <div
+                  className={`cs3-grid-item theme-${cs.theme}`}
+                  onClick={() => navigate(cs.primaryLink)}
+                  style={{ textDecoration: 'none', cursor: 'pointer' }}
+                >
+                  <div className="cs3-item-header">
+                    <h2 className="cs3-client">{cs.client}</h2>
+                    <p className="cs3-desc">{cs.description}</p>
+                    {/* Sub-links for multi-case brands — stop propagation so link click works */}
+                    {cs.subLinks.length > 0 && (
+                      <div className="cs3-sub-links" onClick={e => e.stopPropagation()}>
+                        {cs.subLinks.map(sl => (
+                          <Link
+                            key={sl.href}
+                            to={sl.href}
+                            className="cs3-sub-link"
+                          >
+                            {sl.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="cs3-media-container">
+                    <div className="cs3-media-wrapper">
+                      {isMulti ? (
+                        <div className={`cs3-multi-stack ${countClass}`}>
+                          {cs.imgs.map((src, i) => (
+                            <div 
+                              key={i} 
+                              className="cs3-stack-img" 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                if (cs.subLinks[i]) {
+                                  navigate(cs.subLinks[i].href);
+                                }
+                              }}
+                              style={{ cursor: 'pointer' }}
+                            >
+                              <img
+                                src={`${base}${src}`}
+                                alt={`${cs.client} case study ${i + 1}`}
+                                className={i === 0 ? 'cs3-hover-media' : ''}
+                              />
                             </div>
+                          ))}
                         </div>
+                      ) : (
+                        <>
+                          <img
+                            src={`${base}${cs.imgs[0]}`}
+                            alt={cs.client}
+                            className="cs3-hover-media"
+                          />
+                          <div className="cs3-play-indicator">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                              <path d="M8 5v14l11-7z" fill="currentColor"/>
+                            </svg>
+                          </div>
+                        </>
+                      )}
                     </div>
+                  </div>
 
-                    <div className="cs3-item-footer">
-                        <span className="cs3-learn-more">LEARN MORE</span>
-                        <span className="cs3-category">{cs.category}</span>
-                    </div>
+                  <div className="cs3-item-footer">
+                    <span className="cs3-learn-more">LEARN MORE</span>
+                    <span className="cs3-category">{cs.category}</span>
+                  </div>
                 </div>
-            ))}
+
+                {(idx % 2 === 1 || idx === caseStudies.length - 1) && (
+                  <div style={{ gridColumn: '1 / -1', width: '100%', margin: '0' }}>
+                    <div className="work-list-separator"></div>
+                  </div>
+                )}
+              </React.Fragment>
+            );
+          })}
         </div>
       </section>
 
       {/* FOOTER CTA */}
       <section className="cs3-footer-cta">
         <div className="cs3-cta-content">
-            <h2 className="cs3-cta-heading">Ready to scale?</h2>
-            <a href="#connect" className="btn cs3-cta-btn" data-cursor="HI">
-                <span className="btn-text">Start a Conversation</span>
-                <div className="btn-fill" />
-            </a>
+          <h2 className="cs3-cta-heading">Ready to scale?</h2>
+          <a href="/contact-us/" className="btn cs3-cta-btn" data-cursor="HI">
+            <span className="btn-text">Start a Conversation</span>
+            <div className="btn-fill" />
+          </a>
         </div>
       </section>
 

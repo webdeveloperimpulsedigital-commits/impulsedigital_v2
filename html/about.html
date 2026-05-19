@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Impulse Digital — Momentum for brands with appetite</title>
+  <meta name="description"
+    content="Impulse Digital helps brands turn ambition into commercial momentum by bringing strategy, creativity, content, search, performance, technology, AI, and execution into formation.">
+  <link rel="stylesheet" href="css/styles.css?v=75">
+  <link rel="stylesheet" href="css/about.css?v=14">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/SVGLoader.js"></script>
+
+  <!-- Lenis -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- SplitType -->
+  <script src="https://unpkg.com/split-type"></script>
+</head>
+
+<body class="service-page about-page">
+  <!-- 3D WebGL Canvas Background — preserved exactly as elsewhere -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Global Mark Defs -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute;top:0;left:0;pointer-events:none;">
+    <defs>
+      <symbol id="impulse-mark" viewBox="801 344 274 272">
+        <path
+          d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+      </symbol>
+      <symbol id="impulse-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h12m0 0l-5-5m5 5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Mark Cursor -->
+  <div class="cursor" aria-hidden="true">
+    <svg class="cursor-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+        class="cursor-mark-path" />
+    </svg>
+    <div class="cursor-text"></div>
+  </div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <!-- Page Scroll Progress -->
+  <div class="page-progress" aria-hidden="true">
+    <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+        class="page-progress-path" />
+    </svg>
+  </div>
+
+  <div class="noise-overlay"></div>
+
+  <!-- Navigation -->
+  <nav id="main-nav">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="index.html" class="logo"><img src="ImpulseDigital_Logo.svg" alt="Impulse Digital Logo"></a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-item" data-cursor="GO">Home</a>
+        <a href="about.html" class="nav-item" data-cursor="GO">About Us</a>
+        <div class="nav-dropdown">
+          <a href="index.html#services" class="nav-item" data-cursor="GO"
+            style="display: flex; align-items: center; gap: 4px;">
+            Services
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"
+              class="dropdown-arrow">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+          <div class="dropdown-content">
+            <div class="dropdown-col">
+              <h4>Growth Intelligence</h4>
+              <div class="dropdown-list">
+                <a href="consumer-intelligence.html" class="dropdown-item">Consumer Intelligence</a>
+                <a href="market-intelligence.html" class="dropdown-item">Market and Competitive Intelligence</a>
+                <a href="always-on-intelligence.html" class="dropdown-item">Always-On Intelligence</a>
+                <a href="campaign-intelligence.html" class="dropdown-item">Campaign and Performance Intelligence</a>
+              </div>
+            </div>
+            <div class="dropdown-col">
+              <h4>AI Marketing Systems</h4>
+              <div class="dropdown-list">
+                <a href="archer-ai.html" class="dropdown-item">Archer AI</a>
+                <a href="agentic-ai.html" class="dropdown-item">Agentic AI</a>
+                <a href="ai-video-production.html" class="dropdown-item">Cinematic AI Production</a>
+                <a href="generative-search-optimisation.html" class="dropdown-item">Generative Search Optimisation</a>
+              </div>
+            </div>
+            <div class="dropdown-col">
+              <h4>Brand Infrastructure</h4>
+              <div class="dropdown-list">
+                <a href="search-engine-optimisation.html" class="dropdown-item">Search and Visibility</a>
+                <a href="social-media-management.html" class="dropdown-item">Social Media</a>
+                <a href="website-development.html" class="dropdown-item">Website Development</a>
+                <a href="branding.html" class="dropdown-item">Brand Identity</a>
+                <a href="employer-branding.html" class="dropdown-item">Employer Branding</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="index.html#cases-pin" class="nav-item" data-cursor="GO">Case Studies</a>
+        <a href="index.html#blogs" class="nav-item" data-cursor="GO">Blogs</a>
+        <a href="index.html#resources" class="nav-item" data-cursor="GO">Resources</a>
+        <a href="index.html#careers" class="nav-item" data-cursor="GO">Careers</a>
+      </div>
+      <div class="nav-right">
+        <a href="#connect" class="btn-nav" data-cursor="HI">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         1. HERO — monumental headline + static 3-up "truths"
+         (no scrolling ticker — readable instantly).
+         ============================================================ -->
+    <section class="ab-section ab-hero" id="hero">
+      <div class="ab-wrap-full">
+        <div class="ab-hero-inner">
+          <h1 class="ab-hero-h">Momentum for brands with appetite.</h1>
+          <p class="ab-hero-tagline">The best brands are never truly still.</p>
+
+          <div class="ab-hero-truths">
+            <div class="ab-truth">
+              <p class="ab-truth-text">They question what has become routine.</p>
+            </div>
+            <div class="ab-truth">
+              <p class="ab-truth-text">They improve what is already working.</p>
+            </div>
+            <div class="ab-truth">
+              <p class="ab-truth-text">They move before marketing turns into maintenance.</p>
+            </div>
+          </div>
+
+          <div class="ab-hero-foot">
+            <p class="ab-hero-lede">Impulse Digital helps such brands turn ambition into commercial momentum by bringing
+              strategy, creativity, content, search, performance, technology, AI, and execution into formation.</p>
+            <div class="ab-hero-cta-row">
+              <a href="#connect" class="btn" data-cursor="START">
+                <span class="btn-text">Start the conversation</span>
+                <div class="btn-fill"></div>
+              </a>
+              <a href="#think" class="btn" data-cursor="VIEW">
+                <span class="btn-text">See how we think</span>
+                <div class="btn-fill"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2. DRIFT — billboard headline → static 2×2 "routine" grid
+         (no marquee) → asymmetric rhetorical question stack →
+         monumental resolution.
+         ============================================================ -->
+    <section class="ab-section ab-drift" id="think">
+      <div class="ab-wrap-full">
+
+        <div class="ab-drift-head">
+          <h2 class="ab-drift-h split-text">
+            <span class="l1">Marketing becomes maintenance quietly.</span>
+            <span class="l2">It rarely fails all at once.</span>
+          </h2>
+        </div>
+
+        <!-- Static 2×2 of routine phrases. Each tile feels operational
+             on the surface — the outlined type signals the hollowness. -->
+        <div class="ab-routine-grid">
+          <div class="ab-routine-cell">
+            <span class="ab-routine-dot"></span>
+            <span class="ab-routine-text">The calendar keeps moving.</span>
+          </div>
+          <div class="ab-routine-cell">
+            <span class="ab-routine-dot"></span>
+            <span class="ab-routine-text">Campaigns keep launching.</span>
+          </div>
+          <div class="ab-routine-cell">
+            <span class="ab-routine-dot"></span>
+            <span class="ab-routine-text">Reports keep getting made.</span>
+          </div>
+          <div class="ab-routine-cell">
+            <span class="ab-routine-dot"></span>
+            <span class="ab-routine-text">Meetings keep happening.</span>
+          </div>
+        </div>
+
+        <div class="ab-drift-pivot">
+          <p class="loud">But somewhere along the way, the work starts needing more explanation than it creates
+            movement.</p>
+          <p>Leadership starts asking harder questions.</p>
+        </div>
+
+        <!-- Rhetorical questions — alternating alignment so they read
+             as voices pressing in from different angles, not as FAQ
+             items. No numbers, no arrows, no hover transform. -->
+        <div class="ab-drift-questions">
+          <p class="ab-drift-q" data-align="l">What is this doing for the brand<span class="q-mark">?</span></p>
+          <p class="ab-drift-q" data-align="r2">What is this building over time<span class="q-mark">?</span></p>
+          <p class="ab-drift-q" data-align="l2">What is this helping us decide<span class="q-mark">?</span></p>
+          <p class="ab-drift-q" data-align="r">What is this moving for the business<span class="q-mark">?</span></p>
+        </div>
+
+        <p class="ab-drift-resist">That is the drift <span class="accent">Impulse exists to resist.</span></p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. APPETITE — ghost word + monumental rows
+         (hover changes color only — no horizontal motion).
+         ============================================================ -->
+    <section class="ab-section ab-appetite">
+      <div class="ab-appetite-ghost" aria-hidden="true">APPETITE</div>
+      <div class="ab-wrap-full ab-appetite-inner">
+        <div class="ab-appetite-head">
+          <span class="l1">Appetite is not <span class="strike">size</span>.</span>
+          <span class="l2">It is willingness.</span>
+        </div>
+
+        <div class="ab-appetite-list">
+          <div class="ab-appetite-row">
+            <span class="num">01</span>
+            <span class="text">A startup can have it.</span>
+          </div>
+          <div class="ab-appetite-row">
+            <span class="num">02</span>
+            <span class="text">A legacy business can have it.</span>
+          </div>
+          <div class="ab-appetite-row">
+            <span class="num">03</span>
+            <span class="text">A conglomerate can have it.</span>
+          </div>
+          <div class="ab-appetite-row">
+            <span class="num">04</span>
+            <span class="text">A founder-led company can have it.</span>
+          </div>
+        </div>
+
+        <p class="ab-appetite-def">Appetite is the willingness to move, question, improve, experiment, challenge default
+          thinking, and expect more from marketing.</p>
+
+        <div class="ab-appetite-close">
+          <p>That is who we work best with.</p>
+          <p>Brands that do not want marketing to simply continue.</p>
+          <p class="accent">Brands that want it to create momentum.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. FORMATION — HEADLINE LEADS, then the V-flock visual,
+         then the body. Tightened padding to remove the dead
+         space the user flagged above the headline.
+         ============================================================ -->
+    <section class="ab-section ab-formation">
+      <div class="ab-wrap-narrow">
+
+        <div class="ab-formation-head">
+          <h2 class="ab-formation-h split-text">Teams go further in formation.</h2>
+        </div>
+
+        <div class="ab-formation-stage" aria-hidden="true">
+          <div class="ab-form-mark" data-pos="l3"><svg viewBox="801 344 274 272">
+              <use href="#impulse-mark" />
+            </svg></div>
+          <div class="ab-form-mark" data-pos="l2"><svg viewBox="801 344 274 272">
+              <use href="#impulse-mark" />
+            </svg></div>
+          <div class="ab-form-mark" data-pos="l1"><svg viewBox="801 344 274 272">
+              <use href="#impulse-mark" />
+            </svg></div>
+          <div class="ab-form-mark lead" data-pos="lead"><svg viewBox="801 344 274 272">
+              <use href="#impulse-mark" />
+            </svg></div>
+          <div class="ab-form-mark" data-pos="r1"><svg viewBox="801 344 274 272">
+              <use href="#impulse-mark" />
+            </svg></div>
+          <div class="ab-form-mark" data-pos="r2"><svg viewBox="801 344 274 272">
+              <use href="#impulse-mark" />
+            </svg></div>
+          <div class="ab-form-mark" data-pos="r3"><svg viewBox="801 344 274 272">
+              <use href="#impulse-mark" />
+            </svg></div>
+        </div>
+
+        <div class="ab-formation-body">
+          <p>A brand rarely moves because one channel performs in isolation.</p>
+          <p>Momentum is built when the thinking, the story, the search presence, the media, the website, the data, the
+            technology, and the execution pull in the same direction.</p>
+          <p>That is why we do not treat strategy as a document and execution as a handoff.</p>
+          <p class="ab-formation-close">The work has to move together.<em>Otherwise, it becomes activity.</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. MOVEMENT — services rendered as a quiet itemised list
+         (intentionally task-like, NOT a hero service grid), with
+         a monumental punchline reveal underneath. The visual
+         hierarchy IS the build-up: small list → towering reveal.
+         ============================================================ -->
+    <section class="ab-section ab-movement" id="movement">
+      <div class="ab-wrap-full">
+        <div class="ab-movement-head">
+          <h2 class="ab-movement-h split-text">The service is not the story.<br><span class="accent">The movement
+              is.</span></h2>
+        </div>
+
+        <div class="ab-movement-system">
+          <div class="ab-tasks">
+            <div class="ab-task">
+              <p class="ab-task-text"><strong>Brand strategy</strong>gives the work a commercial foundation.</p>
+            </div>
+            <div class="ab-task">
+              <p class="ab-task-text"><strong>Content</strong>builds authority, not just output.</p>
+            </div>
+            <div class="ab-task">
+              <p class="ab-task-text"><strong>Search</strong>compounds visibility that the brand owns.</p>
+            </div>
+            <div class="ab-task">
+              <p class="ab-task-text"><strong>Performance</strong>makes spend more accountable.</p>
+            </div>
+            <div class="ab-task">
+              <p class="ab-task-text"><strong>Social media</strong>builds relevance, not just a posting rhythm.</p>
+            </div>
+            <div class="ab-task">
+              <p class="ab-task-text"><strong>Websites</strong>become the place where intent either lands or leaks.</p>
+            </div>
+            <div class="ab-task">
+              <p class="ab-task-text"><strong>Analytics</strong>turns data into clearer decisions.</p>
+            </div>
+            <div class="ab-task">
+              <p class="ab-task-text"><strong>AI</strong>makes the work faster, sharper, and more scalable without
+                lowering the bar.</p>
+            </div>
+          </div>
+
+          <div class="ab-reveal">
+            <p class="ab-reveal-pre">Used separately, these can become tasks.</p>
+            <h3 class="ab-reveal-h">
+              Used with intent,
+              <span class="accent-block">they become momentum.</span>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. CLARITY — Less chasing. More clarity.
+         ============================================================ -->
+    <section class="ab-section ab-clarity">
+      <div class="ab-wrap-full">
+
+        <div class="ab-clarity-head">
+          <h2 class="ab-clarity-h split-text">Less chasing.<br><span class="accent">More clarity.</span></h2>
+          <p class="ab-clarity-h-sub">You get strategy before the work, not as a post-rationalisation after the work is
+            questioned. You get content, campaigns, websites, search systems, and AI-enabled workflows built to perform,
+            not just exist.</p>
+        </div>
+
+        <div class="ab-clarity-split">
+          <div class="ab-clarity-pane behind">
+            <span class="ab-clarity-pane-num">01</span>
+            <h3>Behind the scenes, there is process, data, automation, judgment, and senior thinking.</h3>
+            <ul>
+              <li>Process</li>
+              <li>Data</li>
+              <li>Automation</li>
+              <li>Judgment</li>
+              <li>Senior thinking</li>
+            </ul>
+          </div>
+          <div class="ab-clarity-pane surface">
+            <span class="ab-clarity-pane-num">02</span>
+            <h3>On the surface, it should feel simple.</h3>
+            <ul>
+              <li>You get fewer loose ends.</li>
+              <li>Fewer avoidable calls.</li>
+              <li>Fewer rounds caused by unclear thinking.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ab-clarity-stack">
+          <span class="row">The right work.</span>
+          <span class="row">Moving in the right direction.</span>
+          <span class="row">With fewer things falling through the cracks.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. SENIOR THINKING
+         ============================================================ -->
+    <section class="ab-section ab-senior">
+      <div class="ab-wrap-full">
+
+        <div class="ab-senior-head">
+          <h2 class="ab-senior-h split-text">Senior thinking stays close to the work.</h2>
+          <p class="ab-senior-sub">Impulse is not built on the idea that strategy happens once and execution figures
+            itself out. The work often needs judgment.</p>
+        </div>
+
+        <div class="ab-senior-list">
+          <div class="ab-senior-row">
+            <div class="ab-senior-trigger">A campaign</div>
+            <div class="ab-senior-arrow"><svg viewBox="0 0 24 24">
+                <use href="#impulse-arrow" />
+              </svg></div>
+            <div class="ab-senior-need">may need a sharper thought.</div>
+          </div>
+          <div class="ab-senior-row">
+            <div class="ab-senior-trigger">A website</div>
+            <div class="ab-senior-arrow"><svg viewBox="0 0 24 24">
+                <use href="#impulse-arrow" />
+              </svg></div>
+            <div class="ab-senior-need">may need a clearer path.</div>
+          </div>
+          <div class="ab-senior-row">
+            <div class="ab-senior-trigger">A search strategy</div>
+            <div class="ab-senior-arrow"><svg viewBox="0 0 24 24">
+                <use href="#impulse-arrow" />
+              </svg></div>
+            <div class="ab-senior-need">may need stronger commercial context.</div>
+          </div>
+          <div class="ab-senior-row">
+            <div class="ab-senior-trigger">An AI workflow</div>
+            <div class="ab-senior-arrow"><svg viewBox="0 0 24 24">
+                <use href="#impulse-arrow" />
+              </svg></div>
+            <div class="ab-senior-need">may need a human filter.</div>
+          </div>
+          <div class="ab-senior-row">
+            <div class="ab-senior-trigger">A client conversation</div>
+            <div class="ab-senior-arrow"><svg viewBox="0 0 24 24">
+                <use href="#impulse-arrow" />
+              </svg></div>
+            <div class="ab-senior-need">may need more honesty than polish.</div>
+          </div>
+        </div>
+
+        <div class="ab-senior-foot">
+          <p>That is why senior thinking stays close.</p>
+          <p class="loud">Not to slow the work down. <em>To keep it pointed in the right direction.</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. FOUNDERS — cinematic full-bleed.
+         The transparent PNGs are cutouts already. The portraits
+         now sit against the Impulse brand mark instead of the
+         previous circular backdrop.
+         ============================================================ -->
+    <section class="ab-section ab-founders" id="founders">
+      <div class="ab-wrap-full">
+        <div class="ab-founders-intro">
+          <h2 class="ab-founders-h split-text">Built by people who refuse to <em>simply continue.</em></h2>
+        </div>
+      </div>
+
+      <!-- ADWAIT — portrait left, copy right -->
+      <article class="ab-founder-section" data-side="left">
+        <span class="ab-founder-ghost-name" aria-hidden="true">ADWAIT</span>
+
+        <div class="ab-founder-grid">
+          <div class="ab-founder-portrait-wrap">
+            <div class="ab-founder-portrait-mark" aria-hidden="true">
+              <svg viewBox="801 344 274 272">
+                <path class="ab-mark-glow ab-mark-glow-outer"
+                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+                <path class="ab-mark-glow ab-mark-glow-mid"
+                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+                <path class="ab-mark-glow ab-mark-glow-inner"
+                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+                <path class="ab-mark-fill"
+                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+              </svg>
+            </div>
+            <div class="ab-founder-portrait" data-portrait>
+              <img src="images/About%20Us%20/Adwait-cutout-v2.png" alt="Adwait Joshi">
+            </div>
+          </div>
+          <div class="ab-founder-copy-wrap">
+            <h3 class="ab-founder-name">Adwait Joshi</h3>
+            <p class="ab-founder-headline">Restless by design, particular by habit.</p>
+            <p class="ab-founder-body">Somewhere between simplifying what&rsquo;s complicated, complicating what&rsquo;s
+              too simple, and informally holding titles like fixer of things, questioner of norms, and quiet instigator
+              at Impulse Digital.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ABHISHEK — portrait right, copy left -->
+      <article class="ab-founder-section" data-side="right">
+        <span class="ab-founder-ghost-name" aria-hidden="true">ABHISHEK</span>
+
+        <div class="ab-founder-grid">
+          <div class="ab-founder-portrait-wrap">
+            <div class="ab-founder-portrait-mark" aria-hidden="true">
+              <svg viewBox="801 344 274 272">
+                <path class="ab-mark-glow ab-mark-glow-outer"
+                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+                <path class="ab-mark-glow ab-mark-glow-mid"
+                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+                <path class="ab-mark-glow ab-mark-glow-inner"
+                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+                <path class="ab-mark-fill"
+                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+              </svg>
+            </div>
+            <div class="ab-founder-portrait" data-portrait>
+              <img src="images/About%20Us%20/Abhishek-cutout-v2.png" alt="Abhishek Arekar">
+            </div>
+          </div>
+          <div class="ab-founder-copy-wrap">
+            <h3 class="ab-founder-name">Abhishek Arekar</h3>
+            <p class="ab-founder-headline">The kind of person who can read a dashboard, a room, and a poorly explained
+              problem with the same unsettling accuracy.</p>
+            <p class="ab-founder-body">Somewhere in the background of every smooth process, sharper insight, and better
+              decision at Impulse Digital.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============================================================
+         9. FIT
+         ============================================================ -->
+    <section class="ab-section ab-fit">
+      <div class="ab-wrap-full">
+
+        <div class="ab-fit-head">
+          <h2 class="ab-fit-h split-text">Built for brands that <em
+              style="font-style:italic;font-weight:300;color:var(--impulse-violet);">expect more.</em></h2>
+        </div>
+
+        <div class="ab-fit-split">
+          <div class="ab-fit-pane warn">
+            <p>We are not the right fit for teams looking for a vendor to simply fulfil briefs.</p>
+          </div>
+          <div class="ab-fit-pane yes">
+            <p>Brands that want a partner who can think with them, build with them, challenge weak assumptions, and
+              reduce the weight marketing places on their internal team.</p>
+          </div>
+        </div>
+
+        <p class="ab-clarity-h-sub" style="text-align:center; max-width: 880px; margin: 0 auto 4rem;">The size of the
+          brand matters less than the appetite behind it.</p>
+
+        <div class="ab-fit-attrs">
+          <div class="ab-fit-attr">A sharper question.</div>
+          <div class="ab-fit-attr">A higher standard.</div>
+          <div class="ab-fit-attr">A willingness to improve.</div>
+          <div class="ab-fit-attr">A need for marketing to move the business, not just fill the calendar.</div>
+        </div>
+
+        <p class="ab-fit-close">That is where Impulse fits best.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+        10. FINAL CTA
+         ============================================================ -->
+    <section class="ab-section ab-final glass-panel" id="connect">
+      <div class="ab-final-mark" aria-hidden="true">
+        <svg viewBox="801 344 274 272">
+          <use href="#impulse-mark" />
+        </svg>
+      </div>
+      <div class="ab-final-inner">
+        <div class="ab-wrap-narrow">
+          <div class="ab-final-card">
+            <div class="ab-final-stack">
+              <div class="row">Move sharper.</div>
+              <div class="row">Move together.</div>
+              <div class="row">Move the business.</div>
+            </div>
+            <div class="ab-final-cta-row">
+              <a href="mailto:collabs@theimpulsedigital.com" class="btn" data-cursor="START">
+                <span class="btn-text">Start the conversation</span>
+                <div class="btn-fill"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="ImpulseDigital_Logo.svg" alt="Impulse Digital Logo" class="footer-logo">
+          <p class="footer-tagline">AI native growth intelligence for enterprise brands.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#cases-pin">Case Studies</a></li>
+            <li><a href="index.html#careers">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="index.html#blogs">Blog</a></li>
+            <li><a href="#">EBooks</a></li>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Slideshare ppt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Locations</h4>
+          <ul>
+            <li><a href="#">India</a></li>
+            <li><a href="#">Thane</a></li>
+            <li><a href="#">Navi Mumbai</a></li>
+            <li><a href="#">Pune</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-contact-col">
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+            <span class="contact-text">+91-9769285224</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+            <span class="contact-text">collabs@theimpulsedigital.com</span>
+          </div>
+          <div class="contact-item address-item">
+            <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+            <span class="contact-text">304 - 305, Chirag Infotech, Road No. 16/Z, Ambica Nagar, Wagle Industrial Estate,
+              Thane, Mumbai 400604</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Impulse Digital. All rights reserved.</p>
+      </div>
+      <div class="footer-divider"></div>
+    </div>
+    <div class="footer-etched" aria-hidden="true">
+      <svg id="footer-hover-svg" viewBox="0 0 2400 250" xmlns="http://www.w3.org/2000/svg"
+        class="select-none uppercase cursor-pointer" style="width: 100%; height: auto; display: block;">
+        <defs>
+          <linearGradient id="textGradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="25%" stop-color="#543D98" />
+            <stop offset="50%" stop-color="#8A5CF6" />
+            <stop offset="75%" stop-color="#543D98" />
+            <stop offset="100%" stop-color="#ffffff" />
+          </linearGradient>
+          <radialGradient id="revealMask" gradientUnits="userSpaceOnUse" r="20%" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="white" />
+            <stop offset="100%" stop-color="black" />
+          </radialGradient>
+          <mask id="textMask">
+            <rect x="0" y="0" width="100%" height="100%" fill="url(#revealMask)" />
+          </mask>
+        </defs>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start"
+          dominant-baseline="middle" font-size="160" stroke-width="0.3" class="svg-text-base">Momentum for brands with
+          appetite.</text>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start"
+          dominant-baseline="middle" font-size="160" stroke-width="0.3" class="svg-text-animated">Momentum for brands
+          with appetite.</text>
+        <text x="0" y="50%" textLength="2400" lengthAdjust="spacingAndGlyphs" text-anchor="start"
+          dominant-baseline="middle" font-size="160" stroke="url(#textGradient)" stroke-width="0.3"
+          mask="url(#textMask)" class="svg-text-fill">Momentum for brands with appetite.</text>
+      </svg>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+  <script src="js/script.js?v=73"></script>
+
+  <!-- ========================================================
+       ABOUT PAGE INSTRUMENTATION
+       ======================================================== -->
+  <script>
+    (function () {
+      const style = document.createElement('style');
+      style.textContent = '.ab-hero-h, .ab-hero-tagline, .ab-hero-truths, .ab-hero-foot { visibility: hidden; }';
+      document.head.appendChild(style);
+    })();
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // ===== HERO entry choreography =====
+      const runHeroAnim = () => {
+        const reveal = () => {
+          document.querySelectorAll('.ab-hero-h, .ab-hero-tagline, .ab-hero-truths, .ab-hero-foot')
+            .forEach(el => el.style.visibility = 'visible');
+        };
+        if (!window.gsap || !window.SplitType) { reveal(); return; }
+
+        const headline = document.querySelector('.ab-hero-h');
+        const tagline = document.querySelector('.ab-hero-tagline');
+        const truths = document.querySelectorAll('.ab-truth');
+        const foot = document.querySelector('.ab-hero-foot');
+
+        reveal();
+
+        if (headline) {
+          const split = new SplitType(headline, { types: 'lines, words' });
+          split.lines.forEach((line) => {
+            const w = document.createElement('div');
+            w.classList.add('line-wrapper');
+            line.parentNode.insertBefore(w, line);
+            w.appendChild(line);
+          });
+          gsap.set(split.words, { yPercent: 120, opacity: 0 });
+          gsap.to(split.words, {
+            yPercent: 0, opacity: 1,
+            duration: 0.8, stagger: 0.015, ease: 'power4.out', delay: 0.1
+          });
+        }
+        if (tagline) gsap.fromTo(tagline, { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: 1.0 });
+        if (truths.length) gsap.fromTo(truths, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, stagger: 0.12, ease: 'power3.out', delay: 1.25 });
+        if (foot) gsap.fromTo(foot, { y: 24, opacity: 0 }, {
+          y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: 1.7,
+          onComplete: () => window.ScrollTrigger && ScrollTrigger.refresh()
+        });
+      };
+
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(runHeroAnim);
+      else setTimeout(runHeroAnim, 250);
+
+      // ===== Generic scroll reveals =====
+      if (window.gsap && window.ScrollTrigger) {
+
+        const heads = document.querySelectorAll(
+          '.ab-drift-pivot, .ab-drift-resist,' +
+          '.ab-appetite-head, .ab-appetite-def, .ab-appetite-close p,' +
+          '.ab-formation-body p, .ab-formation-close,' +
+          '.ab-bridge, .ab-reveal-pre, .ab-reveal-h,' +
+          '.ab-clarity-h-sub, .ab-clarity-stack .row,' +
+          '.ab-senior-sub, .ab-senior-foot p,' +
+          '.ab-fit-close'
+        );
+        heads.forEach((el) => {
+          gsap.fromTo(el, { y: 26, opacity: 0 }, {
+            y: 0, opacity: 1, duration: 0.95, ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+          });
+        });
+
+        const batches = ['.ab-routine-cell', '.ab-drift-q', '.ab-appetite-row', '.ab-senior-row', '.ab-fit-attr'];
+        batches.forEach((sel) => {
+          const items = gsap.utils.toArray(sel);
+          if (!items.length) return;
+          gsap.set(items, { y: 24, opacity: 0 });
+          ScrollTrigger.batch(items, {
+            start: 'top 90%',
+            onEnter: batch => gsap.to(batch, { y: 0, opacity: 1, duration: 0.6, stagger: 0.06, ease: 'power3.out' }),
+            once: true
+          });
+        });
+
+        ['.ab-clarity-pane', '.ab-fit-pane'].forEach((sel) => {
+          const items = gsap.utils.toArray(sel);
+          if (!items.length) return;
+          gsap.set(items, { y: 30, opacity: 0 });
+          ScrollTrigger.batch(items, {
+            start: 'top 88%',
+            onEnter: batch => gsap.to(batch, { y: 0, opacity: 1, duration: 0.85, stagger: 0.12, ease: 'power3.out' }),
+            once: true
+          });
+        });
+
+        // ===== Movement system: keep the structure, add a living sequence =====
+        const movementSystem = document.querySelector('.ab-movement-system');
+        if (movementSystem) {
+          const movementCards = gsap.utils.toArray('.ab-movement-system .ab-task');
+          const revealPanel = document.querySelector('.ab-reveal');
+          const movementOrder = [0, 3, 1, 2, 4, 5, 6, 7];
+
+          ScrollTrigger.create({
+            trigger: movementSystem,
+            start: 'top 72%',
+            once: true,
+            onEnter: () => {
+              const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+              movementOrder.forEach((idx, i) => {
+                const card = movementCards[idx];
+                if (!card) return;
+                tl.fromTo(card, {
+                  opacity: 0,
+                  y: 28,
+                  scale: 0.96
+                }, {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  duration: 0.62,
+                  onStart: () => card.classList.add('is-lit'),
+                  onComplete: () => setTimeout(() => card.classList.remove('is-lit'), 900)
+                }, i * 0.08);
+              });
+              tl.fromTo(revealPanel, {
+                opacity: 0,
+                y: 24,
+                scale: 0.97
+              }, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.9,
+                onStart: () => revealPanel && revealPanel.classList.add('is-lit')
+              }, 0.32);
+              tl.to(revealPanel, { '--shine-x': '160%', duration: 1.2, ease: 'power2.out' }, 0.62);
+            }
+          });
+
+          movementCards.forEach((card) => {
+            card.addEventListener('pointermove', (event) => {
+              const rect = card.getBoundingClientRect();
+              card.style.setProperty('--mx', `${((event.clientX - rect.left) / rect.width) * 100}%`);
+              card.style.setProperty('--my', `${((event.clientY - rect.top) / rect.height) * 100}%`);
+            });
+          });
+        }
+
+        const strike = document.querySelector('.ab-appetite-head .strike');
+        if (strike) {
+          ScrollTrigger.create({
+            trigger: '.ab-appetite-head',
+            start: 'top 70%',
+            once: true,
+            onEnter: () => strike.style.setProperty('--strike-w', '1')
+          });
+        }
+
+        // ===== Formation V-flock reveal =====
+        const order = ['l3', 'r3', 'l2', 'r2', 'l1', 'r1', 'lead'];
+        if (document.querySelector('.ab-form-mark')) {
+          ScrollTrigger.create({
+            trigger: '.ab-formation-stage',
+            start: 'top 80%',
+            once: true,
+            onEnter: () => {
+              order.forEach((pos, i) => {
+                const el = document.querySelector(`.ab-form-mark[data-pos="${pos}"]`);
+                if (!el) return;
+                const isLead = el.classList.contains('lead');
+                const isTail = (pos === 'l3' || pos === 'r3');
+                gsap.fromTo(el,
+                  { opacity: 0, scale: 0.6, y: 30 },
+                  {
+                    opacity: isLead ? 1 : (isTail ? 0.5 : 0.88),
+                    scale: 1, y: 0,
+                    duration: 0.8,
+                    delay: i * 0.12,
+                    ease: 'power3.out'
+                  }
+                );
+              });
+              gsap.to('.ab-form-mark.lead', {
+                y: -6, duration: 2.3, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 1.2
+              });
+            }
+          });
+        }
+
+        // ===== Founder section reveals =====
+        document.querySelectorAll('.ab-founder-section').forEach((sec) => {
+          const ghost = sec.querySelector('.ab-founder-ghost-name');
+          const portrait = sec.querySelector('.ab-founder-portrait img');
+          const name = sec.querySelector('.ab-founder-name');
+          const head = sec.querySelector('.ab-founder-headline');
+          const body = sec.querySelector('.ab-founder-body');
+          const founderText = [name, head, body].filter(Boolean);
+
+          gsap.set(ghost, { opacity: 0 });
+          gsap.set(portrait, { y: 60, opacity: 0 });
+          gsap.set(founderText, { y: 24, opacity: 0 });
+
+          ScrollTrigger.create({
+            trigger: sec,
+            start: 'top 75%',
+            once: true,
+            onEnter: () => {
+              const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+              tl.to(ghost, { opacity: 1, duration: 1.4 }, 0.15)
+                .to(portrait, { y: 0, opacity: 1, duration: 1.1, ease: 'power4.out' }, 0.2)
+                .to(name, { y: 0, opacity: 1, duration: 0.9 }, 0.5)
+                .to(head, { y: 0, opacity: 1, duration: 0.9 }, 0.65)
+                .to(body, { y: 0, opacity: 1, duration: 0.9 }, 0.8);
+            }
+          });
+
+          gsap.to(ghost, {
+            y: -50, ease: 'none',
+            scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true }
+          });
+          gsap.to(portrait, {
+            y: -20, ease: 'none',
+            scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true }
+          });
+        });
+        const finalCard = document.querySelector('.ab-final-card');
+        const finalRows = gsap.utils.toArray('.ab-final-stack .row');
+        const finalButton = document.querySelector('.ab-final-cta-row');
+        if (finalCard && finalButton) {
+          ScrollTrigger.create({
+            trigger: finalCard,
+            start: 'top 84%',
+            once: true,
+            onEnter: () => {
+              const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+              tl.fromTo(finalRows, {
+                y: 58,
+                opacity: 0,
+                filter: 'blur(14px)'
+              }, {
+                y: 0,
+                opacity: 1,
+                filter: 'blur(0px)',
+                duration: 1,
+                stagger: 0.13
+              })
+                .fromTo(finalButton, {
+                  y: 24,
+                  opacity: 0
+                }, {
+                  y: 0,
+                  opacity: 1,
+                  duration: 0.65
+                }, '-=0.25');
+            }
+          });
+        }
+      }
+
+      // ===== Hero → drift transition =====
+      const waitForGsap = setInterval(() => {
+        if (window.gsap && window.ScrollTrigger) {
+          clearInterval(waitForGsap);
+          const trigger = document.querySelector('.ab-drift');
+          if (!trigger) return;
+          gsap.to(document.body, {
+            backgroundColor: '#000000',
+            scrollTrigger: { trigger, start: 'top bottom', end: 'top top', scrub: true }
+          });
+          if (window.particlesMaterial) {
+            gsap.fromTo(window.particlesMaterial,
+              { opacity: 0.7 },
+              { opacity: 0, scrollTrigger: { trigger, start: 'top 80%', end: 'top 20%', scrub: true } }
+            );
+          }
+        }
+      }, 80);
+      setTimeout(() => clearInterval(waitForGsap), 6000);
+    });
+  </script>
+</body>
+
+</html>

@@ -9,7 +9,7 @@ export const brandingData = {
     "buttons": [
       {
         "text": "Build Your Brand System",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "BUILD"
       },
       {
@@ -243,13 +243,13 @@ export const brandingData = {
     "buttons": [
       {
         "text": "Build Your Brand System",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "START",
         "primary": false
       },
       {
-        "text": "Talk to Impulse Digital",
-        "link": "#connect",
+        "text": "Start a Conversation",
+        "link": "/contact-us/",
         "cursor": "HI",
         "primary": false
       }

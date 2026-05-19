@@ -154,30 +154,22 @@ const SearchEngineOptimisation: React.FC = () => {
   return (
     <main id="main-content">
       <Helmet>
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <title>Search Engine Optimisation | Impulse Digital</title>
-        <meta name="robots" content="index, follow" />
-        <meta name="revisit-after" content="1 day" />
-        <meta name="language" content="English" />
-        <meta name="generator" content="N/A" />
-
-        <meta property="og:title" content="Search Engine Optimisation | Impulse Digital" />
-        <meta property="og:description" content="" />
-        <meta property="og:url" content="https://www.theimpulsedigital.com/services/search-engine-optimisation" />
-        <meta property="og:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
-        <meta property="og:site_name" content="Impulse Digital" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@impulsedigi" />
-        <meta name="twitter:creator" content="@impulsedigi" />
-        <meta name="twitter:title" content="Search Engine Optimisation | Impulse Digital" />
-        <meta name="twitter:description" content="" />
-        <meta name="twitter:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
-        <meta name="twitter:url" content="https://www.theimpulsedigital.com/services/search-engine-optimisation" />
-
-        <link rel="canonical" href="https://www.theimpulsedigital.com/services/search-engine-optimisation" />
+        <title>SEO Company in Thane | SEO Services | Impulse Digital</title>
+<meta name="description" content="Impulse Digital is a trusted SEO company in Thane offering SEO services such as website audits, keyword research, link building and content strategy. Choose the best SEO agency in Thane for results." />
+<meta name="keywords" content="seo company in thane, seo services, search engine optimization services, seo agency in thane, impulse digital" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/services/search-engine-optimization/" />
+<meta property="og:title" content="SEO Company in Thane | SEO Services | Impulse Digital" />
+<meta property="og:description" content="Impulse Digital is a trusted SEO company in Thane offering SEO services such as website audits, keyword research, link building and content strategy. Choose the best SEO agency in Thane for results." />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:url" content="hhttps://www.theimpulsedigital.com/services/search-engine-optimization/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Impulse Digital" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="SEO Company in Thane | SEO Services | Impulse Digital" />
+<meta name="twitter:description" content="Impulse Digital is a trusted SEO company in Thane offering SEO services such as website audits, keyword research, link building and content strategy. Choose the best SEO agency in Thane for results." />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 
         headlineParts={data.hero.headlineParts}

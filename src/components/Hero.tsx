@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const { gsap, SplitType } = window as any;
 
@@ -6,7 +7,7 @@ const Hero: React.FC = () => {
   useEffect(() => {
     const heroHeadlines = document.querySelectorAll('.hero-headline');
     const heroDesc = document.querySelector('.hero-desc');
-    const heroCtas = document.querySelectorAll('.hero-bottom .btn');
+    const heroCtas = document.querySelectorAll('.hero-bottom .btn, .hero-bottom .hero-premium-cta');
 
     if (!heroHeadlines.length || !heroDesc) return;
 
@@ -61,19 +62,23 @@ const Hero: React.FC = () => {
   return (
     <section className="hero" id="hero">
       <div className="hero-content">
-        <h1 className="hero-headline title-large" style={{ visibility: 'hidden' }}>
-          Most marketing decisions are made<br className="br-desktop" />without the most <span style={{ whiteSpace: 'nowrap' }}>important input</span>
+        <h1 className="hero-headline title-large" style={{ visibility: 'hidden', marginBottom: '0' }}>
+          Your Data Knows.
         </h1>
-        <h1 className="hero-headline title-large text-violet" style={{ visibility: 'hidden' }}>your own data.</h1>
+        <h1 className="hero-headline title-large" style={{ visibility: 'hidden', margin: '0' }}>
+          Your Marketing
+        </h1>
+        <h1 className="hero-headline title-large text-violet" style={{ visibility: 'hidden', marginTop: '0', marginBottom: '1.5rem' }}>
+          Should Too.
+        </h1>
 
-        <div className="hero-bottom">
+        <div className="hero-bottom" style={{ marginTop: '1rem' }}>
           <p className="hero-desc" style={{ maxWidth: '850px', margin: '0 auto', visibility: 'hidden' }}>
-            Impulse Digital is the AI-native growth intelligence partner for enterprise marketing teams that need to close the gap between what their data knows and what their teams act on.
+            Impulse Digital helps enterprise teams turn scattered marketing data into AI-native growth intelligence they can actually act on.
           </p>
-          <a href="#work" className="btn" data-cursor="EXPLORE" style={{ opacity: 0 }}>
+          <Link to="/growth-intelligence/" className="hero-premium-cta" data-cursor="EXPLORE" style={{ opacity: 0 }}>
             <span className="btn-text">See what your data is actually telling you</span>
-            <div className="btn-fill"></div>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

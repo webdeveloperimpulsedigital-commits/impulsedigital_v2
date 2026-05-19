@@ -4,7 +4,7 @@ export const consumerIntelligenceData = {
     headlineAccent: "Consumer You Imagine.",
     description: "Averages do not buy. Segments do not hesitate. Personas do not choose. People do. Impulse Digital helps brands understand the motivations, fears, habits, triggers, and expectations behind consumer behaviour, so strategy, messaging, and product decisions are built for the real buyer, not the convenient one.",
     buttons: [
-      { text: "Decode Your Consumer", link: "#connect", cursor: "DECODE" },
+      { text: "Decode Your Consumer", link: "/contact-us/", cursor: "DECODE" },
       { text: "See Where It Helps", link: "#use-cases", cursor: "EXPLORE" }
     ]
   },
@@ -59,6 +59,7 @@ export const consumerIntelligenceData = {
     ]
   },
   whenToUse: {
+    customClass: "ci-when-to-use",
     title: "Use Consumer Intelligence Before<br/>Assumption Becomes Strategy",
     paragraphs: [
       "Consumer Intelligence is most useful when the decision is important and the consumer truth underneath it is still unclear."
@@ -116,8 +117,8 @@ export const consumerIntelligenceData = {
     accent: "Next Move.",
     body: "Tell us what decision you are trying to make. We will help you understand what your consumer needs, resists, trusts, and expects before you make it.",
     buttons: [
-      { text: "Decode Your Consumer", link: "#connect", cursor: "DECODE" },
-      { text: "Talk to Impulse Digital", link: "#connect", cursor: "HI" }
+      { text: "Decode Your Consumer", link: "/contact-us/", cursor: "DECODE" },
+      { text: "Start a Conversation", link: "/contact-us/", cursor: "HI" }
     ],
     footnote: "No generic research dump. No insight theatre. Just sharper consumer understanding built for real brand, product, and growth decisions."
   },

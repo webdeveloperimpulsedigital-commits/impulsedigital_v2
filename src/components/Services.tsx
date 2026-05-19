@@ -8,7 +8,7 @@ const Services: React.FC = () => {
         <h2 className="section-heading split-text">Three ways growth<br />leaders work with us.</h2>
         <div className="scrub-container">
           <Link 
-            to="/services/growth-intelligence" 
+            to="/growth-intelligence/" 
             className="scrub-item" 
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
@@ -24,10 +24,13 @@ const Services: React.FC = () => {
               <h3 className="scrub-title text-fill">Growth Intelligence</h3>
               <div className="scrub-label">Find the signal before you make the move.</div>
               <p className="scrub-desc">Marketing analytics, campaign intelligence, consumer insights, and competitive sensing that help enterprise marketing teams act on evidence rather than instinct. This is not a dashboard. It is a decision engine.</p>
+              <div className="hero-premium-cta" style={{ marginTop: '2rem' }}>
+                Know More
+              </div>
             </div>
           </Link>
           <Link 
-            to="/services/ai-marketing-systems" 
+            to="/ai-marketing-systems/" 
             className="scrub-item" 
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
@@ -43,10 +46,13 @@ const Services: React.FC = () => {
               <h3 className="scrub-title text-fill">AI Marketing Systems</h3>
               <div className="scrub-label">AI built into the way marketing actually works.</div>
               <p className="scrub-desc">Agentic AI for marketing operations, fully AI-produced cinematic brand content, and Generative Search Optimisation for brands that need to move faster than their category allows.</p>
+              <div className="hero-premium-cta" style={{ marginTop: '2rem' }}>
+                Know More
+              </div>
             </div>
           </Link>
           <Link 
-            to="/services/brand-infrastructure" 
+            to="/brand-infrastructure/" 
             className="scrub-item" 
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
@@ -62,10 +68,25 @@ const Services: React.FC = () => {
               <h3 className="scrub-title text-fill">Brand Infrastructure</h3>
               <div className="scrub-label">The assets, channels, and content systems that make your brand visible, credible, and ready for market.</div>
               <p className="scrub-desc">Social media, performance marketing, content, website development, and branding, deployed as the execution layer of a strategic engagement.</p>
+              <div className="hero-premium-cta" style={{ marginTop: '2rem' }}>
+                Know More
+              </div>
             </div>
           </Link>
         </div>
+
       </div>
+
+      <style>{`
+        .scrub-item:hover .hero-premium-cta {
+          background: rgba(84, 61, 152, 0.25);
+          border-color: rgba(138, 92, 246, 1);
+          box-shadow: 0 0 20px rgba(138, 92, 246, 0.6), inset 0 0 12px rgba(138, 92, 246, 0.3);
+          transform: translateY(-2px);
+        }
+        .scrub-item:hover .hero-premium-cta::before { opacity: 1; }
+        .scrub-item:hover .hero-premium-cta::after { opacity: 0.3; }
+      `}</style>
     </section>
   );
 };

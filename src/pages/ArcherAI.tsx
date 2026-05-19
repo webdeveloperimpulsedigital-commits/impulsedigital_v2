@@ -106,30 +106,21 @@ const ArcherAI: React.FC = () => {
   return (
     <main id="main-content">
       <Helmet>
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <title>Archer A I | Impulse Digital</title>
-        <meta name="robots" content="index, follow" />
-        <meta name="revisit-after" content="1 day" />
-        <meta name="language" content="English" />
-        <meta name="generator" content="N/A" />
-
-        <meta property="og:title" content="Archer A I | Impulse Digital" />
-        <meta property="og:description" content="" />
-        <meta property="og:url" content="https://www.theimpulsedigital.com/services/archer-ai" />
-        <meta property="og:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
-        <meta property="og:site_name" content="Impulse Digital" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@impulsedigi" />
-        <meta name="twitter:creator" content="@impulsedigi" />
-        <meta name="twitter:title" content="Archer A I | Impulse Digital" />
-        <meta name="twitter:description" content="" />
-        <meta name="twitter:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
-        <meta name="twitter:url" content="https://www.theimpulsedigital.com/services/archer-ai" />
-
-        <link rel="canonical" href="https://www.theimpulsedigital.com/services/archer-ai" />
+        <title>Archer AI: AI Outbound Sales Agent | Impulse Digital</title>
+<meta name="description" content="Meet Archer AI, a leading AI outbound sales agent. We build AI outbound agents that engage prospects with authentic conversations to drive real growth." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/services/services/archer-ai/" />
+<meta property="og:title" content="Archer AI: AI Outbound Sales Agent | Impulse Digital" />
+<meta property="og:description" content="Meet Archer AI, a leading AI outbound sales agent. We build AI outbound agents that engage prospects with authentic conversations to drive real growth." />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:url" content="https://www.theimpulsedigital.com/services/services/archer-ai/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Impulse Digital" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Archer AI: AI Outbound Sales Agent | Impulse Digital" />
+<meta name="twitter:description" content="Meet Archer AI, a leading AI outbound sales agent. We build AI outbound agents that engage prospects with authentic conversations to drive real growth." />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 
         headlineParts={archerAiData.hero.headlineParts}
@@ -151,7 +142,7 @@ const ArcherAI: React.FC = () => {
       {/* CHANNELS — Built for Businesses Where Every Conversation Counts */}
       <section className="svc-channels">
         <div className="container">
-          <h2 className="svc-h2 split-text">Built for Businesses Where Every Conversation Counts</h2>
+          <h2 className="svc-h2 split-text">Built for Businesses Where<br/>Every Conversation Counts</h2>
           <p className="svc-channels-intro">Archer AI is not for blasting thousands of people. It is built for B2B businesses where the buyer is specific, the deal size justifies precision, and the sales cycle depends on real decision-makers.</p>
           <div className="svc-channels-stage" id="channels-stage">
             <svg className="svc-channels-orbit-svg" id="channels-orbit-lines" aria-hidden="true"></svg>
@@ -250,7 +241,7 @@ const ArcherAI: React.FC = () => {
       <ServiceHandoff />
       
       <ServiceFinalCTA data={archerAiData.finalCta} />
-      <Contact title="Let's talk about<br>what your<br>data is telling you." />
+      <Contact title={archerAiData.contactTitle} />
       <ServiceFAQ data={archerAiData.faq} />
     </main>
   );

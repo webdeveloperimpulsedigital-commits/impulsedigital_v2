@@ -22,51 +22,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // ==========================================
-// 1. BRAND MARK: Exact SVG Extrusion
-// ==========================================
-let brandMesh;
-const loader = new THREE.SVGLoader();
-loader.load('ImpulseDigital_Logo.svg', function (data) {
-    const paths = data.paths;
-    
-    // Find the specific path for the Violet Boomerang (Impulse Violet hex is roughly 533d98)
-    let brandPath = paths.find(p => p.userData && p.userData.style && p.userData.style.fill === '#533d98');
-    if(!brandPath) brandPath = paths[0]; // Fallback
-
-    const shapes = brandPath.toShapes(true);
-    const brandGeometry = new THREE.ShapeGeometry(shapes[0]);
-    brandGeometry.center();
-    
-    // Negative Y scale flips the SVG upright perfectly (SVG coordinates have Y down)
-    brandGeometry.scale(0.12, -0.12, 0.12); // Reduced size by 20% to prevent overlap
-
-    // Completely flat 2D vector material
-    const brandMaterial = new THREE.MeshBasicMaterial({
-        color: 0xffffff, // Full white as requested
-        side: THREE.DoubleSide
-    });
-
-    brandMesh = new THREE.Mesh(brandGeometry, brandMaterial);
-    brandMesh.position.set(30, 2, -5); // Moved further to the right
-    if (document.body.classList.contains('service-page')) brandMesh.visible = false;
-    window.brandMesh = brandMesh;
-    scene.add(brandMesh);
-
-    // Guaranteed intense lighting setup right in front of the object
-    const ambientLight2 = new THREE.AmbientLight(0xffffff, 1.5);
-    scene.add(ambientLight2);
-
-    const dirLight = new THREE.DirectionalLight(0xffffff, 4.0);
-    dirLight.position.set(0, 10, 50); // Directly in front to blast the front face
-    scene.add(dirLight);
-
-    const fillLight = new THREE.DirectionalLight(0x7C3AED, 3.0);
-    fillLight.position.set(-20, 0, 20);
-    scene.add(fillLight);
-});
-
-// ==========================================
-// 2. DATA FLOW: Original Hero Starfield
+// 1. DATA FLOW: Original Hero Starfield
 // ==========================================
 const particlesCount = 3000;
 const posArray = new Float32Array(particlesCount * 3);
@@ -161,6 +117,7 @@ const bgStarsMat = new THREE.PointsMaterial({
 
 const bgStarsMesh = new THREE.Points(bgStarsGeom, bgStarsMat);
 scene.add(bgStarsMesh);
+window.bgStarsMat = bgStarsMat;
 
 // Lighting
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -187,23 +144,6 @@ function animate3D() {
     const elapsedTime = clock.getElapsedTime();
 
     const scrollY = window.scrollY;
-
-    if(brandMesh) {
-        // Flat 2D vector should face camera perfectly straight
-        brandMesh.rotation.y = 0; 
-        brandMesh.rotation.x = 0;
-        
-        // PHYSICALLY GLUE THE 3D LOGO TO THE HERO SECTION HTML
-        const fov = camera.fov * (Math.PI / 180);
-        const visibleHeightAtZ0 = 2 * Math.tan(fov / 2) * camera.position.z;
-        const scrollOffsetIn3D = (scrollY / window.innerHeight) * visibleHeightAtZ0;
-        
-        // Add a smooth continuous floating animation
-        const floatOffset = Math.sin(elapsedTime * 2) * 1.5;
-
-        // Base height is 2. Add float offset and scroll offset to physically glue it to the HTML scroll
-        brandMesh.position.y = 2 + floatOffset + scrollOffsetIn3D; 
-    }
 
     particlesMesh.rotation.y = elapsedTime * 0.05;
 

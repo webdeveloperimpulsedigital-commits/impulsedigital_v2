@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aditya Birla Group A Force for Good Case Study | KBC Campaign | Impulse Digital</title>
+  <meta name="description" content="See how Impulse Digital supported Aditya Birla Group's A Force for Good campaign across KBC, television, digital, social, and corporate channels, reaching 4.3 Mn+ on TV and 1 Mn+ digitally.">
+  <link rel="stylesheet" href="css/styles.css?v=54">
+
+  <!-- Three.js for 3D Immersive Universe -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Lenis for Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- SplitType -->
+  <script src="https://unpkg.com/split-type"></script>
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Redesigned Hero Section */
+    .cs-hero {
+      position: relative;
+      padding: 200px 2rem 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      z-index: 10;
+    }
+    
+    .cs-hero-header {
+      margin-bottom: 5rem;
+      width: 100%;
+      max-width: 1400px;
+    }
+
+    .cs-hero-client {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--impulse-violet);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .cs-hero-title {
+      font-size: clamp(4rem, 12vw, 12rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      margin-bottom: 2rem;
+      color: var(--white);
+    }
+
+    .cs-hero-subtitle {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      color: var(--soft-grey);
+      font-weight: 400;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.3;
+    }
+
+    /* Feature Image Reveal */
+    .cs-feature-wrapper {
+      width: 100%;
+      margin: 0 auto;
+      padding: 0;
+      position: relative;
+      z-index: 10;
+      height: calc(1100px + 100vh);
+    }
+
+    .cs-feature-image {
+      width: 100%;
+      height: 100vh;
+      border-radius: 0;
+      overflow: hidden;
+      position: sticky;
+      top: 0;
+      background: #111;
+      will-change: clip-path, transform;
+      clip-path: polygon(25% 25%, 75% 25%, 75% 75%, 25% 75%);
+    }
+    
+    .cs-feature-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      will-change: transform;
+    }
+
+    @media (min-width: 769px) {
+      .cs-feature-image {
+        transform-origin: center center;
+      }
+
+      .cs-feature-image img {
+        transform: scale(1.35);
+        transform-origin: center center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .cs-feature-wrapper {
+        height: auto;
+        padding: 0 1rem;
+      }
+
+      .cs-feature-image {
+        position: relative;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        clip-path: none;
+        border-radius: 6px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cs-feature-image,
+      .cs-feature-image img {
+        transition: none;
+      }
+
+      .cs-feature-image {
+        clip-path: none !important;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        position: relative;
+        transform: none;
+      }
+
+      .cs-feature-image img {
+        transform: none;
+      }
+    }
+
+    /* Intelligent Results Module */
+    .cs-results-module {
+      margin: 0 auto 8rem;
+      max-width: 1400px;
+      padding: 6rem 2rem;
+      background: transparent;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 3rem;
+      position: relative;
+      z-index: 10;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .cs-results-title {
+      width: 100%;
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    
+    .cs-result-item {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-left: 1px solid rgba(255,255,255,0.1);
+      padding-left: 2rem;
+    }
+
+    .cs-result-item:first-child {
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .cs-result-number {
+      font-family: var(--font-heading);
+      font-size: clamp(4rem, 6vw, 6rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: baseline;
+      letter-spacing: -0.02em;
+    }
+
+    .cs-result-suffix {
+      color: var(--impulse-violet);
+      font-size: clamp(2rem, 3vw, 3rem);
+      margin-left: 4px;
+      font-weight: 600;
+    }
+
+    .cs-result-label {
+      font-size: 1.1rem;
+      color: var(--soft-grey);
+      line-height: 1.5;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cs-result-banner {
+      width: 100%;
+      text-align: left;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .cs-result-banner span {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: rgba(84, 61, 152, 0.1);
+      border: 1px solid rgba(84, 61, 152, 0.5);
+      border-radius: 50px;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Section Spacing Fixes */
+    .cs-section {
+      padding: 8rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    .cs-intro-block {
+      padding: 8rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    .cs-intro-text {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.2;
+      color: var(--white);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+    
+
+    .cs-split {
+      display: grid;
+      grid-template-columns: 4fr 8fr;
+      gap: 6rem;
+      margin-bottom: 10rem;
+    }
+    
+    @media (max-width: 900px) {
+      .cs-split {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    .cs-h2 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      position: sticky;
+      top: 150px;
+      letter-spacing: -0.02em;
+    }
+
+
+    .cs-p {
+      font-size: clamp(1.4rem, 2vw, 1.8rem);
+      line-height: 1.5;
+      color: var(--soft-grey);
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+
+    .cs-p strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .cs-p.highlight {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 3rem;
+      border-left: 4px solid var(--impulse-violet);
+      padding-left: 2rem;
+    }
+
+    .cs-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .cs-list {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .cs-list li {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: var(--white);
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
+
+    .cs-proof-module {
+      max-width: 1400px;
+      margin: -2rem auto 9rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .cs-proof-module.reverse {
+      grid-template-columns: 5fr 7fr;
+    }
+
+    .cs-proof-module.reverse .cs-proof-copy {
+      order: 1;
+    }
+
+    .cs-proof-module.reverse .cs-proof-media {
+      order: 2;
+    }
+
+    .cs-proof-media {
+      overflow: hidden;
+      border-radius: 8px;
+      background: #111;
+    }
+
+    .cs-proof-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+
+
+    .cs-proof-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3vw, 3.4rem);
+      line-height: 1.05;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .cs-proof-text {
+      font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+      line-height: 1.55;
+      color: var(--soft-grey);
+    }
+
+    @media (max-width: 900px) {
+      .cs-proof-module,
+      .cs-proof-module.reverse {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-bottom: 6rem;
+      }
+
+      .cs-proof-module.reverse .cs-proof-copy,
+      .cs-proof-module.reverse .cs-proof-media {
+        order: initial;
+      }
+
+      .cs-proof-media img {
+        min-height: 260px;
+      }
+    }
+
+    /* Sleek Journey Flow */
+    .cs-journey-wrapper {
+      padding: 8rem 0;
+      background: #050505; /* Deep dark for contrast */
+      position: relative;
+      z-index: 10;
+    }
+
+    .cs-journey-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 4fr 8fr;
+      gap: 6rem;
+    }
+    
+    @media (max-width: 900px) {
+      .cs-journey-container {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+    }
+
+    .cs-journey-left {
+      position: sticky;
+      top: 150px;
+      height: max-content;
+    }
+
+    .cs-journey-title {
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      color: var(--white);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .cs-journey-desc {
+      font-size: 1.25rem;
+      color: var(--soft-grey);
+      margin-top: 2rem;
+      line-height: 1.6;
+    }
+
+    .cs-journey-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+    
+    .cs-journey-step {
+      background: linear-gradient(145deg, rgba(6, 6, 8, 0.96), rgba(0, 0, 0, 0.95));
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px 64px 8px 64px;
+      padding: 4rem 3rem;
+      transition: all 0.4s ease;
+    }
+
+    .cs-journey-step:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(138, 92, 246, 0.72);
+      box-shadow:
+          0 0 0 1px rgba(138, 92, 246, 0.28),
+          0 0 28px rgba(138, 92, 246, 0.28),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      transform: translateX(10px);
+    }
+
+    .cs-journey-num {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      color: var(--impulse-violet);
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .cs-journey-text {
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .cs-journey-step.highlight {
+      background: linear-gradient(135deg, rgba(84, 61, 152, 0.2), rgba(0,0,0,0));
+      border: 1px solid rgba(84, 61, 152, 0.6);
+    }
+
+    .cs-journey-step.highlight .cs-journey-text {
+      color: var(--white);
+      font-size: 2.5rem;
+    }
+
+    /* Final Editorial Section */
+    .cs-final {
+      text-align: center;
+      padding: 12rem 2rem;
+      position: relative;
+      z-index: 10;
+    }
+    .cs-final-heading {
+      font-size: clamp(3rem, 7vw, 6rem);
+      color: var(--white);
+      margin-bottom: 3rem;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+    .cs-final-text {
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      color: var(--soft-grey);
+      max-width: 900px;
+      margin: 0 auto 4rem;
+      line-height: 1.5;
+    }
+    .cs-final-punch {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      color: var(--white);
+      font-weight: 600;
+      padding: 4rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: inline-block;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.02);
+    }
+    
+    .cs-final-punch span {
+      color: var(--impulse-violet);
+    }
+
+    /* Kick in the teeth CTA */
+    .cs-cta {
+      margin: 0 auto;
+      padding: 10rem 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      background: #000;
+    }
+    
+    .cs-cta h2 {
+      font-size: clamp(4rem, 8vw, 8rem);
+      color: var(--white);
+      margin-bottom: 2rem;
+      line-height: 0.9;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+    
+    .cs-cta p {
+      font-size: 1.5rem;
+      color: var(--soft-grey);
+      margin-bottom: 4rem;
+    }
+
+    /* Animation Utilities */
+    .line-wrapper {
+      overflow: hidden;
+      display: block;
+    }
+  </style>
+</head>
+
+<body class="case-study-page">
+  <!-- 3D WebGL Canvas Background -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <div class="cursor" aria-hidden="true">
+    <svg class="cursor-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" class="cursor-mark-path" />
+    </svg>
+    <div class="cursor-text"></div>
+  </div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav id="main-nav">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="index.html" class="logo"><img src="ImpulseDigital_Logo.svg" alt="Impulse Digital Logo"></a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html#hero" class="nav-item" data-cursor="GO">Home</a>
+        <a href="about.html" class="nav-item" data-cursor="GO">About Us</a>
+        <div class="nav-dropdown">
+          <a href="index.html#services" class="nav-item" data-cursor="GO" style="display: flex; align-items: center; gap: 4px;">
+            Services
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <div class="dropdown-content">
+            <div class="dropdown-col">
+              <h4>Growth Intelligence</h4>
+              <div class="dropdown-list">
+                <a href="consumer-intelligence.html" class="dropdown-item">Consumer Intelligence</a>
+                <a href="market-intelligence.html" class="dropdown-item">Market and Competitive Intelligence</a>
+                <a href="always-on-intelligence.html" class="dropdown-item">Always-On Intelligence</a>
+                <a href="campaign-intelligence.html" class="dropdown-item">Campaign and Performance Intelligence</a>
+              </div>
+            </div>
+            <div class="dropdown-col">
+              <h4>AI Marketing Systems</h4>
+              <div class="dropdown-list">
+                <a href="archer-ai.html" class="dropdown-item">Archer AI</a>
+                <a href="agentic-ai.html" class="dropdown-item">Agentic AI</a>
+                <a href="ai-video-production.html" class="dropdown-item">Cinematic AI Production</a>
+                <a href="generative-search-optimisation.html" class="dropdown-item">Generative Search Optimisation</a>
+              </div>
+            </div>
+            <div class="dropdown-col">
+              <h4>Brand Infrastructure</h4>
+              <div class="dropdown-list">
+                <a href="search-engine-optimisation.html" class="dropdown-item">Search and Visibility</a>
+                <a href="social-media-management.html" class="dropdown-item">Social Media</a>
+                <a href="website-development.html" class="dropdown-item">Website Development</a>
+                <a href="branding.html" class="dropdown-item">Brand Identity</a>
+                <a href="employer-branding.html" class="dropdown-item">Employer Branding</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="index.html#cases-pin" class="nav-item" data-cursor="GO">Case Studies</a>
+        <a href="index.html#blogs" class="nav-item" data-cursor="GO">Blogs</a>
+        <a href="careers.html" class="nav-item" data-cursor="GO">Careers</a>
+      </div>
+      <div class="nav-right">
+        <a href="contact.html" class="btn-nav" data-cursor="HI">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="cs-hero">
+      <div class="cs-hero-header">
+        <h1 class="cs-hero-title">ABG x KBC</h1>
+        <h2 class="cs-hero-subtitle">Introducing a new purpose through a moment<br>India already trusted.</h2>
+      </div>
+    </section>
+
+    <!-- Feature Image -->
+    <div class="cs-feature-wrapper">
+      <div class="cs-feature-image">
+        <img src="case studies/Written Content/ABG x KBC/ABG x KBC Title.png" alt="Aditya Birla Group A Force for Good x Kaun Banega Crorepati campaign">
+      </div>
+    </div>
+
+    <!-- The exact target for the background transition -->
+    <section class="cs-intro-block" id="warp-start">
+      <p class="cs-intro-text split-text">
+        Aditya Birla Group was moving from "Big in Your Life" to "A Force for Good."
+      </p>
+      <p class="cs-intro-text split-text" style="color: var(--impulse-violet);">
+        That shift needed more than a new line.
+      </p>
+      <p class="cs-p split-text" style="font-size: 1.5rem; max-width: 900px;">
+        It needed a moment people could understand quickly, believe instinctively, and remember after the campaign had passed.
+      </p>
+    </section>
+
+    <!-- Intelligent Results Module -->
+    <section class="cs-results-module">
+      <h2 class="cs-results-title split-text">The Outcome</h2>
+      <div class="cs-result-item">
+        <div class="cs-result-number">
+          <span>4.3</span><span class="cs-result-suffix">Mn+</span>
+        </div>
+        <div class="cs-result-label">TV reach</div>
+      </div>
+      <div class="cs-result-item">
+        <div class="cs-result-number">
+          <span>1</span><span class="cs-result-suffix">Mn+</span>
+        </div>
+        <div class="cs-result-label">digital reach</div>
+      </div>
+      <div class="cs-result-item">
+        <div class="cs-result-number">
+          <span>1</span>
+        </div>
+        <div class="cs-result-label">trusted national platform</div>
+      </div>
+      <div class="cs-result-item">
+        <div class="cs-result-number">
+          <span>1</span>
+        </div>
+        <div class="cs-result-label">purpose made visible</div>
+      </div>
+
+      <div class="cs-result-banner">
+        <span>Brand recall enhanced through purpose-linked storytelling</span>
+      </div>
+    </section>
+
+    <!-- The Situation & Challenge -->
+    <section class="cs-section">
+      <div class="cs-split">
+        <div class="cs-split-left">
+          <h2 class="cs-h2 split-text">The situation</h2>
+        </div>
+        <div class="cs-split-right">
+          <p class="cs-p split-text">A purpose narrative can sound distant when it stays inside brand language.</p>
+          <p class="cs-p split-text">For ABG, the task was to introduce A Force for Good to the nation with credibility, scale, and emotional clarity.</p>
+          <p class="cs-p highlight split-text">The campaign could not feel like a corporate announcement.</p>
+        </div>
+      </div>
+
+      <div class="cs-split">
+        <div class="cs-split-left">
+          <h2 class="cs-h2 split-text">The challenge</h2>
+        </div>
+        <div class="cs-split-right">
+          <p class="cs-p split-text">It had to feel human. It had to feel participative. It had to show impact without needing a long explanation.</p>
+          <p class="cs-p highlight split-text">One question.<br>One child's education.<br>One purpose made visible.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Strategy & Work -->
+    <section class="cs-section">
+      <div class="cs-split">
+        <div class="cs-split-left">
+          <h2 class="cs-h2 split-text">What needed<br>to change</h2>
+        </div>
+        <div class="cs-split-right">
+          <p class="cs-p split-text">The campaign used KBC's question format to create a direct emotional connection.</p>
+          <p class="cs-p split-text">Every question on the show became more than part of the game. It stood for the education of a child.</p>
+          <p class="cs-p highlight split-text">A question could lead to knowledge.<br>Knowledge could lead to opportunity.<br>And ABG's purpose could be seen through that chain.</p>
+        </div>
+      </div>
+
+      <div class="cs-split">
+        <div class="cs-split-left">
+          <h2 class="cs-h2 split-text">What Impulse<br>worked on</h2>
+        </div>
+        <div class="cs-split-right">
+          <p class="cs-p split-text">Impulse supported the campaign by strengthening the creative and executional ecosystem around the launch.</p>
+          <ul class="cs-list" style="margin-top: 4rem;">
+            <li class="gsap-item">Digital and television-ready creative assets</li>
+            <li class="gsap-item">Visual communication across television, social media, and corporate channels</li>
+            <li class="gsap-item">Real-time coordination across stakeholders for rollout</li>
+            <li class="gsap-item">Consistent translation of the Force for Good narrative across touchpoints</li>
+          </ul>
+          <p class="cs-p split-text" style="margin-top: 4rem;">The goal was to keep the idea clear at scale.</p>
+          <p class="cs-p highlight split-text">Not louder.<br>Clearer.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Supporting Proof Image -->
+    <section class="cs-proof-module">
+      <div class="cs-proof-media gsap-fade-up">
+        <img src="case studies/Written Content/ABG x KBC/Supporting 1.png" alt="Aditya Birla Group A Force for Good x KBC campaign supporting visual">
+      </div>
+      <div class="cs-proof-copy">
+        <h2 class="cs-proof-title split-text">KBC made the purpose easier to understand in one viewing moment.</h2>
+        <p class="cs-proof-text split-text">People already understand the value of a question on that stage. By connecting that format to a child's education, the campaign made ABG's purpose feel less abstract.</p>
+      </div>
+    </section>
+
+    <!-- Sleek Journey Flow -->
+    <section class="cs-journey-wrapper">
+      <div class="cs-journey-container">
+        <div class="cs-journey-left">
+          <h2 class="cs-journey-title split-text">The System</h2>
+          <p class="cs-journey-desc split-text">The campaign had to make a purpose shift feel clear across television, digital, social, and corporate channels.</p>
+        </div>
+        <div class="cs-journey-steps">
+          <div class="cs-journey-step gsap-fade-up">
+            <div class="cs-journey-num">01 / PURPOSE</div>
+            <div class="cs-journey-text">A Force for Good needed credibility, scale, and emotional clarity.</div>
+          </div>
+          <div class="cs-journey-step gsap-fade-up">
+            <div class="cs-journey-num">02 / PLATFORM</div>
+            <div class="cs-journey-text">KBC gave the campaign a trusted cultural setting.</div>
+          </div>
+          <div class="cs-journey-step gsap-fade-up">
+            <div class="cs-journey-num">03 / DEVICE</div>
+            <div class="cs-journey-text">Every question symbolised the education of a child sponsored by Aditya Birla Group.</div>
+          </div>
+          <div class="cs-journey-step gsap-fade-up">
+            <div class="cs-journey-num">04 / EXECUTION</div>
+            <div class="cs-journey-text">Creative assets carried the message across television, social media, and corporate channels.</div>
+          </div>
+          <div class="cs-journey-step gsap-fade-up">
+            <div class="cs-journey-num">05 / COORDINATION</div>
+            <div class="cs-journey-text">Real-time stakeholder coordination kept the rollout consistent.</div>
+          </div>
+          <div class="cs-journey-step highlight gsap-fade-up">
+            <div class="cs-journey-num" style="color: rgba(255,255,255,0.5);">06 / OUTCOME</div>
+            <div class="cs-journey-text">The campaign turned a brand shift into something people could feel in one viewing moment.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Campaign Architecture -->
+    <section class="cs-section">
+      <div class="cs-split">
+        <div class="cs-split-left">
+          <h2 class="cs-h2 split-text">The role of<br>the platform</h2>
+        </div>
+        <div class="cs-split-right">
+          <p class="cs-p split-text">KBC gave the campaign a powerful cultural setting.</p>
+          <p class="cs-p split-text">People already understand the value of a question on that stage. It carries curiosity, ambition, knowledge, and possibility.</p>
+          <p class="cs-p highlight split-text">By connecting that format to a child's education, the campaign made ABG's purpose feel less abstract.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Outcome -->
+    <section class="cs-section">
+      <div class="cs-split">
+        <div class="cs-split-left">
+          <h2 class="cs-h2 split-text">The impact</h2>
+        </div>
+        <div class="cs-split-right">
+          <p class="cs-p split-text">The campaign delivered strong national visibility while reinforcing ABG's purpose-led identity.</p>
+          <p class="cs-p split-text">4.3 Mn+ TV reach. 1 Mn+ digital reach. Brand recall enhanced through purpose-linked storytelling.</p>
+          <p class="cs-p highlight split-text">The numbers mattered because the campaign was not built for reach alone.<br>Reach helped the message travel.<br>The idea helped it stay.</p>
+        </div>
+      </div>
+
+      <div class="cs-split">
+        <div class="cs-split-left">
+          <h2 class="cs-h2 split-text">What this<br>made possible</h2>
+        </div>
+        <div class="cs-split-right">
+          <p class="cs-p split-text">When a large organisation introduces a new purpose, the hardest part is not saying it.</p>
+          <p class="cs-p split-text">The hardest part is making people believe it.</p>
+          <p class="cs-p highlight split-text">For Aditya Birla Group, A Force for Good became easier to understand because it was tied to something real: education.</p>
+          <p class="cs-p split-text">And it was carried through something familiar: a question on KBC.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final Editorial -->
+    <section class="cs-final">
+      <h2 class="cs-final-heading split-text">A Force<br>for Good</h2>
+      <p class="cs-final-text split-text">
+        A brand shift became something people could understand, believe, and remember.
+      </p>
+      <div class="cs-final-punch gsap-fade-up">
+        Not a slogan asking to be admired.<br>
+        A simple connection<br>
+        <span>people could remember.</span>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="svc-final-cta" id="connect">
+      <div class="svc-final-cta-mark" aria-hidden="true" style="width: min(60vw, 800px) !important; height: min(60vw, 800px) !important;">
+        <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+          <path class="svc-final-cta-path"
+            d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"
+            fill="none" />
+        </svg>
+      </div>
+      <div class="container">
+        <h2 class="split-text">Your Problem Next?</h2>
+        <div class="svc-final-cta-actions gsap-fade-up">
+          <a href="contact.html" class="btn" data-cursor="START">
+            <span class="btn-text">START A CONVERSATION</span>
+            <div class="btn-fill"></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="ImpulseDigital_Logo.svg" alt="Impulse Digital Logo" class="footer-logo">
+          <p class="footer-tagline">AI native growth intelligence for enterprise brands.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon" data-cursor="FOLLOW"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" data-cursor="FOLLOW"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon" data-cursor="FOLLOW"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" data-cursor="FOLLOW"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon" data-cursor="FOLLOW"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#cases-pin">Case Studies</a></li>
+            <li><a href="careers.html">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="index.html#blogs">Blog</a></li>
+            <li><a href="#">EBooks</a></li>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Slideshare ppt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Locations</h4>
+          <ul>
+            <li><a href="#">India</a></li>
+            <li><a href="#">Thane</a></li>
+            <li><a href="#">Navi Mumbai</a></li>
+            <li><a href="#">Pune</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-contact-col">
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+            <span class="contact-text">+91-9769285224</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+            <span class="contact-text">collabs@theimpulsedigital.com</span>
+          </div>
+          <div class="contact-item address-item">
+            <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+            <span class="contact-text">304 - 305, Chirag Infotech, Road No. 16/Z, Ambica Nagar, Wagle Industrial Estate, Thane, Mumbai 400604</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Impulse Digital. All rights reserved.</p>
+      </div>
+      <div class="footer-divider"></div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+  <script src="js/script.js?v=54"></script>
+  
+  <!-- Page Specific Animations -->
+  <script>
+    // -- 0. PRE-DOM-READY
+    (function () {
+      const heroHeadline = document.querySelector('.cs-hero-title');
+      const heroSub = document.querySelector('.cs-hero-subtitle');
+      if (heroHeadline) heroHeadline.classList.remove('split-text');
+      if (heroSub) heroSub.classList.remove('split-text');
+      
+      const style = document.createElement('style');
+      style.textContent = '';
+      document.head.appendChild(style);
+    })();
+
+    document.addEventListener("DOMContentLoaded", (event) => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // --- 0a. Hero entry choreography ---
+      const runHeroAnim = () => {
+        const heroHeadline = document.querySelector('.cs-hero-title');
+        const heroSub = document.querySelector('.cs-hero-subtitle');
+        const heroClient = document.querySelector('.cs-hero-client');
+
+        if (heroHeadline) heroHeadline.style.visibility = 'visible';
+        if (heroSub) heroSub.style.visibility = 'visible';
+        if (heroClient) heroClient.style.visibility = 'visible';
+
+      };
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(runHeroAnim);
+      } else {
+        setTimeout(runHeroAnim, 200);
+      }
+
+      // Feature Image Smooth Scroll Reveal
+      const featureWrapper = document.querySelector(".cs-feature-wrapper");
+      const featureImage = document.querySelector(".cs-feature-image");
+      const featureImg = document.querySelector(".cs-feature-image img");
+      const motionAllowed = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const desktopFeatureReveal = window.matchMedia("(min-width: 769px)").matches;
+
+      if (featureWrapper && featureImage && featureImg && motionAllowed && desktopFeatureReveal) {
+        const updateFeatureReveal = () => {
+          const rect = featureWrapper.getBoundingClientRect();
+          const scrollable = Math.max(1, featureWrapper.offsetHeight - window.innerHeight);
+          const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const clipStart = 25 * (1 - eased);
+          const clipEnd = 75 + (25 * eased);
+          const scale = 1.35 - (0.35 * eased);
+
+          featureImage.style.clipPath = `polygon(${clipStart}% ${clipStart}%, ${clipEnd}% ${clipStart}%, ${clipEnd}% ${clipEnd}%, ${clipStart}% ${clipEnd}%)`;
+          featureImg.style.transform = `scale(${scale})`;
+        };
+
+        updateFeatureReveal();
+        window.addEventListener("scroll", updateFeatureReveal, { passive: true });
+        window.addEventListener("resize", updateFeatureReveal);
+      }
+
+      // --- Background Transition (Purple to Black with subtle particles) ---
+      const waitForGsap = setInterval(() => {
+        if (window.gsap && window.ScrollTrigger) {
+          clearInterval(waitForGsap);
+          const cosmosTrigger = document.querySelector('#warp-start');
+          if (!cosmosTrigger) return;
+
+          // Background color inversion
+          gsap.to(document.body, {
+            backgroundColor: '#000000',
+            scrollTrigger: {
+              trigger: cosmosTrigger,
+              start: 'top bottom',
+              end: 'top top',
+              scrub: true
+            }
+          });
+
+          // Drift particles fade out
+          if (window.particlesMaterial) {
+            gsap.fromTo(window.particlesMaterial,
+              { opacity: 0.7 },
+              {
+                opacity: 0,
+                scrollTrigger: {
+                  trigger: cosmosTrigger,
+                  start: 'top 80%',
+                  end: 'top 20%',
+                  scrub: true
+                }
+              }
+            );
+          }
+        }
+      }, 80);
+      setTimeout(() => clearInterval(waitForGsap), 6000);
+
+      // Scroll Text Reveals (Robust)
+      document.querySelectorAll('.split-text').forEach((text) => {
+        if(!text.classList.contains('cs-hero-title') && !text.classList.contains('cs-hero-subtitle')) {
+          const split = new SplitType(text, { types: 'lines, words' });
+          split.lines.forEach((line) => {
+            const w = document.createElement('div');
+            w.classList.add('line-wrapper');
+            line.parentNode.insertBefore(w, line);
+            w.appendChild(line);
+          });
+          
+          gsap.fromTo(split.words, 
+            { yPercent: 100, opacity: 0 },
+            {
+              scrollTrigger: {
+                trigger: text,
+                start: "top 90%",
+              },
+              yPercent: 0,
+              opacity: 1,
+              duration: 0.8,
+              stagger: 0.015,
+              ease: "power3.out"
+            }
+          );
+        }
+      });
+
+      // Results reveal for compact ABG stats
+      gsap.fromTo(
+        ".cs-results-module .cs-result-item, .cs-results-module .cs-result-banner",
+        { x: -56, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: ".cs-results-module",
+            start: "top 78%",
+            once: true
+          },
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.16,
+          ease: "power3.out"
+        }
+      );
+
+      // Standard Item Fade Ups
+      document.querySelectorAll('.gsap-fade-up, .gsap-item').forEach(item => {
+        gsap.fromTo(item, 
+          { y: 40, opacity: 0 },
+          {
+            scrollTrigger: {
+              trigger: item,
+              start: "top 90%"
+            },
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out"
+          }
+        );
+      });
+
+      // CTA SVG Mark Drawing
+      const ctaMark = document.querySelector('.svc-final-cta-path');
+      if (ctaMark && window.gsap && window.ScrollTrigger) {
+        const len = ctaMark.getTotalLength();
+        gsap.set(ctaMark, { strokeDasharray: len, strokeDashoffset: len });
+        ScrollTrigger.create({
+          trigger: '.svc-final-cta',
+          start: 'top 60%',
+          once: true,
+          onEnter: () => {
+            gsap.to(ctaMark, {
+              strokeDashoffset: 0,
+              duration: 3.5,
+              ease: 'power2.inOut'
+            });
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

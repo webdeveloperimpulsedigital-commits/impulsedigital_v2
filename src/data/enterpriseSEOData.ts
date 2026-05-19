@@ -6,11 +6,11 @@ export const enterpriseSEOData = {
       "Is Not."
     ],
     "headlineAccent": "Is Not.",
-    "description": "<span class=\"seo-hero-lead\">Large websites are usually built for the business.</span> Service lines. Regions. Products. Teams. Campaigns. Compliance. Legacy pages. New priorities. But the buyer is not thinking like your organisation. They are trying to find the right answer, the right page, the right proof, or the right next step without working too hard. Impulse Digital helps large organisations build enterprise SEO systems that make complex websites easier to find, understand, manage, and grow.",
+    "description": "<span class=\"seo-hero-lead\">Large websites are built around the business.</span> Buyers are not. They want the right page, proof and next step without fighting the structure. Impulse Digital builds enterprise SEO systems that make complex websites easier to find, understand, manage and grow.",
     "buttons": [
       {
         "text": "Find Your Enterprise Search Gaps",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "FIND"
       },
       {
@@ -96,53 +96,19 @@ export const enterpriseSEOData = {
       }
     ]
   },
-  "uses": {
-    "title": "Where Enterprise SEO Creates Business Leverage",
-    "cards": [
-      {
-        "title": "Technical SEO at Scale",
-        "body": "Make large websites easier for search engines to crawl, index, and understand. Useful when your site has thousands of pages, multiple templates, crawl waste, indexation issues, duplicate content, or technical debt.",
-        "outcome": "Output: Technical audit, crawl diagnostics, indexation review, Core Web Vitals inputs, structured data recommendations, internal linking inputs, and issue-priority roadmap."
-      },
-      {
-        "title": "Site Architecture and Internal Linking",
-        "body": "Give every important page a clearer place in the larger search system. Useful when content, products, services, regions, or business units exist across the site but do not connect cleanly.",
-        "outcome": "Output: Site architecture recommendations, page hierarchy, internal linking model, navigation inputs, topic clusters, and priority page mapping."
-      },
-      {
-        "title": "Content Governance",
-        "body": "Keep content useful, consistent, and search-ready across teams. Useful when multiple departments, regions, business units, or agencies are creating content without one shared SEO standard.",
-        "outcome": "Output: Content governance framework, SEO content rules, page templates, quality checks, content refresh priorities, and approval inputs."
-      },
-      {
-        "title": "Multi-Region and Multilingual SEO",
-        "body": "Help large brands stay discoverable across markets, languages, and geographies. Useful when your website serves multiple regions, audiences, languages, or country-specific search behaviours.",
-        "outcome": "Output: Hreflang recommendations, regional keyword inputs, localisation guidance, market-specific page structure, and international SEO checks."
-      },
-      {
-        "title": "Enterprise Content Strategy",
-        "body": "Turn subject-matter expertise into search journeys that support awareness, consideration, and decision. Useful when the brand has expertise, but the website does not organise it clearly enough for buyers or search engines.",
-        "outcome": "Output: Topic architecture, content clusters, service-page improvements, decision-stage content, proof-led page recommendations, and content briefs."
-      },
-      {
-        "title": "Reporting and SEO Governance",
-        "body": "Make search performance easier to read, explain, and improve across stakeholders. Useful when leadership needs clarity on what is improving, what is blocked, and what needs action across a complex site.",
-        "outcome": "Output: Reporting framework, KPI structure, performance dashboards, issue prioritisation, stakeholder-ready insights, and monthly improvement plan."
-      }
-    ]
-  },
   "channels": {
     "title": "When the Right Page Exists, But the Buyer Never Finds It",
     "intro": "Enterprise SEO matters when the website has enough depth, but not enough discoverability.\nUse it when:",
     "list": [
-      { "label": "Too many pages.", "pos": { "left": "16%", "top": "14%" } },
-      { "label": "Teams publish across.", "pos": { "left": "50%", "top": "6%" } },
-      { "label": "Repeating tech issues.", "pos": { "left": "84%", "top": "14%" } },
-      { "label": "Key pages hidden.", "pos": { "left": "95%", "top": "44%" } },
-      { "label": "Content doesn't connect.", "pos": { "left": "84%", "top": "82%" } },
-      { "label": "Hard to navigate.", "pos": { "left": "50%", "top": "95%" } },
-      { "label": "Need demand, not ranks.", "pos": { "left": "16%", "top": "82%" } },
-      { "label": "Multi-region brand.", "pos": { "left": "5%", "top": "44%" } }
+      "Your website has thousands of pages, but visibility is low.",
+      "Your teams publish content across departments without shared standards.",
+      "Your technical SEO issues are repeating across multiple page templates.",
+      "Your most important pages are hidden behind complex site architecture.",
+      "Your content exists, but does not connect into a clear system.",
+      "Your site structure makes it hard for buyers to find the right page.",
+      "Your leadership wants search to support demand, not just rankings.",
+      "Your brand operates across multiple markets, languages, or locations.",
+      "Your SEO reporting shows movement, but not enough business clarity."
     ],
     "outro": "The issue is not always lack of content.\nSometimes the right answer already exists.\nIt is just buried too deep for the buyer to reach."
   },
@@ -216,13 +182,13 @@ export const enterpriseSEOData = {
     "buttons": [
       {
         "text": "Find Your Enterprise Search Gaps",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "FIND",
         "primary": false
       },
       {
-        "text": "Talk to Impulse Digital",
-        "link": "#connect",
+        "text": "Start a Conversation",
+        "link": "/contact-us/",
         "cursor": "TALK",
         "primary": false
       }

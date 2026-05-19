@@ -50,7 +50,6 @@ const Footer: React.FC = () => {
             <h4>Quick Links</h4>
             <ul>
               <li><Link to="/">Home</Link></li>
-              <li><a href="#services">Services</a></li>
               <li><a href="#cases-pin">Case Studies</a></li>
               <li><a href="#careers">Careers</a></li>
             </ul>
@@ -69,10 +68,10 @@ const Footer: React.FC = () => {
           <div className="footer-col">
             <h4>Locations</h4>
             <ul>
-              <li><a href="#">India</a></li>
-              <li><a href="#">Thane</a></li>
-              <li><a href="#">Navi Mumbai</a></li>
-              <li><a href="#">Pune</a></li>
+              <li><Link to="/digital-marketing-agency-in-india/">India</Link></li>
+              <li><Link to="/digital-marketing-agency-in-thane/">Thane</Link></li>
+              <li><Link to="/digital-marketing-agency-in-navi-mumbai/">Navi Mumbai</Link></li>
+              <li><Link to="/digital-marketing-agency-in-pune/">Pune</Link></li>
             </ul>
           </div>
 
@@ -88,9 +87,9 @@ const Footer: React.FC = () => {
             <div className="contact-item address-item">
               <span className="contact-icon"><i className="fas fa-map-marker-alt"></i></span>
               <span className="contact-text">
-                304 - 305, Chirag Infotech, Road No. 16/Z,<br/>
-                Ambica Nagar, Wagle Industrial Estate,<br/>
-                Thane, Mumbai 400604
+                304 - 305, Chirag Infotech,<br/>
+                Road No. 16/Z, Ambica Nagar,<br/>
+                Wagle Ind. Estate, Thane, Mumbai 400604
               </span>
             </div>
           </div>

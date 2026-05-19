@@ -6,15 +6,15 @@ export const searchEngineOptimisationData = {
       "Search Is."
     ],
     "headlineAccent": "Search Is.",
-    "description": "<span class=\"seo-hero-lead\">Before a buyer reaches your website, search has already shaped the decision.</span> They have seen who appears, who sounds credible, who answers clearly, and who feels worth the click. Impulse Digital helps brands build search systems that make them easier to find, understand, and trust when buyers are already looking.",
+    "description": "<span class=\"seo-hero-lead\">Before a buyer reaches your website, search has already done the introduction.</span> They have seen who appears, who sounds credible, who answers clearly, and who feels worth the click. Impulse Digital builds search systems that help your brand get found, understood, and trusted when buyers are already looking.",
     "buttons": [
       {
         "text": "Find Your Search Gaps",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "FIND"
       },
       {
-        "text": "See How We Build SEO",
+        "text": "See the Impact in Numbers",
         "link": "#process",
         "cursor": "SEE"
       }
@@ -110,22 +110,26 @@ export const searchEngineOptimisationData = {
       {
         "title": "Local SEO",
         "body": "Help nearby customers find, trust, and contact your business. Useful when location, service area, branch visibility, calls, direction requests, or local enquiries matter.",
-        "outcome": "Output: Google Business Profile optimisation, location page inputs, local keyword mapping, citation recommendations, review guidance, and map visibility improvements."
+        "outcome": "Output: Google Business Profile optimisation, location page inputs, local keyword mapping, citation recommendations, review guidance, and map visibility improvements.",
+        "link": "/brand-infrastructure/search-engine-optimisation/local-seo"
       },
       {
         "title": "eCommerce SEO",
         "body": "Make product and category pages easier to discover and easier to buy from. Useful when your store has products online, but organic discovery, category clarity, product visibility, or conversion paths are weak.",
-        "outcome": "Output: Product page recommendations, category architecture, metadata, schema inputs, internal linking, search-led merchandising, and content improvements."
+        "outcome": "Output: Product page recommendations, category architecture, metadata, schema inputs, internal linking, search-led merchandising, and content improvements.",
+        "link": "/brand-infrastructure/search-engine-optimisation/ecommerce-seo"
       },
       {
         "title": "B2B SEO",
         "body": "Support long buying cycles with search visibility that builds trust before the sales conversation. Useful when decision-makers research deeply, compare options, and need proof before they enquire.",
-        "outcome": "Output: Buyer-journey mapping, service page optimisation, thought-leadership themes, decision-stage content, authority signals, and lead-quality reporting."
+        "outcome": "Output: Content gap analysis, authority inputs, internal linking, buyer journey mapping, resource architecture, and technical governance.",
+        "link": "/brand-infrastructure/search-engine-optimisation/b2b-seo"
       },
       {
         "title": "Enterprise SEO",
-        "body": "Bring structure to large, complex search ecosystems. Useful when your website has scale, multiple stakeholders, many service lines, multiple locations, or governance challenges.",
-        "outcome": "Output: Scalable SEO framework, technical governance inputs, page template recommendations, content architecture, structured data inputs, and reporting logic."
+        "body": "Build a search system that keeps improving as your website grows. Useful when your site has scale, complexity, multiple teams, multiple regions, or deep technical challenges.",
+        "outcome": "Output: Site architecture strategy, technical monitoring, content governance, template standardisation, and scale-led implementation.",
+        "link": "/brand-infrastructure/search-engine-optimisation/enterprise-seo"
       }
     ]
   },
@@ -213,13 +217,13 @@ export const searchEngineOptimisationData = {
     "buttons": [
       {
         "text": "Find Your Search Gaps",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "FIND",
         "primary": false
       },
       {
-        "text": "Talk to Impulse Digital",
-        "link": "#connect",
+        "text": "Start a Conversation",
+        "link": "/contact-us/",
         "cursor": "HI",
         "primary": false
       }

@@ -6,11 +6,11 @@ export const b2bSEOData = {
       "in the Room."
     ],
     "headlineAccent": "in the Room.",
-    "description": "<span class=\"seo-hero-lead\">B2B buyers do not wait for your sales team to start forming an opinion.</span> They search. Compare. Read. Shortlist. Check proof. Look for risk. Discuss internally. By the time they enquire, your website, content, rankings, and search presence have already made the first impression. Impulse Digital helps B2B brands build SEO systems that make them easier to find, easier to trust, and easier to shortlist when serious buyers are already researching.",
+    "description": "<span class=\"seo-hero-lead\">B2B buyers form an opinion before sales enters.</span> They search, compare, shortlist, check proof, spot risk, and discuss internally. By the time they enquire, your website and search presence have already done the first pitch. Impulse Digital builds B2B SEO systems that help serious buyers find you, trust you, and keep you on the shortlist.",
     "buttons": [
       {
         "text": "Find Your B2B Search Gaps",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "FIND"
       },
       {
@@ -135,16 +135,16 @@ export const b2bSEOData = {
     "title": "When Your Best Leads Are Still in Research Mode",
     "intro": "B2B SEO matters when the buyer is interested, but not yet ready to raise their hand.\nUse it when:",
     "list": [
-      { "label": "Buyers compare options.", "pos": { "left": "16%", "top": "14%" } },
-      { "label": "Long sales cycle.", "pos": { "left": "50%", "top": "6%" } },
-      { "label": "Traffic, but no leads.", "pos": { "left": "84%", "top": "14%" } },
-      { "label": "Technical/niche category.", "pos": { "left": "95%", "top": "44%" } },
-      { "label": "Content doesn't help decide.", "pos": { "left": "84%", "top": "82%" } },
-      { "label": "Competitors rank better.", "pos": { "left": "50%", "top": "95%" } },
-      { "label": "Sales explains basics.", "pos": { "left": "16%", "top": "82%" } },
-      { "label": "Need SEO for pipeline.", "pos": { "left": "5%", "top": "44%" } }
+      "Your buyers research deeply before speaking to sales.",
+      "Your website needs to attract more qualified enquiries.",
+      "Your category is technical, niche, or difficult to explain.",
+      "Your content exists, but does not support decision-making.",
+      "Your competitors appear stronger in search for high-intent queries.",
+      "Your sales team answers the same credibility questions repeatedly.",
+      "Your leadership wants SEO to support pipeline, not just visibility.",
+      "Your brand needs to be found by decision-makers, not casual visitors."
     ],
-    "outro": "The issue is not always demand.\nSometimes the buyer is already interested.\nThey just have not found enough confidence to start the conversation."
+    "outro": "The issue is not always demand.\nSometimes the buyer is already interested.\nThey just have not found enough confidence to start a conversation."
   },
   "whenToUse": {
     "title": "We Connect Search to the Questions That Decide the Deal",
@@ -217,13 +217,13 @@ export const b2bSEOData = {
     "buttons": [
       {
         "text": "Find Your B2B Search Gaps",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "FIND",
         "primary": false
       },
       {
-        "text": "Talk to Impulse Digital",
-        "link": "#connect",
+        "text": "Start a Conversation",
+        "link": "/contact-us/",
         "cursor": "TALK",
         "primary": false
       }

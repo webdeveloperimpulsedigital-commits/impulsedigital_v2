@@ -1,631 +1,176 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import Contact from '../components/Contact';
+import { initCaseStudyAnimations } from '../utils/caseStudyAnimations';
 
 const UppercaseCaseStudy: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    document.body.classList.add('service-page');
-
-    const { gsap, ScrollTrigger } = window as any;
-    if (gsap && ScrollTrigger && containerRef.current) {
-      // Split text animations
-      const splitTexts = containerRef.current.querySelectorAll('.cs-split-text');
-      if ((window as any).SplitType) {
-        splitTexts.forEach(el => {
-          const split = new ((window as any).SplitType)(el as HTMLElement, { types: 'lines,words' });
-          split.lines?.forEach((line: HTMLElement) => {
-            const w = document.createElement('div');
-            w.classList.add('line-wrapper');
-            line.parentNode?.insertBefore(w, line);
-            w.appendChild(line);
-          });
-          
-          gsap.fromTo(split.words, 
-            { yPercent: 100, opacity: 0 },
-            {
-              yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.015, ease: 'power4.out',
-              scrollTrigger: {
-                trigger: el,
-                start: 'top 85%',
-              }
-            }
-          );
-        });
-      }
-
-      // Image reveal
-      const mediaWrappers = containerRef.current.querySelectorAll('.cs-img-wrapper');
-      mediaWrappers.forEach((wrapper: any, index: number) => {
-        const direction = index % 2 === 0 ? -100 : 100;
-        gsap.fromTo(wrapper,
-          { opacity: 0, x: direction },
-          {
-            opacity: 1, x: 0, duration: 1.2, ease: 'power3.out',
-            scrollTrigger: { trigger: wrapper, start: 'top 85%' }
-          }
-        );
-      });
-
-      // Numbered List Stagger
-      const numItems = containerRef.current.querySelectorAll('.cs-num-item');
-      if (numItems.length) {
-        gsap.fromTo(numItems,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out',
-            scrollTrigger: { trigger: '.cs-numbered-list', start: 'top 80%' }
-          }
-        );
-      }
-
-      // Highlight Box Reveal
-      const highlightBoxes = containerRef.current.querySelectorAll('.cs-highlight-box');
-      highlightBoxes.forEach((box: any) => {
-        gsap.fromTo(box,
-          { scale: 0.95, opacity: 0 },
-          {
-            scale: 1, opacity: 1, duration: 1, ease: 'power4.out',
-            scrollTrigger: { trigger: box, start: 'top 85%' }
-          }
-        );
-      });
-
-      // Card Reveal
-      const cards = containerRef.current.querySelectorAll('.cs-card');
-      cards.forEach((card: any, i: number) => {
-        gsap.fromTo(card,
-          { y: 50, opacity: 0 },
-          {
-            y: 0, opacity: 1, duration: 1.2, ease: 'power3.out',
-            scrollTrigger: { trigger: card, start: 'top 85%' }
-          }
-        );
-      });
-      
-      // Background color inversion & particle fade
-      const triggerEl = containerRef.current.querySelector('.cs-editorial-grid');
-      if (triggerEl) {
-        gsap.to(document.body, {
-          backgroundColor: '#000000',
-          scrollTrigger: {
-            trigger: triggerEl,
-            start: 'top 50%',
-            end: 'top 10%',
-            scrub: true
-          }
-        });
-
-        if ((window as any).particlesMaterial) {
-          gsap.fromTo((window as any).particlesMaterial,
-            { opacity: 0.6 },
-            {
-              opacity: 0,
-              scrollTrigger: {
-                trigger: triggerEl,
-                start: 'top 50%',
-                end: 'top 10%',
-                scrub: true
-              }
-            }
-          );
-        }
-      }
-      
-      ScrollTrigger.refresh();
-    }
-
-    return () => {
-      document.body.classList.remove('service-page');
-      const { gsap, ScrollTrigger } = window as any;
-      if (gsap) {
-        gsap.to(document.body, { backgroundColor: '#020018', duration: 0 });
-        if ((window as any).particlesMaterial) {
-          gsap.to((window as any).particlesMaterial, { opacity: 0.6, duration: 0 });
-        }
-      }
-      if (ScrollTrigger) {
-        ScrollTrigger.getAll().forEach((t: any) => t.kill());
-      }
-    };
+    document.body.classList.add('case-study-page');
+    const cleanup = initCaseStudyAnimations();
+    return () => { document.body.classList.remove('case-study-page'); cleanup(); };
   }, []);
-
+  const base = import.meta.env.BASE_URL;
+  const svgPath = "M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z";
   return (
-    <main id="main-content" className="cs-wrapper" ref={containerRef}>
+    <main id="main-content">
       <Helmet>
-        <title>Uppercase Case Study | AI-Led Product Film by Impulse Digital</title>
-        <meta name="description" content="See how Impulse Digital turned a crowded New Year moment into a product-led social film for Uppercase, using AI across script, visuals, video, voiceover, and music." />
-        <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/uppercase" />
+        <title>Uppercase – Carry Your Resolution Campaign Case Study | Impulse Digital</title>
+        <meta name="description" content="How Impulse Digital created an AI-led New Year social film for Uppercase that achieved 5.49M plays, 868K+ views, and 100K+ likes." />
+        <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/uppercase/" />
       </Helmet>
-
-      {/* Hero Section (Image Only) */}
       <section className="cs-hero">
-        <img 
-          src={`${import.meta.env.BASE_URL}images/case-study-image/uppercase/upper-case-hero-img.png`} 
-          alt="Uppercase Case Study Hero" 
-          className="cs-hero-img-full"
-        />
+        <div className="cs-hero-header">
+          <h1 className="cs-hero-title">Uppercase</h1>
+          <h2 className="cs-hero-subtitle">Carry Your Resolution.<br />A New Year idea that gave the product a reason to belong.</h2>
+        </div>
       </section>
-
-      {/* Editorial Layout */}
-      <section className="cs-section" style={{ paddingBottom: '0' }}>
-        <div className="cs-container">
-          <div className="cs-editorial-grid">
-            
-            {/* Left: Sticky Sidebar */}
-            <div className="cs-editorial-sidebar">
-              <div className="cs-sticky-box">
-                <span className="cs-meta">UPPERCASE</span>
-                <h1 className="cs-hero-title cs-split-text">Carry Your Resolution</h1>
-                <p className="cs-hero-subtitle cs-split-text" style={{ fontSize: '1.5rem', marginTop: '1rem', color: '#aa3bff' }}>
-                  Turning a crowded New Year moment into a product-led social film
-                </p>
-                <div style={{ width: '50px', height: '2px', background: '#aa3bff', marginTop: '2rem' }}></div>
-              </div>
-            </div>
-
-            {/* Right: Scrolling Content */}
-            <div className="cs-editorial-content">
-              
-              <div className="cs-content-block">
-                <p className="cs-lead cs-split-text" style={{ fontSize: '2rem', marginBottom: '2rem' }}>
-                  Around New Year, the internet fills with the same promise.
-                </p>
-                <div className="cs-text-block">
-                  <p>New goals.</p>
-                  <p>New habits.</p>
-                  <p>New you.</p>
-                  <p>Same scroll.</p>
-                </div>
-                <p className="cs-body cs-split-text">
-                  Uppercase needed to enter that moment without sounding like another brand borrowing the season. The answer came from a simple observation: resolutions do not stay where they are made. They move into workdays, travel, routines, and everything people carry forward after January begins.
-                </p>
-                <h3 className="cs-quote cs-split-text">
-                  "You don’t just set resolutions.<br/>You carry them."
-                </h3>
-              </div>
-
-              <div className="cs-content-block cs-card cs-bg-glass" style={{ padding: '3rem', margin: '4rem 0' }}>
-                <h2 className="cs-h2 cs-split-text">The context</h2>
-                <p className="cs-body cs-split-text">
-                  New Year marketing is crowded because every brand wants a place in the resolution conversation. The obvious route was easy to see: make another "new year, new you" reel and place the product somewhere inside it. That would have been forgettable.
-                </p>
-                <p className="cs-body cs-split-text">The film had to do three things cleanly:</p>
-                <ul className="cs-list">
-                  <li>avoid the usual New Year language</li>
-                  <li>make the product feel native to the idea</li>
-                  <li>work as a social-first piece of communication</li>
-                </ul>
-              </div>
-
-              <div className="cs-content-block cs-card cs-bg-glass" style={{ padding: '3rem', margin: '4rem 0' }}>
-                <h2 className="cs-h2 cs-split-text">The idea</h2>
-                <p className="cs-body cs-split-text">
-                  Most resolution stories focus on the moment of setting a goal. We looked at what happens after that. People carry their resolutions into the year. To work. On trips. Through routines. Into the everyday.
-                </p>
-                <div className="cs-highlight-box">
-                  <h4>Carry Your Resolution</h4>
-                  <p>A campaign about carrying things forward.<br/>A product people carry.</p>
-                </div>
-                <p className="cs-body cs-split-text">
-                  The connection was simple enough to land quickly, and strong enough to hold a film together.
-                </p>
-              </div>
-
-              {/* First Full Image (NO CUTTING) */}
-              <div className="cs-img-reveal-left cs-img-wrapper">
-                <img 
-                  src={`${import.meta.env.BASE_URL}images/case-study-image/uppercase/Carry Your Resolution.webp`} 
-                  alt="Carry Your Resolution Campaign" 
-                  className="cs-media-img" 
-                />
-              </div>
-
-              <div className="cs-content-block" style={{ margin: '6rem 0' }}>
-                <h2 className="cs-h2 cs-split-text">Building the campaign</h2>
-                <p className="cs-body cs-split-text">
-                  The line was only the starting point. The film needed moments that could make the idea feel lived-in, not just written. We mapped:
-                </p>
-                <div className="cs-numbered-list">
-                  <div className="cs-num-item">
-                    <span className="cs-num">01</span>
-                    <p>what each moment should feel like</p>
-                  </div>
-                  <div className="cs-num-item">
-                    <span className="cs-num">02</span>
-                    <p>where the story should play out</p>
-                  </div>
-                  <div className="cs-num-item">
-                    <span className="cs-num">03</span>
-                    <p>how the product should appear</p>
-                  </div>
-                </div>
-                <p className="cs-body cs-split-text">
-                  The goal was to make the bag present without making the film feel like a product demonstration. The product had to belong in the story, not interrupt it.
-                </p>
-              </div>
-
-              {/* Second Full Image (NO CUTTING) */}
-              <div className="cs-img-reveal-right cs-img-wrapper">
-                <img 
-                  src={`${import.meta.env.BASE_URL}images/case-study-image/uppercase/uppercase-bag.webp`} 
-                  alt="Uppercase Bag" 
-                  className="cs-media-img" 
-                />
-              </div>
-
-              {/* Centered Emphasis Block */}
-              <div className="cs-content-block" style={{ margin: '6rem 0', padding: '4rem', background: 'rgba(170, 59, 255, 0.05)', borderRadius: '16px', border: '1px solid rgba(170, 59, 255, 0.2)' }}>
-                <h2 className="cs-h2 cs-split-text" style={{ color: '#aa3bff' }}>The role of the product</h2>
-                <p className="cs-body cs-split-text" style={{ fontSize: '1.4rem', lineHeight: 1.6, color: '#fff' }}>
-                  The campaign thought and the product met at one clean point: <strong>Carrying things forward.</strong>
-                </p>
-                <p className="cs-body cs-split-text">
-                  That overlap gave the work its centre. The bag did not need a forced explanation. It had a natural reason to be there. A New Year resolution becomes something you carry. Uppercase becomes part of that movement. 
-                  <br/><br/><strong style={{ color: '#aa3bff' }}>Simple. Direct. Social-ready.</strong>
-                </p>
-              </div>
-
-              <div className="cs-content-block cs-card cs-bg-glass" style={{ padding: '3rem', margin: '4rem 0' }}>
-                <h2 className="cs-h2 cs-split-text">Where AI came in</h2>
-                <p className="cs-body cs-split-text">
-                  The film was built using AI across script, visuals, models, video, voiceover, and music. But AI was not treated as the idea. The idea came first. AI helped build around it.
-                </p>
-                <p className="cs-body cs-split-text">
-                  It gave the team speed, flexibility, and the ability to try multiple directions without the usual production constraints. The judgement still had to be human:
-                </p>
-                <ul className="cs-list">
-                  <li>What to say.</li>
-                  <li>What to leave out.</li>
-                  <li>How the product should appear.</li>
-                </ul>
-                <p className="cs-body cs-split-text" style={{ fontStyle: 'italic', color: '#aa3bff', marginTop: '1rem' }}>
-                  That is the difference between AI output and AI-shaped storytelling.
-                </p>
-              </div>
-
-              <div className="cs-content-block cs-card cs-bg-glass" style={{ padding: '3rem', margin: '4rem 0' }}>
-                <h2 className="cs-h2 cs-split-text">Outcome</h2>
-                <p className="cs-body cs-split-text">
-                  The reel went live in December 2025 and picked up strong traction on Instagram.
-                </p>
-                <p className="cs-body cs-split-text" style={{ fontSize: '1.2rem', color: '#fff' }}>
-                  The stronger creative outcome was clear: the piece did not feel like an AI experiment. It felt like a campaign film with a product-led idea at the centre.
-                </p>
-                
-                <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                  <h3 className="cs-h2 cs-split-text" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>What this says about the work</h3>
-                  <p className="cs-body cs-split-text">
-                    AI can make content faster. But speed without judgement only produces more content. For Uppercase, AI helped compress production. The thinking still had to do the harder job: find a seasonal idea the product could honestly own.
-                  </p>
-                </div>
-              </div>
-
-            </div>
+      <div className="cs-feature-wrapper">
+        <div className="cs-feature-image">
+          <img src={`${base}case studies/Written Content/Uppercase/Uppercase Title.png`} alt="Uppercase Carry Your Resolution campaign" />
+        </div>
+      </div>
+      <section className="cs-intro-block" id="warp-start">
+        <p className="cs-intro-text split-text">New Year is crowded with the same kind of brand talk.<br /><span style={{ color: 'var(--soft-grey)', display: 'block', marginTop: '1rem' }}>New goals. New habits. New beginnings. New you.</span></p>
+        <p className="cs-intro-text split-text" style={{ color: 'var(--impulse-violet)' }}>Uppercase needed a film that could enter that moment without becoming another seasonal post.</p>
+        <p className="cs-p split-text" style={{ fontSize: '1.5rem', maxWidth: '900px' }}>The idea came from a simple shift: resolutions are not just made at the start of the year. They are carried into work, travel, routines, ambition, and everyday life.</p>
+      </section>
+      <section className="cs-results-module">
+        <h2 className="cs-results-title split-text">The Outcome</h2>
+        <div className="cs-result-item gsap-fade-up"><div className="cs-result-number"><span className="counter" data-target="5.49">0</span><span className="cs-result-suffix">M</span></div><div className="cs-result-label">plays</div></div>
+        <div className="cs-result-item gsap-fade-up"><div className="cs-result-number"><span className="counter" data-target="868">0</span><span className="cs-result-suffix">K+</span></div><div className="cs-result-label">views</div></div>
+        <div className="cs-result-item gsap-fade-up"><div className="cs-result-number"><span className="counter" data-target="100">0</span><span className="cs-result-suffix">K+</span></div><div className="cs-result-label">likes</div></div>
+        <div className="cs-result-item gsap-fade-up"><div className="cs-result-number"><span>AI</span></div><div className="cs-result-label">led social film</div></div>
+        <div className="cs-result-banner gsap-fade-up"><span>Created for a crowded New Year content window</span></div>
+      </section>
+      <section className="cs-section">
+        <div className="cs-split">
+          <div className="cs-split-left"><h2 className="cs-h2 split-text">A familiar<br />seasonal moment</h2></div>
+          <div className="cs-split-right">
+            <p className="cs-p split-text">Every January, brands try to attach themselves to resolutions.</p>
+            <p className="cs-p split-text">Most of them sound familiar within seconds.</p>
+            <p className="cs-p split-text">Uppercase had to do something more specific to the brand. The film needed to feel timely, social-first, and easy to understand, while giving the product a natural role in the story.</p>
+            <p className="cs-p highlight split-text">A good New Year line was not enough.<br />The bag had to feel like it belonged there.</p>
+          </div>
+        </div>
+        <div className="cs-split">
+          <div className="cs-split-left"><h2 className="cs-h2 split-text">The campaign<br />challenge</h2></div>
+          <div className="cs-split-right">
+            <p className="cs-p split-text">The campaign had to solve three things at once.</p>
+            <ul className="cs-list">
+              <li className="gsap-item">Avoid the usual New Year language</li>
+              <li className="gsap-item">Make the product feel native to the idea</li>
+              <li className="gsap-item">Create a film strong enough for Instagram attention</li>
+            </ul>
+            <p className="cs-p split-text" style={{ marginTop: '4rem' }}><strong>If the product felt inserted, people would feel it immediately. The story had to earn the bag's presence.</strong></p>
           </div>
         </div>
       </section>
-
-      <Contact title="Build an AI-led<br/>campaign where the<br/>idea still leads." />
-
-      <style>{`
-        .cs-wrapper {
-          color: #ffffff;
-          background: transparent;
-          position: relative;
-          z-index: 2;
-          margin-top: -100px; /* Pull up behind the header */
-        }
-
-        .cs-container {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 0 4vw;
-        }
-
-        .cs-narrow {
-          max-width: 1000px;
-        }
-
-        /* Hero Image Only */
-        .cs-hero {
-          position: relative;
-          width: 100%;
-          overflow: hidden;
-        }
-
-        .cs-hero::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 300px;
-          background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
-          pointer-events: none;
-        }
-
-        .cs-hero-img-full {
-          width: 100%;
-          height: 120vh;
-          object-fit: cover;
-          object-position: center;
-          display: block;
-        }
-
-        /* Content block directly below hero */
-        .cs-hero-content-block {
-          padding-top: 6rem !important;
-          padding-bottom: 2rem !important;
-        }
-
-        .cs-meta {
-          font-family: var(--font-mono, monospace);
-          font-size: 1rem;
-          letter-spacing: 0.15em;
-          color: #aa3bff;
-          text-transform: uppercase;
-          display: block;
-          margin-bottom: 1.5rem;
-          font-weight: 600;
-        }
-
-        .cs-hero-title {
-          font-family: var(--font-heading, sans-serif);
-          font-size: clamp(2.5rem, 4.5vw, 5rem);
-          font-weight: 800;
-          line-height: 1.1;
-          margin-bottom: 1.5rem;
-          letter-spacing: -0.03em;
-          text-transform: uppercase;
-          word-break: break-word;
-        }
-
-        .cs-hero-subtitle {
-          font-size: clamp(1.2rem, 2vw, 1.8rem);
-          max-width: 800px;
-          color: rgba(255, 255, 255, 0.8);
-          line-height: 1.4;
-          font-weight: 300;
-        }
-
-        /* Typography & Layout */
-        .cs-section {
-          padding: 6rem 0;
-        }
-
-        .cs-bg-glass {
-          background: rgba(255, 255, 255, 0.02);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .cs-card {
-          padding: 4rem;
-          border-radius: 16px;
-          transition: transform 0.4s ease, background 0.4s ease;
-        }
-
-        .cs-card:hover {
-          background: rgba(255, 255, 255, 0.04);
-          transform: translateY(-8px);
-        }
-
-        .cs-numbered-list {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-          margin: 3rem 0;
-        }
-
-        .cs-num-item {
-          display: flex;
-          align-items: center;
-          gap: 2rem;
-          padding: 2rem;
-          background: rgba(255,255,255,0.02);
-          border-radius: 8px;
-          border: 1px solid rgba(255,255,255,0.03);
-          transition: all 0.3s ease;
-        }
-
-        .cs-num-item:hover {
-          background: rgba(255,255,255,0.05);
-          border-color: rgba(170, 59, 255, 0.3);
-          transform: translateX(10px);
-        }
-
-        .cs-num {
-          font-family: var(--font-heading);
-          font-size: 2.5rem;
-          font-weight: 800;
-          color: #aa3bff;
-          opacity: 0.8;
-          min-width: 60px;
-        }
-
-        .cs-num-item p {
-          font-size: 1.25rem;
-          margin: 0;
-          font-weight: 500;
-        }
-
-        .cs-lead {
-          font-size: clamp(1.5rem, 3vw, 2.5rem);
-          line-height: 1.3;
-          font-weight: 500;
-          margin-bottom: 3rem;
-        }
-
-        .cs-h2 {
-          font-family: var(--font-heading, sans-serif);
-          font-size: clamp(2rem, 4vw, 3rem);
-          font-weight: 700;
-          margin-bottom: 2rem;
-          text-transform: uppercase;
-          letter-spacing: -0.02em;
-        }
-
-        .cs-body {
-          font-size: 1.125rem;
-          line-height: 1.7;
-          color: rgba(255, 255, 255, 0.75);
-          margin-bottom: 1.5rem;
-        }
-
-        .cs-quote {
-          font-family: var(--font-heading, sans-serif);
-          font-size: clamp(2rem, 3.5vw, 3.5rem);
-          font-weight: 800;
-          line-height: 1.1;
-          color: #aa3bff;
-          margin: 4rem 0;
-          text-transform: uppercase;
-          border-left: 4px solid #aa3bff;
-          padding-left: 2rem;
-        }
-
-        .cs-text-block {
-          margin: 2rem 0;
-          padding: 2rem;
-          background: rgba(255,255,255,0.03);
-          border-left: 2px solid #aa3bff;
-          border-radius: 4px;
-        }
-
-        .cs-text-block p {
-          font-size: 1.25rem;
-          color: #fff;
-          margin-bottom: 0.5rem;
-          font-weight: 500;
-        }
-
-        .cs-text-block p:last-child {
-          margin-bottom: 0;
-        }
-
-        .cs-list {
-          list-style: none;
-          padding: 0;
-          margin: 2rem 0;
-        }
-
-        .cs-list li {
-          font-size: 1.125rem;
-          line-height: 1.6;
-          color: rgba(255,255,255,0.8);
-          margin-bottom: 1rem;
-          padding-left: 1.5rem;
-          position: relative;
-        }
-
-        .cs-list li::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 0.6rem;
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: #aa3bff;
-        }
-
-        .cs-highlight-box {
-          background: rgba(0,0,0,0.5);
-          border: 1px solid rgba(255,255,255,0.1);
-          padding: 2.5rem;
-          border-radius: 8px;
-          margin: 2rem 0;
-        }
-
-        .cs-highlight-box h4 {
-          font-family: var(--font-mono, monospace);
-          color: #aa3bff;
-          font-size: 1rem;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          margin-bottom: 1rem;
-        }
-
-        .cs-highlight-box p {
-          font-size: 1.25rem;
-          font-weight: 500;
-          line-height: 1.5;
-        }
-
-        /* Editorial Sticky Grid */
-        .cs-editorial-grid {
-          display: grid;
-          grid-template-columns: 40% 1fr;
-          gap: 5rem;
-          padding: 4rem 0;
-        }
-
-        .cs-editorial-sidebar {
-          position: relative;
-        }
-
-        .cs-sticky-box {
-          position: sticky;
-          top: 150px;
-        }
-
-        .cs-editorial-content {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .cs-content-block {
-          max-width: 800px;
-        }
-
-        .cs-img-wrapper {
-          overflow: hidden;
-          border-radius: 16px;
-          margin: 4rem 0;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .cs-media-img {
-          width: 100%;
-          height: auto;
-          display: block;
-        }
-
-        @media (max-width: 992px) {
-          .cs-editorial-grid {
-            grid-template-columns: 1fr;
-            gap: 4rem;
-          }
-          .cs-sticky-box {
-            position: relative;
-            top: 0;
-            margin-bottom: 2rem;
-          }
-          .cs-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .cs-hero-img-full {
-            height: 70vh;
-            object-fit: cover;
-          }
-          .cs-section {
-            padding: 5rem 0;
-          }
-          .cs-media-section {
-            padding: 0 4vw;
-          }
-          .cs-hero {
-            padding-bottom: 4rem;
-          }
-        }
-      `}</style>
+      <section className="cs-section">
+        <div className="cs-split">
+          <div className="cs-split-left"><h2 className="cs-h2 split-text">The idea</h2></div>
+          <div className="cs-split-right">
+            <p className="cs-p split-text">Most resolution stories focus on the promise.</p>
+            <p className="cs-p highlight split-text">We focused on what happens after the promise.</p>
+            <p className="cs-p split-text">People carry their resolutions into the year. To work. To airports. To gyms. To meetings. To routines. To the version of themselves they are trying to build.</p>
+            <p className="cs-p split-text">That gave Uppercase a clean role: a campaign about carrying things forward, and a product made to be carried through real life.</p>
+          </div>
+        </div>
+        <div className="cs-split">
+          <div className="cs-split-left"><h2 className="cs-h2 split-text">Building<br />the campaign</h2></div>
+          <div className="cs-split-right">
+            <p className="cs-p split-text">The line gave the campaign its spine. The film then had to make that thought feel lived-in.</p>
+            <p className="cs-p split-text">Each moment was built around a resolution people could recognise: move more, travel more, work better, learn something new, show up sharper.</p>
+            <ul className="cs-list" style={{ marginTop: '4rem' }}>
+              <li className="gsap-item">The campaign thought</li>
+              <li className="gsap-item">The resolution-led moments</li>
+              <li className="gsap-item">The product role in each frame</li>
+              <li className="gsap-item">The pace of the film</li>
+              <li className="gsap-item">The social-first narrative flow</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section className="cs-proof-module">
+        <div className="cs-proof-media gsap-fade-up">
+          <img src={`${base}case studies/Written Content/Uppercase/Supporting 1.webp`} alt="Uppercase campaign visual proof" />
+        </div>
+        <div className="cs-proof-copy">
+          <h2 className="cs-proof-title split-text">The film had to move quickly. But the idea had to stay clear.</h2>
+          <p className="cs-proof-text split-text">The product appeared inside recognisable resolution-led moments, without slowing the story down.</p>
+        </div>
+      </section>
+      <section className="cs-journey-wrapper">
+        <div className="cs-journey-container">
+          <div className="cs-journey-left">
+            <h2 className="cs-journey-title split-text">The Carry</h2>
+            <p className="cs-journey-desc split-text">The campaign worked because the product already had a natural place inside the idea.</p>
+          </div>
+          <div className="cs-journey-steps">
+            <div className="cs-journey-step gsap-fade-up"><div className="cs-journey-num">01 / PROMISE</div><div className="cs-journey-text">A person makes a resolution.</div></div>
+            <div className="cs-journey-step gsap-fade-up"><div className="cs-journey-num">02 / MOVEMENT</div><div className="cs-journey-text">That resolution moves into real life.</div></div>
+            <div className="cs-journey-step gsap-fade-up"><div className="cs-journey-num">03 / ROUTINE</div><div className="cs-journey-text">Work, travel, gyms, meetings, and everyday ambition.</div></div>
+            <div className="cs-journey-step gsap-fade-up"><div className="cs-journey-num">04 / PRODUCT</div><div className="cs-journey-text">The bag belongs inside those moments.</div></div>
+            <div className="cs-journey-step gsap-fade-up"><div className="cs-journey-num">05 / FORMAT</div><div className="cs-journey-text">The story is shaped as a social-first film.</div></div>
+            <div className="cs-journey-step highlight gsap-fade-up"><div className="cs-journey-num" style={{ color: 'rgba(255,255,255,0.5)' }}>06 / OUTCOME</div><div className="cs-journey-text">The campaign travels because the thought is simple and the product connection is honest.</div></div>
+          </div>
+        </div>
+      </section>
+      <section className="cs-section">
+        <div className="cs-split">
+          <div className="cs-split-left"><h2 className="cs-h2 split-text">The role of<br />the product</h2></div>
+          <div className="cs-split-right">
+            <p className="cs-p split-text">The product fit because the thought fit.</p>
+            <p className="cs-p split-text">Uppercase did not need to force the bag into the film. The campaign was about carrying a resolution forward, and the product already had a natural place in that idea.</p>
+            <p className="cs-p highlight split-text">The bag was visible.<br />The story stayed intact.<br />The brand had a reason to be there.</p>
+          </div>
+        </div>
+        <div className="cs-split">
+          <div className="cs-split-left"><h2 className="cs-h2 split-text">Where AI<br />came in</h2></div>
+          <div className="cs-split-right">
+            <p className="cs-p split-text">The film was built using AI across script, visuals, models, video, voiceover, music, and editing.</p>
+            <p className="cs-p split-text">AI helped create speed, range, and production flexibility. But the campaign still needed human judgement at every important point.</p>
+            <p className="cs-p highlight split-text">AI helped build the film.<br />The idea led it.</p>
+          </div>
+        </div>
+      </section>
+      <section className="cs-proof-module reverse">
+        <div className="cs-proof-copy">
+          <h2 className="cs-proof-title split-text">Speed mattered. Judgement mattered more.</h2>
+          <p className="cs-proof-text split-text">The team still had to decide what the idea should be, which moments the film should show, where the product should appear, and what the final piece should feel like.</p>
+        </div>
+        <div className="cs-proof-media gsap-fade-up">
+          <img src={`${base}case studies/Written Content/Uppercase/Supporting 2.webp`} alt="Uppercase AI-led campaign execution visual" />
+        </div>
+      </section>
+      <section className="cs-section">
+        <div className="cs-split">
+          <div className="cs-split-left"><h2 className="cs-h2 split-text">What changed</h2></div>
+          <div className="cs-split-right">
+            <p className="cs-p split-text">The reel went live on Instagram in December 2025 and delivered strong traction.</p>
+            <p className="cs-p highlight split-text">5.49M plays.<br />868K+ views.<br />100K+ likes.</p>
+            <p className="cs-p split-text">For a seasonal campaign, those numbers matter because the film was competing inside one of the noisiest content windows of the year.</p>
+            <p className="cs-p split-text">The campaign travelled because the thought was simple, the product connection was honest, and the format was built for social attention.</p>
+          </div>
+        </div>
+      </section>
+      <section className="cs-final">
+        <h2 className="cs-final-heading split-text" style={{ color: 'var(--impulse-violet)' }}>Carry Your<br />Resolution</h2>
+        <p className="cs-final-text split-text">The strongest product campaigns do not beg for attention. They find the moment where the product naturally belongs. For Uppercase, that moment was the space between making a resolution and living it.</p>
+        <div className="cs-final-punch gsap-fade-up">The bag became part of that movement.<br />Not as decoration.<br /><span>As the thing that carries the year forward.</span></div>
+      </section>
+      <section className="svc-final-cta" id="connect">
+        <div className="svc-final-cta-mark" aria-hidden="true" style={{ width: 'min(60vw, 800px)', height: 'min(60vw, 800px)' }}>
+          <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+            <path className="svc-final-cta-path" d={svgPath} fill="none" />
+          </svg>
+        </div>
+        <div className="container">
+          <h2 className="split-text">Your Problem Next?</h2>
+          <div className="svc-final-cta-actions gsap-fade-up">
+            <a href="/contact-us" className="btn" data-cursor="START"><span className="btn-text">START A CONVERSATION</span><div className="btn-fill"></div></a>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
-
 export default UppercaseCaseStudy;

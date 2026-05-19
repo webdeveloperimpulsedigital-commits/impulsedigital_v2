@@ -9,37 +9,37 @@ const servicesData = [
     category: "Growth Intelligence",
     description: "Data isn't enough. We engineer systems that uncover hidden market mechanics, turning passive numbers into aggressive, predictable growth.",
     items: [
-      { title: "Consumer Intelligence", path: "/services/consumer-intelligence", desc: "Deep data analysis to uncover hidden audience behaviors.", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80", span: 1 },
-      { title: "Market & Competitive Intelligence", path: "/services/market-intelligence", desc: "Understand your competitors and industry landscape.", image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=800&q=80", span: 1 },
-      { title: "Always-On Intelligence", path: "/services/always-on-intelligence", desc: "Continuous monitoring for 24/7 strategic advantage.", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80", span: 1 },
-      { title: "Campaign & Performance Intelligence", path: "/services/campaign-intelligence", desc: "Real-time insights to optimize live marketing efforts.", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80", span: 1 }
+      { title: "Consumer Intelligence", path: "/growth-intelligence/consumer-intelligence/", desc: "Deep data analysis to uncover hidden audience behaviors.", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80", span: 1 },
+      { title: "Market & Competitive Intelligence", path: "/growth-intelligence/market-intelligence/", desc: "Understand your competitors and industry landscape.", image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=800&q=80", span: 1 },
+      { title: "Always-On Intelligence", path: "/growth-intelligence/always-on-intelligence/", desc: "Continuous monitoring for 24/7 strategic advantage.", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80", span: 1 },
+      { title: "Campaign & Performance Intelligence", path: "/growth-intelligence/campaign-intelligence/", desc: "Real-time insights to optimize live marketing efforts.", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80", span: 1 }
     ]
   },
   {
     category: "AI Marketing Systems",
     description: "The era of manual execution is over. Deploy autonomous, intelligent systems that scale your marketing exponentially without human bottlenecks.",
     items: [
-      { title: "Archer AI", path: "/services/archer-ai", desc: "Our proprietary AI platform for total growth intelligence.", image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80", span: 2 },
-      { title: "Agentic AI", path: "/services/agentic-ai", desc: "Autonomous AI agents to execute and scale your marketing.", image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80", span: 1 },
-      { title: "Cinematic AI Production", path: "/services/ai-video-production", desc: "Cutting-edge video creation powered by AI.", image: "https://images.unsplash.com/photo-1589802787123-6447c20ee3cd?auto=format&fit=crop&w=800&q=80", span: 1 },
-      { title: "Generative Search Optimisation", path: "/services/generative-search-optimisation", desc: "Optimizing your brand for AI search engines.", image: "https://images.unsplash.com/photo-1531297172868-9f1d8b85cc11?auto=format&fit=crop&w=800&q=80", span: 2 }
+      { title: "Archer AI", path: "/ai-marketing-systems/archer-ai/", desc: "Our proprietary AI platform for total growth intelligence.", image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80", span: 2 },
+      { title: "Agentic AI", path: "/ai-marketing-systems/agentic-ai/", desc: "Autonomous AI agents to execute and scale your marketing.", image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80", span: 1 },
+      { title: "AI Video Production", path: "/ai-marketing-systems/ai-video-production/", desc: "Cutting-edge video creation powered by AI.", image: "https://images.unsplash.com/photo-1589802787123-6447c20ee3cd?auto=format&fit=crop&w=800&q=80", span: 1 },
+      { title: "Generative Search Optimisation", path: "/ai-marketing-systems/generative-search-optimisation/", desc: "Optimizing your brand for AI search engines.", image: "https://images.unsplash.com/photo-1531297172868-9f1d8b85cc11?auto=format&fit=crop&w=800&q=80", span: 2 }
     ]
   },
   {
     category: "Brand Infrastructure",
     description: "A premium brand demands an unbreakable foundation. We architect authoritative digital footprints that dominate search and command absolute trust.",
     items: [
-      { title: "Search & Visibility", path: "/services/search-engine-optimisation", desc: "Advanced organic growth to dominate traditional search.", image: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=800&q=80", span: 2 },
-      { title: "eCommerce SEO", path: "/services/search-engine-optimisation/ecommerce-seo", desc: "Revenue-driven organic growth for online stores.", image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80", span: 1 },
-      { title: "Enterprise SEO", path: "/services/search-engine-optimisation/enterprise-seo", desc: "Large-scale SEO infrastructure for massive websites.", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80", span: 1 },
-      { title: "B2B SEO", path: "/services/search-engine-optimisation/b2b-seo", desc: "Pipeline-focused search visibility for B2B buyers.", image: "https://images.unsplash.com/photo-1556761175-5973dc0f32b7?auto=format&fit=crop&w=800&q=80", span: 1 },
-      { title: "Local SEO", path: "/services/search-engine-optimisation/local-seo", desc: "Dominate the local map pack and neighborhood searches.", image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80", span: 1 },
-      { title: "Website Development", path: "/services/website-development", desc: "High-performance, modern web experiences.", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", span: 2 },
+      { title: "Search & Visibility", path: "/brand-infrastructure/search-engine-optimisation/", desc: "Advanced organic growth to dominate traditional search.", image: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=800&q=80", span: 2 },
+      { title: "eCommerce SEO", path: "/brand-infrastructure/search-engine-optimisation/ecommerce-seo/", desc: "Revenue-driven organic growth for online stores.", image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80", span: 1 },
+      { title: "Enterprise SEO", path: "/brand-infrastructure/search-engine-optimisation/enterprise-seo/", desc: "Large-scale SEO infrastructure for massive websites.", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80", span: 1 },
+      { title: "B2B SEO", path: "/brand-infrastructure/search-engine-optimisation/b2b-seo/", desc: "Pipeline-focused search visibility for B2B buyers.", image: "https://images.unsplash.com/photo-1556761175-5973dc0f32b7?auto=format&fit=crop&w=800&q=80", span: 1 },
+      { title: "Local SEO", path: "/brand-infrastructure/search-engine-optimisation/local-seo/", desc: "Dominate the local map pack and neighborhood searches.", image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80", span: 1 },
+      { title: "Website Development", path: "/brand-infrastructure/website-development/", desc: "High-performance, modern web experiences.", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80", span: 2 },
       { title: "Content Strategy & Writing", path: "#services", desc: "High-impact, conversion-driven editorial content.", image: "https://images.unsplash.com/photo-1455390582262-044cdead27d8?auto=format&fit=crop&w=800&q=80", span: 1 },
-      { title: "Social Media", path: "/services/social-media-management", desc: "Engaging, community-driven social strategies.", image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=800&q=80", span: 1 },
+      { title: "Social Media", path: "/brand-infrastructure/social-media-management/", desc: "Engaging, community-driven social strategies.", image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=800&q=80", span: 1 },
       { title: "Video & Visual Content", path: "#services", desc: "Stunning visual assets that command attention.", image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=800&q=80", span: 1 },
-      { title: "Brand Identity", path: "/services/branding", desc: "Powerful brand identities that command attention.", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80", span: 1 },
-      { title: "Employer Branding", path: "/services/employer-branding", desc: "Attract and retain the industry's top talent.", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80", span: 2 }
+      { title: "Brand Identity", path: "/brand-infrastructure/branding/", desc: "Powerful brand identities that command attention.", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80", span: 1 },
+      { title: "Employer Branding", path: "/brand-infrastructure/employer-branding/", desc: "Attract and retain the industry's top talent.", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80", span: 2 }
     ]
   }
 ];
@@ -195,24 +195,22 @@ const ServicesIndex: React.FC<ServicesIndexProps> = ({ categoryFilter }) => {
   return (
     <main id="main-content" className="aww3-wrapper" ref={containerRef}>
       <Helmet>
-        <meta name="description" content="Explore our full range of AI-native digital marketing, intelligence, and SEO services." />
-        <meta name="keywords" content="digital marketing services, SEO, AI marketing, branding, website development" />
-        <title>Capabilities | Impulse Digital</title>
-        <meta name="robots" content="index, follow" />
-        <meta name="language" content="English" />
-        <meta property="og:title" content="Capabilities | Impulse Digital" />
-        <meta property="og:description" content="Explore our full range of AI-native digital marketing, intelligence, and SEO services." />
-        <meta property="og:url" content="https://www.theimpulsedigital.com/services" />
-        <meta property="og:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
-        <meta property="og:site_name" content="Impulse Digital" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@impulsedigi" />
-        <meta name="twitter:title" content="Capabilities | Impulse Digital" />
-        <meta name="twitter:description" content="Explore our full range of AI-native digital marketing, intelligence, and SEO services." />
-        <meta name="twitter:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
-        <meta name="twitter:url" content="https://www.theimpulsedigital.com/services" />
-        <link rel="canonical" href="https://www.theimpulsedigital.com/services" />
+        <title>Best Digital Marketing Services in Mumbai | Impulse Digital</title>
+<meta name="description" content="Impulse Digital is known for the best digital marketing services in Mumbai, offers various services like  SEO, social media, PPC, web development, branding & employer‑branding to boost your online visibility." />
+<meta name="keywords" content="digital marketing services in mumbai, impulse digital" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/services/" />
+<meta property="og:title" content="Best Digital Marketing Services | Impulse Digital" />
+<meta property="og:description" content="Impulse Digital is known for the best digital marketing services in Mumbai, offers various services like  SEO, social media, PPC, web development, branding & employer‑branding to boost your online visibility." />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
+<meta property="og:url" content="https://www.theimpulsedigital.com/services/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Impulse Digital" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Best Digital Marketing Services | Impulse Digital" />
+<meta name="twitter:description" content="Impulse Digital is known for the best digital marketing services in Mumbai, offers various services like  SEO, social media, PPC, web development, branding & employer‑branding to boost your online visibility." />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
+<meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
 
       {/* Immersive Hero */}
@@ -263,31 +261,52 @@ const ServicesIndex: React.FC<ServicesIndexProps> = ({ categoryFilter }) => {
                 </div>
               </div>
 
-              {/* Powerful Interactive Stripe Layout (No Images) */}
-              <div className="aww3-stripe-list">
+              {/* Premium Visual Bento Grid */}
+              <div className="aww3-bento-grid">
                 {category.items.map((item, itemIdx) => (
                   <Link 
                     to={item.path} 
-                    key={`stripe-${itemIdx}`} 
-                    className="aww3-stripe-item"
+                    key={`bento-${itemIdx}`} 
+                    className={`aww3-bento-item ${item.span === 2 ? 'bento-span-2' : ''}`}
+                    data-cursor="VIEW"
+                    onMouseMove={(e) => {
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      const x = e.clientX - rect.left;
+                      const y = e.clientY - rect.top;
+                      e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+                      e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+                      
+                      const centerX = rect.width / 2;
+                      const centerY = rect.height / 2;
+                      const rotateX = ((y - centerY) / centerY) * -8;
+                      const rotateY = ((x - centerX) / centerX) * 8;
+                      e.currentTarget.style.setProperty('--rotate-x', `${rotateX}deg`);
+                      e.currentTarget.style.setProperty('--rotate-y', `${rotateY}deg`);
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.setProperty('--rotate-x', '0deg');
+                      e.currentTarget.style.setProperty('--rotate-y', '0deg');
+                    }}
                   >
-                    <div className="aww3-stripe-bg"></div>
-                    <div className="aww3-stripe-content">
-                      <div className="aww3-stripe-top">
-                        <div className="aww3-stripe-index">{(itemIdx + 1).toString().padStart(2, '0')}</div>
-                        <h3 className="aww3-stripe-title">{item.title}</h3>
-                        <div className="aww3-stripe-arrow">
+                    <div className="aww3-bento-bg">
+                      <svg className="aww3-bento-logo" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+                        <path className="aww3-bento-path" d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" fill="none" stroke="#aa3bff" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <div className="aww3-bento-overlay"></div>
+                    </div>
+                    <div className="aww3-bento-content">
+                      <div className="aww3-bento-top">
+                        <div className="aww3-bento-index">{(itemIdx + 1).toString().padStart(2, '0')}</div>
+                        <div className="aww3-bento-icon">
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 19L19 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             <path d="M7 5H19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           </svg>
                         </div>
                       </div>
-                      <div className="aww3-stripe-bottom">
-                        <div className="aww3-stripe-bottom-inner">
-                          <p className="aww3-stripe-desc">{item.desc}</p>
-                          <span className="aww3-stripe-cta">Explore Service</span>
-                        </div>
+                      <div className="aww3-bento-bottom">
+                        <h3 className="aww3-bento-title">{item.title}</h3>
+                        <p className="aww3-bento-desc">{item.desc}</p>
                       </div>
                     </div>
                   </Link>
@@ -461,165 +480,200 @@ const ServicesIndex: React.FC<ServicesIndexProps> = ({ categoryFilter }) => {
           color: rgba(255,255,255,0.5);
         }
 
-        /* Powerful Interactive Stripe Layout */
-        .aww3-stripe-list {
+        /* Premium Visual Bento Grid */
+        .aww3-bento-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+          margin-top: 2rem;
+        }
+
+        .aww3-bento-item {
+          position: relative;
           display: flex;
           flex-direction: column;
-          border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .aww3-stripe-item {
-          position: relative;
-          display: block;
           text-decoration: none;
           color: #fff;
-          border-bottom: 1px solid rgba(255,255,255,0.1);
-          padding: 2.5rem 0;
-          transition: padding 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+          border-radius: 1.5rem;
+          min-height: 420px;
+          border: 1px solid rgba(255,255,255,0.04);
+          background: rgba(3, 1, 20, 0.4);
+          transform: perspective(1200px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg)) translateZ(0);
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s;
+          will-change: transform;
         }
 
-        .aww3-stripe-bg {
+        .aww3-bento-item::before {
+          content: '';
           position: absolute;
           inset: 0;
-          background: linear-gradient(90deg, rgba(170, 59, 255, 0.08) 0%, transparent 100%);
-          transform: scaleY(0);
-          transform-origin: bottom;
-          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+          border-radius: inherit;
+          padding: 1px;
+          background: radial-gradient(
+            600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+            rgba(170, 59, 255, 0.6),
+            transparent 40%
+          );
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          pointer-events: none;
+          z-index: 10;
+          opacity: 0;
+          transition: opacity 0.4s;
+        }
+
+        .aww3-bento-item::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background: radial-gradient(
+            600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+            rgba(170, 59, 255, 0.15),
+            transparent 40%
+          );
+          z-index: -1;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.4s;
+        }
+
+        .aww3-bento-item:hover {
+          border-color: rgba(255,255,255,0.0);
+        }
+
+        .aww3-bento-item:hover::before,
+        .aww3-bento-item:hover::after {
+          opacity: 1;
+        }
+
+        .aww3-bento-item.bento-span-2 {
+          grid-column: span 2;
+        }
+
+        .aww3-bento-bg {
+          position: absolute;
+          inset: 0;
           z-index: 0;
+          overflow: hidden;
+          border-radius: inherit;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           pointer-events: none;
         }
 
-        .aww3-stripe-item:hover .aww3-stripe-bg {
-          transform: scaleY(1);
-          transform-origin: top;
+        .aww3-bento-logo {
+          width: 140%;
+          height: 140%;
+          opacity: 0.03;
+          transform: translate(calc(var(--mouse-x, 0px) * 0.02 - 10px), calc(var(--mouse-y, 0px) * 0.02 - 10px)) scale(0.85) rotate(-10deg);
+          transition: transform 0.1s ease-out, opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .aww3-stripe-content {
+        .aww3-bento-path {
+          stroke-dasharray: 2000;
+          stroke-dashoffset: 2000;
+          transition: stroke-dashoffset 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .aww3-bento-overlay {
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background: linear-gradient(to top, rgba(3, 1, 20, 0.95) 0%, rgba(3, 1, 20, 0.3) 100%);
+          transition: background 0.6s ease;
+          pointer-events: none;
+        }
+
+        .aww3-bento-item:hover .aww3-bento-logo {
+          opacity: 0.18;
+          transform: translate(calc(var(--mouse-x, 0px) * 0.04 - 20px), calc(var(--mouse-y, 0px) * 0.04 - 20px)) scale(1) rotate(0deg);
+        }
+
+        .aww3-bento-item:hover .aww3-bento-path {
+          stroke-dashoffset: 0;
+        }
+
+        .aww3-bento-item:hover .aww3-bento-overlay {
+          background: linear-gradient(to top, rgba(170, 59, 255, 0.15) 0%, rgba(3, 1, 20, 0.1) 100%);
+        }
+
+        .aww3-bento-content {
           position: relative;
           z-index: 1;
-          padding: 0 2rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 2.5rem;
+          height: 100%;
+          box-sizing: border-box;
         }
 
-        .aww3-stripe-top {
-          display: grid;
-          grid-template-columns: 60px 1fr 60px;
-          align-items: center;
-          gap: 2rem;
+        .aww3-bento-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
         }
 
-        .aww3-stripe-index {
+        .aww3-bento-index {
           font-family: var(--font-mono, monospace);
           font-size: 1.2rem;
-          color: rgba(255,255,255,0.3);
-          transition: color 0.4s ease;
+          color: rgba(255,255,255,0.7);
         }
 
-        .aww3-stripe-item:hover .aww3-stripe-index {
-          color: #aa3bff;
-        }
-
-        .aww3-stripe-title {
-          font-family: var(--font-heading, sans-serif);
-          font-size: clamp(2rem, 3.5vw, 4rem);
-          font-weight: 700;
-          letter-spacing: -0.02em;
-          line-height: 1.1;
-          margin: 0;
-          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
-        }
-
-        .aww3-stripe-item:hover .aww3-stripe-title {
-          transform: translateX(20px);
-        }
-
-        .aww3-stripe-arrow {
-          width: 60px;
-          height: 60px;
+        .aww3-bento-icon {
+          width: 54px;
+          height: 54px;
           border-radius: 50%;
-          border: 1px solid rgba(255,255,255,0.2);
+          background: rgba(255,255,255,0.08);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255,255,255,0.1);
           display: flex;
           align-items: center;
           justify-content: center;
           transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .aww3-stripe-arrow svg {
-          width: 24px;
-          height: 24px;
+        .aww3-bento-icon svg {
+          width: 22px;
+          height: 22px;
+          color: #fff;
           transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .aww3-stripe-item:hover .aww3-stripe-arrow {
-          background: #aa3bff;
-          border-color: #aa3bff;
-          transform: scale(1.1) rotate(45deg);
+        .aww3-bento-item:hover .aww3-bento-icon {
+          background: #fff;
+          transform: scale(1.1);
         }
 
-        .aww3-stripe-bottom {
-          display: grid;
-          grid-template-rows: 0fr;
-          transition: grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-          padding-left: calc(60px + 2rem);
+        .aww3-bento-item:hover .aww3-bento-icon svg {
+          color: #000;
+          transform: rotate(45deg);
         }
 
-        .aww3-stripe-item:hover .aww3-stripe-bottom {
-          grid-template-rows: 1fr;
-        }
-
-        .aww3-stripe-bottom-inner {
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-        }
-
-        .aww3-stripe-desc {
-          font-size: 1.3rem;
-          line-height: 1.6;
-          color: rgba(255,255,255,0.7);
-          max-width: 600px;
-          margin: 0;
-          padding-top: 1.5rem;
-          opacity: 0;
-          transform: translateY(20px);
-          transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
-        }
-
-        .aww3-stripe-item:hover .aww3-stripe-desc {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .aww3-stripe-cta {
-          font-family: var(--font-sans, sans-serif);
-          font-size: 0.9rem;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          color: #aa3bff;
+        .aww3-bento-title {
+          font-family: var(--font-heading, sans-serif);
+          font-size: clamp(2rem, 3vw, 3rem);
           font-weight: 700;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          opacity: 0;
-          transform: translateY(20px);
-          transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+          letter-spacing: -0.02em;
+          line-height: 1.1;
+          margin-bottom: 1rem;
+          text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .aww3-stripe-item:hover .aww3-stripe-cta {
-          opacity: 1;
-          transform: translateY(0);
+        .aww3-bento-item:hover .aww3-bento-title {
+          transform: translateX(10px);
         }
 
-        .aww3-stripe-cta::after {
-          content: '';
-          width: 30px;
-          height: 1px;
-          background: #aa3bff;
-          transition: width 0.4s ease;
-        }
-
-        .aww3-stripe-item:hover .aww3-stripe-cta::after {
-          width: 50px;
+        .aww3-bento-desc {
+          font-size: 1.2rem;
+          line-height: 1.5;
+          color: rgba(255,255,255,0.85);
+          margin: 0;
+          max-width: 90%;
         }
 
         /* Responsive */
@@ -632,13 +686,6 @@ const ServicesIndex: React.FC<ServicesIndexProps> = ({ categoryFilter }) => {
           .aww3-header-right {
             flex: none;
             width: 100%;
-          }
-          .aww3-stripe-top {
-            grid-template-columns: 40px 1fr 50px;
-            gap: 1.5rem;
-          }
-          .aww3-stripe-bottom {
-            padding-left: calc(40px + 1.5rem);
           }
         }
 
@@ -670,24 +717,20 @@ const ServicesIndex: React.FC<ServicesIndexProps> = ({ categoryFilter }) => {
             padding-bottom: 1.5rem;
             gap: 1rem;
           }
-          .aww3-stripe-content {
-            padding: 0 1rem;
+          .aww3-bento-grid {
+            grid-template-columns: 1fr;
           }
-          .aww3-stripe-top {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+          .aww3-bento-item.bento-span-2 {
+            grid-column: span 1;
           }
-          .aww3-stripe-index {
-            width: 100%;
-            margin-bottom: 0.5rem;
+          .aww3-bento-item {
+            min-height: 380px;
           }
-          .aww3-stripe-title {
-            width: calc(100% - 60px);
-            font-size: 2.2rem;
+          .aww3-bento-content {
+            padding: 1.8rem;
           }
-          .aww3-stripe-bottom {
-            padding-left: 0;
+          .aww3-bento-title {
+            font-size: 2.4rem;
           }
         }
       `}</style>

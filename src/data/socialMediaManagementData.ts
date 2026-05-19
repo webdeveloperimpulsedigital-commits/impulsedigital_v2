@@ -9,7 +9,7 @@ export const socialMediaManagementData = {
     "buttons": [
       {
         "text": "Build Social That Matters",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "BUILD"
       },
       {
@@ -237,12 +237,12 @@ export const socialMediaManagementData = {
     "buttons": [
       {
         "text": "Build Social That Matters",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "START"
       },
       {
-        "text": "Talk to Impulse Digital",
-        "link": "#connect",
+        "text": "Start a Conversation",
+        "link": "/contact-us/",
         "cursor": "HI"
       }
     ],

@@ -4,8 +4,8 @@ export const archerAiData = {
     headlineAccent: "They Start Looking.",
     description: "Your next customer may not be searching for you yet. But they may already be hiring, expanding, launching, raising, entering a new market, or showing signals that point to need. Archer AI reads those signals, finds the decision-makers, and turns live market movement into personalised outbound conversations.",
     buttons: [
-      { text: "Apply for an ICP Diagnostic", link: "#connect", cursor: "APPLY" },
-      { text: "See How Archer AI Works", link: "#use-cases", cursor: "EXPLORE" }
+      { text: "Apply for an ICP Diagnostic", link: "/contact-us/", cursor: "APPLY" },
+      { text: "See How Archer AI Works", link: "#process", cursor: "EXPLORE" }
     ]
   },
   problem: {
@@ -23,7 +23,7 @@ export const archerAiData = {
     leftLabel: "Lead lists",
     leftStrike: "give you names.",
     rightLabel: "Archer AI",
-    rightText: "gives you ",
+    rightText: "gives you<br/>",
     rightHighlight: "timing, context, and<br/>a reason to reach out",
     steps: [
       { num: "01", text: "Find companies showing buying signals" },
@@ -87,8 +87,8 @@ export const archerAiData = {
     accent: "",
     body: "Tell us who you want to reach. We will help identify where your market is already showing need, movement, or timing signals.",
     buttons: [
-      { text: "Apply for an ICP Diagnostic", link: "#connect", cursor: "APPLY" },
-      { text: "Talk to Impulse Digital", link: "#connect", cursor: "HI" }
+      { text: "Apply for an ICP Diagnostic", link: "/contact-us/", cursor: "APPLY" },
+      { text: "Start a Conversation", link: "/contact-us/", cursor: "HI" }
     ],
     footnote: "No stale lead lists. No spray-and-pray outreach. Just an outbound engine built around your buyer, your market, and your timing."
   },
@@ -105,5 +105,6 @@ export const archerAiData = {
       { q: "What do humans handle?", a: "Human strategists handle ICP logic, positioning, message quality, brand tone, review, and optimisation." },
       { q: "Is Archer AI right for every business?", a: "No. Archer AI works best when the buyer is identifiable, the ICP is clear, the deal size justifies precision, and the market shows signals that can be turned into relevant outreach." }
     ]
-  }
+  },
+  contactTitle: "Let’s find the<br/>buyers hiding<br/>in plain sight."
 };

@@ -61,6 +61,16 @@ const ServiceHero: React.FC<ServiceHeroProps> = ({ headlineParts, headlineAccent
     };
   }, []);
 
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
+    if (link.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(link);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <section className="svc-hero-page" id="hero">
       <div className="svc-hero-page-content">
@@ -83,7 +93,14 @@ const ServiceHero: React.FC<ServiceHeroProps> = ({ headlineParts, headlineAccent
         <p className="svc-hero-page-desc" style={{ visibility: 'hidden' }} dangerouslySetInnerHTML={{ __html: description }} />
         <div className="svc-hero-cta-row">
           {buttons.map((btn, idx) => (
-            <a key={idx} href={btn.link} className="btn" data-cursor={btn.cursor} style={{ opacity: 0 }}>
+            <a 
+              key={idx} 
+              href={btn.link} 
+              className="btn" 
+              data-cursor={btn.cursor} 
+              style={{ opacity: 0 }}
+              onClick={(e) => handleSmoothScroll(e, btn.link)}
+            >
               <span className="btn-text">{btn.text}</span>
               <div className="btn-fill"></div>
             </a>

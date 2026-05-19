@@ -1,65 +1,200 @@
-import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+
 
 const caseStudiesData = [
   {
+    client: "Aditya Birla Group",
+    subNames: ["ABG × Brut India", "Fours for Good", "ABG × KBC"],
+    subSlugs: ["/case-studies/abg-brut-india", "/case-studies/fours-for-good", "/case-studies/abg-kbc"],
+    title: "Brand Campaigns",
+    category: "Brand Campaigns",
+    description: "Three high-impact campaigns — a Brut India collaboration, cricket-driven social impact, and KBC-led purpose storytelling.",
+    images: [
+      "/case studies/Written Content/ABG x Brut India/ABG Brut India Title.png",
+      "/case studies/Written Content/Fours for good/Fours for good title.png",
+      "/case studies/Written Content/ABG x KBC/ABG x KBC Title.png"
+    ],
+    slug: "/case-studies/abg-brut-india"
+  },
+  {
+    client: "Automag",
+    subNames: ["Automag India SEO", "Bajaj Auto Film"],
+    subSlugs: ["/case-studies/automag-india", "/case-studies/automag-bajaj-auto"],
+    title: "SEO & Brand Film",
+    category: "SEO",
+    description: "B2B SEO that turned 1–2 leads a month into 45+, and a brand film for Bajaj Auto.",
+    images: [
+      "/case studies/Written Content/Automag India/Automag SEO/Automag Title.jpg",
+      "/case studies/Written Content/Automag India/Automag x Bajaj Auto title.png"
+    ],
+    slug: "/case-studies/automag-india"
+  },
+  {
     client: "Qure.ai",
-    title: "Healthcare AI SEO for the US Market",
-    category: "Growth Intelligence",
-    description: "Rebuilt Qure.ai’s US SEO structure from a one-page presence into a search-led system that generated 20 organic leads in one month.",
-    image: "/images/case-study-image/quire-qi/QureAI title.png",
+    title: "Healthcare AI SEO",
+    category: "SEO",
+    description: "Rebuilt Qure.ai’s US SEO structure from a one-page presence into a search-led system.",
+    images: ["/case studies/Written Content/Qure.ai/QureAI Title.png"],
     slug: "/case-studies/qure-ai"
   },
   {
     client: "Mastercard",
-    title: "Priceless Experiences: Reimagining Global Loyalty",
-    category: "Brand Infrastructure",
+    title: "Merchant Outreach",
+    category: "Outreach",
     description: "90.9% merchant response rate through an AI-led WhatsApp cluster-head outreach strategy.",
-    image: "/case studies/Mastercard.png",
+    images: ["/case studies/Written Content/Mastercard/Mastercard Title.png"],
     slug: "/case-studies/mastercard"
   },
   {
     client: "Dmart",
-    title: "Digital Retail Transformation & E-Commerce Dominance",
+    title: "Digital Retail Transformation",
     category: "Growth Intelligence",
     description: "13.43 lakh unique reach and 53K clicks that drove measurable in-store footfall at scale.",
-    image: "/case studies/Dmart.png",
+    images: ["/case studies/Written Content/Dmart/Dmart Title.png"],
     slug: "/case-studies/dmart"
   },
   {
     client: "Uppercase",
-    title: "Sustainable Luggage: Launching a D2C Disruptor",
+    title: "Sustainable Luggage",
     category: "AI Marketing Systems",
     description: "A complete brand film produced entirely with generative AI—script, visuals, voice, and edit.",
-    image: "/images/case-study-image/uppercase/upper-case-hero-img.png",
+    images: ["/case studies/Written Content/Uppercase/Uppercase Title.png"],
     slug: "/case-studies/uppercase"
   },
   {
     client: "HUL",
-    title: "Consumer Centricity at FMCG Scale",
+    title: "Consumer Centricity",
     category: "Growth Intelligence",
     description: "Geo-targeted digital coupon campaign delivering 90% higher CTR and 12,548 landing page sessions.",
-    image: "/case studies/HUL.png",
+    images: ["/case studies/Written Content/HUL 1/HUL 1 Title.png"],
     slug: "/case-studies/hul"
   },
   {
-    client: "Fours For Good",
-    title: "Purpose-Driven Storytelling & Social Impact",
-    category: "Brand Infrastructure",
-    description: "Building an impactful social narrative through high-performance digital storytelling.",
-    image: "/case studies/Fours for good.png",
-    slug: "/case-studies/fours-for-good"
+    client: "Laljee Godhoo",
+    title: "LG Hing Diwali Campaign",
+    category: "Purpose-Led Campaign",
+    description: "Celebrating the women who make Diwali feel alive for a heritage food brand.",
+    images: ["/case studies/Written Content/LG/LG title.png"],
+    slug: "/case-studies/lg-hing"
   },
   {
-    client: "Brut",
-    title: "Redefining Modern Men's Grooming",
-    category: "Brand Infrastructure",
-    description: "Social impact content partnership with one of India's most-watched digital publishers.",
-    image: "/case studies/Brut.png",
-    slug: "/case-studies/brut"
+    client: "ElectroMech",
+    title: "Website & SEO",
+    category: "Growth Intelligence",
+    description: "Rebuilding digital visibility to capture verified global B2B leads.",
+    images: ["/case studies/Written Content/ElectroMech/ElectroMech title.png"],
+    slug: "/case-studies/electromech"
   }
 ];
+
+const CaseStudyRow = ({ study, isReady }: { study: any, isReady: boolean }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
+  const handleHover = (index: number) => {
+    setActiveIndex(index);
+    if (galleryRef.current) {
+      const slide = galleryRef.current.children[index] as HTMLElement;
+      if (slide) {
+        // Calculate the exact scroll position relative to the container
+        const scrollPos = slide.offsetLeft - galleryRef.current.offsetLeft;
+        galleryRef.current.scrollTo({
+          left: scrollPos,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
+
+  const handleClick = (e: React.MouseEvent, index: number) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (activeIndex !== index) {
+      handleHover(index);
+    }
+    if (study.subSlugs && study.subSlugs[index]) {
+      navigate(study.subSlugs[index]);
+    } else if (study.slug) {
+      navigate(study.slug);
+    }
+  };
+
+  const handleImageClick = (e: React.MouseEvent, imgIdx: number) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (study.subSlugs && study.subSlugs[imgIdx]) {
+      navigate(study.subSlugs[imgIdx]);
+    } else if (study.slug) {
+      navigate(study.slug);
+    }
+  };
+
+  // Only show subNames if they exist, otherwise show the client name
+  const allNames = study.subNames && study.subNames.length > 0 ? study.subNames : [study.client];
+
+  const content = (
+    <>
+      <div className="work-list-left">
+        <h2 className="work-list-title" style={{ textTransform: 'uppercase', display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-start' }}>
+          {allNames.map((name, i) => (
+            <span 
+              key={i} 
+              onMouseEnter={() => handleHover(i)}
+              onClick={(e) => handleClick(e, i)}
+              style={{ 
+                color: activeIndex === i ? '#ffffff' : 'rgba(255,255,255,0.3)',
+                fontSize: activeIndex === i ? '1em' : '0.55em',
+                fontWeight: activeIndex === i ? 800 : 500,
+                opacity: activeIndex === i ? 1 : 0.6,
+                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                cursor: 'pointer',
+                transformOrigin: 'left center'
+              }}
+            >
+              {name}
+            </span>
+          ))}
+        </h2>
+      </div>
+
+      <div className="work-list-right">
+        <div className="work-list-gallery" ref={galleryRef}>
+          {study.images.map((img: string, imgIdx: number) => (
+            <div 
+              key={imgIdx} 
+              className="work-list-slide-wrapper" 
+              onClick={(e) => handleImageClick(e, imgIdx)}
+              style={{ cursor: 'pointer' }}
+            >
+              <img 
+                className="work-list-slide"
+                src={`${import.meta.env.BASE_URL}${img.replace(/^\//, '')}`}
+                alt={`${study.client} slide ${imgIdx + 1}`}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+
+  return isReady ? (
+    <div 
+      onClick={() => navigate(study.slug || '#')} 
+      className="work-list-item" 
+      style={{ textDecoration: 'none', color: 'inherit', display: 'flex', cursor: 'pointer' }}
+    >
+      {content}
+    </div>
+  ) : (
+    <div className="work-list-item pending-case-study" style={{ display: 'flex', cursor: 'default' }}>
+      {content}
+    </div>
+  );
+};
 
 const CaseStudies: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -135,33 +270,14 @@ const CaseStudies: React.FC = () => {
         }
       }
 
-      // List Scroll Reveal
-      const items = containerRef.current.querySelectorAll('.work-list-item');
-      items.forEach((item: any) => {
-        gsap.fromTo(item,
-          { 
-            y: 60,
-            opacity: 0, 
-          },
-          {
-            y: 0,
-            opacity: 1, 
-            duration: 1.2,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: item,
-              start: 'top 85%',
-            }
-          }
-        );
-
-        // Optional hover effect on image
-        const imgInner = item.querySelector('.work-list-img-inner');
-        item.addEventListener('mouseenter', () => {
-          gsap.to(imgInner, { scale: 1.05, duration: 0.8, ease: 'power2.out' });
-        });
-        item.addEventListener('mouseleave', () => {
-          gsap.to(imgInner, { scale: 1, duration: 0.8, ease: 'power2.out' });
+      // Handoff Line Reveal
+      const separators = containerRef.current.querySelectorAll('.work-list-separator');
+      separators.forEach((sep: any) => {
+        ScrollTrigger.create({
+          trigger: sep,
+          start: 'top 95%',
+          onEnter: () => sep.classList.add('active'),
+          once: true
         });
       });
 
@@ -206,35 +322,11 @@ const CaseStudies: React.FC = () => {
         <div className="work-container">
           <div className="work-list">
             {caseStudiesData.map((study, idx) => {
-              const isReady = study.slug === '/case-studies/uppercase' || study.slug === '/case-studies/qure-ai';
-              const content = (
-                <>
-                  {/* Left Text Content */}
-                  <div className="work-list-left">
-                    <h2 className="work-list-title" style={{ textTransform: 'uppercase' }}>{study.client}</h2>
-                  </div>
-
-                  {/* Right Image */}
-                  <div className="work-list-right">
-                    <div className="work-list-gallery">
-                      <img 
-                        className="work-list-slide"
-                        src={`${import.meta.env.BASE_URL}${study.image.replace(/^\//, '')}`}
-                        alt={study.client}
-                      />
-                    </div>
-                  </div>
-                </>
-              );
-
-              return isReady ? (
-                <Link to={study.slug} className="work-list-item" key={idx} style={{ textDecoration: 'none', color: 'inherit', display: 'flex' }}>
-                  {content}
-                </Link>
-              ) : (
-                <div className="work-list-item pending-case-study" key={idx} style={{ display: 'flex', cursor: 'default' }}>
-                  {content}
-                </div>
+              return (
+                <React.Fragment key={idx}>
+                  <CaseStudyRow study={study} isReady={true} />
+                  {idx < caseStudiesData.length - 1 && <div className="work-list-separator"></div>}
+                </React.Fragment>
               );
             })}
           </div>
@@ -299,7 +391,16 @@ const CaseStudies: React.FC = () => {
         .work-list {
           display: flex;
           flex-direction: column;
-          gap: 8rem;
+          gap: 2rem;
+        }
+
+        .work-list-separator {
+          width: 100%;
+          height: 1px;
+          background: rgba(138, 92, 246, 0.8);
+          box-shadow: 0 0 15px rgba(138, 92, 246, 0.6);
+          margin: 0;
+          display: block;
         }
 
         .work-list-item {
@@ -311,7 +412,7 @@ const CaseStudies: React.FC = () => {
 
         /* Left Side */
         .work-list-left {
-          flex: 0 0 35%;
+          flex: 0 0 25%;
           display: flex;
           flex-direction: column;
         }
@@ -328,54 +429,60 @@ const CaseStudies: React.FC = () => {
           color: #ffffff;
         }
 
-        .work-list-desc {
-          font-size: 1.15rem;
-          line-height: 1.6;
-          color: rgba(255,255,255,0.7);
-          font-weight: 400;
-        }
-
-        .work-list-readmore {
-          color: #ffffff;
-          font-weight: 700;
-          text-decoration: none;
-          margin-left: 0.5rem;
-          transition: color 0.3s ease;
-        }
-
-        .work-list-readmore:hover {
-          color: #aa3bff;
-        }
-
         /* Right Side Image */
         .work-list-right {
           flex: 1;
           width: 100%;
           min-width: 0;
+          position: relative;
         }
 
         .work-list-gallery {
-          width: 100%;
+          display: flex;
+          gap: 0.5rem;
+          width: calc(100% + 4vw + max(0px, (100vw - 1600px) / 2));
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          scrollbar-width: none; /* Firefox */
+        }
+        
+        .work-list-gallery::-webkit-scrollbar {
+          display: none; /* Chrome/Safari */
+        }
+
+        .work-list-slide-wrapper {
+          flex: 0 0 calc((100% - 0.5rem) / 1.5);
+          scroll-snap-align: start;
           aspect-ratio: 16 / 9;
           position: relative;
-          overflow: hidden;
-          border-radius: 8px;
-          display: block;
+          overflow: visible;
+          transition: transform 0.3s ease;
+        }
+        
+        .work-list-slide-wrapper::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border: 1px solid transparent;
+          pointer-events: none;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .work-list-slide-wrapper:hover {
+          transform: translateY(-1px);
+        }
+
+        .work-list-slide-wrapper:hover::after {
+          border-color: rgba(138, 92, 246, 1);
+          box-shadow: 0 0 20px rgba(138, 92, 246, 0.6), inset 0 0 12px rgba(138, 92, 246, 0.3);
         }
 
         .work-list-slide {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: top;
+          object-position: center;
           display: block;
-          border-radius: 8px;
-          transition: transform 0.5s ease, filter 0.5s ease;
-        }
-
-        .work-list-slide:hover {
-          transform: scale(1.02);
-          filter: brightness(1.1);
         }
 
         /* Responsive */
@@ -387,6 +494,9 @@ const CaseStudies: React.FC = () => {
           .work-list-left {
             flex: 1;
             width: 100%;
+          }
+          .work-list-slide-wrapper {
+            flex: 0 0 100%;
           }
         }
 

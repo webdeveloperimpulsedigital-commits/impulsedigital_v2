@@ -4,7 +4,7 @@ export const agenticAiData = {
     headlineAccent: "Through.",
     description: "Leads come in. Customers ask questions. Teams get busy. Follow-ups slip. Agentic AI closes that gap. Impulse Digital builds AI agents that respond, qualify, follow up, update your systems, and bring your team in when human judgment matters. So your people spend less time chasing work and more time moving the business forward.",
     buttons: [
-      { text: "Build Your First AI Workflow", link: "#connect", cursor: "BUILD" },
+      { text: "Build Your First AI Workflow", link: "/contact-us/", cursor: "BUILD" },
       { text: "See Practical Use Cases", link: "#use-cases", cursor: "EXPLORE" }
     ]
   },
@@ -135,8 +135,8 @@ export const agenticAiData = {
     accent: "",
     body: "Tell us where your team is losing time, speed, or opportunities. We will help identify the workflows where Agentic AI can create measurable leverage first.",
     buttons: [
-      { text: "Start an Agentic AI Conversation", link: "#connect", cursor: "START" },
-      { text: "Talk to Impulse Digital", link: "#connect", cursor: "HI" }
+      { text: "Start an Agentic AI Conversation", link: "/contact-us/", cursor: "START" },
+      { text: "Start a Conversation", link: "/contact-us/", cursor: "HI" }
     ],
     footnote: "No generic demos. No AI for the sake of AI. Just a clear conversation about where intelligent automation can make your business work better."
   },

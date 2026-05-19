@@ -26,158 +26,183 @@ const GenerativeSearchOptimisation: React.FC = () => {
   useEffect(() => {
     document.body.classList.add('service-page');
     
-    // Channels orbit animation
-    const stage = document.getElementById('channels-stage');
-    const linesSvg = document.getElementById('channels-orbit-lines');
-    const centerEl = document.querySelector('.svc-channels-center');
-    const centerPath = centerEl ? centerEl.querySelector('path') : null;
+    // GSO Clarity Stage Animation
+    const clarityStage = document.getElementById('gso-clarity-stage');
+    const clarityLines = document.getElementById('gso-clarity-lines');
+    const signalChips = document.querySelectorAll('.gso-signal-chip');
+    const lens = document.querySelector('.gso-clarity-lens');
+    const ringProgress = document.querySelector('.gso-ring-progress');
+    const answerCard = document.querySelector('.gso-answer-card');
+    const answerProof = document.querySelectorAll('.gso-answer-proof span');
 
-    let pulseTimer: any = null;
-    let convergenceActive = false;
-    let measureTimeout1: any, measureTimeout2: any;
-    let sectionObs: IntersectionObserver | null = null;
     let measureFn: () => void = () => {};
 
-    if (stage && linesSvg && centerEl && centerPath && gsap && ScrollTrigger) {
-      let chipPositions: any[] = [];
-      let cx = 0, cy = 0;
-      let markRadius = 80;
+    if (clarityStage && clarityLines && signalChips.length && lens && ringProgress && answerCard && gsap && ScrollTrigger) {
+      const ringLength = 2 * Math.PI * 68;
+      gsap.set(ringProgress, { strokeDasharray: ringLength, strokeDashoffset: ringLength });
+      gsap.set(signalChips, { opacity: 0, x: -20 });
+      gsap.set(answerCard, { opacity: 0, y: 30 });
+      gsap.set(answerProof, { opacity: 0, x: -10 });
+
+      let signalLines: any[] = [];
+      let outputLine: any = null;
 
       measureFn = () => {
-        const sr = stage.getBoundingClientRect();
-        linesSvg.setAttribute('viewBox', `0 0 ${sr.width} ${sr.height}`);
-        cx = sr.width / 2;
-        cy = sr.height / 2;
-        const centerRect = centerEl.getBoundingClientRect();
-        markRadius = Math.min(centerRect.width, centerRect.height) * 0.46;
+        const stageRect = clarityStage.getBoundingClientRect();
+        clarityLines.setAttribute('viewBox', `0 0 ${stageRect.width} ${stageRect.height}`);
+        clarityLines.innerHTML = '';
 
-        chipPositions = [...stage.querySelectorAll('.svc-channel-chip')].map((chip) => {
+        const lensRect = lens.getBoundingClientRect();
+        const lensX = lensRect.left - stageRect.left + lensRect.width / 2;
+        const lensY = lensRect.top - stageRect.top + lensRect.height / 2;
+        const lensRadius = lensRect.width * (68 / 160);
+
+        signalLines = Array.from(signalChips).map(chip => {
           const cr = chip.getBoundingClientRect();
-          const x = cr.left - sr.left + cr.width / 2;
-          const y = cr.top - sr.top + cr.height / 2;
-          const dx = cx - x;
-          const dy = cy - y;
-          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          const tx = x + dx * ((dist - markRadius) / dist);
-          const ty = y + dy * ((dist - markRadius) / dist);
-          return { x, y, tx, ty };
-        });
+          const startX = cr.right - stageRect.left;
+          const startY = cr.top - stageRect.top + cr.height / 2;
+          
+          const endX = lensX - lensRadius;
+          const endY = lensY;
+          const dx = endX - startX;
+          const dy = endY - startY;
+          const len = Math.sqrt(dx * dx + dy * dy);
 
-        linesSvg.querySelectorAll('line').forEach(l => l.remove());
-        chipPositions.forEach((p) => {
           const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-          line.setAttribute('x1', p.x);
-          line.setAttribute('y1', p.y);
-          line.setAttribute('x2', p.tx);
-          line.setAttribute('y2', p.ty);
-          linesSvg.appendChild(line);
+          line.setAttribute('x1', String(startX));
+          line.setAttribute('y1', String(startY));
+          line.setAttribute('x2', String(endX));
+          line.setAttribute('y2', String(endY));
+          
+          line.setAttribute('stroke-dasharray', String(len));
+          line.setAttribute('stroke-dashoffset', String(len));
+          line.setAttribute('class', 'gso-signal-line');
+          
+          clarityLines.appendChild(line);
+          return { line, len, x1: startX, y1: startY, x2: endX, y2: endY };
         });
+
+        const cardRect = answerCard.getBoundingClientRect();
+        const outStartX = lensX + lensRadius;
+        const outStartY = lensY;
+        const outEndX = cardRect.left - stageRect.left;
+        
+        const outLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        outLine.setAttribute('x1', String(outStartX));
+        outLine.setAttribute('y1', String(outStartY));
+        outLine.setAttribute('x2', String(outEndX));
+        outLine.setAttribute('y2', String(outStartY));
+        
+        const outLen = outEndX - outStartX;
+        outLine.setAttribute('stroke-dasharray', String(outLen));
+        outLine.setAttribute('stroke-dashoffset', String(outLen));
+        outLine.setAttribute('class', 'gso-signal-line');
+        
+        clarityLines.appendChild(outLine);
+        outputLine = { line: outLine, len: outLen, x1: outStartX, y1: outStartY, x2: outEndX, y2: outStartY };
       };
 
-      const flashCenter = () => {
-        gsap.fromTo(centerPath,
-          { strokeWidth: 6, stroke: 'rgba(138, 92, 246, 0.85)' },
-          {
-            strokeWidth: 11,
-            stroke: 'rgba(220, 200, 255, 1)',
-            duration: 0.18,
-            yoyo: true,
-            repeat: 1,
-            ease: 'power2.out'
-          }
-        );
-      };
-
-      const emitPulse = () => {
-        if (!chipPositions.length) return;
-        const idx = Math.floor(Math.random() * chipPositions.length);
-        const p = chipPositions[idx];
+      const sendPulse = (lineData: any, duration = 0.5, onComplete: any = null) => {
         const pulse = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        pulse.setAttribute('cx', String(p.x));
-        pulse.setAttribute('cy', String(p.y));
-        pulse.setAttribute('r', '4.5');
-        pulse.setAttribute('class', 'svc-channels-pulse');
-        linesSvg.appendChild(pulse);
+        pulse.setAttribute('cx', lineData.x1);
+        pulse.setAttribute('cy', lineData.y1);
+        pulse.setAttribute('r', '4');
+        pulse.setAttribute('class', 'gso-clarity-pulse');
+        clarityLines.appendChild(pulse);
 
-        gsap.timeline({ onComplete: () => pulse.remove() })
-          .fromTo(pulse, { opacity: 0, attr: { r: 2 } }, { opacity: 1, attr: { r: 5 }, duration: 0.35, ease: 'power2.out' })
+        gsap.timeline({ onComplete: () => {
+          pulse.remove();
+          if (onComplete) onComplete();
+        }})
           .to(pulse, {
-            attr: { cx: p.tx, cy: p.ty },
-            duration: 1.3,
-            ease: 'power2.in'
-          }, 0)
-          .to(pulse, { opacity: 0, attr: { r: 2 }, duration: 0.2, ease: 'power2.in' }, '-=0.18')
-          .add(flashCenter, '-=0.18');
+            attr: { cx: lineData.x2, cy: lineData.y2 },
+            duration,
+            ease: 'power2.inOut'
+          })
+          .to(pulse, { opacity: 0, duration: 0.18, ease: 'power2.out' }, '-=0.16');
       };
 
-      const startConvergence = () => {
-        if (convergenceActive) return;
-        convergenceActive = true;
-        gsap.fromTo(centerPath,
-          { opacity: 0.15, strokeWidth: 4 },
-          { opacity: 1, strokeWidth: 6, duration: 1.6, ease: 'power2.out' }
-        );
-        pulseTimer = setInterval(emitPulse, 380);
-      };
+      const runClarity = () => {
+        measureFn();
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      const stopConvergence = () => {
-        convergenceActive = false;
-        if (pulseTimer) { clearInterval(pulseTimer); pulseTimer = null; }
+        signalLines.forEach((lineData, i) => {
+          const chip = signalChips[i];
+          tl.to(chip, {
+            opacity: 1,
+            x: 0,
+            duration: 0.42,
+            onStart: () => chip.classList.add('understood')
+          }, i * 0.16)
+            .to(lineData.line, {
+              opacity: 1,
+              strokeDashoffset: 0,
+              duration: 0.58
+            }, i * 0.16 + 0.08)
+            .to(ringProgress, {
+              strokeDashoffset: ringLength * (1 - ((i + 1) / signalLines.length)),
+              duration: 0.5
+            }, i * 0.16 + 0.24)
+            .add(() => sendPulse(lineData, 0.62), i * 0.16 + 0.1);
+        });
+
+        tl.to(outputLine.line, {
+          opacity: 1,
+          strokeDashoffset: 0,
+          duration: 0.85,
+          ease: 'power2.inOut',
+          onStart: () => sendPulse(outputLine, 0.78)
+        }, '+=0.18')
+          .to(answerCard, {
+            opacity: 1,
+            y: 0,
+            duration: 0.72
+          }, '-=0.3')
+          .to(answerProof, {
+            opacity: 1,
+            x: 0,
+            duration: 0.42,
+            stagger: 0.12
+          }, '-=0.15');
       };
 
       measureFn();
-      measureTimeout1 = setTimeout(measureFn, 250);
-      measureTimeout2 = setTimeout(measureFn, 800);
+      setTimeout(measureFn, 250);
       window.addEventListener('resize', measureFn);
 
-      sectionObs = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) startConvergence();
-          else stopConvergence();
-        });
-      }, { threshold: 0.2 });
-      sectionObs.observe(stage);
-
-      gsap.set(centerPath, { opacity: 0.15 });
+      ScrollTrigger.create({
+        trigger: clarityStage,
+        start: 'top 58%',
+        once: true,
+        onEnter: runClarity
+      });
     }
 
     return () => {
       document.body.classList.remove('service-page');
       window.removeEventListener('resize', measureFn);
-      if (pulseTimer) clearInterval(pulseTimer);
-      clearTimeout(measureTimeout1);
-      clearTimeout(measureTimeout2);
-      if (sectionObs) sectionObs.disconnect();
     };
   }, []);
 
   return (
     <main id="main-content">
       <Helmet>
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <title>Generative Search Optimisation | Impulse Digital</title>
-        <meta name="robots" content="index, follow" />
-        <meta name="revisit-after" content="1 day" />
-        <meta name="language" content="English" />
-        <meta name="generator" content="N/A" />
-
-        <meta property="og:title" content="Generative Search Optimisation | Impulse Digital" />
-        <meta property="og:description" content="" />
-        <meta property="og:url" content="https://www.theimpulsedigital.com/services/generative-search-optimisation" />
-        <meta property="og:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
-        <meta property="og:site_name" content="Impulse Digital" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@impulsedigi" />
-        <meta name="twitter:creator" content="@impulsedigi" />
-        <meta name="twitter:title" content="Generative Search Optimisation | Impulse Digital" />
-        <meta name="twitter:description" content="" />
-        <meta name="twitter:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
-        <meta name="twitter:url" content="https://www.theimpulsedigital.com/services/generative-search-optimisation" />
-
-        <link rel="canonical" href="https://www.theimpulsedigital.com/services/generative-search-optimisation" />
+        <title>AI SEO Agency in India | Advanced AI SEO Service</title>
+<meta name="description" content="Partner with a top AI SEO agency in Mumbai, India that delivers data-driven AI SEO services to boost organic rankings, enhance search visibility, and accelerate business growth with intelligent automation and strategic optimization." />
+<meta name="keywords" content="ai seo agency, ai seo service, ai seo company, mumbai, india, impulse digital" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/services/search-engine-optimization/ai-seo-agency" />
+<meta property="og:title" content="AI SEO Agency in India | Advanced AI SEO Service" />
+<meta property="og:description" content="Partner with a top AI SEO agency in Mumbai, India that delivers data-driven AI SEO services to boost organic rankings, enhance search visibility, and accelerate business growth with intelligent automation and strategic optimization. team helps us stand out from a cluster of digital marketing agencies in Mumbai. We are handling a plethora of clients which includes Amazon, HUL, OLA, Dmart, HDFC, and more big market giants." />
+<meta property="og:image" content="https://www.theimpulsedigital.com/AI-SEO-Agency.jpg" />
+<meta property="og:url" content="https://www.theimpulsedigital.com" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Impulse Digital" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI SEO Agency in India | Advanced AI SEO Service" />
+<meta name="twitter:description" content="Partner with a top AI SEO agency in Mumbai, India that delivers data-driven AI SEO services to boost organic rankings, enhance search visibility, and accelerate business growth with intelligent automation and strategic optimization. team helps us stand out from a cluster of digital marketing agencies in Mumbai. We are handling a plethora of clients which includes Amazon, HUL, OLA, Dmart, HDFC, and more big market giants." />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/AI-SEO-Agency.jpg" />
+<meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 
         headlineHtml={data.hero.headlineHtml}
@@ -206,19 +231,33 @@ const GenerativeSearchOptimisation: React.FC = () => {
           <h2 className="svc-h2 split-text">{data.channels.title}</h2>
           <p className="svc-channels-intro">{data.channels.intro1}</p>
           <p className="svc-channels-intro gso-clarity-intro-secondary">{data.channels.intro2}</p>
-          <div className="svc-channels-stage" id="channels-stage">
-            <svg className="svc-channels-orbit-svg" id="channels-orbit-lines" aria-hidden="true"></svg>
-            <div className="svc-channels-center" aria-hidden="true">
-              <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+          <div className="gso-clarity-stage" id="gso-clarity-stage">
+            <svg className="gso-clarity-lines" id="gso-clarity-lines" aria-hidden="true"></svg>
+            <div className="gso-signal-field" aria-label="Buyer research signals">
+              {data.channels.list.map((item: any, i: number) => (
+                <span className="gso-signal-chip" data-row={i + 1} key={i}>{item.label}</span>
+              ))}
+            </div>
+            <div className="gso-clarity-lens" aria-hidden="true">
+              <div className="gso-lens-label">AI reads the signals</div>
+              <svg className="gso-lens-ring" viewBox="0 0 160 160">
+                <circle className="gso-ring-track" cx="80" cy="80" r="68"></circle>
+                <circle className="gso-ring-progress" cx="80" cy="80" r="68"></circle>
+              </svg>
+              <svg className="gso-lens-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
               </svg>
             </div>
-            <div className="svc-channels-orbit">
-              {data.channels.list.map((item: any, i: number) => (
-                <span key={i} className="svc-channel-chip" style={{ '--chip-left': item.pos.left, '--chip-top': item.pos.top } as React.CSSProperties}>
-                  {item.label}
-                </span>
-              ))}
+            <div className="gso-answer-card">
+              <div className="gso-answer-eyebrow">Recommendation layer</div>
+              <h3>Your brand becomes easier to find, explain, and recommend.</h3>
+              <div className="gso-answer-proof">
+                <span>Category is clear</span>
+                <span>Proof is visible</span>
+                <span>Expertise is structured</span>
+                <span>Content answers real questions</span>
+              </div>
+              <p>Chosen starts with understood.</p>
             </div>
           </div>
         </div>
@@ -243,7 +282,7 @@ const GenerativeSearchOptimisation: React.FC = () => {
                     const [label, desc] = pill.split(':');
                     return (
                       <div className="svc-system-pill" key={i}>
-                        <strong>{label.trim()}:</strong>
+                        <strong>{label.trim()}</strong>
                         <span>{desc}</span>
                       </div>
                     );

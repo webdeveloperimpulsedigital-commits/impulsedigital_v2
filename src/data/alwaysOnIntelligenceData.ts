@@ -4,7 +4,7 @@ export const alwaysOnIntelligenceData = {
     headlineAccent: "Problem Late.",
     description: "Brand sentiment does not wait for the monthly review. A complaint spikes. A review pattern repeats. A competitor move gains traction. A campaign starts being read differently than intended. Impulse Digital builds always-on intelligence systems that help brands monitor conversations, sentiment, marketplace signals, reputation risks, and emerging opportunities before they turn into surprises.",
     buttons: [
-      { text: "Build Your Intelligence System", link: "#connect", cursor: "BUILD" },
+      { text: "Build Your Intelligence System", link: "/contact-us/", cursor: "BUILD" },
       { text: "See What You Can Track", link: "#use-cases", cursor: "EXPLORE" }
     ]
   },
@@ -134,8 +134,8 @@ export const alwaysOnIntelligenceData = {
     accent: "Matters.",
     body: "Tell us what your brand cannot afford to miss. We will help define the signals, alerts, dashboards, and reporting rhythm that keep your team ahead of the conversation.",
     buttons: [
-      { text: "Build Your Intelligence System", link: "#connect", cursor: "BUILD" },
-      { text: "Talk to Impulse Digital", link: "#connect", cursor: "HI" }
+      { text: "Build Your Intelligence System", link: "/contact-us/", cursor: "BUILD" },
+      { text: "Start a Conversation", link: "/contact-us/", cursor: "HI" }
     ],
     footnote: "No passive monitoring. No dashboard clutter. Just live intelligence built for faster, sharper brand decisions."
   },

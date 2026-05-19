@@ -5,11 +5,11 @@ export const ecommerceSEOData = {
       "The Route to It May Not Be."
     ],
     "headlineAccent": "The Route to It May Not Be.",
-    "description": "Your products can be live. Your pricing can be sharp. Your visuals can be clean. Your offers can be running. But shoppers do not always begin at your store. They search. Compare. Filter. Read reviews. Open marketplaces. Check alternatives. Decide who feels easier to trust. Impulse Digital helps online brands build eCommerce SEO systems that make products easier to find, easier to understand, and easier to buy.",
+    "description": "Your products can be live, priced well, and ready to sell. But shoppers do not always start at your store. They search, compare, filter, read reviews, check marketplaces, and choose whoever feels easier to trust. Impulse Digital builds eCommerce SEO systems that make your products easier to find, understand, and buy.",
     "buttons": [
       {
         "text": "Find Your Store's Search Gaps",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "FIND"
       },
       {
@@ -95,53 +95,19 @@ export const ecommerceSEOData = {
       }
     ]
   },
-  "uses": {
-    "title": "Where eCommerce SEO Creates Business Leverage",
-    "cards": [
-      {
-        "title": "Product Page Optimisation",
-        "body": "Make each product easier to find, understand, and evaluate. Useful when products are live, but pages are not ranking, convincing, or converting enough.",
-        "outcome": "Output: Product title inputs, metadata, product description improvements, image and alt-text guidance, schema inputs, internal linking, and conversion-focused page recommendations."
-      },
-      {
-        "title": "Category Page Strategy",
-        "body": "Turn category pages into demand-capturing assets. Useful when shoppers are searching by category, problem, use case, price range, material, benefit, or comparison, but your store is not showing up strongly enough.",
-        "outcome": "Output: Category architecture, keyword clusters, category copy, metadata, filters and navigation inputs, internal linking, and ranking opportunity maps."
-      },
-      {
-        "title": "Technical eCommerce SEO",
-        "body": "Fix the store structure that affects crawlability, speed, indexation, duplication, and search performance. Useful when your store has many products, variants, filters, collections, or URLs that search engines are not reading cleanly.",
-        "outcome": "Output: Technical audit, crawl diagnostics, site architecture recommendations, Core Web Vitals inputs, duplicate-content checks, indexation fixes, and structured data guidance."
-      },
-      {
-        "title": "Search-Led Content",
-        "body": "Create content that helps shoppers compare, choose, and trust the product before buying. Useful when your category needs education, use-case clarity, comparison support, or stronger reasons to believe.",
-        "outcome": "Output: Buying guides, comparison pages, use-case content, FAQ improvements, blog themes, product-support content, and search-led content briefs."
-      },
-      {
-        "title": "Marketplace and Digital Shelf Inputs",
-        "body": "Understand what shoppers see, read, compare, and trust across eCommerce environments. Useful when ratings, reviews, listing quality, product claims, or marketplace visibility are influencing sales.",
-        "outcome": "Output: Listing recommendations, review theme analysis, claim gaps, product content inputs, competitor listing benchmarks, and digital shelf improvement areas."
-      },
-      {
-        "title": "Conversion-Led SEO",
-        "body": "Connect search visibility to product action, not just visits. Useful when traffic is coming in, but product views, add-to-cart behaviour, checkout movement, or sales are not strong enough.",
-        "outcome": "Output: Landing page recommendations, user journey inputs, CTA improvements, page clarity checks, analytics review, and conversion opportunity mapping."
-      }
-    ]
-  },
   "channels": {
     "title": "When Shoppers Find You and Still Do Not Buy",
     "intro": "eCommerce SEO matters when your products are visible, but not moving enough.\nUse it when:",
     "list": [
-      { "label": "Traffic, but not enough carts.", "pos": { "left": "22%", "top": "20%" } },
-      { "label": "Product pages do not rank.", "pos": { "left": "50%", "top": "12%" } },
-      { "label": "Category pages are thin.", "pos": { "left": "78%", "top": "20%" } },
-      { "label": "Competitors outrank you.", "pos": { "left": "85%", "top": "50%" } },
-      { "label": "Shoppers need more clarity.", "pos": { "left": "78%", "top": "80%" } },
-      { "label": "Filters create SEO confusion.", "pos": { "left": "50%", "top": "88%" } },
-      { "label": "Store does not guide cleanly.", "pos": { "left": "22%", "top": "80%" } },
-      { "label": "Paid spends doing heavy lifting.", "pos": { "left": "15%", "top": "50%" } }
+      "Your website has traffic, but not enough carts.",
+      "Your product pages do not rank for the right searches.",
+      "Your category pages are thin or missing.",
+      "Your competitors appear more frequently across the buying journey.",
+      "Your shoppers need more clarity, reviews, and trust before buying.",
+      "Your product variants, filters, and collections are creating SEO confusion.",
+      "Your store loads, but does not guide shoppers cleanly enough.",
+      "Your paid acquisition is doing too much of the heavy lifting.",
+      "Your leadership wants organic search to support sales, not just sessions."
     ],
     "outro": "The issue is not always demand.\nSometimes the demand is already there.\nIt is just landing somewhere else."
   },
@@ -217,13 +183,13 @@ export const ecommerceSEOData = {
     "buttons": [
       {
         "text": "Find Your Store’s Search Gaps",
-        "link": "#connect",
+        "link": "/contact-us/",
         "cursor": "FIND",
         "primary": false
       },
       {
-        "text": "Talk to Impulse Digital",
-        "link": "#connect",
+        "text": "Start a Conversation",
+        "link": "/contact-us/",
         "cursor": "HI",
         "primary": false
       }

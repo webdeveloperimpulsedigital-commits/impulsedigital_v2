@@ -26,7 +26,13 @@ const routes = [
   '/services/website-development',
   '/services/branding',
   '/services/employer-branding',
-  '/services/ai-video-production'
+  '/services/social-media-video-production',
+  '/services/ai-video-production',
+  '/contact',
+  '/digital-marketing-agency-in-india',
+  '/digital-marketing-agency-in-thane',
+  '/digital-marketing-agency-in-navi-mumbai',
+  '/digital-marketing-agency-in-pune'
 ];
 
 const PORT = 4173;

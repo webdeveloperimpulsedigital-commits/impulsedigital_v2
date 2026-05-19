@@ -1,0 +1,1060 @@
+import React, { useEffect, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
+
+const MastercardCaseStudy: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.body.classList.add('service-page');
+
+    const { gsap, ScrollTrigger } = window as any;
+    if (gsap && ScrollTrigger && containerRef.current) {
+      
+      // Split text animations
+      const splitTexts = containerRef.current.querySelectorAll('.mc-split-text');
+      if ((window as any).SplitType) {
+        splitTexts.forEach(el => {
+          const split = new ((window as any).SplitType)(el as HTMLElement, { types: 'lines,words' });
+          split.lines?.forEach((line: HTMLElement) => {
+            const w = document.createElement('div');
+            w.classList.add('line-wrapper');
+            line.parentNode?.insertBefore(w, line);
+            w.appendChild(line);
+          });
+          
+          gsap.fromTo(split.words, 
+            { yPercent: 120, opacity: 0 },
+            {
+              yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.015, ease: 'power4.out',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 85%',
+              }
+            }
+          );
+        });
+      }
+
+      // Stats Reveal
+      const stats = containerRef.current.querySelectorAll('.mc-stat-item');
+      if (stats.length) {
+        gsap.fromTo(stats,
+          { opacity: 0, scale: 0.8 },
+          {
+            opacity: 1, scale: 1, duration: 1, stagger: 0.2, ease: 'back.out(1.7)',
+            scrollTrigger: { trigger: '.mc-stats-container', start: 'top 80%' }
+          }
+        );
+      }
+
+      // Number counter animation
+      const counters = containerRef.current.querySelectorAll('.id-counter');
+      if (counters.length) {
+        counters.forEach((counter: any) => {
+          const target = parseFloat(counter.getAttribute('data-target') || '0');
+          const prefix = counter.getAttribute('data-prefix') || '';
+          const suffix = counter.getAttribute('data-suffix') || '';
+          const decimals = parseInt(counter.getAttribute('data-decimals') || '0', 10);
+          
+          const obj = { val: 0 };
+          gsap.to(obj, {
+            val: target,
+            duration: 2.0,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: '#mc-cosmos',
+              start: 'top top'
+            },
+            onUpdate: () => {
+              const val = decimals > 0 ? obj.val.toFixed(decimals) : Math.floor(obj.val).toLocaleString('en-US');
+              counter.innerText = prefix + val + suffix;
+            }
+          });
+        });
+      }
+
+      // Chat Bubble Reveal
+      const bubbles = containerRef.current.querySelectorAll('.mc-chat-bubble');
+      bubbles.forEach((bubble: any) => {
+        const isRight = bubble.classList.contains('mc-chat-right');
+        gsap.fromTo(bubble,
+          { opacity: 0, x: isRight ? 50 : -50, y: 20 },
+          {
+            opacity: 1, x: 0, y: 0, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: bubble, start: 'top 85%' }
+          }
+        );
+      });
+
+      // Background color transitions
+      const triggerEl = containerRef.current.querySelector('.mc-dark-section');
+      if (triggerEl) {
+        gsap.to(document.body, {
+          backgroundColor: '#000000',
+          scrollTrigger: {
+            trigger: triggerEl,
+            start: 'top 60%',
+            end: 'top 10%',
+            scrub: true
+          }
+        });
+      }
+
+      // Cosmos 3D Scroll
+      const cosmosSection = document.getElementById('mc-cosmos');
+      const cosmosCards = containerRef.current.querySelectorAll('.cosmos-card');
+
+      if(cosmosCards.length > 0 && cosmosSection) {
+        const isMobile = window.innerWidth <= 768;
+        
+        cosmosCards.forEach((card: any, index: number) => {
+            const isLeft = index % 2 === 0;
+            const offsetMultiplier = isMobile ? 0.2 : 0.3;
+            const xOffset = isLeft ? -window.innerWidth * offsetMultiplier : window.innerWidth * offsetMultiplier;
+            const yOffset = isMobile ? (isLeft ? -window.innerHeight * 0.15 : window.innerHeight * 0.15) : 0;
+            
+            gsap.set(card, { 
+                x: xOffset, y: yOffset, xPercent: -50, yPercent: -50, z: -5000,
+                scale: 1, opacity: 0, pointerEvents: 'none', rotationZ: isLeft ? -5 : 5
+            });
+        });
+        
+        gsap.to(document.body, { 
+            backgroundColor: '#000000',
+            scrollTrigger: { trigger: cosmosSection, start: 'top bottom', end: 'top top', scrub: true }
+        });
+
+        if ((window as any).particlesMaterial) {
+            gsap.fromTo((window as any).particlesMaterial, { opacity: 0.7 }, { opacity: 0, scrollTrigger: { trigger: cosmosSection, start: 'top 80%', end: 'top 20%', scrub: true } });
+        }
+
+        if ((window as any).tunnelMat) {
+            gsap.fromTo((window as any).tunnelMat, { opacity: 0 }, { opacity: 0.8, scrollTrigger: { trigger: cosmosSection, start: 'top 80%', end: 'top 20%', scrub: true } });
+        }
+        
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: cosmosSection, pin: true, scrub: 0.7, start: 'top top', end: () => '+=' + (cosmosCards.length * 1080),
+                onLeave: () => { if ((window as any).tunnelMat) gsap.to((window as any).tunnelMat, { opacity: 0, duration: 0.5 }); },
+                onEnterBack: () => { if ((window as any).tunnelMat) gsap.to((window as any).tunnelMat, { opacity: 0.8, duration: 0.5 }); }
+            }
+        });
+
+        cosmosCards.forEach((card: any, index: number) => {
+            const startTime = index * 2.0;
+            const flyDuration = 5.0;
+
+            tl.to(card, { opacity: 1, pointerEvents: 'auto', duration: 1.5, ease: 'power1.inOut' }, startTime) 
+            
+            const pathEl = card.querySelector('.cosmos-card-bg-logo path');
+            if(pathEl) {
+                tl.to(pathEl, { strokeDashoffset: 0, duration: 2.0, ease: 'power2.out' }, startTime)
+            }
+
+            tl.to(card, { z: 1200, ease: 'none', duration: flyDuration }, startTime) 
+            tl.to(card, { opacity: 0, pointerEvents: 'none', duration: 0.5, ease: 'power1.in' }, startTime + flyDuration - 0.5);
+        });
+
+        // Stats card drawing logo animation
+        const statsPaths = document.querySelectorAll('.stats-cosmos-card .cosmos-card-bg-logo path');
+        if (statsPaths.length > 0) {
+          gsap.to(statsPaths, {
+            strokeDashoffset: 0,
+            duration: 2.5,
+            ease: 'power2.out',
+            stagger: 0.05,
+            scrollTrigger: {
+              trigger: '#mc-cosmos',
+              start: 'top 60%',
+            }
+          });
+        }
+      }
+
+      // CTA Brand Logo Animation
+      const ctaLogoPaths = containerRef.current.querySelectorAll('.cta-bg-logo path');
+      if (ctaLogoPaths.length > 0) {
+        gsap.to(ctaLogoPaths, {
+          strokeDashoffset: 0,
+          duration: 3.0,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.cta-bg-logo',
+            start: 'top 80%',
+          }
+        });
+      }
+      
+      ScrollTrigger.refresh();
+    }
+
+    return () => {
+      document.body.classList.remove('service-page');
+      const { gsap, ScrollTrigger } = window as any;
+      if (gsap) {
+        gsap.to(document.body, { backgroundColor: '#020018', duration: 0 });
+        if ((window as any).particlesMaterial) {
+          gsap.to((window as any).particlesMaterial, { opacity: 0.6, duration: 0 });
+        }
+      }
+      if (ScrollTrigger) {
+        ScrollTrigger.getAll().forEach((t: any) => t.kill());
+      }
+    };
+  }, []);
+
+  return (
+    <main id="main-content" className="mc-wrapper" ref={containerRef}>
+      <Helmet>
+        <title>Mastercard WhatsApp Marketing Case Study | 90.9% Merchant Response Rate</title>
+        <meta name="description" content="See how Impulse Digital shaped a WhatsApp-led merchant outreach campaign for Mastercard, using cluster-head testimonials to generate 101 merchant queries and a 90.9% response rate." />
+        <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/mastercard" />
+      </Helmet>
+
+      {/* Hero Section (Image Only) */}
+      <section className="mc-hero">
+        <img 
+          src={`${import.meta.env.BASE_URL}case studies/Mastercard.png`} 
+          alt="Mastercard Case Study Hero" 
+          className="mc-hero-img-full"
+        />
+      </section>
+
+      {/* Hero Content moved below */}
+      <section className="mc-section mc-hero-content-block">
+        <div className="mc-container">
+          <span className="mc-meta mc-split-text" style={{ color: '#aa3bff' }}>MASTERCARD</span>
+          <h1 className="mc-hero-title-below mc-split-text">
+            Helping merchants respond through a channel they already use
+          </h1>
+        </div>
+      </section>
+
+      {/* Intro Section - Centered Layout */}
+      <section className="mc-section mc-intro">
+        <div className="mc-container mc-narrow">
+          <h2 className="mc-lead mc-split-text">
+            For a merchant, a payment device is not just another product.
+          </h2>
+          <div className="mc-text-focus">
+            <p className="mc-split-text">It sits close to money.</p>
+            <p className="mc-split-text">Close to customers.</p>
+            <p className="mc-split-text">Close to daily business.</p>
+          </div>
+          <p className="mc-body mc-split-text">
+            So the campaign could not depend on a generic sales message. Mastercard needed to increase interest in its payment processing devices across merchant segments, from grassroots to enterprise level. The communication had to feel direct, familiar, and credible enough for merchants to respond.
+          </p>
+        </div>
+      </section>
+      
+      <section className="mc-section" style={{ paddingTop: 0 }}>
+        <div className="mc-container">
+          <div className="mc-callout-text">
+            <p className="mc-split-text">
+              That is why the campaign used two things merchants were more likely to trust:<br/>
+              <span className="mc-highlight">people from their own business communities, and WhatsApp.</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section - Floating Bento */}
+      <section className="mc-section mc-dark-section cosmos-section" id="mc-cosmos" style={{ background: 'transparent' }}>
+        <div className="mc-container" style={{ position: 'relative', zIndex: 10, textAlign: 'center', paddingTop: '4rem' }}>
+          <h2 className="mc-h2 mc-split-text" style={{ marginBottom: '1rem', color: '#fff' }}>Results preview</h2>
+        </div>
+        <div className="cosmos-wrapper">
+          <div className="cosmos-card stats-cosmos-card">
+            <div className="cosmos-card-bg-logo">
+              <svg viewBox="0 0 1152.24 1152.24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"/>
+                <path d="M249.83,622.95c-.01,7.88-7.35,13.11-13.77,12.81-6.93-.32-13.11-5.87-13.11-13.33l.03-68.16c0-15.55-11.37-27.78-26.57-28.42-14.58-.61-28.67,10.76-28.7,26.52l-.16,70.03c-.02,7.47-6.35,13.24-13.11,13.37-7.24.14-13.94-5.49-13.91-13.37l.2-71.9c.06-22.53,16.22-40.76,35.05-48.24,22.19-8.82,45.16-.85,60.71,14.42,15.69-15.13,38.6-23.26,60.74-14.47,19.43,7.71,35.25,26.27,35.25,49.28v71.82c.01,7.44-7.65,12.66-13.89,12.44-7.02-.24-12.99-5.85-13.02-13.39l-.28-70.96c-.06-15.06-14.15-25.81-27.97-25.57-14.84.26-27.32,11.98-27.35,27.46l-.13,69.65Z"/>
+                <path d="M375.87,691.09c-.02,7.59-6.97,12.52-13.25,12.55-5.77.03-13.53-4.23-13.53-11.48v-126.22c0-31.5,23.4-57.52,51.52-64.53,31.95-7.97,63.08,7.37,77.3,34.23,15.35,28.97,7.94,63.45-15.3,83.69-24.54,21.38-59.5,22.75-86.56,3.38l-.17,68.38ZM410.11,527.05c-23.34,4.12-37.32,26.12-33.49,47.96,3.98,22.72,25.64,37.54,48.05,33.58,22.29-3.94,37.33-25.25,33.64-47.39s-24.78-38.27-48.19-34.14Z"/>
+                <path d="M812.97,580.15c5.9,18.21,23.46,28.98,42.29,28.01,10.74-.55,19.73-4.39,28.86-9.7,5.56-3.23,12.47.91,15.69,5.67,3.25,4.81,2.56,12.06-2.34,16.43-11.99,10.69-27.22,14.44-43.08,14.78-43.61.94-76.71-37.01-70.07-79.46,6.64-42.41,50.15-68.14,91.35-53.62,26.67,9.4,43.94,32.97,44.91,61.66.28,8.35-4.17,16.19-13.65,16.2l-93.97.03ZM891.44,552.93c-5.06-16.02-17.48-24.44-31.75-26.99-20.42-3.61-40.05,7.7-46.92,27.13l78.67-.13Z"/>
+                <path d="M758.44,621.52c-19.92,23.87-72.76,15.88-83.62-13.33-2.37-6.37,1.18-12.74,6.34-15.65,5.29-2.99,13.01-2.51,16.79,2.87,11.95,17.02,34.55,16.35,41.5,6.25,3.99-5.81,3.33-13.06-3.13-16.88-4.05-2.39-9.51-3.78-14.5-4.33-25.3-2.8-47.93-14.68-47.76-41.57.11-17.8,10.98-32.37,27.93-38.35,18.66-6.59,38.82-2.42,54.79,9.29,5.8,4.25,10.36,9.66,11.94,16.8,1.2,5.42-.76,10.45-4.6,13.76s-9.71,4.84-14.87,1.88c-3.92-2.25-5.57-7.28-8.76-10.49-7.55-7.61-20.31-8.94-30.02-5.47-8.49,3.03-12.47,12.7-7.47,20.12,2.19,3.26,7.15,4.56,10.92,5.21l21.49,3.7c17.21,2.97,31.07,17.68,33.33,35.41,1.44,11.3-3.23,22.33-10.3,30.79Z"/>
+                <path d="M584.78,510.65c.03-7.58,6.97-11.88,12.93-12.14s13.74,4.39,13.74,11.72v71.91c0,30.07-25.94,53.34-55.07,53.36-29.1.02-55.02-23.31-55.02-53.36l-.02-71.9c0-7.02,7.04-11.59,12.86-11.73,6.32-.15,13.75,4.34,13.78,11.73l.33,70.91c.07,15.52,13.48,27.29,28.1,27.27,14.51-.02,28.04-11.81,28.1-27.26l.28-70.51Z"/>
+                <path d="M655.68,620.86c0,8.8-5.67,14.22-13.1,14.58-7.74.37-14.04-5.67-14.04-14.12l.02-177.29c0-7.75,6.35-12.95,13.28-13.19,6.25-.21,13.77,4.58,13.77,12.36l.08,177.66Z"/>
+                <path d="M123.3,623.71c-1.39,7.76-7.16,12.03-13.96,11.72-5.88-.27-12.93-4.87-12.93-12.18l.02-167.62c0-7.25,7.06-11.66,12.96-11.92,5.54-.24,13.75,3.69,13.76,11l.16,169Z"/>
+                <path d="M700.67,772.79c-2.3-3.99-1.46-8.12,1.38-9.72,3.91-2.2,7.88-.84,9.71,2.84,4.63,9.31,15.56,12.84,24.43,9.33,9.71-3.85,14.31-13.8,12.21-24.6-12.56,8.97-28.68,8.52-40.35-1.46-11.19-9.57-14.97-25.94-7.57-39.88,6.82-12.86,21.75-20.12,37.06-16.11,13.71,3.59,24.14,16.54,24.11,31.85l-.05,31.7c-.02,14.85-9.87,27.55-23.33,31.41-14.66,4.2-29.79-1.81-37.61-15.36ZM724.82,705.47c-11.4,2.74-17.39,13.91-14.61,24.06,2.76,10.12,13.1,16.53,23.13,14.17,10.51-2.48,17.45-13.05,14.92-23.48-2.42-9.98-12.46-17.38-23.44-14.75Z"/>
+                <path d="M626.59,756.91l-21.85.28c-3.31.04-6.88-2.51-6.88-6.23l-.03-77.7c0-3.56,2.41-6.78,6.07-6.78l19.23-.02c11.21,0,21.98,3.47,30.42,10.96,14.01,12.43,18.98,31.63,12.68,49.6-5.61,16-20.83,29.66-39.64,29.9ZM655.68,708.2c-1.38-16.04-13.81-28.39-29.38-28.59l-15.46-.21-.02,64.76,11.32.14c19.73.24,35.31-15.61,33.55-36.09Z"/>
+                <path d="M897.46,751.5c0,3.3-3.88,5.44-6.19,5.35-3.29-.14-5.58-2.21-6.61-5.93-14.9,10.56-36.4,7.11-46.62-8.64-8.74-13.46-5.83-31.24,5.75-41.61,11.57-10.37,29.57-11.42,41.87-1.32,7.17,5.9,11.73,14.4,11.75,23.73l.05,28.43ZM880.9,736.83c7.79-10.57,3.52-25.32-8.02-30.26-7.24-3.1-14.95-1.12-20.44,3.69-5.16,4.52-7.9,11.91-6.2,19.02s7.96,12.62,14.36,14.23c7.34,1.84,15.51-.18,20.3-6.68Z"/>
+                <path d="M818.1,750.55c0,3.73-2.97,6.13-5.56,6.54-2.71.43-7.15-1.66-7.16-5.17l-.1-46.77-8.68.03c-3.61.01-6.33-2.36-6.92-5.59-.51-2.81,1.62-7.03,5.05-7.1l10.56-.22.08-26.79c0-3.09,3.76-5.52,6.22-5.44,3.48.1,6.52,2.68,6.52,6.41v25.91s8.52-.09,8.52-.09c3.62-.04,6.62,2.18,7.12,5.78.43,3.06-2.43,7.02-6.15,7.06l-9.48.09v45.38Z"/>
+                <path d="M917.89,749.46c0,4.88-2.69,7.64-6.52,7.65-3.69,0-6.46-2.88-6.46-7.14l.03-83.43c0-3.68,3.47-6.4,6.45-6.4s6.47,2.74,6.47,6.4l.03,82.93Z"/>
+                <path d="M689.34,751.46c0,3.68-3.95,5.74-6.29,5.68-3.04-.08-6.51-2.51-6.51-6.15l-.05-51.89c0-3.76,2.38-6.36,5.66-6.91,2.54-.42,7.13,1.52,7.14,5.15l.06,54.11Z"/>
+                <path d="M781.74,750.51c0,4.26-3.42,6.65-6.59,6.64-2.96,0-6.23-2.52-6.23-6.24v-52.7c0-3.68,3.32-5.91,6.28-5.98,2.99-.06,6.51,2.25,6.52,5.91l.03,52.37Z"/>
+                <path d="M681.03,666.85c3.27-1.03,6.87.83,7.84,3.47,1.31,3.59-.21,7.31-3.23,8.53-3.53,1.42-7.34-.28-8.6-3.47s.13-7.31,3.99-8.53Z"/>
+                <path d="M773.27,666.9c3.01-1.24,6.88.67,7.91,3.22,1.43,3.51-.02,7.32-3.33,8.7-3.25,1.35-7.1.14-8.52-3.55-1.12-2.91.12-6.8,3.93-8.37Z"/>
+              </svg>
+            </div>
+            <div className="hs-card-big-stat id-counter" data-target="101">0</div>
+            <div className="hs-card-inner">
+              <p className="hs-desc">Merchant Queries</p>
+            </div>
+          </div>
+          <div className="cosmos-card stats-cosmos-card">
+            <div className="cosmos-card-bg-logo">
+              <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+              </svg>
+            </div>
+            <div className="hs-card-big-stat id-counter" data-target="90.9" data-suffix="%" data-decimals="1">0%</div>
+            <div className="hs-card-inner">
+              <p className="hs-desc">Response Rate</p>
+            </div>
+          </div>
+          <div className="cosmos-card stats-cosmos-card">
+            <div className="cosmos-card-bg-logo">
+              <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+              </svg>
+            </div>
+            <div className="hs-card-big-stat" style={{ fontSize: '3rem' }}>24/7</div>
+            <div className="hs-card-inner">
+              <p className="hs-desc">Continuous monitoring for real-time query handling.</p>
+            </div>
+          </div>
+          <div className="cosmos-card stats-cosmos-card">
+            <div className="cosmos-card-bg-logo">
+              <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+              </svg>
+            </div>
+            <div className="hs-card-big-stat" style={{ fontSize: '3rem' }}>WhatsApp</div>
+            <div className="hs-card-inner">
+              <p className="hs-desc">Direct response removing friction entirely.</p>
+            </div>
+          </div>
+          <div className="cosmos-card stats-cosmos-card">
+            <div className="cosmos-card-bg-logo">
+              <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+              </svg>
+            </div>
+            <div className="hs-card-big-stat" style={{ fontSize: '3rem' }}>Real</div>
+            <div className="hs-card-inner">
+              <p className="hs-desc">Testimonials & video content built around trusted cluster-heads.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Story - Chat Style Layout */}
+      <section className="mc-section">
+        <div className="mc-container mc-narrow">
+          
+          <div className="mc-chat-sequence">
+            
+            {/* Situation */}
+            <div className="mc-chat-bubble mc-chat-left">
+              <span className="mc-chat-meta">The Situation</span>
+              <p>Mastercard needed to support sales of payment processing devices through digital outreach. The audience was not limited to one type of merchant. It ranged from grassroots businesses to enterprise-level merchants.</p>
+              <p>That made the communication harder. A broad message could reach people. But it may not make them respond. The campaign needed a route that felt closer to the merchant’s world.</p>
+            </div>
+
+            {/* Challenge */}
+            <div className="mc-chat-bubble mc-chat-right">
+              <div className="mc-panel-corner">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <path d="M 0 100 L 0 40 Q 0 0 40 0 L 100 0" />
+                </svg>
+              </div>
+              <div className="mc-panel-content">
+                <span className="mc-chat-meta">The Challenge</span>
+                <p>Merchants do not usually act because a brand says something. They act when the message feels useful, credible, and easy to respond to.</p>
+              <p>The campaign needed to solve three things at once:</p>
+              <ul className="mc-chat-list">
+                <li>reach merchants across different levels</li>
+                <li>create confidence around the product</li>
+                <li>turn interest into a quick conversation</li>
+              </ul>
+              <div className="mc-chat-alert">
+                The response path had to be simple. No long forms. No cold, distant funnel. No extra friction.
+              </div>
+              </div>
+            </div>
+
+            {/* What Needed To Change */}
+            <div className="mc-chat-bubble mc-chat-left">
+              <span className="mc-chat-meta">The Shift</span>
+              <p>The campaign had to move away from speaking <em>at</em> merchants. It had to create a conversation merchants could enter easily.</p>
+              <div className="mc-dual-focus">
+                <div>
+                  <strong>The Messenger:</strong> Cluster heads became important because they carried community influence.
+                </div>
+                <div>
+                  <strong>The Channel:</strong> WhatsApp became important because merchants already use it every day.
+                </div>
+              </div>
+              <p>Together, they made the campaign feel less like advertising and more like a recommendation followed by a direct way to ask questions.</p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* Execution Block */}
+      <section className="mc-section">
+        <div className="mc-container mc-narrow">
+          <div className="mc-execution-panel">
+            <div className="mc-panel-corner">
+              <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M 0 100 L 0 40 Q 0 0 40 0 L 100 0" />
+              </svg>
+            </div>
+            <div className="mc-panel-content">
+              <span className="mc-chat-meta">EXECUTION</span>
+              <h2 className="mc-h2 mc-split-text" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>What Impulse worked on</h2>
+              <p className="mc-body mc-split-text" style={{ color: '#aa3bff', fontWeight: 600, marginBottom: '2.5rem' }}>
+                Impulse shaped the campaign around influence, simplicity, and response.
+              </p>
+              <div className="mc-execution-grid">
+                <div className="mc-execution-card">
+                  <div className="mc-check-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg></div>
+                  <h4>Brand Alignment</h4>
+                  <p>Reviewing brand goals and matching them to realistic sales targets.</p>
+                </div>
+                <div className="mc-execution-card">
+                  <div className="mc-check-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg></div>
+                  <h4>Influencer Mapping</h4>
+                  <p>Identifying cluster heads as key merchant influencers to build trust quickly.</p>
+                </div>
+                <div className="mc-execution-card">
+                  <div className="mc-check-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg></div>
+                  <h4>Channel Strategy</h4>
+                  <p>Choosing WhatsApp as the primary, friction-free direct communication channel.</p>
+                </div>
+                <div className="mc-execution-card">
+                  <div className="mc-check-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg></div>
+                  <h4>Video Production</h4>
+                  <p>Creating custom video content using real cluster-head testimonials.</p>
+                </div>
+                <div className="mc-execution-card">
+                  <div className="mc-check-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg></div>
+                  <h4>Infrastructure</h4>
+                  <p>Setting up a unique, dedicated WhatsApp number for seamless merchant conversations.</p>
+                </div>
+                <div className="mc-execution-card">
+                  <div className="mc-check-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg></div>
+                  <h4>Live Support</h4>
+                  <p>Enabling continuous monitoring for real-time, personalized query responses.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Conclusion */}
+      <section className="mc-section">
+        <div className="mc-container mc-narrow">
+          <div className="mc-conclusion-block">
+            <h2 className="mc-h2 mc-split-text">How the campaign came together</h2>
+            <p className="mc-body mc-split-text">
+              The video content featured cluster heads explaining the product benefits. That made the message easier to trust because it came through people with influence in merchant communities.
+            </p>
+            <p className="mc-body mc-split-text">
+              The WhatsApp number gave interested merchants a direct place to respond. A merchant could watch the message, understand the value, and ask a question without leaving a familiar platform.
+            </p>
+            <h3 className="mc-quote mc-split-text">
+              That simplicity mattered.<br/>
+              The faster the path from interest to response, the lower the chance of losing the merchant.
+            </h3>
+          </div>
+
+          <div className="mc-summary-cards">
+            <div className="mc-summary-card">
+              <h4>What Changed</h4>
+              <p>The campaign turned digital outreach into merchant conversation. Testimonial videos made the product easier to understand, WhatsApp made the response feel natural, and continuous monitoring helped keep queries from going cold.</p>
+            </div>
+            <div className="mc-summary-card">
+              <h4>Why it Worked</h4>
+              <p>It respected how merchants actually make decisions. They trust people close to their business. They prefer familiar channels. They respond faster when the next step is clear.</p>
+            </div>
+          </div>
+
+          <div className="mc-final-thought">
+            <p className="mc-split-text">This was not about making the loudest campaign.</p>
+            <p className="mc-split-text" style={{ color: '#aa3bff', fontSize: '1.8rem', fontWeight: 700, margin: '1rem 0' }}>It was about removing distance.</p>
+            <div className="mc-text-focus" style={{ fontSize: '1.2rem', textAlign: 'center', opacity: 0.8 }}>
+              <p>Between message and trust.</p>
+              <p>Between interest and response.</p>
+              <p>Between a product pitch and a real merchant conversation.</p>
+            </div>
+          </div>
+
+          {/* CTA Block */}
+          <div className="case-study-cta-block cta-with-logo">
+            <div className="cta-bg-logo">
+              <svg viewBox="0 0 1152.24 1152.24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z"/>
+                <path d="M249.83,622.95c-.01,7.88-7.35,13.11-13.77,12.81-6.93-.32-13.11-5.87-13.11-13.33l.03-68.16c0-15.55-11.37-27.78-26.57-28.42-14.58-.61-28.67,10.76-28.7,26.52l-.16,70.03c-.02,7.47-6.35,13.24-13.11,13.37-7.24.14-13.94-5.49-13.91-13.37l.2-71.9c.06-22.53,16.22-40.76,35.05-48.24,22.19-8.82,45.16-.85,60.71,14.42,15.69-15.13,38.6-23.26,60.74-14.47,19.43,7.71,35.25,26.27,35.25,49.28v71.82c.01,7.44-7.65,12.66-13.89,12.44-7.02-.24-12.99-5.85-13.02-13.39l-.28-70.96c-.06-15.06-14.15-25.81-27.97-25.57-14.84.26-27.32,11.98-27.35,27.46l-.13,69.65Z"/>
+                <path d="M375.87,691.09c-.02,7.59-6.97,12.52-13.25,12.55-5.77.03-13.53-4.23-13.53-11.48v-126.22c0-31.5,23.4-57.52,51.52-64.53,31.95-7.97,63.08,7.37,77.3,34.23,15.35,28.97,7.94,63.45-15.3,83.69-24.54,21.38-59.5,22.75-86.56,3.38l-.17,68.38ZM410.11,527.05c-23.34,4.12-37.32,26.12-33.49,47.96,3.98,22.72,25.64,37.54,48.05,33.58,22.29-3.94,37.33-25.25,33.64-47.39s-24.78-38.27-48.19-34.14Z"/>
+                <path d="M812.97,580.15c5.9,18.21,23.46,28.98,42.29,28.01,10.74-.55,19.73-4.39,28.86-9.7,5.56-3.23,12.47.91,15.69,5.67,3.25,4.81,2.56,12.06-2.34,16.43-11.99,10.69-27.22,14.44-43.08,14.78-43.61.94-76.71-37.01-70.07-79.46,6.64-42.41,50.15-68.14,91.35-53.62,26.67,9.4,43.94,32.97,44.91,61.66.28,8.35-4.17,16.19-13.65,16.2l-93.97.03ZM891.44,552.93c-5.06-16.02-17.48-24.44-31.75-26.99-20.42-3.61-40.05,7.7-46.92,27.13l78.67-.13Z"/>
+                <path d="M758.44,621.52c-19.92,23.87-72.76,15.88-83.62-13.33-2.37-6.37,1.18-12.74,6.34-15.65,5.29-2.99,13.01-2.51,16.79,2.87,11.95,17.02,34.55,16.35,41.5,6.25,3.99-5.81,3.33-13.06-3.13-16.88-4.05-2.39-9.51-3.78-14.5-4.33-25.3-2.8-47.93-14.68-47.76-41.57.11-17.8,10.98-32.37,27.93-38.35,18.66-6.59,38.82-2.42,54.79,9.29,5.8,4.25,10.36,9.66,11.94,16.8,1.2,5.42-.76,10.45-4.6,13.76s-9.71,4.84-14.87,1.88c-3.92-2.25-5.57-7.28-8.76-10.49-7.55-7.61-20.31-8.94-30.02-5.47-8.49,3.03-12.47,12.7-7.47,20.12,2.19,3.26,7.15,4.56,10.92,5.21l21.49,3.7c17.21,2.97,31.07,17.68,33.33,35.41,1.44,11.3-3.23,22.33-10.3,30.79Z"/>
+                <path d="M584.78,510.65c.03-7.58,6.97-11.88,12.93-12.14s13.74,4.39,13.74,11.72v71.91c0,30.07-25.94,53.34-55.07,53.36-29.1.02-55.02-23.31-55.02-53.36l-.02-71.9c0-7.02,7.04-11.59,12.86-11.73,6.32-.15,13.75,4.34,13.78,11.73l.33,70.91c.07,15.52,13.48,27.29,28.1,27.27,14.51-.02,28.04-11.81,28.1-27.26l.28-70.51Z"/>
+                <path d="M655.68,620.86c0,8.8-5.67,14.22-13.1,14.58-7.74.37-14.04-5.67-14.04-14.12l.02-177.29c0-7.75,6.35-12.95,13.28-13.19,6.25-.21,13.77,4.58,13.77,12.36l.08,177.66Z"/>
+                <path d="M123.3,623.71c-1.39,7.76-7.16,12.03-13.96,11.72-5.88-.27-12.93-4.87-12.93-12.18l.02-167.62c0-7.25,7.06-11.66,12.96-11.92,5.54-.24,13.75,3.69,13.76,11l.16,169Z"/>
+                <path d="M700.67,772.79c-2.3-3.99-1.46-8.12,1.38-9.72,3.91-2.2,7.88-.84,9.71,2.84,4.63,9.31,15.56,12.84,24.43,9.33,9.71-3.85,14.31-13.8,12.21-24.6-12.56,8.97-28.68,8.52-40.35-1.46-11.19-9.57-14.97-25.94-7.57-39.88,6.82-12.86,21.75-20.12,37.06-16.11,13.71,3.59,24.14,16.54,24.11,31.85l-.05,31.7c-.02,14.85-9.87,27.55-23.33,31.41-14.66,4.2-29.79-1.81-37.61-15.36ZM724.82,705.47c-11.4,2.74-17.39,13.91-14.61,24.06,2.76,10.12,13.1,16.53,23.13,14.17,10.51-2.48,17.45-13.05,14.92-23.48-2.42-9.98-12.46-17.38-23.44-14.75Z"/>
+                <path d="M626.59,756.91l-21.85.28c-3.31.04-6.88-2.51-6.88-6.23l-.03-77.7c0-3.56,2.41-6.78,6.07-6.78l19.23-.02c11.21,0,21.98,3.47,30.42,10.96,14.01,12.43,18.98,31.63,12.68,49.6-5.61,16-20.83,29.66-39.64,29.9ZM655.68,708.2c-1.38-16.04-13.81-28.39-29.38-28.59l-15.46-.21-.02,64.76,11.32.14c19.73.24,35.31-15.61,33.55-36.09Z"/>
+                <path d="M897.46,751.5c0,3.3-3.88,5.44-6.19,5.35-3.29-.14-5.58-2.21-6.61-5.93-14.9,10.56-36.4,7.11-46.62-8.64-8.74-13.46-5.83-31.24,5.75-41.61,11.57-10.37,29.57-11.42,41.87-1.32,7.17,5.9,11.73,14.4,11.75,23.73l.05,28.43ZM880.9,736.83c7.79-10.57,3.52-25.32-8.02-30.26-7.24-3.1-14.95-1.12-20.44,3.69-5.16,4.52-7.9,11.91-6.2,19.02s7.96,12.62,14.36,14.23c7.34,1.84,15.51-.18,20.3-6.68Z"/>
+                <path d="M818.1,750.55c0,3.73-2.97,6.13-5.56,6.54-2.71.43-7.15-1.66-7.16-5.17l-.1-46.77-8.68.03c-3.61.01-6.33-2.36-6.92-5.59-.51-2.81,1.62-7.03,5.05-7.1l10.56-.22.08-26.79c0-3.09,3.76-5.52,6.22-5.44,3.48.1,6.52,2.68,6.52,6.41v25.91s8.52-.09,8.52-.09c3.62-.04,6.62,2.18,7.12,5.78.43,3.06-2.43,7.02-6.15,7.06l-9.48.09v45.38Z"/>
+                <path d="M917.89,749.46c0,4.88-2.69,7.64-6.52,7.65-3.69,0-6.46-2.88-6.46-7.14l.03-83.43c0-3.68,3.47-6.4,6.45-6.4s6.47,2.74,6.47,6.4l.03,82.93Z"/>
+                <path d="M689.34,751.46c0,3.68-3.95,5.74-6.29,5.68-3.04-.08-6.51-2.51-6.51-6.15l-.05-51.89c0-3.76,2.38-6.36,5.66-6.91,2.54-.42,7.13,1.52,7.14,5.15l.06,54.11Z"/>
+                <path d="M781.74,750.51c0,4.26-3.42,6.65-6.59,6.64-2.96,0-6.23-2.52-6.23-6.24v-52.7c0-3.68,3.32-5.91,6.28-5.98,2.99-.06,6.51,2.25,6.52,5.91l.03,52.37Z"/>
+                <path d="M681.03,666.85c3.27-1.03,6.87.83,7.84,3.47,1.31,3.59-.21,7.31-3.23,8.53-3.53,1.42-7.34-.28-8.6-3.47s.13-7.31,3.99-8.53Z"/>
+                <path d="M773.27,666.9c3.01-1.24,6.88.67,7.91,3.22,1.43,3.51-.02,7.32-3.33,8.7-3.25,1.35-7.1.14-8.52-3.55-1.12-2.91.12-6.8,3.93-8.37Z"/>
+              </svg>
+            </div>
+            <h3 className="mc-split-text" style={{ position: 'relative', zIndex: 10 }}>Ready to remove distance for your buyers?</h3>
+            <a href="/contact" className="case-study-cta-button" style={{ position: 'relative', zIndex: 10 }}>Start a Conversation</a>
+          </div>
+        </div>
+      </section>
+
+      <style>{`
+        .mc-wrapper {
+          color: #ffffff;
+          background: transparent;
+          position: relative;
+          z-index: 2;
+          margin-top: -100px;
+        }
+
+        .mc-container {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 4vw;
+        }
+
+        .mc-narrow {
+          max-width: 900px;
+        }
+
+        .mc-section {
+          padding: 7rem 0;
+        }
+
+        /* Hero */
+        .mc-hero {
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+        }
+
+        .mc-hero::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 300px;
+          background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+          pointer-events: none;
+        }
+
+        .mc-hero-img-full {
+          width: 100%;
+          height: 120vh;
+          object-fit: cover;
+          object-position: center;
+          display: block;
+        }
+
+        /* Content block directly below hero */
+        .mc-hero-content-block {
+          padding-top: 6rem !important;
+          padding-bottom: 2rem !important;
+          text-align: center;
+        }
+
+        .mc-meta {
+          font-family: var(--font-mono, monospace);
+          font-size: 1.2rem;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          display: block;
+          margin-bottom: 1rem;
+          font-weight: 700;
+        }
+
+        .mc-hero-title-below {
+          font-family: var(--font-heading, sans-serif);
+          font-size: clamp(3rem, 6vw, 6rem);
+          font-weight: 800;
+          line-height: 1.1;
+          letter-spacing: -0.02em;
+          max-width: 1000px;
+          margin: 0 auto;
+          color: #fff;
+        }
+
+        /* Typography */
+        .mc-lead {
+          font-size: clamp(2rem, 4vw, 3.5rem);
+          line-height: 1.2;
+          font-weight: 700;
+          margin-bottom: 3rem;
+          text-align: center;
+          letter-spacing: -0.02em;
+        }
+
+        .mc-h2 {
+          font-family: var(--font-heading, sans-serif);
+          font-size: clamp(2rem, 4vw, 3rem);
+          font-weight: 700;
+          margin-bottom: 2rem;
+          letter-spacing: -0.02em;
+        }
+
+        .mc-body {
+          font-size: 1.25rem;
+          line-height: 1.7;
+          color: rgba(255, 255, 255, 0.8);
+          margin-bottom: 1.5rem;
+        }
+
+        .mc-text-focus {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          margin: 3rem 0;
+          text-align: center;
+        }
+
+        .mc-text-focus p {
+          font-size: clamp(1.5rem, 3vw, 2.5rem);
+          font-weight: 600;
+          color: #fff;
+          margin: 0;
+        }
+
+        .mc-callout-text {
+          margin-top: 5rem;
+          text-align: center;
+          font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+          line-height: 1.4;
+          font-weight: 600;
+          color: #fff;
+        }
+
+        .mc-highlight {
+          color: #aa3bff;
+          font-weight: 700;
+        }
+
+        .mc-quote {
+          font-family: var(--font-heading, sans-serif);
+          font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+          font-weight: 700;
+          line-height: 1.3;
+          color: #aa3bff;
+          margin: 4rem 0;
+          text-align: center;
+        }
+
+        /* Stats Grid */
+        .mc-stats-container {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          grid-template-rows: auto auto;
+          gap: 2rem;
+          max-width: 1100px;
+          margin: 0 auto;
+        }
+
+        .mc-stat-item {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .mc-stat-primary {
+          grid-column: 1 / 4;
+        }
+
+        .mc-stat-secondary {
+          grid-column: 4 / 7;
+        }
+
+        .mc-stat-circle {
+          width: 300px;
+          height: 300px;
+          border-radius: 50%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          border: 2px solid rgba(255, 255, 255, 0.1);
+          background: rgba(255,255,255,0.02);
+          backdrop-filter: blur(10px);
+          position: relative;
+        }
+
+        .mc-stat-circle::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          border-radius: 50%;
+          background: conic-gradient(from 0deg, transparent, #aa3bff, transparent);
+          opacity: 0.5;
+          z-index: -1;
+          animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .mc-stat-value {
+          font-family: var(--font-heading, sans-serif);
+          font-size: clamp(4rem, 6vw, 6rem);
+          font-weight: 800;
+          color: #fff;
+          line-height: 1;
+          margin-bottom: 0.5rem;
+        }
+
+        .mc-stat-label {
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: #aa3bff;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+        }
+
+        .mc-stat-card {
+          grid-column: span 2;
+          background: rgba(2, 0, 24, 0.55);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          padding: 2.5rem 2rem;
+          border-radius: 8px 56px 8px 56px;
+          text-align: center;
+        }
+
+        .mc-stat-card h3 {
+          font-size: 1.2rem;
+          color: #fff;
+          margin-bottom: 1rem;
+        }
+
+        .mc-stat-card p {
+          font-size: 1rem;
+          margin: 0;
+        }
+
+        /* Chat Sequence */
+        .mc-chat-sequence {
+          display: flex;
+          flex-direction: column;
+          gap: 3rem;
+          margin: 4rem 0;
+        }
+
+        .mc-chat-bubble {
+          max-width: 80%;
+          padding: 3rem;
+          border-radius: 8px 56px 8px 56px;
+          position: relative;
+          background: rgba(2, 0, 24, 0.55);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255,255,255,0.05);
+          backdrop-filter: blur(10px);
+        }
+
+        .mc-chat-meta {
+          display: inline-block;
+          font-family: var(--font-mono, monospace);
+          font-size: 0.9rem;
+          color: rgba(255,255,255,0.5);
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          margin-bottom: 1rem;
+        }
+
+        .mc-chat-bubble p {
+          font-size: 1.25rem;
+          line-height: 1.6;
+          color: #fff;
+          margin-bottom: 1rem;
+        }
+        
+        .mc-chat-bubble p:last-child {
+          margin-bottom: 0;
+        }
+
+        .mc-chat-left {
+          align-self: flex-start;
+          border-bottom-left-radius: 4px;
+          border-left: 2px solid #aa3bff;
+        }
+
+        .mc-chat-right {
+          align-self: flex-end;
+          border-bottom-right-radius: 4px;
+          background: rgba(170, 59, 255, 0.05); /* Purple Hint */
+          border: 1px solid rgba(170, 59, 255, 0.1);
+          border-right: 2px solid #aa3bff; /* Purple Accent */
+          position: relative;
+          overflow: hidden;
+        }
+
+        .mc-panel-corner {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 450px;
+          height: 450px;
+          opacity: 0.03;
+          transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .mc-chat-right:hover .mc-panel-corner,
+        .mc-execution-panel:hover .mc-panel-corner {
+          opacity: 0.15;
+          transform: translate(-50%, -50%) scale(1.05) rotate(-5deg);
+        }
+
+        .mc-panel-corner svg {
+          width: 100%;
+          height: 100%;
+        }
+
+        .mc-panel-corner path {
+          fill: none;
+          stroke: #aa3bff;
+          stroke-width: 3;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-dasharray: 2000;
+          stroke-dashoffset: 2000;
+          transition: stroke-dashoffset 1.5s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .mc-chat-right:hover .mc-panel-corner path,
+        .mc-execution-panel:hover .mc-panel-corner path {
+          stroke-dashoffset: 0;
+        }
+
+        .mc-panel-content {
+          position: relative;
+          z-index: 2;
+        }
+
+        .mc-chat-list {
+          list-style: none;
+          padding: 0;
+          margin: 1.5rem 0;
+        }
+
+        .mc-chat-list li {
+          font-size: 1.15rem;
+          color: #fff;
+          margin-bottom: 0.5rem;
+          padding-left: 1.5rem;
+          position: relative;
+        }
+
+        .mc-chat-list li::before {
+          content: '→';
+          position: absolute;
+          left: 0;
+          color: #aa3bff;
+        }
+
+        .mc-chat-alert {
+          margin-top: 1.5rem;
+          padding: 1.5rem;
+          background: rgba(0,0,0,0.4);
+          border-radius: 8px 56px 8px 56px;
+          font-weight: 500;
+          font-size: 1.1rem;
+          color: rgba(255,255,255,0.9);
+        }
+
+        .mc-dual-focus {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          margin: 2rem 0;
+        }
+
+        .mc-dual-focus div {
+          background: rgba(0,0,0,0.3);
+          padding: 1.5rem;
+          border-radius: 8px 56px 8px 56px;
+          font-size: 1.1rem;
+          line-height: 1.5;
+        }
+
+        .mc-dual-focus strong {
+          color: #aa3bff;
+          display: block;
+          margin-bottom: 0.5rem;
+        }
+
+        /* Execution */
+        .mc-execution-panel {
+          background: rgba(2, 0, 24, 0.55);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-left: 2px solid #aa3bff;
+          border-radius: 8px 56px 8px 56px;
+          padding: 4rem;
+          position: relative;
+          overflow: hidden;
+          margin: 0 auto;
+        }
+
+        .mc-execution-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 2rem;
+          margin-top: 2rem;
+        }
+
+        .mc-execution-card {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          padding: 2rem;
+          border-radius: 12px;
+          transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .mc-execution-card:hover {
+          border-color: rgba(170, 59, 255, 0.4);
+          transform: translateY(-5px);
+        }
+
+        .mc-check-purple {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: rgba(170, 59, 255, 0.1);
+          color: #aa3bff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 1.5rem;
+        }
+
+        .mc-execution-card h4 {
+          font-family: var(--font-heading);
+          font-size: 1.25rem;
+          color: #fff;
+          margin-bottom: 0.75rem;
+          font-weight: 500;
+        }
+
+        .mc-execution-card p {
+          font-size: 1rem;
+          color: rgba(255, 255, 255, 0.7);
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        /* Conclusion */
+        .mc-conclusion-block {
+          text-align: center;
+          margin-bottom: 5rem;
+        }
+
+        .mc-summary-cards {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          margin-bottom: 5rem;
+        }
+
+        .mc-summary-card {
+          background: rgba(2, 0, 24, 0.55);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255,255,255,0.05);
+          padding: 3rem;
+          border-radius: 8px 56px 8px 56px;
+        }
+
+        .mc-summary-card h4 {
+          font-size: 1.5rem;
+          color: #aa3bff;
+          margin-bottom: 1.5rem;
+        }
+
+        .mc-summary-card p {
+          font-size: 1.15rem;
+          line-height: 1.6;
+          color: rgba(255,255,255,0.8);
+          margin: 0;
+        }
+
+        .mc-final-thought {
+          text-align: center;
+          padding: 4rem;
+          border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Line Wrappers for GSAP */
+        .line-wrapper {
+          overflow: hidden;
+          padding-bottom: 0.2em;
+          margin-bottom: -0.2em;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+          .mc-stats-container {
+            grid-template-columns: 1fr 1fr;
+          }
+          .mc-stat-primary, .mc-stat-secondary {
+            grid-column: span 1;
+          }
+          .mc-stat-card {
+            grid-column: span 2;
+          }
+          .mc-stat-circle {
+            width: 250px;
+            height: 250px;
+          }
+          .mc-chat-bubble {
+            max-width: 100%;
+          }
+          .mc-execution-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+          .mc-summary-cards {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .mc-hero-img-full {
+            height: 70vh;
+            object-fit: cover;
+          }
+          .mc-stat-primary, .mc-stat-secondary, .mc-stat-card {
+            grid-column: span 2;
+          }
+          .mc-dual-focus {
+            grid-template-columns: 1fr;
+          }
+          .mc-stat-circle {
+            width: 200px;
+            height: 200px;
+          }
+          .mc-stat-value {
+            font-size: 3.5rem;
+          }
+        }
+      `}</style>
+    </main>
+  );
+};
+
+export default MastercardCaseStudy;
