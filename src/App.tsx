@@ -110,7 +110,24 @@ const ScrollToTop = () => {
 
 const App: React.FC = () => {
   useEffect(() => {
-    // Dynamic script injection removed. script.js is now loaded reliably via index.html <script defer>
+    const existingScript = document.querySelector('script[src*="js/script.js"]');
+    if (existingScript) {
+      return;
+    }
+
+    const checkThreeAndLoadScript = () => {
+      // Also wait for Lenis and SplitType to avoid GSAP plugin errors
+      if ((window as any).THREE && (window as any).gsap && (window as any).ScrollTrigger && (window as any).SplitType) {
+        const script = document.createElement('script');
+        script.src = `${import.meta.env.BASE_URL}js/script.js?v=56`;
+        script.async = true;
+        document.body.appendChild(script);
+      } else {
+        setTimeout(checkThreeAndLoadScript, 50);
+      }
+    };
+
+    checkThreeAndLoadScript();
   }, []);
 
   return (
