@@ -110,22 +110,7 @@ const ScrollToTop = () => {
 
 const App: React.FC = () => {
   useEffect(() => {
-    // Check if script is already present in document (e.g. from static markup) to avoid duplicate injection
-    const existingScript = document.querySelector('script[src*="js/script.js"]');
-    if (existingScript) {
-      return;
-    }
-
-    // We append the script here to ensure it runs after all React components
-    // have been fully mounted and their DOM nodes exist.
-    const script = document.createElement('script');
-    script.src = `${import.meta.env.BASE_URL}js/script.js?v=55`;
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
+    // Dynamic script injection removed. script.js is now loaded reliably via index.html <script defer>
   }, []);
 
   return (
