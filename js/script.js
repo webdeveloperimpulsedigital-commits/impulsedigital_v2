@@ -200,7 +200,6 @@ window.addEventListener('resize', () => {
 // ==========================================
 // DOM & GSAP LOGIC
 // ==========================================
-document.fonts.ready.then(() => {
     
     const lenis = new window.Lenis({
         duration: 1.2,
@@ -581,5 +580,13 @@ document.fonts.ready.then(() => {
             revealMask.setAttribute('cy', `${y}%`);
         });
     }
-});
+
+    // Refresh GSAP ScrollTriggers when fonts are ready to prevent SplitType layout shifts
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+            if (window.ScrollTrigger) {
+                window.ScrollTrigger.refresh();
+            }
+        });
+    }
 })();
