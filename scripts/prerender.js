@@ -129,8 +129,8 @@ const server = app.listen(PORT, async () => {
 
       let html = await page.content();
       
-      // Remove any injected scripts that shouldn't run again on the client, if necessary
-      // For now, React will hydrate cleanly over the static HTML
+      // Remove the dynamically injected script.js tag so it doesn't execute twice/early on client load
+      html = html.replace(/<script[^>]*src="[^"]*js\/script\.js[^"]*"[^>]*><\/script>/gi, '');
 
       const routeDir = path.join(DIST_DIR, route === '/' ? '' : route);
       if (!fs.existsSync(routeDir)) {
