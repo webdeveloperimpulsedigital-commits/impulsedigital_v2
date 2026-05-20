@@ -1,53 +1,53 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Background from './components/Background';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import AboutUs from './pages/AboutUs';
-import ConsumerIntelligence from './pages/ConsumerIntelligence';
-import MarketIntelligence from './pages/MarketIntelligence';
-import AlwaysOnIntelligence from './pages/AlwaysOnIntelligence';
-import CampaignIntelligence from './pages/CampaignIntelligence';
-import ArcherAI from './pages/ArcherAI';
-import AgenticAI from './pages/AgenticAI';
-import GenerativeSearchOptimisation from './pages/GenerativeSearchOptimisation';
-import SearchEngineOptimisation from './pages/SearchEngineOptimisation';
-import Branding from './pages/Branding';
-import EmployerBranding from './pages/EmployerBranding';
-import SocialMediaManagement from './pages/SocialMediaManagement';
-import WebsiteDevelopment from './pages/WebsiteDevelopment';
-import AIVideoProduction from './pages/AIVideoProduction';
-import VideoProduction from './pages/VideoProduction';
-import GrowthIntelligence from './pages/GrowthIntelligence';
-import AIMarketingSystems from './pages/AIMarketingSystems';
-import BrandInfrastructure from './pages/BrandInfrastructure';
-import ECommerceSEO from './pages/ECommerceSEO';
-import LocalSEO from './pages/LocalSEO';
-import EnterpriseSEO from './pages/EnterpriseSEO';
-import B2BSEO from './pages/B2BSEO';
-import ServicesIndex from './pages/ServicesIndex';
-import CaseStudies from './pages/CaseStudies';
-import UppercaseCaseStudy from './pages/UppercaseCaseStudy';
-import QureAICaseStudy from './pages/QureAICaseStudy';
-import MastercardCaseStudy from './pages/MastercardCaseStudy';
-import LGHingCaseStudy from './pages/LGHingCaseStudy';
-import HULCaseStudy from './pages/HULCaseStudy';
-import FoursForGoodCaseStudy from './pages/FoursForGoodCaseStudy';
-import ElectroMechCaseStudy from './pages/ElectroMechCaseStudy';
-import DMartCaseStudy from './pages/DMartCaseStudy';
-import ABGBrutIndiaCaseStudy from './pages/ABGBrutIndiaCaseStudy';
-import ABGKBCCaseStudy from './pages/ABGKBCCaseStudy';
-import AutomagBajajAutoCaseStudy from './pages/AutomagBajajAutoCaseStudy';
-import AutomagIndiaCaseStudy from './pages/AutomagIndiaCaseStudy';
-import EmployerBrandingCaseStudy from './pages/EmployerBrandingCaseStudy';
+const Home = lazy(() => import('./pages/Home'));
+const AboutUs = lazy(() => import('./pages/AboutUs'));
+const ConsumerIntelligence = lazy(() => import('./pages/ConsumerIntelligence'));
+const MarketIntelligence = lazy(() => import('./pages/MarketIntelligence'));
+const AlwaysOnIntelligence = lazy(() => import('./pages/AlwaysOnIntelligence'));
+const CampaignIntelligence = lazy(() => import('./pages/CampaignIntelligence'));
+const ArcherAI = lazy(() => import('./pages/ArcherAI'));
+const AgenticAI = lazy(() => import('./pages/AgenticAI'));
+const GenerativeSearchOptimisation = lazy(() => import('./pages/GenerativeSearchOptimisation'));
+const SearchEngineOptimisation = lazy(() => import('./pages/SearchEngineOptimisation'));
+const Branding = lazy(() => import('./pages/Branding'));
+const EmployerBranding = lazy(() => import('./pages/EmployerBranding'));
+const SocialMediaManagement = lazy(() => import('./pages/SocialMediaManagement'));
+const WebsiteDevelopment = lazy(() => import('./pages/WebsiteDevelopment'));
+const AIVideoProduction = lazy(() => import('./pages/AIVideoProduction'));
+const VideoProduction = lazy(() => import('./pages/VideoProduction'));
+const GrowthIntelligence = lazy(() => import('./pages/GrowthIntelligence'));
+const AIMarketingSystems = lazy(() => import('./pages/AIMarketingSystems'));
+const BrandInfrastructure = lazy(() => import('./pages/BrandInfrastructure'));
+const ECommerceSEO = lazy(() => import('./pages/ECommerceSEO'));
+const LocalSEO = lazy(() => import('./pages/LocalSEO'));
+const EnterpriseSEO = lazy(() => import('./pages/EnterpriseSEO'));
+const B2BSEO = lazy(() => import('./pages/B2BSEO'));
+const ServicesIndex = lazy(() => import('./pages/ServicesIndex'));
+const CaseStudies = lazy(() => import('./pages/CaseStudies'));
+const UppercaseCaseStudy = lazy(() => import('./pages/UppercaseCaseStudy'));
+const QureAICaseStudy = lazy(() => import('./pages/QureAICaseStudy'));
+const MastercardCaseStudy = lazy(() => import('./pages/MastercardCaseStudy'));
+const LGHingCaseStudy = lazy(() => import('./pages/LGHingCaseStudy'));
+const HULCaseStudy = lazy(() => import('./pages/HULCaseStudy'));
+const FoursForGoodCaseStudy = lazy(() => import('./pages/FoursForGoodCaseStudy'));
+const ElectroMechCaseStudy = lazy(() => import('./pages/ElectroMechCaseStudy'));
+const DMartCaseStudy = lazy(() => import('./pages/DMartCaseStudy'));
+const ABGBrutIndiaCaseStudy = lazy(() => import('./pages/ABGBrutIndiaCaseStudy'));
+const ABGKBCCaseStudy = lazy(() => import('./pages/ABGKBCCaseStudy'));
+const AutomagBajajAutoCaseStudy = lazy(() => import('./pages/AutomagBajajAutoCaseStudy'));
+const AutomagIndiaCaseStudy = lazy(() => import('./pages/AutomagIndiaCaseStudy'));
+const EmployerBrandingCaseStudy = lazy(() => import('./pages/EmployerBrandingCaseStudy'));
 import { useLocation } from 'react-router-dom';
-import Careers from './pages/Careers';
-import ContactUs from './pages/ContactUs';
-import IndiaLocation from './pages/IndiaLocation';
-import ThaneLocation from './pages/ThaneLocation';
-import NaviMumbaiLocation from './pages/NaviMumbaiLocation';
-import PuneLocation from './pages/PuneLocation';
+const Careers = lazy(() => import('./pages/Careers'));
+const ContactUs = lazy(() => import('./pages/ContactUs'));
+const IndiaLocation = lazy(() => import('./pages/IndiaLocation'));
+const ThaneLocation = lazy(() => import('./pages/ThaneLocation'));
+const NaviMumbaiLocation = lazy(() => import('./pages/NaviMumbaiLocation'));
+const PuneLocation = lazy(() => import('./pages/PuneLocation'));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -133,7 +133,8 @@ const App: React.FC = () => {
       <ScrollToTop />
       <Background />
       <Navbar />
-      <Routes>
+      <Suspense fallback={<div style={{ minHeight: '100vh', background: '#020018' }}></div>}>
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us/" element={<AboutUs />} />
         <Route path="/growth-intelligence/consumer-intelligence/" element={<ConsumerIntelligence />} />
@@ -183,6 +184,7 @@ const App: React.FC = () => {
         <Route path="/digital-marketing-agency-in-navi-mumbai/" element={<NaviMumbaiLocation />} />
         <Route path="/digital-marketing-agency-in-pune/" element={<PuneLocation />} />
       </Routes>
+        </Suspense>
       <Footer />
     </Router>
   );
