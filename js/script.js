@@ -17,10 +17,12 @@ const canvas = document.getElementById('webgl-canvas');
 const scene = new THREE.Scene();
 // Fog removed to allow infinite deep space visibility
 
+const isMobile = window.innerWidth <= 768;
+
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
 
 // ==========================================
 // 1. BRAND MARK: Exact SVG Extrusion
@@ -30,7 +32,7 @@ let brandMesh = null; // Removed large white logo per user request
 // ==========================================
 // 2. DATA FLOW: Original Hero Starfield
 // ==========================================
-const particlesCount = 3000;
+const particlesCount = isMobile ? 1000 : 3000;
 const posArray = new Float32Array(particlesCount * 3);
 
 for(let i = 0; i < particlesCount * 3; i+=3) {
@@ -61,7 +63,7 @@ window.particlesMaterial = particlesMaterial;
 // ==========================================
 // REMOVED BLURRY DOT TEXTURE. Using raw WebGL pixels for 100% crisp, sharp dots.
 
-const tunnelCount = 880; // Reduced by ~12% for the perfect balance
+const tunnelCount = isMobile ? 200 : 880; // Reduced by ~12% for the perfect balance
 const tunnelPos = new Float32Array(tunnelCount * 3);
 for(let i = 0; i < tunnelCount * 3; i+=3) {
     tunnelPos[i] = (Math.random() - 0.5) * 2000; 
@@ -85,7 +87,7 @@ window.tunnelMat = tunnelMat;
 // ==========================================
 // 4. DEEP SPACE BACKGROUND (Static & Sparkly)
 // ==========================================
-const bgStarsCount = 25000; // The true millions of static stars background
+const bgStarsCount = isMobile ? 5000 : 25000; // The true millions of static stars background
 const bgStarsPos = new Float32Array(bgStarsCount * 3);
 const bgStarsColors = new Float32Array(bgStarsCount * 3);
 
@@ -144,8 +146,19 @@ window.addEventListener('mousemove', (event) => {
 });
 
 const clock = new THREE.Clock();
-function animate3D() {
+let lastFrameTime = 0;
+const fpsInterval = 1000 / 30; // 30 FPS target for mobile
+
+function animate3D(time) {
     requestAnimationFrame(animate3D);
+
+    // Frame throttling on mobile to save CPU/Battery
+    if (isMobile) {
+        const elapsed = time - lastFrameTime;
+        if (elapsed < fpsInterval) return; // Skip frame
+        lastFrameTime = time - (elapsed % fpsInterval);
+    }
+
     const elapsedTime = clock.getElapsedTime();
 
     const scrollY = window.scrollY;
