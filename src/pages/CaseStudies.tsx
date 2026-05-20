@@ -172,7 +172,7 @@ const CaseStudyRow = ({ study, isReady }: { study: any, isReady: boolean }) => {
               <img 
                 className="work-list-slide"
                 src={`${import.meta.env.BASE_URL}${img.replace(/^\//, '')}`}
-                alt={`${study.client} slide ${imgIdx + 1}`}
+                alt={`${study.client} Digital Marketing Campaign Case Study by Impulse Digital - Slide ${imgIdx + 1}`}
               />
             </div>
           ))}

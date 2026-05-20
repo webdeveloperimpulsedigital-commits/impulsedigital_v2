@@ -25,7 +25,7 @@ const UppercaseCaseStudy: React.FC = () => {
       </section>
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/Uppercase/Uppercase Title.png`} alt="Uppercase Carry Your Resolution campaign" />
+          <img src={`${base}case studies/Written Content/Uppercase/Uppercase Title.png`} alt="Uppercase Carry Your Resolution campaign - Impulse Digital Marketing Case Study" />
         </div>
       </div>
       <section className="cs-intro-block" id="warp-start">
@@ -91,7 +91,7 @@ const UppercaseCaseStudy: React.FC = () => {
       </section>
       <section className="cs-proof-module">
         <div className="cs-proof-media gsap-fade-up">
-          <img src={`${base}case studies/Written Content/Uppercase/Supporting 1.webp`} alt="Uppercase campaign visual proof" />
+          <img src={`${base}case studies/Written Content/Uppercase/Supporting 1.webp`} alt="Uppercase campaign visual proof - Impulse Digital Marketing Case Study" />
         </div>
         <div className="cs-proof-copy">
           <h2 className="cs-proof-title split-text">The film had to move quickly. But the idea had to stay clear.</h2>
@@ -138,7 +138,7 @@ const UppercaseCaseStudy: React.FC = () => {
           <p className="cs-proof-text split-text">The team still had to decide what the idea should be, which moments the film should show, where the product should appear, and what the final piece should feel like.</p>
         </div>
         <div className="cs-proof-media gsap-fade-up">
-          <img src={`${base}case studies/Written Content/Uppercase/Supporting 2.webp`} alt="Uppercase AI-led campaign execution visual" />
+          <img src={`${base}case studies/Written Content/Uppercase/Supporting 2.webp`} alt="Uppercase AI-led campaign execution visual - Impulse Digital Marketing Case Study" />
         </div>
       </section>
       <section className="cs-section">

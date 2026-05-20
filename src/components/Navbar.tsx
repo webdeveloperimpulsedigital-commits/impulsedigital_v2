@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
     <nav id="main-nav">
       <div className="nav-container">
         <div className="nav-left">
-          <Link to="/" className="logo" onClick={handleNavClick}><img src={`${import.meta.env.BASE_URL}ImpulseDigital_Logo.svg`} alt="Impulse Digital Logo" /></Link>
+          <Link to="/" className="logo" onClick={handleNavClick}><img src={`${import.meta.env.BASE_URL}ImpulseDigital_Logo.svg`} alt="Impulse Digital - Leading Digital Marketing Agency in Mumbai" /></Link>
         </div>
         
         <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>

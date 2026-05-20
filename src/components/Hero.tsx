@@ -5,57 +5,63 @@ const { gsap, SplitType } = window as any;
 
 const Hero: React.FC = () => {
   useEffect(() => {
-    const heroHeadlines = document.querySelectorAll('.hero-headline');
-    const heroDesc = document.querySelector('.hero-desc');
-    const heroCtas = document.querySelectorAll('.hero-bottom .btn, .hero-bottom .hero-premium-cta');
+    let splitHeadlines: any[] = [];
+    let descSplit: any = null;
 
-    if (!heroHeadlines.length || !heroDesc) return;
+    const timeout = setTimeout(() => {
+      const heroHeadlines = document.querySelectorAll('.hero-headline');
+      const heroDesc = document.querySelector('.hero-desc');
+      const heroCtas = document.querySelectorAll('.hero-bottom .btn, .hero-bottom .hero-premium-cta');
 
-    // Reset visibility if it was hidden by css
-    heroHeadlines.forEach(h => (h as HTMLElement).style.visibility = 'visible');
-    (heroDesc as HTMLElement).style.visibility = 'visible';
+      if (!heroHeadlines.length || !heroDesc) return;
 
-    const splitHeadlines = Array.from(heroHeadlines).map((h) => {
-      const split = new SplitType(h as HTMLElement, { types: 'lines,words' });
-      split.lines?.forEach((line: HTMLElement) => {
+      // Reset visibility if it was hidden by css
+      heroHeadlines.forEach(h => (h as HTMLElement).style.visibility = 'visible');
+      (heroDesc as HTMLElement).style.visibility = 'visible';
+
+      splitHeadlines = Array.from(heroHeadlines).map((h) => {
+        const split = new SplitType(h as HTMLElement, { types: 'lines,words' });
+        split.lines?.forEach((line: HTMLElement) => {
+          const w = document.createElement('div');
+          w.classList.add('line-wrapper');
+          line.parentNode?.insertBefore(w, line);
+          w.appendChild(line);
+        });
+        return split;
+      });
+
+      descSplit = new SplitType(heroDesc as HTMLElement, { types: 'lines' });
+      descSplit.lines?.forEach((line: HTMLElement) => {
         const w = document.createElement('div');
         w.classList.add('line-wrapper');
         line.parentNode?.insertBefore(w, line);
         w.appendChild(line);
       });
-      return split;
-    });
 
-    const descSplit = new SplitType(heroDesc as HTMLElement, { types: 'lines' });
-    descSplit.lines?.forEach((line: HTMLElement) => {
-      const w = document.createElement('div');
-      w.classList.add('line-wrapper');
-      line.parentNode?.insertBefore(w, line);
-      w.appendChild(line);
-    });
+      const tl = gsap.timeline({ delay: 0.1 });
 
-    const tl = gsap.timeline({ delay: 0.2 });
+      const allWords = splitHeadlines.flatMap(s => s.words || []);
 
-    const allWords = splitHeadlines.flatMap(s => s.words || []);
-
-    tl.fromTo(allWords,
-      { yPercent: 120, opacity: 0 },
-      { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.02, ease: 'power4.out' }
-    )
-    .fromTo(descSplit.lines,
-      { yPercent: 100, opacity: 0 },
-      { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: 'power3.out' },
-      "-=0.4"
-    )
-    .fromTo(heroCtas,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out' },
-      "-=0.4"
-    );
+      tl.fromTo(allWords,
+        { yPercent: 120, opacity: 0 },
+        { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.02, ease: 'power4.out' }
+      )
+      .fromTo(descSplit.lines,
+        { yPercent: 100, opacity: 0 },
+        { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: 'power3.out' },
+        "-=0.4"
+      )
+      .fromTo(heroCtas,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out' },
+        "-=0.4"
+      );
+    }, 100);
 
     return () => {
-      splitHeadlines.forEach(s => s.revert());
-      descSplit.revert();
+      clearTimeout(timeout);
+      if (splitHeadlines.length) splitHeadlines.forEach(s => s.revert());
+      if (descSplit) descSplit.revert();
     };
   }, []);
 

@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
       <div className="footer-container">
         <div className="footer-grid">
           <div className="footer-col">
-            <img src={`${import.meta.env.BASE_URL}ImpulseDigital_Logo.svg`} alt="Impulse Digital Logo" className="footer-logo" />
+            <img src={`${import.meta.env.BASE_URL}ImpulseDigital_Logo.svg`} alt="Impulse Digital Logo" className="footer-logo" loading="lazy" decoding="async" />
             
             <div className="footer-socials">
               <a href="#" className="social-icon" data-cursor="FOLLOW"><i className="fab fa-facebook-f"></i></a>
@@ -50,8 +50,8 @@ const Footer: React.FC = () => {
             <h4>Quick Links</h4>
             <ul>
               <li><Link to="/">Home</Link></li>
-              <li><a href="#cases-pin">Case Studies</a></li>
-              <li><a href="#careers">Careers</a></li>
+              <li><Link to="/case-studies/">Case Studies</Link></li>
+              <li><Link to="/careers/">Careers</Link></li>
             </ul>
           </div>
 

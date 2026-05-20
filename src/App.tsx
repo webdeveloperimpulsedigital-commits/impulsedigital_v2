@@ -116,12 +116,20 @@ const App: React.FC = () => {
     }
 
     const checkThreeAndLoadScript = () => {
-      // Also wait for Lenis and SplitType to avoid GSAP plugin errors
+      // Wait for dependencies then defer heavy 3D background to free up the main thread
       if ((window as any).THREE && (window as any).gsap && (window as any).ScrollTrigger && (window as any).SplitType) {
-        const script = document.createElement('script');
-        script.src = `${import.meta.env.BASE_URL}js/script.js?v=56`;
-        script.async = true;
-        document.body.appendChild(script);
+        const load = () => {
+          const script = document.createElement('script');
+          script.src = `${import.meta.env.BASE_URL}js/script.js?v=57`; // bump version
+          script.async = true;
+          document.body.appendChild(script);
+        };
+        
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(load, { timeout: 2000 });
+        } else {
+          setTimeout(load, 500);
+        }
       } else {
         setTimeout(checkThreeAndLoadScript, 50);
       }

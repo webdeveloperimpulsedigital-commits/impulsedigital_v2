@@ -40,7 +40,7 @@ const ABGBrutIndiaCaseStudy: React.FC = () => {
 
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/ABG x Brut India/ABG Brut India Title.png`} alt="ABG x Brut India Force for Good campaign" />
+          <img src={`${base}case studies/Written Content/ABG x Brut India/ABG Brut India Title.png`} alt="ABG x Brut India Force for Good campaign - Impulse Digital Marketing Case Study" />
         </div>
       </div>
 
@@ -107,7 +107,7 @@ const ABGBrutIndiaCaseStudy: React.FC = () => {
 
       <section className="cs-proof-module">
         <div className="cs-proof-media gsap-fade-up">
-          <img src={`${base}case studies/Written Content/ABG x Brut India/Supporting 1.png`} alt="ABG x Brut India storytelling visual" />
+          <img src={`${base}case studies/Written Content/ABG x Brut India/Supporting 1.png`} alt="ABG x Brut India storytelling visual - Impulse Digital Marketing Case Study" />
         </div>
         <div className="cs-proof-copy">
           <h2 className="cs-proof-title split-text">Real people made the purpose easier to feel.</h2>
@@ -149,7 +149,7 @@ const ABGBrutIndiaCaseStudy: React.FC = () => {
           <p className="cs-proof-text split-text">Long and short-format storytelling helped the campaign hold depth while still moving across social platforms with scale.</p>
         </div>
         <div className="cs-proof-media gsap-fade-up">
-          <img src={`${base}case studies/Written Content/ABG x Brut India/Supporting 2.png`} alt="ABG x Brut India amplification visual" />
+          <img src={`${base}case studies/Written Content/ABG x Brut India/Supporting 2.png`} alt="ABG x Brut India amplification visual - Impulse Digital Marketing Case Study" />
         </div>
       </section>
 

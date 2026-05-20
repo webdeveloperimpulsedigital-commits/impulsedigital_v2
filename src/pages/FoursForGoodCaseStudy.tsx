@@ -37,7 +37,7 @@ const FoursForGoodCaseStudy: React.FC = () => {
       </section>
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/Fours for good/Fours for good title.png`} alt="Aditya Birla Group Fours for Good cricket impact campaign" />
+          <img src={`${base}case studies/Written Content/Fours for good/Fours for good title.png`} alt="Aditya Birla Group Fours for Good cricket impact campaign - Impulse Digital Marketing Case Study" />
         </div>
       </div>
       <section className="cs-intro-block" id="warp-start">
@@ -96,7 +96,7 @@ const FoursForGoodCaseStudy: React.FC = () => {
       </section>
       <section className="cs-proof-module">
         <div className="cs-proof-media gsap-fade-up">
-          <img src={`${base}case studies/Written Content/Fours for good/Supporting 2.png`} alt="Fours for Good campaign social post featuring Rahul Dravid" />
+          <img src={`${base}case studies/Written Content/Fours for good/Supporting 2.png`} alt="Fours for Good campaign social post featuring Rahul Dravid - Impulse Digital Marketing Case Study" />
         </div>
         <div className="cs-proof-copy">
           <h2 className="cs-proof-title split-text">The idea was clear enough to travel through social attention.</h2>
@@ -136,7 +136,7 @@ const FoursForGoodCaseStudy: React.FC = () => {
           <p className="cs-proof-text split-text">The campaign travelled through short-format social content while keeping the core action intact: every boundary made every four count.</p>
         </div>
         <div className="cs-proof-media gsap-fade-up">
-          <img src={`${base}case studies/Written Content/Fours for good/Supporting 3.png`} alt="Fours for Good campaign social post featuring Smriti Mandhana" />
+          <img src={`${base}case studies/Written Content/Fours for good/Supporting 3.png`} alt="Fours for Good campaign social post featuring Smriti Mandhana - Impulse Digital Marketing Case Study" />
         </div>
       </section>
       <section className="cs-section">
@@ -150,7 +150,7 @@ const FoursForGoodCaseStudy: React.FC = () => {
         </div>
         <div className="cs-proof-module" style={{ padding: 0, marginTop: '-3rem' }}>
           <div className="cs-proof-media gsap-fade-up">
-            <img src={`${base}case studies/Written Content/Fours for good/Supporting 1.png`} alt="Children at Rahul Dravid Academy for Fours for Good cricket training" />
+            <img src={`${base}case studies/Written Content/Fours for good/Supporting 1.png`} alt="Children at Rahul Dravid Academy for Fours for Good cricket training - Impulse Digital Marketing Case Study" />
           </div>
           <div className="cs-proof-copy">
             <h2 className="cs-proof-title split-text">The promise showed up on the field.</h2>
@@ -172,7 +172,7 @@ const FoursForGoodCaseStudy: React.FC = () => {
           <p className="cs-proof-text split-text">The training-day visuals made the promise tangible: a cricketing moment converted into access, coaching, and opportunity.</p>
         </div>
         <div className="cs-proof-media gsap-fade-up">
-          <img src={`${base}case studies/Written Content/Fours for good/Supporting 4.jpeg`} alt="Fours for Good training day collage with young cricket players" />
+          <img src={`${base}case studies/Written Content/Fours for good/Supporting 4.jpeg`} alt="Fours for Good training day collage with young cricket players - Impulse Digital Marketing Case Study" />
         </div>
       </section>
       <section className="cs-final">

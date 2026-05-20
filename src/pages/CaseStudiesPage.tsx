@@ -447,7 +447,7 @@ const CaseStudiesPage: React.FC = () => {
                             >
                               <img
                                 src={`${base}${src}`}
-                                alt={`${cs.client} case study ${i + 1}`}
+                                alt={`${cs.client} Digital Marketing Campaign Case Study - ${i + 1}`}
                                 className={i === 0 ? 'cs3-hover-media' : ''}
                               />
                             </div>
@@ -457,7 +457,7 @@ const CaseStudiesPage: React.FC = () => {
                         <>
                           <img
                             src={`${base}${cs.imgs[0]}`}
-                            alt={cs.client}
+                            alt={`${cs.client} Digital Marketing Campaign Case Study`}
                             className="cs3-hover-media"
                           />
                           <div className="cs3-play-indicator">

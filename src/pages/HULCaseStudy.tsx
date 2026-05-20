@@ -37,7 +37,7 @@ const HULCaseStudy: React.FC = () => {
       </section>
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/HUL 1/HUL 1 Title.png`} alt="HUL FMCG coupon campaign" />
+          <img src={`${base}case studies/Written Content/HUL 1/HUL 1 Title.png`} alt="HUL FMCG coupon campaign - Impulse Digital Marketing Case Study" />
         </div>
       </div>
       <section className="cs-intro-block" id="warp-start">
