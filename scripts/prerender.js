@@ -57,11 +57,16 @@ const server = app.listen(PORT, async () => {
     });
     const page = await browser.newPage();
     
-    // Prevent loading external assets to speed up prerendering
+    // Prevent loading external assets and API calls to speed up and stabilize prerendering in CI
     await page.setRequestInterception(true);
     page.on('request', (req) => {
+      const url = req.url();
       const resourceType = req.resourceType();
-      if (['image', 'media', 'font', 'stylesheet'].includes(resourceType)) {
+      
+      // Block all external resources (analytics, fonts, etc.)
+      if (!url.startsWith(`http://localhost:${PORT}`) && !url.startsWith(`http://127.0.0.1:${PORT}`)) {
+        req.abort();
+      } else if (['image', 'media', 'font', 'stylesheet'].includes(resourceType)) {
         req.abort();
       } else {
         req.continue();
@@ -72,7 +77,7 @@ const server = app.listen(PORT, async () => {
       console.log(`Prerendering ${route}...`);
       
       await page.goto(`http://localhost:${PORT}${route}`, {
-        waitUntil: 'networkidle0',
+        waitUntil: 'domcontentloaded',
         timeout: 30000
       });
       
