@@ -39,7 +39,7 @@ const B2BSEO: React.FC = () => {
 <meta name="description" content="Impulse Digital is a leading B2B SEO agency in Mumbai helping brands generate qualified leads through data-driven strategy, technical SEO, and authority building. Partner with a trusted B2B SEO company focused on long-term ROI. " />
 <meta name="keywords" content="b2b seo services, mumbai, india, impulse digital" />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/services/search-engine-optimization/b2b-seo-services/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/b2b-seo/" />
 <meta property="og:title" content="Top B2B SEO Agency & Results-Driven B2B SEO Company in Mumbai " />
 <meta property="og:description" content="Impulse Digital is a leading B2B SEO agency in Mumbai helping brands generate qualified leads through data-driven strategy, technical SEO, and authority building. Partner with a trusted B2B SEO company focused on long-term ROI. " />
 <meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />

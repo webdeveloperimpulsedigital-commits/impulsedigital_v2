@@ -16,7 +16,7 @@ const DMartCaseStudy: React.FC = () => {
         <title>DMart Digital Campaign Case Study | Driving Store Footfall with Social Media</title>
 <meta name="description" content="See how a targeted social media campaign helped DMart reach 13.43 lakh students in Pune and drive store visits for its Trendy College Wear sale." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/casestudies/d-mart/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/dmart/" />
 <meta property="og:title" content="DMart Digital Campaign Case Study | Driving Store Footfall with Social Media" />
 <meta property="og:description" content="See how a targeted social media campaign helped DMart reach 13.43 lakh students in Pune and drive store visits for its Trendy College Wear sale." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/dmart-challenge.png" />

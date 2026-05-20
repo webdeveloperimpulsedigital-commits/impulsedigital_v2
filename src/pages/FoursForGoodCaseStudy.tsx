@@ -16,7 +16,7 @@ const FoursForGoodCaseStudy: React.FC = () => {
         <title>Fours for Good Campaign Case Study | Aditya Birla Group × Cricket Impact</title>
 <meta name="description" content="Explore how Impulse Digital executed Aditya Birla Group’s “Fours for Good” campaign during the Border-Gavaskar Trophy, converting cricket moments into real impact with 200+ children receiving professional training and 8.1M+ digital impressions." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/casestudies/fourseforgood/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/fours-for-good/" />
 <meta property="og:title" content="Fours for Good Campaign Case Study | Aditya Birla Group × Cricket Impact" />
 <meta property="og:description" content="Explore how Impulse Digital executed Aditya Birla Group’s “Fours for Good” campaign during the Border-Gavaskar Trophy, converting cricket moments into real impact with 200+ children receiving professional training and 8.1M+ digital impressions." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />

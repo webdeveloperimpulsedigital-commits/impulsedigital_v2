@@ -16,7 +16,7 @@ const ElectroMechCaseStudy: React.FC = () => {
         <title>ElectroMech Digital Transformation Case Study | 20× Lead Growth</title>
 <meta name="description" content="Explore how Impulse Digital transformed ElectroMech’s digital ecosystem with SEO, website restructuring, and social media strategy, doubling first-page rankings, achieving 20× verified leads, and increasing engagement by 300%." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/casestudies/electromech/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/electromech/" />
 <meta property="og:title" content="ElectroMech Digital Transformation Case Study | 20× Lead Growth" />
 <meta property="og:description" content="Explore how Impulse Digital transformed ElectroMech’s digital ecosystem with SEO, website restructuring, and social media strategy, doubling first-page rankings, achieving 20× verified leads, and increasing engagement by 300%." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/electromech-website-revamp.png" />

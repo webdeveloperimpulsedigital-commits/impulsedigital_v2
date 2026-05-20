@@ -158,7 +158,7 @@ const Branding: React.FC = () => {
         <title>Best Branding Agency & Company in Mumbai | Impulse Digital</title>
 <meta name="description" content="Looking for the best branding agency in Mumbai? Impulse Digital is a premium & leading branding company in Mumbai, crafting authentic, human-centric brand identities." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/services/branding/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/branding/" />
 <meta property="og:title" content="Best Branding Agency & Company in Mumbai | Impulse Digital" />
 <meta property="og:description" content="Looking for the best branding agency in Mumbai? Impulse Digital is a premium & leading branding company in Mumbai, crafting authentic, human-centric brand identities." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />

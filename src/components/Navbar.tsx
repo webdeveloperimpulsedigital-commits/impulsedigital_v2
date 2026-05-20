@@ -92,8 +92,8 @@ const Navbar: React.FC = () => {
                   Brand Infrastructure <span className="mobile-only-icon">{openSubMenu === 'brand' ? '−' : '+'}</span>
                 </h4>
                 <div className={`dropdown-list ${openSubMenu === 'brand' ? 'mobile-open' : ''}`}>
-                  <Link to="/brand-infrastructure/search-engine-optimisation/" className="dropdown-item" onClick={handleNavClick}>Search and Visibility</Link>
-                  <Link to="/brand-infrastructure/social-media-management/" className="dropdown-item" onClick={handleNavClick}>Social Media</Link>
+                  <Link to="/brand-infrastructure/search-engine-optimisation/" className="dropdown-item" onClick={handleNavClick}>Search Engine Optimization</Link>
+                  <Link to="/brand-infrastructure/social-media-marketing/" className="dropdown-item" onClick={handleNavClick}>Social Media</Link>
                   <Link to="/brand-infrastructure/video-production/" className="dropdown-item" onClick={handleNavClick}>Video Production</Link>
                   <Link to="/brand-infrastructure/website-development/" className="dropdown-item" onClick={handleNavClick}>Website Development</Link>
                   <Link to="/brand-infrastructure/branding/" className="dropdown-item" onClick={handleNavClick}>Brand Identity</Link>

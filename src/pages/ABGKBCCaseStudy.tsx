@@ -15,7 +15,7 @@ const ABGKBCCaseStudy: React.FC = () => {
         <title>How Impulse Digital Powered the ‘A Force For Good’ Campaign | Case Study</title>
 <meta name="description" content="A case study on the ‘A Force For Good’ campaign by Impulse Digital, showcasing creative branding, storytelling, and digital marketing impact." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/casestudies/aforceforgood/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/abg-kbc/" />
 <meta property="og:title" content="How Impulse Digital Powered the ‘A Force For Good’ Campaign | Case Study" />
 <meta property="og:description" content="A case study on the ‘A Force For Good’ campaign by Impulse Digital, showcasing creative branding, storytelling, and digital marketing impact." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/ffg-main.jpg" />

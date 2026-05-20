@@ -159,7 +159,7 @@ const WebsiteDevelopment: React.FC = () => {
 <meta name="description" content="Impulse Digital is a trusted website development company in Thane delivering fast, scalable, and conversion-focused websites for growing businesses. We are also a leading website design company in Thane creating modern, user-friendly interfaces that enhance engagement & performance." />
 <meta name="keywords" content="website design company in thane, website development company in thane, web design service, website development service, mumbai, india, impulse digital" />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/services/website-development/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/website-development/" />
 <meta property="og:title" content="Website Design Company in Thane | Website Development | Impulse Digital" />
 <meta property="og:description" content="Impulse Digital is a trusted website development company in Thane delivering fast, scalable, and conversion-focused websites for growing businesses. We are also a leading website design company in Thane creating modern, user-friendly interfaces that enhance engagement & performance." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />

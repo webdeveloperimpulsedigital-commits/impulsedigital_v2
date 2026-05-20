@@ -17,7 +17,7 @@ const ABGBrutIndiaCaseStudy: React.FC = () => {
         <title>Aditya Birla Group × Brut India Campaign | Force for Good Case Study</title>
 <meta name="description" content="Discover how Impulse Digital helped Aditya Birla Group and Brut India bring the “Force for Good” campaign to life by showcasing real changemakers and generating 27M+ campaign views through impactful storytelling." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/casestudies/brutindia/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/abg-brut-india/" />
 <meta property="og:title" content="Aditya Birla Group × Brut India Campaign | Force for Good Case Study" />
 <meta property="og:description" content="Discover how Impulse Digital helped Aditya Birla Group and Brut India bring the “Force for Good” campaign to life by showcasing real changemakers and generating 27M+ campaign views through impactful storytelling." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/brut-abg.jfif" />

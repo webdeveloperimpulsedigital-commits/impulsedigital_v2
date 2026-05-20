@@ -234,7 +234,7 @@ const AIVideoProduction: React.FC = () => {
 <meta name="description" content="Impulse Digital is a creative AI video production agency offering advanced AI video production services to create scalable, engaging, and high-impact brand videos faster and smarter." />
 <meta name="keywords" content="ai video production agency, ai video production services, ai video production company, mumbai, india, impulse digital" />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/services/video-production/ai-video-production/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/ai-marketing-systems/ai-video-production/" />
 <meta property="og:title" content="AI Video Production Agency | Impulse DIgital" />
 <meta property="og:description" content="Impulse Digital is a creative AI video production agency offering advanced AI video production services to create scalable, engaging, and high-impact brand videos faster and smarter." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />

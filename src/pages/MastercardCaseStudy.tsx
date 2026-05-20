@@ -16,7 +16,7 @@ const MastercardCaseStudy: React.FC = () => {
         <title>Mastercard WhatsApp Marketing Case Study | 90.9% Merchant Response Rate</title>
 <meta name="description" content="See how Mastercard used WhatsApp marketing and cluster-head influence to drive merchant engagement, achieving a 90.9% response rate and 101 product inquiries." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/casestudies/mastercard/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/mastercard/" />
 <meta property="og:title" content="Mastercard WhatsApp Marketing Case Study | 90.9% Merchant Response Rate" />
 <meta property="og:description" content="See how Mastercard used WhatsApp marketing and cluster-head influence to drive merchant engagement, achieving a 90.9% response rate and 101 product inquiries." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/14_mastercard.jpg" />

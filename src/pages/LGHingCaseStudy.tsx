@@ -16,7 +16,7 @@ const LGHingCaseStudy: React.FC = () => {
         <title>LG Hing Brand Campaign Case Study: Empowering Women | Impulse Digital</title>
 <meta name="description" content="Read how LG Hing’s purpose-driven Diwali campaign empowered women entrepreneurs and achieved 507K impressions with strong engagement." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/casestudies/laljee-godhoo/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/lg-hing/" />
 <meta property="og:title" content="LG Hing Brand Campaign Case Study: Empowering Women | Impulse Digital" />
 <meta property="og:description" content="Read how LG Hing’s purpose-driven Diwali campaign empowered women entrepreneurs and achieved 507K impressions with strong engagement." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/lg-hing-packshot.png" />

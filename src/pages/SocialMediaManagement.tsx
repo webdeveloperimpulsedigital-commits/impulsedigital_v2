@@ -159,7 +159,7 @@ const SocialMediaManagement: React.FC = () => {
 <meta name="description" content="Best social media marketing services in Mumbai offered by Impulse digital are combined with creative strategies to make your business grow faster on social media. Our social media marketing services will ensure that your brand communication reaches the target audience along with having an access to the valuable insights on your customers’ behavioural pattern" />
 <meta name="keywords" content="social media marketing services in mumbai, smm company in mumbai, india, impulse digital" />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/services/social-media-marketing" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/social-media-marketing/" />
 <meta property="og:title" content="Social Media Marketing Services | SMM Company in Mumbai" />
 <meta property="og:description" content="Best social media marketing services in Mumbai offered by Impulse digital are combined with creative strategies to make your business grow faster on social media. Our social media marketing services will ensure that your brand communication reaches the target audience along with having an access to the valuable insights on your customers’ behavioural pattern" />
 <meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />

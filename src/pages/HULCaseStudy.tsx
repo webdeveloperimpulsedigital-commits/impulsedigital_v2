@@ -16,7 +16,7 @@ const HULCaseStudy: React.FC = () => {
         <title>HUL FMCG Digital Campaign Success | Impulse Digital Case Study</title>
 <meta name="description" content="Explore how Impulse Digital executed a geo-targeted digital coupon campaign for Hindustan Unilever Limited (HUL) across Pune and Delhi, driving 90% higher CTR, 41.8% more clicks, and 12.5K+ landing page sessions." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/casestudies/hul/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/hul/" />
 <meta property="og:title" content="HUL FMCG Digital Campaign Success | Impulse Digital Case Study" />
 <meta property="og:description" content="Explore how Impulse Digital executed a geo-targeted digital coupon campaign for Hindustan Unilever Limited (HUL) across Pune and Delhi, driving 90% higher CTR, 41.8% more clicks, and 12.5K+ landing page sessions." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/hul-map.png" />

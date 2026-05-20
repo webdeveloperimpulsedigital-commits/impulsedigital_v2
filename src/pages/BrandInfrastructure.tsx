@@ -55,7 +55,7 @@ const SERVICES = [
     label: 'Community-driven strategies.',
     title: 'Social Media',
     desc: 'Engaging, community-driven social strategies that build brand loyalty and foster meaningful interactions.',
-    to: '/brand-infrastructure/social-media-management',
+    to: '/brand-infrastructure/social-media-marketing',
   },
   {
     index: '08',

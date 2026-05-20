@@ -39,7 +39,7 @@ const EnterpriseSEO: React.FC = () => {
 <meta name="description" content="Impulse Digital is a leading enterprise SEO agency delivering result-driven enterprise SEO service in India with strategic content, technical optimization, and proven expertise to grow large-scale businesses online." />
 <meta name="keywords" content="enterprise seo services, enterprise seo agency, enterprise seo company, mumbai, india, impulse digital" />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/services/search-engine-optimization/enterprise-seo-services/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/enterprise-seo/" />
 <meta property="og:title" content="Best Enterprise SEO Service | Impulse Digital" />
 <meta property="og:description" content="Impulse Digital is a leading enterprise SEO agency delivering result-driven enterprise SEO service in India with strategic content, technical optimization, and proven expertise to grow large-scale businesses online." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />

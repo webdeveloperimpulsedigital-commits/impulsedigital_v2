@@ -38,7 +38,7 @@ const ECommerceSEO: React.FC = () => {
 <meta name="description" content="Impulse Digital is a trusted ecommerce SEO agency offering result-driven ecommerce SEO service in Mumbai. We help online brands increase visibility, attract qualified traffic, and drive higher conversions through e commerce SEO." />
 <meta name="keywords" content="ecommerce seo services, ecommerce seo company, agency, e commerce, mumbai, ecommerce search engine optimization services, impulse digital, india" />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/services/search-engine-optimization/ecommerce-seo-services/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/ecommerce-seo/" />
 <meta property="og:title" content="eCommerce SEO Services in Mumbai | e Commerce SEO Agency" />
 <meta property="og:description" content="Impulse Digital is a trusted ecommerce SEO agency offering result-driven ecommerce SEO service in Mumbai. We help online brands increase visibility, attract qualified traffic, and drive higher conversions through e commerce SEO." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/ecommerce%20About%20service%20-%20%20451%20x%20500.jpg" />

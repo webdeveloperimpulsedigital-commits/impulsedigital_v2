@@ -301,6 +301,8 @@ const CaseStudies: React.FC = () => {
     <main id="main-content" className="work-wrapper" ref={containerRef}>
       <Helmet>
         <title>Case Studies | Impulse Digital</title>
+      
+        <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/" />
       </Helmet>
 
       {/* Hero Section */}

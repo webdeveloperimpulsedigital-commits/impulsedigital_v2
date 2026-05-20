@@ -26,7 +26,7 @@ const routes = [
   '/brand-infrastructure/search-engine-optimisation/ecommerce-seo/',
   '/brand-infrastructure/search-engine-optimisation/enterprise-seo/',
   '/brand-infrastructure/search-engine-optimisation/b2b-seo/',
-  '/brand-infrastructure/social-media-management/',
+  '/brand-infrastructure/social-media-marketing/',
   '/brand-infrastructure/website-development/',
   '/brand-infrastructure/branding/',
   '/brand-infrastructure/employer-branding/',

@@ -37,7 +37,7 @@ const LocalSEO: React.FC = () => {
 <meta name="description" content="Impulse Digital is one of the best local SEO company in Mumbai that offers end to end local SEO services in Mumbai, India. At Impulse Digital, we fuel all your local SEO dreams and bring them to life. We strive to offer you the local SEO services that promote all your business locations optimally." />
 <meta name="keywords" content="local seo services in mumbai, local seo company in mumbai, local seo agency in mumbai, local search engine optimization services, india, impulse digital" />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/services/search-engine-optimization/local-seo-services/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/local seo" />
 <meta property="og:title" content="Local SEO Services in Mumbai | Local SEO Agency" />
 <meta property="og:description" content="Impulse Digital is one of the best local SEO company in Mumbai that offers end to end local SEO services in Mumbai, India. At Impulse Digital, we fuel all your local SEO dreams and bring them to life. We strive to offer you the local SEO services that promote all your business locations optimally." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />

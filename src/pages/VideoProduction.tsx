@@ -37,7 +37,7 @@ const VideoProduction: React.FC = () => {
 <meta name="description" content="Impulse Digital is a leading video production company in Mumbai offering creative video production services in Mumbai for brands, campaigns, and corporate storytelling with measurable impact." />
 <meta name="keywords" content="video production company in mumbai, video production agency in mumbai, video production services, india, impulse digital" />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/services/video-production/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/video-production/" />
 <meta property="og:title" content="Video Production Company in Mumbai | Production Agency | Impulse Digital" />
 <meta property="og:description" content="Impulse Digital is a leading video production company in Mumbai offering creative video production services in Mumbai for brands, campaigns, and corporate storytelling with measurable impact." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/video-production.jpg" />

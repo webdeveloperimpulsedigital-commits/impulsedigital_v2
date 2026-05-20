@@ -153,7 +153,7 @@ const App: React.FC = () => {
         <Route path="/brand-infrastructure/search-engine-optimisation/ecommerce-seo/" element={<ECommerceSEO />} />
         <Route path="/brand-infrastructure/search-engine-optimisation/enterprise-seo/" element={<EnterpriseSEO />} />
         <Route path="/brand-infrastructure/search-engine-optimisation/b2b-seo/" element={<B2BSEO />} />
-        <Route path="/brand-infrastructure/social-media-management/" element={<SocialMediaManagement />} />
+        <Route path="/brand-infrastructure/social-media-marketing/" element={<SocialMediaManagement />} />
         <Route path="/brand-infrastructure/website-development/" element={<WebsiteDevelopment />} />
         <Route path="/brand-infrastructure/branding/" element={<Branding />} />
         <Route path="/brand-infrastructure/employer-branding/" element={<EmployerBranding />} />

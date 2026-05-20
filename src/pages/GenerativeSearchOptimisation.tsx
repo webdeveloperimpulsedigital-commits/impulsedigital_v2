@@ -191,7 +191,7 @@ const GenerativeSearchOptimisation: React.FC = () => {
 <meta name="description" content="Partner with a top AI SEO agency in Mumbai, India that delivers data-driven AI SEO services to boost organic rankings, enhance search visibility, and accelerate business growth with intelligent automation and strategic optimization." />
 <meta name="keywords" content="ai seo agency, ai seo service, ai seo company, mumbai, india, impulse digital" />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/services/search-engine-optimization/ai-seo-agency" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/ai-marketing-systems/generative-search-optimisation/" />
 <meta property="og:title" content="AI SEO Agency in India | Advanced AI SEO Service" />
 <meta property="og:description" content="Partner with a top AI SEO agency in Mumbai, India that delivers data-driven AI SEO services to boost organic rankings, enhance search visibility, and accelerate business growth with intelligent automation and strategic optimization. team helps us stand out from a cluster of digital marketing agencies in Mumbai. We are handling a plethora of clients which includes Amazon, HUL, OLA, Dmart, HDFC, and more big market giants." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/AI-SEO-Agency.jpg" />

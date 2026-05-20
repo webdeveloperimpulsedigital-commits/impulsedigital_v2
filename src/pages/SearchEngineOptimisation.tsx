@@ -158,7 +158,7 @@ const SearchEngineOptimisation: React.FC = () => {
 <meta name="description" content="Impulse Digital is a trusted SEO company in Thane offering SEO services such as website audits, keyword research, link building and content strategy. Choose the best SEO agency in Thane for results." />
 <meta name="keywords" content="seo company in thane, seo services, search engine optimization services, seo agency in thane, impulse digital" />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/services/search-engine-optimization/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/" />
 <meta property="og:title" content="SEO Company in Thane | SEO Services | Impulse Digital" />
 <meta property="og:description" content="Impulse Digital is a trusted SEO company in Thane offering SEO services such as website audits, keyword research, link building and content strategy. Choose the best SEO agency in Thane for results." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />

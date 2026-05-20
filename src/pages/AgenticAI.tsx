@@ -159,7 +159,7 @@ const AgenticAI: React.FC = () => {
 <meta name="description" content="Impulse Digital is a leading agentic ai agency delivering advanced agentic ai service that powers smart, autonomous customer engagement across WhatsApp, email, voice, and social. Boosting conversions, sales efficiency, and ROI with agentic ai service." />
 <meta name="keywords" content="agentic ai agency, agentic ai service, agentic ai comapny, multilingual ai agents, lead conversion ai, mumbai, india, impulse digital" />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/services/agentic-ai/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/ai-marketing-systems/agentic-ai/" />
 <meta property="og:title" content="Agentic AI Agency | Intelligent Agentic AI Service for Growth" />
 <meta property="og:description" content="Impulse Digital is a leading agentic AI agency delivering advanced agentic AI service that powers smart, autonomous customer engagement across WhatsApp, email, voice, and social. Boosting conversions, sales efficiency, and ROI with agentic ai service." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/agentic-a.jfif" />

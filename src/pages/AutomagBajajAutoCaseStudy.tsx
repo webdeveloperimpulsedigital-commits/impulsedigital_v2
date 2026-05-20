@@ -15,6 +15,8 @@ const AutomagBajajAutoCaseStudy: React.FC = () => {
       <Helmet>
         <title>Automag x Bajaj Auto – Industrial Film Case Study | Impulse Digital</title>
         <meta name="description" content="How Impulse Digital turned Automag's conveyor deployment at Bajaj Auto's Akurdi plant into compelling business proof through a technical case study film." />
+      
+        <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/automag-bajaj-auto/" />
       </Helmet>
       <section className="cs-hero">
         <div className="cs-hero-header">

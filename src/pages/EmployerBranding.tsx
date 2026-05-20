@@ -159,7 +159,7 @@ const EmployerBranding: React.FC = () => {
 <meta name="description" content="Impulse Digital is a leading employer branding agency in India, which empowers businesses to optimise their brand strategy as an employer. Our employer branding services help you build an integrated and impactful brand story that is portrayed consistently across your web pages, blogs, and career sites." />
 <meta name="keywords" content="employer branding agency, employer branding services, employer branding company, employee," />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/services/employer-branding-agency/" />
+<link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/employer-branding/" />
 <meta property="og:title" content="Employer Branding Agency | Impulse Digital" />
 <meta property="og:description" content="Impulse Digital is a leading employer branding agency in India, which empowers businesses to optimise their brand strategy as an employer. Our employer branding services help you build an integrated and impactful brand story that is portrayed consistently across your web pages, blogs, and career sites." />
 <meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
