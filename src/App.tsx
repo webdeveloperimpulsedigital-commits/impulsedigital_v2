@@ -110,6 +110,12 @@ const ScrollToTop = () => {
 
 const App: React.FC = () => {
   useEffect(() => {
+    // Check if script is already present in document (e.g. from static markup) to avoid duplicate injection
+    const existingScript = document.querySelector('script[src*="js/script.js"]');
+    if (existingScript) {
+      return;
+    }
+
     // We append the script here to ensure it runs after all React components
     // have been fully mounted and their DOM nodes exist.
     const script = document.createElement('script');

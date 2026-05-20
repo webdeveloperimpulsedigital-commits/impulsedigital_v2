@@ -9,30 +9,49 @@ const __dirname = path.dirname(__filename);
 
 const routes = [
   '/',
-  '/about',
-  '/services/consumer-intelligence',
-  '/services/market-intelligence',
-  '/services/always-on-intelligence',
-  '/services/campaign-intelligence',
-  '/services/archer-ai',
-  '/services/agentic-ai',
-  '/services/generative-search-optimisation',
-  '/services/search-engine-optimisation',
-  '/services/search-engine-optimisation/local-seo',
-  '/services/search-engine-optimisation/ecommerce-seo',
-  '/services/search-engine-optimisation/enterprise-seo',
-  '/services/search-engine-optimisation/b2b-seo',
-  '/services/social-media-management',
-  '/services/website-development',
-  '/services/branding',
-  '/services/employer-branding',
-  '/services/social-media-video-production',
-  '/services/ai-video-production',
-  '/contact',
-  '/digital-marketing-agency-in-india',
-  '/digital-marketing-agency-in-thane',
-  '/digital-marketing-agency-in-navi-mumbai',
-  '/digital-marketing-agency-in-pune'
+  '/about-us/',
+  '/growth-intelligence/',
+  '/growth-intelligence/consumer-intelligence/',
+  '/growth-intelligence/market-intelligence/',
+  '/growth-intelligence/always-on-intelligence/',
+  '/growth-intelligence/campaign-intelligence/',
+  '/ai-marketing-systems/',
+  '/ai-marketing-systems/archer-ai/',
+  '/ai-marketing-systems/agentic-ai/',
+  '/ai-marketing-systems/ai-video-production/',
+  '/ai-marketing-systems/generative-search-optimisation/',
+  '/brand-infrastructure/',
+  '/brand-infrastructure/search-engine-optimisation/',
+  '/brand-infrastructure/search-engine-optimisation/local-seo/',
+  '/brand-infrastructure/search-engine-optimisation/ecommerce-seo/',
+  '/brand-infrastructure/search-engine-optimisation/enterprise-seo/',
+  '/brand-infrastructure/search-engine-optimisation/b2b-seo/',
+  '/brand-infrastructure/social-media-management/',
+  '/brand-infrastructure/website-development/',
+  '/brand-infrastructure/branding/',
+  '/brand-infrastructure/employer-branding/',
+  '/brand-infrastructure/video-production/',
+  '/services/',
+  '/case-studies/',
+  '/case-studies/uppercase/',
+  '/case-studies/qure-ai/',
+  '/case-studies/mastercard/',
+  '/case-studies/lg-hing/',
+  '/case-studies/dmart/',
+  '/case-studies/hul/',
+  '/case-studies/fours-for-good/',
+  '/case-studies/electromech/',
+  '/case-studies/abg-brut-india/',
+  '/case-studies/abg-kbc/',
+  '/case-studies/automag-bajaj-auto/',
+  '/case-studies/automag-india/',
+  '/case-studies/employer-branding/',
+  '/careers/',
+  '/contact-us/',
+  '/digital-marketing-agency-in-india/',
+  '/digital-marketing-agency-in-thane/',
+  '/digital-marketing-agency-in-navi-mumbai/',
+  '/digital-marketing-agency-in-pune/'
 ];
 
 const PORT = 4173;
@@ -57,16 +76,33 @@ const server = app.listen(PORT, async () => {
     });
     const page = await browser.newPage();
     
-    // Prevent loading external assets and API calls to speed up and stabilize prerendering in CI
+    // Log console messages and errors
+    page.on('console', msg => {
+      const text = msg.text();
+      // Filter out noisy warnings if any, but log general logs
+      if (!text.includes('Failed to load resource')) {
+        console.log('BROWSER LOG:', text);
+      }
+    });
+    page.on('pageerror', err => console.error('BROWSER ERROR:', err.message));
+    
+    // Prevent loading external assets but allow essential CDNs (GSAP, Three.js, etc.)
     await page.setRequestInterception(true);
     page.on('request', (req) => {
       const url = req.url();
       const resourceType = req.resourceType();
       
-      // Block all external resources (analytics, fonts, etc.)
-      if (!url.startsWith(`http://localhost:${PORT}`) && !url.startsWith(`http://127.0.0.1:${PORT}`)) {
+      const allowedCDNs = [
+        'cdnjs.cloudflare.com',
+        'cdn.jsdelivr.net',
+        'unpkg.com'
+      ];
+      
+      const isAllowedCDN = allowedCDNs.some(cdn => url.includes(cdn));
+      
+      if (!url.startsWith(`http://localhost:${PORT}`) && !url.startsWith(`http://127.0.0.1:${PORT}`) && !isAllowedCDN) {
         req.abort();
-      } else if (['image', 'media', 'font', 'stylesheet'].includes(resourceType)) {
+      } else if (['image', 'media', 'font'].includes(resourceType)) {
         req.abort();
       } else {
         req.continue();

@@ -1,3 +1,4 @@
+(() => {
 // Helper: Circular particles
 const createCircleTexture = () => {
     const canvas = document.createElement('canvas');
@@ -581,3 +582,4 @@ document.fonts.ready.then(() => {
         });
     }
 });
+})();
