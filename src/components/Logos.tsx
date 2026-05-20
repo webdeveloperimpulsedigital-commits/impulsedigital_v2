@@ -111,7 +111,7 @@ const Logos: React.FC<LogosProps> = ({ title }) => {
                     alt={logo.alt}
                     className={logo.fixGrid ? 'fix-logo-grid' : ''}
                     style={logo.scale ? { '--base-scale': logo.scale } as React.CSSProperties : undefined}
-                  loading="lazy" decoding="async" />
+                  loading="lazy" decoding="async"  width="200" height="100" />
                 </div>
               </div>
             ))}
