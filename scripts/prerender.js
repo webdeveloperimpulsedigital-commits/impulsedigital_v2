@@ -57,13 +57,20 @@ const routes = [
 const PORT = 4173;
 const DIST_DIR = path.resolve(__dirname, '../dist');
 
+// Backup the original index.html so we can use it as a clean template for SPA routing
+const originalIndexPath = path.resolve(DIST_DIR, 'index.html');
+const templatePath = path.resolve(DIST_DIR, 'template.html');
+if (fs.existsSync(originalIndexPath)) {
+  fs.copyFileSync(originalIndexPath, templatePath);
+}
+
 // Start static server
 const app = express();
 app.use(express.static(DIST_DIR));
 
-// Fallback to index.html for SPA routing
+// Fallback to template.html for SPA routing
 app.use((req, res) => {
-  res.sendFile(path.resolve(DIST_DIR, 'index.html'));
+  res.sendFile(templatePath);
 });
 
 const server = app.listen(PORT, async () => {
@@ -132,6 +139,19 @@ const server = app.listen(PORT, async () => {
       // Remove the dynamically injected script.js tag so it doesn't execute twice/early on client load
       html = html.replace(/<script[^>]*src="[^"]*js\/script\.js[^"]*"[^>]*><\/script>/gi, '');
 
+      // Clean up duplicate SEO tags (React Helmet prepends its tags, so we keep the first one)
+      let titleCount = 0;
+      html = html.replace(/<title[^>]*>.*?<\/title>/gi, (match) => {
+        titleCount++;
+        return titleCount === 1 ? match : '';
+      });
+
+      let canonicalCount = 0;
+      html = html.replace(/<link[^>]*rel=["']canonical["'][^>]*>/gi, (match) => {
+        canonicalCount++;
+        return canonicalCount === 1 ? match : '';
+      });
+
       const routeDir = path.join(DIST_DIR, route === '/' ? '' : route);
       if (!fs.existsSync(routeDir)) {
         fs.mkdirSync(routeDir, { recursive: true });
@@ -143,6 +163,12 @@ const server = app.listen(PORT, async () => {
     }
 
     await browser.close();
+    
+    // Clean up template.html
+    if (fs.existsSync(templatePath)) {
+      fs.unlinkSync(templatePath);
+    }
+    
     console.log('Prerendering completed successfully!');
   } catch (error) {
     console.error('Error during prerendering:', error);
