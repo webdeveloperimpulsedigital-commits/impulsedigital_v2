@@ -127,12 +127,14 @@ export const campaignIntelligenceData = {
     ]
   },
   finalCta: {
+    headingFontSize: "clamp(2.8rem, 5vw, 5.5rem)",
+    headingLineHeight: "1.1",
     titleParts: ["Make Every Campaign<br/>Teach the<br/>", "Next One."],
     accent: "Next One.",
     body: "Tell us what your campaign was meant to change. We will help you understand what landed, what faded, and what should shape the next brief, creator choice, and budget decision.",
     buttons: [
-      { text: "Decode<br/>Campaign<br/>Impact", link: "/contact-us/", cursor: "DECODE" },
-      { text: "Start a<br/>Conversation", link: "/contact-us/", cursor: "HI" }
+      { text: "Decode Campaign Impact", link: "/contact-us/", cursor: "DECODE" },
+      { text: "Start a Conversation", link: "/contact-us/", cursor: "HI" }
     ],
     footnote: "No vanity reporting. No post-campaign theatre. Just sharper intelligence for the next marketing decision."
   },

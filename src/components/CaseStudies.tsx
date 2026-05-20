@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const CaseStudies: React.FC = () => {
   return (
     <section className="cosmos-section" id="cases-pin">
-      <div className="container" style={{ position: 'relative', zIndex: 10, textAlign: 'center', paddingTop: '4rem' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 10, textAlign: 'center', paddingTop: '8rem' }}>
         <h2 className="section-heading split-text">Work that earned its numbers</h2>
       </div>
       <div className="cosmos-wrapper">

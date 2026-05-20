@@ -122,6 +122,8 @@ export const marketIntelligenceData = {
     ]
   },
   finalCta: {
+    headingFontSize: "clamp(2.8rem, 5vw, 5.5rem)",
+    headingLineHeight: "1.1",
     titleParts: ["See What Your Market<br/>Is Already<br/>", "Telling You."],
     accent: "Telling You.",
     body: "Tell us the category you are competing in. We will help identify the signals your team should be watching before the next strategic decision.",
