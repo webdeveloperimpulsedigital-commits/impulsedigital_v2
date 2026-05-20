@@ -40,14 +40,14 @@ const LocalSEO: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/local seo" />
 <meta property="og:title" content="Local SEO Services in Mumbai | Local SEO Agency" />
 <meta property="og:description" content="Impulse Digital is one of the best local SEO company in Mumbai that offers end to end local SEO services in Mumbai, India. At Impulse Digital, we fuel all your local SEO dreams and bring them to life. We strive to offer you the local SEO services that promote all your business locations optimally." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/services/search-engine-optimization/local-seo-services/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Local SEO Services in Mumbai | Local SEO Agency" />
 <meta name="twitter:description" content="Impulse Digital is one of the best local SEO company in Mumbai that offers end to end local SEO services in Mumbai, India. At Impulse Digital, we fuel all your local SEO dreams and bring them to life. We strive to offer you the local SEO services that promote all your business locations optimally." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 

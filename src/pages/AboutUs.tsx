@@ -296,14 +296,14 @@ const AboutUs: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/about-us/" />
 <meta property="og:title" content="About Impulse Digital - Creative Digital Marketing Agency" />
 <meta property="og:description" content="Get to know Impulse Digital, a trusted digital marketing agency delivering SEO, paid media, branding, agentic ai, and website solutions that drive measurable business growth." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/about-us/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="About Impulse Digital - Creative Digital Marketing Agency" />
 <meta name="twitter:description" content="Get to know Impulse Digital, a trusted digital marketing agency delivering SEO, paid media, branding, agentic ai, and website solutions that drive measurable business growth." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
 
@@ -679,7 +679,7 @@ const AboutUs: React.FC = () => {
                 </svg>
               </div>
               <div className="ab-founder-portrait" data-portrait>
-                <img src={`${import.meta.env.BASE_URL}images/About%20Us/Adwait-cutout-v2.png`} alt="Adwait Joshi - Founder and CEO of Impulse Digital Marketing Agency" />
+                <img src={`${import.meta.env.BASE_URL}images/About%20Us/Adwait-cutout-v2.webp`} alt="Adwait Joshi - Founder and CEO of Impulse Digital Marketing Agency" />
               </div>
             </div>
             <div className="ab-founder-copy-wrap">
@@ -711,7 +711,7 @@ const AboutUs: React.FC = () => {
                 </svg>
               </div>
               <div className="ab-founder-portrait" data-portrait>
-                <img src={`${import.meta.env.BASE_URL}images/About%20Us/Abhishek-cutout-v2.png`} alt="Abhishek Arekar - Co-Founder of Impulse Digital Marketing Agency" />
+                <img src={`${import.meta.env.BASE_URL}images/About%20Us/Abhishek-cutout-v2.webp`} alt="Abhishek Arekar - Co-Founder of Impulse Digital Marketing Agency" />
               </div>
             </div>
             <div className="ab-founder-copy-wrap">

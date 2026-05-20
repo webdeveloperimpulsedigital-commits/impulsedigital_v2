@@ -25,7 +25,7 @@ const UppercaseCaseStudy: React.FC = () => {
       </section>
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/Uppercase/Uppercase Title.png`} alt="Uppercase Carry Your Resolution campaign - Impulse Digital Marketing Case Study" />
+          <img src={`${base}case studies/Written Content/Uppercase/Uppercase Title.webp`} alt="Uppercase Carry Your Resolution campaign - Impulse Digital Marketing Case Study" />
         </div>
       </div>
       <section className="cs-intro-block" id="warp-start">

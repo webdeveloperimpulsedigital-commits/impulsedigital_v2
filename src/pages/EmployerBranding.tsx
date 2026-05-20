@@ -162,14 +162,14 @@ const EmployerBranding: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/employer-branding/" />
 <meta property="og:title" content="Employer Branding Agency | Impulse Digital" />
 <meta property="og:description" content="Impulse Digital is a leading employer branding agency in India, which empowers businesses to optimise their brand strategy as an employer. Our employer branding services help you build an integrated and impactful brand story that is portrayed consistently across your web pages, blogs, and career sites." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/services/employer-branding-agency/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Employer Branding Agency | Impulse Digital" />
 <meta name="twitter:description" content="Impulse Digital is a leading employer branding agency in India, which empowers businesses to optimize their brand strategy as an employer. Our employer branding services help you build an integrated and impactful brand story that is portrayed consistently across your web pages, blogs, and career sites." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 

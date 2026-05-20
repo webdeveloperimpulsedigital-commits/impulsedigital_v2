@@ -47,14 +47,14 @@ const AutomagIndiaCaseStudy: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/automag-india/" />
 <meta property="og:title" content="Automag India SEO Case Study | 2400% B2B Lead Growth in 4 Months" />
 <meta property="og:description" content="Explore how Impulse Digital transformed Automag India’s website into a B2B lead generation engine, achieving 48% organic traffic growth and increasing leads from 1-2 to 45-50 per month through strategic SEO." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/Industrial%20automation%20line%20with%20robotic%20arms.png" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/Industrial%20automation%20line%20with%20robotic%20arms.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/casestudies/automag-india/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Automag India SEO Case Study | 2400% B2B Lead Growth in 4 Months" />
 <meta name="twitter:description" content="Explore how Impulse Digital transformed Automag India’s website into a B2B lead generation engine, achieving 48% organic traffic growth and increasing leads from 1-2 to 45-50 per month through strategic SEO." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/Industrial%20automation%20line%20with%20robotic%20arms.png" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/Industrial%20automation%20line%20with%20robotic%20arms.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
 
@@ -67,7 +67,7 @@ const AutomagIndiaCaseStudy: React.FC = () => {
 
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/Automag India/Automag SEO/Automag Title.jpg`} alt="Automag India B2B SEO case study" />
+          <img src={`${base}case studies/Written Content/Automag India/Automag SEO/Automag Title.webp`} alt="Automag India B2B SEO case study" />
         </div>
       </div>
 
@@ -201,7 +201,7 @@ const AutomagIndiaCaseStudy: React.FC = () => {
         <div className="cs-search-track">
           {[1,2,3,4,5,6,7].map(n => (
             <div key={n} className="cs-search-card gsap-fade-up">
-              <img src={`${base}case studies/Written Content/Automag India/Automag SEO/automag images upscaled/Supporting ${n}.jpg`} alt={`Automag ranking proof ${n}`} />
+              <img src={`${base}case studies/Written Content/Automag India/Automag SEO/automag images upscaled/Supporting ${n}.webp`} alt={`Automag ranking proof ${n}`} />
             </div>
           ))}
         </div>

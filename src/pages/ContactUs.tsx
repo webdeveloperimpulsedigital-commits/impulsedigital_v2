@@ -128,14 +128,14 @@ const ContactUs: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/contact-us/" />
 <meta property="og:title" content="Get In Touch | Impulse Digital" />
 <meta property="og:description" content="If you are looking for digital marketing solutions for your brand, feel free to submit the inquiry form or give us a call." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/contact-us/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Get In Touch | Impulse Digital" />
 <meta name="twitter:description" content="If you are looking for digital marketing solutions for your brand, feel free to submit the inquiry form or give us a call." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
 

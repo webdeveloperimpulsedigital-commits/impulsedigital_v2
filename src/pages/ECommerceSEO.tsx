@@ -41,14 +41,14 @@ const ECommerceSEO: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/ecommerce-seo/" />
 <meta property="og:title" content="eCommerce SEO Services in Mumbai | e Commerce SEO Agency" />
 <meta property="og:description" content="Impulse Digital is a trusted ecommerce SEO agency offering result-driven ecommerce SEO service in Mumbai. We help online brands increase visibility, attract qualified traffic, and drive higher conversions through e commerce SEO." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/ecommerce%20About%20service%20-%20%20451%20x%20500.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/ecommerce%20About%20service%20-%20%20451%20x%20500.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/services/search-engine-optimization/ecommerce-seo-services/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="eCommerce SEO Services in Mumbai | e Commerce SEO Agency" />
 <meta name="twitter:description" content="Impulse Digital is a trusted ecommerce SEO agency offering result-driven ecommerce SEO service in Mumbai. We help online brands increase visibility, attract qualified traffic, and drive higher conversions through e commerce SEO." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/ecommerce%20About%20service%20-%20%20451%20x%20500.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/ecommerce%20About%20service%20-%20%20451%20x%20500.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 

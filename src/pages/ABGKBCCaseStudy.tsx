@@ -18,14 +18,14 @@ const ABGKBCCaseStudy: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/abg-kbc/" />
 <meta property="og:title" content="How Impulse Digital Powered the ‘A Force For Good’ Campaign | Case Study" />
 <meta property="og:description" content="A case study on the ‘A Force For Good’ campaign by Impulse Digital, showcasing creative branding, storytelling, and digital marketing impact." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/ffg-main.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/ffg-main.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/casestudies/aforceforgood/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="How Impulse Digital Powered the ‘A Force For Good’ Campaign | Case Study" />
 <meta name="twitter:description" content="A case study on the ‘A Force For Good’ campaign by Impulse Digital, showcasing creative branding, storytelling, and digital marketing impact." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/ffg-main.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/ffg-main.webp" />
 <meta name="twitter:site" content="@impulsedigi" />\n      </Helmet>
       <section className="cs-hero">
         <div className="cs-hero-header">
@@ -35,7 +35,7 @@ const ABGKBCCaseStudy: React.FC = () => {
       </section>
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/ABG x KBC/ABG x KBC Title.png`} alt="ABG A Force for Good x KBC campaign - Impulse Digital Marketing Case Study" />
+          <img src={`${base}case studies/Written Content/ABG x KBC/ABG x KBC Title.webp`} alt="ABG A Force for Good x KBC campaign - Impulse Digital Marketing Case Study" />
         </div>
       </div>
       <section className="cs-intro-block" id="warp-start">
@@ -94,7 +94,7 @@ const ABGKBCCaseStudy: React.FC = () => {
       </section>
       <section className="cs-proof-module">
         <div className="cs-proof-media gsap-fade-up">
-          <img src={`${base}case studies/Written Content/ABG x KBC/Supporting 1.png`} alt="ABG x KBC campaign visual - Impulse Digital Marketing Case Study" />
+          <img src={`${base}case studies/Written Content/ABG x KBC/Supporting 1.webp`} alt="ABG x KBC campaign visual - Impulse Digital Marketing Case Study" />
         </div>
         <div className="cs-proof-copy">
           <h2 className="cs-proof-title split-text">KBC made the purpose easier to understand in one viewing moment.</h2>

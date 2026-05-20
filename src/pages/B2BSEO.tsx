@@ -42,14 +42,14 @@ const B2BSEO: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/b2b-seo/" />
 <meta property="og:title" content="Top B2B SEO Agency & Results-Driven B2B SEO Company in Mumbai " />
 <meta property="og:description" content="Impulse Digital is a leading B2B SEO agency in Mumbai helping brands generate qualified leads through data-driven strategy, technical SEO, and authority building. Partner with a trusted B2B SEO company focused on long-term ROI. " />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/services/search-engine-optimization/b2b-seo-services/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Top B2B SEO Agency & Results-Driven B2B SEO Company in Mumbai " />
 <meta name="twitter:description" content="Impulse Digital is a leading B2B SEO agency in Mumbai helping brands generate qualified leads through data-driven strategy, technical SEO, and authority building. Partner with a trusted B2B SEO company focused on long-term ROI. " />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 

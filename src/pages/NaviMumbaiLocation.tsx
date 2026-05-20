@@ -46,7 +46,7 @@ const NaviMumbaiLocation: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/digital-marketing-agency-in-navi-mumbai/" />
 <meta property="og:title" content="Digital Marketing Agency in Navi Mumbai | Impulse Digital" />
 <meta property="og:description" content="Impulse Digital is the best digital marketing agency in Navi Mumbai with decades of expertise in global marketing." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/uploads/images/content/contact.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/uploads/images/content/contact.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/digital-marketing-agency-in-navi-mumbai/" />
 <meta name="twitter:card" content="summary_large_image" />
       </Helmet>

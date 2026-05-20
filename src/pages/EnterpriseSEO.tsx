@@ -42,14 +42,14 @@ const EnterpriseSEO: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/enterprise-seo/" />
 <meta property="og:title" content="Best Enterprise SEO Service | Impulse Digital" />
 <meta property="og:description" content="Impulse Digital is a leading enterprise SEO agency delivering result-driven enterprise SEO service in India with strategic content, technical optimization, and proven expertise to grow large-scale businesses online." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/services/search-engine-optimization/enterprise-seo-services/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Best Enterprise SEO Service | Impulse Digital" />
 <meta name="twitter:description" content="Impulse Digital is a leading enterprise SEO agency delivering result-driven enterprise SEO service in India with strategic content, technical optimization, and proven expertise to grow large-scale businesses online." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 

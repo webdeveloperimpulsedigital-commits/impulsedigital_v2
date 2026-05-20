@@ -110,6 +110,14 @@ const ScrollToTop = () => {
 
 const App: React.FC = () => {
   useEffect(() => {
+    // Dynamically load Three.js to prevent it from blocking the initial page load (LCP/FCP)
+    if (!document.querySelector('script[src*="three.min.js"]')) {
+      const threeScript = document.createElement('script');
+      threeScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+      threeScript.async = true;
+      document.body.appendChild(threeScript);
+    }
+
     const existingScript = document.querySelector('script[src*="js/script.js"]');
     if (existingScript) {
       return;

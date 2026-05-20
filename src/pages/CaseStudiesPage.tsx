@@ -24,7 +24,7 @@ const caseStudies: CaseStudyItem[] = [
     category: 'Brand Campaign',
     description: '10 changemakers. 27M+ views. One purpose made human.',
     imgs: [
-      'case studies/Written Content/ABG x Brut India/ABG Brut India Title.png',
+      'case studies/Written Content/ABG x Brut India/ABG Brut India Title.webp',
     ],
     theme: 'dark',
     accent: '#6B3FA0',
@@ -37,7 +37,7 @@ const caseStudies: CaseStudyItem[] = [
     category: 'Brand Campaign',
     description: 'A question on KBC became a child’s shot at education.',
     imgs: [
-      'case studies/Written Content/ABG x KBC/ABG x KBC Title.png',
+      'case studies/Written Content/ABG x KBC/ABG x KBC Title.webp',
     ],
     theme: 'dark',
     accent: '#6B3FA0',
@@ -50,7 +50,7 @@ const caseStudies: CaseStudyItem[] = [
     category: 'Social Impact',
     description: 'Every four became a chance for 200+ children to train like cricketers.',
     imgs: [
-      'case studies/Written Content/Fours for good/Fours for good title.png',
+      'case studies/Written Content/Fours for good/Fours for good title.webp',
     ],
     theme: 'dark',
     accent: '#6B3FA0',
@@ -63,7 +63,7 @@ const caseStudies: CaseStudyItem[] = [
     category: 'SEO',
     description: 'B2B SEO that turned 1–2 leads a month into 45-50 qualified leads from buyers already searching.',
     imgs: [
-      'case studies/Written Content/Automag India/Automag SEO/Automag Title.jpg'
+      'case studies/Written Content/Automag India/Automag SEO/Automag Title.webp'
     ],
     theme: 'dark',
     accent: '#1a1a2e',
@@ -76,7 +76,7 @@ const caseStudies: CaseStudyItem[] = [
     category: 'Brand Film',
     description: 'The system worked. The film made buyers understand what changed in the Bajaj Auto plant.',
     imgs: [
-      'case studies/Written Content/Automag India/Automag x Bajaj Auto title.png',
+      'case studies/Written Content/Automag India/Automag x Bajaj Auto title.webp',
     ],
     theme: 'dark',
     accent: '#1a1a2e',
@@ -88,7 +88,7 @@ const caseStudies: CaseStudyItem[] = [
     client: 'HUL',
     category: 'Campaign Intelligence',
     description: 'Geo-targeted digital coupon campaign delivering 90% higher CTR and 12,548 landing page sessions.',
-    imgs: ['case studies/Written Content/HUL 1/HUL 1 Title.png'],
+    imgs: ['case studies/Written Content/HUL 1/HUL 1 Title.webp'],
     theme: 'dark',
     accent: '#6B3FA0',
     subLinks: [],
@@ -99,7 +99,7 @@ const caseStudies: CaseStudyItem[] = [
     client: 'Mastercard',
     category: 'Merchant Outreach',
     description: '90.9% merchant response rate through WhatsApp cluster-head outreach and real testimonial video.',
-    imgs: ['case studies/Written Content/Mastercard/Mastercard Title.png'],
+    imgs: ['case studies/Written Content/Mastercard/Mastercard Title.webp'],
     theme: 'light',
     accent: '#000000',
     subLinks: [],
@@ -110,7 +110,7 @@ const caseStudies: CaseStudyItem[] = [
     client: 'DMart',
     category: 'Digital-to-Store',
     description: '13.43 lakh unique reach and 53K clicks driving measurable in-store footfall across Pune.',
-    imgs: ['case studies/Written Content/Dmart/Dmart Title.png'],
+    imgs: ['case studies/Written Content/Dmart/Dmart Title.webp'],
     theme: 'light',
     accent: '#0F4C3A',
     subLinks: [],
@@ -121,7 +121,7 @@ const caseStudies: CaseStudyItem[] = [
     client: 'Uppercase',
     category: 'AI Video Production',
     description: 'A New Year brand film built entirely with AI — 5.49M plays, 868K+ views, 100K+ likes.',
-    imgs: ['case studies/Written Content/Uppercase/Uppercase Title.png'],
+    imgs: ['case studies/Written Content/Uppercase/Uppercase Title.webp'],
     theme: 'dark',
     accent: '#3D2200',
     subLinks: [],
@@ -132,7 +132,7 @@ const caseStudies: CaseStudyItem[] = [
     client: 'Laljee Godhoo',
     category: 'Brand Campaign',
     description: 'Celebrating the women who make Diwali feel alive for a 130-year-old heritage food brand.',
-    imgs: ['case studies/Written Content/LG/LG title.png'],
+    imgs: ['case studies/Written Content/LG/LG title.webp'],
     theme: 'dark',
     accent: '#aa3bff',
     subLinks: [],
@@ -143,7 +143,7 @@ const caseStudies: CaseStudyItem[] = [
     client: 'Qure.ai',
     category: 'Healthcare SEO',
     description: 'From a thin US presence to a search-led pipeline — 20 organic leads, 31% organic sessions, DA 46 to 49.',
-    imgs: ['case studies/Written Content/Qure.ai/QureAI Title.png'],
+    imgs: ['case studies/Written Content/Qure.ai/QureAI Title.webp'],
     theme: 'dark',
     accent: '#aa3bff',
     subLinks: [],
@@ -154,7 +154,7 @@ const caseStudies: CaseStudyItem[] = [
     client: 'ElectroMech',
     category: 'B2B Digital',
     description: '20x verified leads growth and 200% increase in first-page rankings through website restructuring and SEO.',
-    imgs: ['case studies/Written Content/ElectroMech/ElectroMech title.png'],
+    imgs: ['case studies/Written Content/ElectroMech/ElectroMech title.webp'],
     theme: 'dark',
     accent: '#aa3bff',
     subLinks: [],
@@ -262,14 +262,14 @@ const CaseStudiesPage: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/casestudies/" />
 <meta property="og:title" content="Client Success Stories | Impulse Digital Case Studies" />
 <meta property="og:description" content="Explore real client success stories from Impulse Digital’s digital marketing case studies across SEO, performance marketing, branding, and web strategy delivering measurable growth." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/Amazon%20EVP.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/Amazon%20EVP.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/casestudies/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Client Success Stories | Impulse Digital Case Studies" />
 <meta name="twitter:description" content="Explore real client success stories from Impulse Digital’s digital marketing case studies across SEO, performance marketing, branding, and web strategy delivering measurable growth." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/Amazon%20EVP.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/Amazon%20EVP.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
 

@@ -19,14 +19,14 @@ const ElectroMechCaseStudy: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/electromech/" />
 <meta property="og:title" content="ElectroMech Digital Transformation Case Study | 20× Lead Growth" />
 <meta property="og:description" content="Explore how Impulse Digital transformed ElectroMech’s digital ecosystem with SEO, website restructuring, and social media strategy, doubling first-page rankings, achieving 20× verified leads, and increasing engagement by 300%." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/electromech-website-revamp.png" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/electromech-website-revamp.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/casestudies/electromech/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="ElectroMech Digital Transformation Case Study | 20× Lead Growth" />
 <meta name="twitter:description" content="Explore how Impulse Digital transformed ElectroMech’s digital ecosystem with SEO, website restructuring, and social media strategy, doubling first-page rankings, achieving 20× verified leads, and increasing engagement by 300%." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/electromech-website-revamp.png" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/electromech-website-revamp.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <section className="cs-hero">
@@ -37,7 +37,7 @@ const ElectroMechCaseStudy: React.FC = () => {
       </section>
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/ElectroMech/ElectroMech title.png`} alt="ElectroMech website and SEO case study" />
+          <img src={`${base}case studies/Written Content/ElectroMech/ElectroMech title.webp`} alt="ElectroMech website and SEO case study" />
         </div>
       </div>
       <section className="cs-intro-block" id="warp-start">

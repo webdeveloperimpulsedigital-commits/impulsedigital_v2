@@ -26,7 +26,7 @@ const AutomagBajajAutoCaseStudy: React.FC = () => {
       </section>
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/Automag India/Automag x Bajaj Auto title.png`} alt="Automag conveyor system case study film for Bajaj Auto" />
+          <img src={`${base}case studies/Written Content/Automag India/Automag x Bajaj Auto title.webp`} alt="Automag conveyor system case study film for Bajaj Auto" />
         </div>
       </div>
       <section className="cs-intro-block" id="warp-start">

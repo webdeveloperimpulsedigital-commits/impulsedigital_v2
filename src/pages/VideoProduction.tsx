@@ -40,14 +40,14 @@ const VideoProduction: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/video-production/" />
 <meta property="og:title" content="Video Production Company in Mumbai | Production Agency | Impulse Digital" />
 <meta property="og:description" content="Impulse Digital is a leading video production company in Mumbai offering creative video production services in Mumbai for brands, campaigns, and corporate storytelling with measurable impact." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/video-production.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/video-production.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/services/video-production/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Video Production Company in Mumbai | Production Agency | Impulse Digital" />
 <meta name="twitter:description" content="Impulse Digital is a leading video production company in Mumbai offering creative video production services in Mumbai for brands, campaigns, and corporate storytelling with measurable impact." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/video-production.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/video-production.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       

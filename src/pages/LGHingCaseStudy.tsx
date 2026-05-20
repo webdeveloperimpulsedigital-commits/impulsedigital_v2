@@ -19,14 +19,14 @@ const LGHingCaseStudy: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/lg-hing/" />
 <meta property="og:title" content="LG Hing Brand Campaign Case Study: Empowering Women | Impulse Digital" />
 <meta property="og:description" content="Read how LG Hing’s purpose-driven Diwali campaign empowered women entrepreneurs and achieved 507K impressions with strong engagement." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/lg-hing-packshot.png" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/lg-hing-packshot.webp" />
 <meta property="og:url" content="http://theimpulsedigital.com/casestudies/laljee-godhoo/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="LG Hing Brand Campaign Case Study: Empowering Women | Impulse Digital" />
 <meta name="twitter:description" content="Read how LG Hing’s purpose-driven Diwali campaign empowered women entrepreneurs and achieved 507K impressions with strong engagement." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/lg-hing-packshot.png" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/lg-hing-packshot.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <section className="cs-hero">
@@ -37,7 +37,7 @@ const LGHingCaseStudy: React.FC = () => {
       </section>
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/LG/LG title.png`} alt="LG Hing Diwali campaign case study" />
+          <img src={`${base}case studies/Written Content/LG/LG title.webp`} alt="LG Hing Diwali campaign case study" />
         </div>
       </div>
       <section className="cs-intro-block" id="warp-start">

@@ -112,14 +112,14 @@ const ArcherAI: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/ai-marketing-systems/archer-ai/" />
 <meta property="og:title" content="Archer AI: AI Outbound Sales Agent | Impulse Digital" />
 <meta property="og:description" content="Meet Archer AI, a leading AI outbound sales agent. We build AI outbound agents that engage prospects with authentic conversations to drive real growth." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/services/services/archer-ai/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Archer AI: AI Outbound Sales Agent | Impulse Digital" />
 <meta name="twitter:description" content="Meet Archer AI, a leading AI outbound sales agent. We build AI outbound agents that engage prospects with authentic conversations to drive real growth." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 

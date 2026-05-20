@@ -162,14 +162,14 @@ const WebsiteDevelopment: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/website-development/" />
 <meta property="og:title" content="Website Design Company in Thane | Website Development | Impulse Digital" />
 <meta property="og:description" content="Impulse Digital is a trusted website development company in Thane delivering fast, scalable, and conversion-focused websites for growing businesses. We are also a leading website design company in Thane creating modern, user-friendly interfaces that enhance engagement & performance." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/services/website-development/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Website Design Company in Thane | Website Development | Impulse Digital" />
 <meta name="twitter:description" content="Impulse Digital is a trusted website development company in Thane delivering fast, scalable, and conversion-focused websites for growing businesses. We are also a leading website design company in Thane creating modern, user-friendly interfaces that enhance engagement & performance." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 

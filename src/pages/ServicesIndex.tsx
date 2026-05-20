@@ -202,14 +202,14 @@ const ServicesIndex: React.FC<ServicesIndexProps> = ({ categoryFilter }) => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/services/" />
 <meta property="og:title" content="Best Digital Marketing Services | Impulse Digital" />
 <meta property="og:description" content="Impulse Digital is known for the best digital marketing services in Mumbai, offers various services like  SEO, social media, PPC, web development, branding & employer‑branding to boost your online visibility." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/impulse-logo.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/services/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Best Digital Marketing Services | Impulse Digital" />
 <meta name="twitter:description" content="Impulse Digital is known for the best digital marketing services in Mumbai, offers various services like  SEO, social media, PPC, web development, branding & employer‑branding to boost your online visibility." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/impulse-logo.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
 

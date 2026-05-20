@@ -46,14 +46,14 @@ const PuneLocation: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/digital-marketing-agency-in-pune/" />
 <meta property="og:title" content="Best Digital Marketing Agency in Pune | SEO Company | Impulse Digital" />
 <meta property="og:description" content="Impulse Digital is the best digital marketing agency in Pune that helps you build your own online space. Do not Google for digital marketing solutions, just Impulse Digital. Cause even if do Google anything similar to best digital marketing company in Pune, the chances are high that you might land on this page." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/impulse-logo.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/digital-marketing-agency-in-pune/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Best Digital Marketing Agency in Pune | SEO Company | Impulse Digital" />
 <meta name="twitter:description" content="Impulse Digital is the best digital marketing agency in Pune that helps you build your own online space. Do not Google for digital marketing solutions, just Impulse Digital. Cause even if do Google anything similar to best digital marketing company in Pune, the chances are high that you might land on this page." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/impulse-logo.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/impulse-logo.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
 

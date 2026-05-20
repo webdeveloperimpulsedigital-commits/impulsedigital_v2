@@ -194,14 +194,14 @@ const GenerativeSearchOptimisation: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/ai-marketing-systems/generative-search-optimisation/" />
 <meta property="og:title" content="AI SEO Agency in India | Advanced AI SEO Service" />
 <meta property="og:description" content="Partner with a top AI SEO agency in Mumbai, India that delivers data-driven AI SEO services to boost organic rankings, enhance search visibility, and accelerate business growth with intelligent automation and strategic optimization. team helps us stand out from a cluster of digital marketing agencies in Mumbai. We are handling a plethora of clients which includes Amazon, HUL, OLA, Dmart, HDFC, and more big market giants." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/AI-SEO-Agency.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/AI-SEO-Agency.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="AI SEO Agency in India | Advanced AI SEO Service" />
 <meta name="twitter:description" content="Partner with a top AI SEO agency in Mumbai, India that delivers data-driven AI SEO services to boost organic rankings, enhance search visibility, and accelerate business growth with intelligent automation and strategic optimization. team helps us stand out from a cluster of digital marketing agencies in Mumbai. We are handling a plethora of clients which includes Amazon, HUL, OLA, Dmart, HDFC, and more big market giants." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/AI-SEO-Agency.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/AI-SEO-Agency.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 

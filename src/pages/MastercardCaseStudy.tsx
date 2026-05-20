@@ -19,14 +19,14 @@ const MastercardCaseStudy: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/mastercard/" />
 <meta property="og:title" content="Mastercard WhatsApp Marketing Case Study | 90.9% Merchant Response Rate" />
 <meta property="og:description" content="See how Mastercard used WhatsApp marketing and cluster-head influence to drive merchant engagement, achieving a 90.9% response rate and 101 product inquiries." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/14_mastercard.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/14_mastercard.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/casestudies/mastercard/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Mastercard WhatsApp Marketing Case Study | 90.9% Merchant Response Rate" />
 <meta name="twitter:description" content="See how Mastercard used WhatsApp marketing and cluster-head influence to drive merchant engagement, achieving a 90.9% response rate and 101 product inquiries." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/14_mastercard.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/14_mastercard.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <section className="cs-hero">
@@ -37,7 +37,7 @@ const MastercardCaseStudy: React.FC = () => {
       </section>
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/Mastercard/Mastercard Title.png`} alt="Mastercard WhatsApp-led merchant outreach case study" />
+          <img src={`${base}case studies/Written Content/Mastercard/Mastercard Title.webp`} alt="Mastercard WhatsApp-led merchant outreach case study" />
         </div>
       </div>
       <section className="cs-intro-block" id="warp-start">

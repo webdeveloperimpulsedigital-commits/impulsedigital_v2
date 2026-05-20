@@ -19,14 +19,14 @@ const DMartCaseStudy: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/dmart/" />
 <meta property="og:title" content="DMart Digital Campaign Case Study | Driving Store Footfall with Social Media" />
 <meta property="og:description" content="See how a targeted social media campaign helped DMart reach 13.43 lakh students in Pune and drive store visits for its Trendy College Wear sale." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/dmart-challenge.png" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/dmart-challenge.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/casestudies/d-mart/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="DMart Digital Campaign Case Study | Driving Store Footfall with Social Media" />
 <meta name="twitter:description" content="See how a targeted social media campaign helped DMart reach 13.43 lakh students in Pune and drive store visits for its Trendy College Wear sale." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/dmart-challenge.png" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/dmart-challenge.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <section className="cs-hero">
@@ -37,7 +37,7 @@ const DMartCaseStudy: React.FC = () => {
       </section>
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/Dmart/Dmart Title.png`} alt="DMart Campaign - Impulse Digital Marketing Case Study" />
+          <img src={`${base}case studies/Written Content/Dmart/Dmart Title.webp`} alt="DMart Campaign - Impulse Digital Marketing Case Study" />
         </div>
       </div>
       <section className="cs-intro-block" id="warp-start">

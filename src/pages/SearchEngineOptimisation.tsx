@@ -161,14 +161,14 @@ const SearchEngineOptimisation: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/" />
 <meta property="og:title" content="SEO Company in Thane | SEO Services | Impulse Digital" />
 <meta property="og:description" content="Impulse Digital is a trusted SEO company in Thane offering SEO services such as website audits, keyword research, link building and content strategy. Choose the best SEO agency in Thane for results." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta property="og:url" content="hhttps://www.theimpulsedigital.com/services/search-engine-optimization/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="SEO Company in Thane | SEO Services | Impulse Digital" />
 <meta name="twitter:description" content="Impulse Digital is a trusted SEO company in Thane offering SEO services such as website audits, keyword research, link building and content strategy. Choose the best SEO agency in Thane for results." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 

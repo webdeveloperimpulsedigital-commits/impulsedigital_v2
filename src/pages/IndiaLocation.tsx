@@ -46,7 +46,7 @@ const IndiaLocation: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/digital-marketing-agency-in-india/" />
 <meta property="og:title" content="Digital Marketing Agency in India | SEO Company | Impulse Digital" />
 <meta property="og:description" content="We as a Digital marketing agency in India are Handling plethora of clients which includes OLA, Amazon, HUL, HDFC, Dmart and more big market giants." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/impulse-usa-assets/img/industries.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/impulse-usa-assets/img/industries.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/digital-marketing-agency-in-india/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
@@ -54,7 +54,7 @@ const IndiaLocation: React.FC = () => {
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Digital Marketing Agency in India | SEO Company | Impulse Digital" />
 <meta name="twitter:description" content="We help businesses boost their online presence and growth." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/impulse-usa-assets/img/industries.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/impulse-usa-assets/img/industries.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
 

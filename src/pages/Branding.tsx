@@ -161,14 +161,14 @@ const Branding: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/branding/" />
 <meta property="og:title" content="Best Branding Agency & Company in Mumbai | Impulse Digital" />
 <meta property="og:description" content="Looking for the best branding agency in Mumbai? Impulse Digital is a premium & leading branding company in Mumbai, crafting authentic, human-centric brand identities." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/services/branding/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Best Branding Agency & Company in Mumbai | Impulse Digital" />
 <meta name="twitter:description" content="Looking for the best branding agency in Mumbai? Impulse Digital is a premium & leading branding company in Mumbai, crafting authentic, human-centric brand identities." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <ServiceHero 

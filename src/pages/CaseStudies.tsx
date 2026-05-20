@@ -12,9 +12,9 @@ const caseStudiesData = [
     category: "Brand Campaigns",
     description: "Three high-impact campaigns — a Brut India collaboration, cricket-driven social impact, and KBC-led purpose storytelling.",
     images: [
-      "/case studies/Written Content/ABG x Brut India/ABG Brut India Title.png",
-      "/case studies/Written Content/Fours for good/Fours for good title.png",
-      "/case studies/Written Content/ABG x KBC/ABG x KBC Title.png"
+      "/case studies/Written Content/ABG x Brut India/ABG Brut India Title.webp",
+      "/case studies/Written Content/Fours for good/Fours for good title.webp",
+      "/case studies/Written Content/ABG x KBC/ABG x KBC Title.webp"
     ],
     slug: "/case-studies/abg-brut-india"
   },
@@ -26,8 +26,8 @@ const caseStudiesData = [
     category: "SEO",
     description: "B2B SEO that turned 1–2 leads a month into 45+, and a brand film for Bajaj Auto.",
     images: [
-      "/case studies/Written Content/Automag India/Automag SEO/Automag Title.jpg",
-      "/case studies/Written Content/Automag India/Automag x Bajaj Auto title.png"
+      "/case studies/Written Content/Automag India/Automag SEO/Automag Title.webp",
+      "/case studies/Written Content/Automag India/Automag x Bajaj Auto title.webp"
     ],
     slug: "/case-studies/automag-india"
   },
@@ -36,7 +36,7 @@ const caseStudiesData = [
     title: "Healthcare AI SEO",
     category: "SEO",
     description: "Rebuilt Qure.ai’s US SEO structure from a one-page presence into a search-led system.",
-    images: ["/case studies/Written Content/Qure.ai/QureAI Title.png"],
+    images: ["/case studies/Written Content/Qure.ai/QureAI Title.webp"],
     slug: "/case-studies/qure-ai"
   },
   {
@@ -44,7 +44,7 @@ const caseStudiesData = [
     title: "Merchant Outreach",
     category: "Outreach",
     description: "90.9% merchant response rate through an AI-led WhatsApp cluster-head outreach strategy.",
-    images: ["/case studies/Written Content/Mastercard/Mastercard Title.png"],
+    images: ["/case studies/Written Content/Mastercard/Mastercard Title.webp"],
     slug: "/case-studies/mastercard"
   },
   {
@@ -52,7 +52,7 @@ const caseStudiesData = [
     title: "Digital Retail Transformation",
     category: "Growth Intelligence",
     description: "13.43 lakh unique reach and 53K clicks that drove measurable in-store footfall at scale.",
-    images: ["/case studies/Written Content/Dmart/Dmart Title.png"],
+    images: ["/case studies/Written Content/Dmart/Dmart Title.webp"],
     slug: "/case-studies/dmart"
   },
   {
@@ -60,7 +60,7 @@ const caseStudiesData = [
     title: "Sustainable Luggage",
     category: "AI Marketing Systems",
     description: "A complete brand film produced entirely with generative AI—script, visuals, voice, and edit.",
-    images: ["/case studies/Written Content/Uppercase/Uppercase Title.png"],
+    images: ["/case studies/Written Content/Uppercase/Uppercase Title.webp"],
     slug: "/case-studies/uppercase"
   },
   {
@@ -68,7 +68,7 @@ const caseStudiesData = [
     title: "Consumer Centricity",
     category: "Growth Intelligence",
     description: "Geo-targeted digital coupon campaign delivering 90% higher CTR and 12,548 landing page sessions.",
-    images: ["/case studies/Written Content/HUL 1/HUL 1 Title.png"],
+    images: ["/case studies/Written Content/HUL 1/HUL 1 Title.webp"],
     slug: "/case-studies/hul"
   },
   {
@@ -76,7 +76,7 @@ const caseStudiesData = [
     title: "LG Hing Diwali Campaign",
     category: "Purpose-Led Campaign",
     description: "Celebrating the women who make Diwali feel alive for a heritage food brand.",
-    images: ["/case studies/Written Content/LG/LG title.png"],
+    images: ["/case studies/Written Content/LG/LG title.webp"],
     slug: "/case-studies/lg-hing"
   },
   {
@@ -84,7 +84,7 @@ const caseStudiesData = [
     title: "Website & SEO",
     category: "Growth Intelligence",
     description: "Rebuilding digital visibility to capture verified global B2B leads.",
-    images: ["/case studies/Written Content/ElectroMech/ElectroMech title.png"],
+    images: ["/case studies/Written Content/ElectroMech/ElectroMech title.webp"],
     slug: "/case-studies/electromech"
   }
 ];

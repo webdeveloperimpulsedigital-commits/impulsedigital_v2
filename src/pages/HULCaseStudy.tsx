@@ -19,14 +19,14 @@ const HULCaseStudy: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/hul/" />
 <meta property="og:title" content="HUL FMCG Digital Campaign Success | Impulse Digital Case Study" />
 <meta property="og:description" content="Explore how Impulse Digital executed a geo-targeted digital coupon campaign for Hindustan Unilever Limited (HUL) across Pune and Delhi, driving 90% higher CTR, 41.8% more clicks, and 12.5K+ landing page sessions." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/hul-map.png" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/hul-map.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/casestudies/hul/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="HUL FMCG Digital Campaign Success | Impulse Digital Case Study" />
 <meta name="twitter:description" content="Explore how Impulse Digital executed a geo-targeted digital coupon campaign for Hindustan Unilever Limited (HUL) across Pune and Delhi, driving 90% higher CTR, 41.8% more clicks, and 12.5K+ landing page sessions." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/hul-map.png" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/hul-map.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       <section className="cs-hero">
@@ -37,7 +37,7 @@ const HULCaseStudy: React.FC = () => {
       </section>
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/HUL 1/HUL 1 Title.png`} alt="HUL FMCG coupon campaign - Impulse Digital Marketing Case Study" />
+          <img src={`${base}case studies/Written Content/HUL 1/HUL 1 Title.webp`} alt="HUL FMCG coupon campaign - Impulse Digital Marketing Case Study" />
         </div>
       </div>
       <section className="cs-intro-block" id="warp-start">

@@ -45,7 +45,7 @@ const Home: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/" />
 <meta property="og:title" content="Best Digital Marketing Agency in Mumbai | Impulse Digital" />
 <meta property="og:description" content="Impulse Digital is a top digital marketing agency in Mumbai that helps businesses expand their reach in the digital space with strategy, performance marketing, SEO, social media, content, and creative solutions." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com" />
 <meta property="og:type" content="website" />
       </Helmet>

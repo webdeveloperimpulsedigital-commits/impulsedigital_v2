@@ -574,14 +574,14 @@ const Careers: React.FC = () => {
 <link rel="canonical" href="https://www.theimpulsedigital.com/careers/" />
 <meta property="og:title" content="Careers at Impulse Digital" />
 <meta property="og:description" content="At Impulse Digital, we always look forward to hire creative minds. Check out our current openings and apply right away to be the part of Impulse Digital team." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta property="og:url" content="https://www.theimpulsedigital.com/careers/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Impulse Digital" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Careers at Impulse Digital" />
 <meta name="twitter:description" content="At Impulse Digital, we always look forward to hire creative minds. Check out our current openings and apply right away to be the part of Impulse Digital team." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.jpg" />
+<meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
       </Helmet>
       
@@ -890,25 +890,25 @@ const Careers: React.FC = () => {
 
           <div className="car-life-gallery" aria-label="Life at Impulse Digital">
             <figure className="car-life-img car-life-img-1">
-              <img src={`${import.meta.env.BASE_URL}images/Career Images/ChatGPT Image May 16, 2026, 10_17_32 AM (2).png`} alt="Impulse Digital Team Collaborating at Mumbai Office - Digital Marketing Agency" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL}images/Career Images/ChatGPT Image May 16, 2026, 10_17_32 AM (2).webp`} alt="Impulse Digital Team Collaborating at Mumbai Office - Digital Marketing Agency" loading="lazy" />
             </figure>
             <figure className="car-life-img car-life-img-2">
-              <img src={`${import.meta.env.BASE_URL}images/Career Images/ChatGPT Image May 16, 2026, 10_17_35 AM (5).png`} alt="Impulse Digital Team Collaborating at Mumbai Office - Digital Marketing Agency" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL}images/Career Images/ChatGPT Image May 16, 2026, 10_17_35 AM (5).webp`} alt="Impulse Digital Team Collaborating at Mumbai Office - Digital Marketing Agency" loading="lazy" />
             </figure>
             <figure className="car-life-img car-life-img-3">
-              <img src={`${import.meta.env.BASE_URL}images/Career Images/ChatGPT Image May 16, 2026, 10_17_37 AM (9).png`} alt="Impulse Digital Team Collaborating at Mumbai Office - Digital Marketing Agency" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL}images/Career Images/ChatGPT Image May 16, 2026, 10_17_37 AM (9).webp`} alt="Impulse Digital Team Collaborating at Mumbai Office - Digital Marketing Agency" loading="lazy" />
             </figure>
             <figure className="car-life-img car-life-img-4">
-              <img src={`${import.meta.env.BASE_URL}images/Career Images/ChatGPT Image May 16, 2026, 10_17_38 AM (10).png`} alt="Impulse Digital Team Collaborating at Mumbai Office - Digital Marketing Agency" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL}images/Career Images/ChatGPT Image May 16, 2026, 10_17_38 AM (10).webp`} alt="Impulse Digital Team Collaborating at Mumbai Office - Digital Marketing Agency" loading="lazy" />
             </figure>
             <figure className="car-life-img car-life-img-5">
-              <img src={`${import.meta.env.BASE_URL}images/Career Images/ChatGPT Image May 16, 2026, 11_16_44 AM (5).png`} alt="Impulse Digital Team Collaborating at Mumbai Office - Digital Marketing Agency" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL}images/Career Images/ChatGPT Image May 16, 2026, 11_16_44 AM (5).webp`} alt="Impulse Digital Team Collaborating at Mumbai Office - Digital Marketing Agency" loading="lazy" />
             </figure>
             <figure className="car-life-img car-life-img-6">
-              <img src={`${import.meta.env.BASE_URL}images/Career Images/ChatGPT Image May 16, 2026, 11_16_44 AM (6).png`} alt="Impulse Digital Team Collaborating at Mumbai Office - Digital Marketing Agency" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL}images/Career Images/ChatGPT Image May 16, 2026, 11_16_44 AM (6).webp`} alt="Impulse Digital Team Collaborating at Mumbai Office - Digital Marketing Agency" loading="lazy" />
             </figure>
             <figure className="car-life-img car-life-img-7">
-              <img src={`${import.meta.env.BASE_URL}images/Career Images/ChatGPT Image May 16, 2026, 11_16_44 AM (7).png`} alt="Impulse Digital Team Collaborating at Mumbai Office - Digital Marketing Agency" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL}images/Career Images/ChatGPT Image May 16, 2026, 11_16_44 AM (7).webp`} alt="Impulse Digital Team Collaborating at Mumbai Office - Digital Marketing Agency" loading="lazy" />
             </figure>
           </div>
         </div>
@@ -1053,9 +1053,12 @@ const Careers: React.FC = () => {
                 <span>Mumbai, India</span>
                 <span>4+ years</span>
               </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              <p>Craft scroll-stopping content, from engaging hooks to clear, fluff-free scripts and carousels.</p>
               <div className="car-job-actions">
-                <a className="car-job-apply-btn" href="mailto:hr@theimpulsedigital.com?subject=Social%20Media%20Content%20Writer">Apply</a>
+                <a className="car-job-apply-btn" href="#contact-form" onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                }}>Apply</a>
                 <button className="car-job-toggle" type="button" aria-expanded="false" aria-controls="job-social-writer" aria-label="Toggle Social Media Content Writer details">
                   <svg viewBox="0 0 10 6" aria-hidden="true" focusable="false">
                     <path d="M1 1L5 5L9 1" />
@@ -1064,22 +1067,29 @@ const Careers: React.FC = () => {
               </div>
             </div>
             <div className="car-job-details" id="job-social-writer">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet.</p>
+              <p>We are looking for a writer who understands how to adapt a single idea across platforms and industries without losing its punch.</p>
               <div className="car-job-detail-grid">
                 <div>
                   <h4>KEY RESPONSIBILITIES</h4>
                   <ul>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    <li>Praesent mauris fusce nec tellus sed augue semper porta.</li>
-                    <li>Curabitur sodales ligula in libero sed dignissim lacinia.</li>
+                    <li>Write Instagram captions, reel/video scripts, carousel content, and LinkedIn posts.</li>
+                    <li>Convert briefs into structured content formats.</li>
+                    <li>Adapt one idea into multiple formats (reel, carousel, LinkedIn).</li>
+                    <li>Work across industries like Corporate/B2B, BFSI, Education, and Consumer brands.</li>
+                    <li>Create engaging hooks and scroll-stopping content.</li>
+                    <li>Maintain clarity, structure, and avoid fluff.</li>
+                    <li>Take feedback and iterate quickly.</li>
                   </ul>
                 </div>
                 <div>
                   <h4>CANDIDATE REQUIREMENTS</h4>
                   <ul>
-                    <li>Class aptent taciti sociosqu ad litora torquent per conubia.</li>
-                    <li>Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in.</li>
-                    <li>Morbi lectus risus, iaculis vel, suscipit quis, luctus non.</li>
+                    <li>Strong English writing skills (clear, simple, engaging).</li>
+                    <li>Understanding of social media hooks and engagement patterns.</li>
+                    <li>Ability to structure short-form and medium-form content.</li>
+                    <li>Good grasp of platform tone (LinkedIn vs Instagram).</li>
+                    <li>Basic Hindi/Marathi understanding is a plus.</li>
+                    <li>Ability to follow briefs and adapt across industries.</li>
                   </ul>
                 </div>
               </div>
@@ -1095,39 +1105,47 @@ const Careers: React.FC = () => {
               </svg>
             </div>
             <div className="car-job-main">
-              <h3>SEO Executive</h3>
+              <h3>Social Media Intern</h3>
               <div className="car-job-tags">
-                <span>Full-time</span>
+                <span>Internship</span>
                 <span>Mumbai, India</span>
-                <span>2-3 years</span>
+                <span>Fresher</span>
               </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              <p>Kickstart your career by diving into real social campaigns, tracking trends, and creating content that gets noticed.</p>
               <div className="car-job-actions">
-                <a className="car-job-apply-btn" href="mailto:hr@theimpulsedigital.com?subject=SEO%20Executive">Apply</a>
-                <button className="car-job-toggle" type="button" aria-expanded="false" aria-controls="job-seo-executive" aria-label="Toggle SEO Executive details">
+                <a className="car-job-apply-btn" href="#contact-form" onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                }}>Apply</a>
+                <button className="car-job-toggle" type="button" aria-expanded="false" aria-controls="job-social-intern" aria-label="Toggle Social Media Intern details">
                   <svg viewBox="0 0 10 6" aria-hidden="true" focusable="false">
                     <path d="M1 1L5 5L9 1" />
                   </svg>
                 </button>
               </div>
             </div>
-            <div className="car-job-details" id="job-seo-executive">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet.</p>
+            <div className="car-job-details" id="job-social-intern">
+              <p>Bring your passion for social media. We will teach you the strategy behind the likes.</p>
               <div className="car-job-detail-grid">
                 <div>
                   <h4>KEY RESPONSIBILITIES</h4>
                   <ul>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    <li>Praesent mauris fusce nec tellus sed augue semper porta.</li>
-                    <li>Curabitur sodales ligula in libero sed dignissim lacinia.</li>
+                    <li>Researching, designing and execution of social media campaigns.</li>
+                    <li>Assisting in monthly calendars to promote brands on social media platforms.</li>
+                    <li>Track and analyze social media engagement for various brands and campaigns.</li>
+                    <li>Stay up-to date with social media trends and create trendy reels/media content for social media.</li>
+                    <li>Curate and assist in creating high-quality and relevant content such as blogs as well as creative copy for social media posts.</li>
+                    <li>Ideate and coordinate with in-house teams to ensure smooth designing of campaigns and social media promotions.</li>
+                    <li>Creative ideation with Account Managers and Social Media Strategists.</li>
                   </ul>
                 </div>
                 <div>
                   <h4>CANDIDATE REQUIREMENTS</h4>
                   <ul>
-                    <li>Class aptent taciti sociosqu ad litora torquent per conubia.</li>
-                    <li>Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in.</li>
-                    <li>Morbi lectus risus, iaculis vel, suscipit quis, luctus non.</li>
+                    <li>Passion for social media marketing and its best practices.</li>
+                    <li>Basic knowledge of Photoshop, Canva and other editing platforms.</li>
+                    <li>Excellent verbal and written communication skills.</li>
+                    <li>Ability to work collaboratively in a team environment.</li>
                   </ul>
                 </div>
               </div>
@@ -1147,11 +1165,14 @@ const Careers: React.FC = () => {
               <div className="car-job-tags">
                 <span>Full-time</span>
                 <span>Mumbai, India</span>
-                <span>1-2 years</span>
+                <span>2-3 years</span>
               </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              <p>Manage recruitment, onboarding, and employee relations to help build a culture that thrives on excellence.</p>
               <div className="car-job-actions">
-                <a className="car-job-apply-btn" href="mailto:hr@theimpulsedigital.com?subject=HR%20Executive">Apply</a>
+                <a className="car-job-apply-btn" href="#contact-form" onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                }}>Apply</a>
                 <button className="car-job-toggle" type="button" aria-expanded="false" aria-controls="job-hr-executive" aria-label="Toggle HR Executive details">
                   <svg viewBox="0 0 10 6" aria-hidden="true" focusable="false">
                     <path d="M1 1L5 5L9 1" />
@@ -1160,70 +1181,25 @@ const Careers: React.FC = () => {
               </div>
             </div>
             <div className="car-job-details" id="job-hr-executive">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet.</p>
+              <p>We need an organized, empathetic HR professional to manage the people who make our work possible.</p>
               <div className="car-job-detail-grid">
                 <div>
                   <h4>KEY RESPONSIBILITIES</h4>
                   <ul>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    <li>Praesent mauris fusce nec tellus sed augue semper porta.</li>
-                    <li>Curabitur sodales ligula in libero sed dignissim lacinia.</li>
+                    <li>Perform HR activities such as recruitment, onboarding, employee relations, performance management, and compensation and benefits.</li>
+                    <li>Execute HR policies and procedures.</li>
+                    <li>Monitor employee satisfaction and engagement.</li>
+                    <li>Collaborate with HR team for HR initiatives.</li>
+                    <li>Stay updated with HR trends and regulations.</li>
                   </ul>
                 </div>
                 <div>
                   <h4>CANDIDATE REQUIREMENTS</h4>
                   <ul>
-                    <li>Class aptent taciti sociosqu ad litora torquent per conubia.</li>
-                    <li>Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in.</li>
-                    <li>Morbi lectus risus, iaculis vel, suscipit quis, luctus non.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article className="car-job-card" data-job-card>
-            <div className="car-job-visual" aria-hidden="true">
-              <span className="car-job-index">04</span>
-              <svg className="car-job-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
-                <path className="car-job-mark-path"
-                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
-              </svg>
-            </div>
-            <div className="car-job-main">
-              <h3>Social Media Intern</h3>
-              <div className="car-job-tags">
-                <span>Internship</span>
-                <span>Mumbai, India</span>
-                <span>Fresher</span>
-              </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-              <div className="car-job-actions">
-                <a className="car-job-apply-btn" href="mailto:hr@theimpulsedigital.com?subject=Social%20Media%20Intern">Apply</a>
-                <button className="car-job-toggle" type="button" aria-expanded="false" aria-controls="job-social-intern" aria-label="Toggle Social Media Intern details">
-                  <svg viewBox="0 0 10 6" aria-hidden="true" focusable="false">
-                    <path d="M1 1L5 5L9 1" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div className="car-job-details" id="job-social-intern">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet.</p>
-              <div className="car-job-detail-grid">
-                <div>
-                  <h4>KEY RESPONSIBILITIES</h4>
-                  <ul>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    <li>Praesent mauris fusce nec tellus sed augue semper porta.</li>
-                    <li>Curabitur sodales ligula in libero sed dignissim lacinia.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>CANDIDATE REQUIREMENTS</h4>
-                  <ul>
-                    <li>Class aptent taciti sociosqu ad litora torquent per conubia.</li>
-                    <li>Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in.</li>
-                    <li>Morbi lectus risus, iaculis vel, suscipit quis, luctus non.</li>
+                    <li>1–2 years of HR experience.</li>
+                    <li>Good communication and coordination skills.</li>
+                    <li>Ability to manage multiple tasks.</li>
+                    <li>Basic understanding of HR processes.</li>
                   </ul>
                 </div>
               </div>
