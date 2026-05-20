@@ -101,7 +101,7 @@ const ServiceHero: React.FC<ServiceHeroProps> = ({ headlineParts, headlineAccent
               style={{ opacity: 0 }}
               onClick={(e) => handleSmoothScroll(e, btn.link)}
             >
-              <span className="btn-text">{btn.text}</span>
+              <span className="btn-text" dangerouslySetInnerHTML={{ __html: btn.text }} />
               <div className="btn-fill"></div>
             </a>
           ))}

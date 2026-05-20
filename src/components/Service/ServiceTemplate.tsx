@@ -46,7 +46,7 @@ export const ServiceProblem: React.FC<{ data: any }> = ({ data }) => {
         start: 'top bottom',
         end: 'top top',
         scrub: true,
-        animation: gsap.to(document.body, { backgroundColor: '#000000', immediateRender: false })
+        animation: gsap.fromTo(document.body, { backgroundColor: '#020018' }, { backgroundColor: '#000000', immediateRender: false })
       }));
       
       if (particlesMaterial) {
@@ -544,13 +544,13 @@ export const ServiceFinalCTA: React.FC<{ data: any }> = ({ data }) => {
         </svg>
       </div>
       <div className="container">
-        {data.headingFontSize && <style>{`.svc-final-cta .svc-final-cta-heading { font-size: ${data.headingFontSize} !important; }`}</style>}
+        {(data.headingFontSize || data.headingLineHeight) && <style>{`.svc-final-cta .svc-final-cta-heading { ${data.headingFontSize ? `font-size: ${data.headingFontSize} !important;` : ''} ${data.headingLineHeight ? `line-height: ${data.headingLineHeight} !important;` : ''} }`}</style>}
         <h2 className="split-text svc-final-cta-heading" dangerouslySetInnerHTML={{ __html: data.titleParts ? `${data.titleParts[0]}<span style="color: var(--impulse-violet);">${data.accent}</span>` : data.title || '' }} />
         <p className="svc-final-cta-body">{data.body}</p>
         <div className="svc-final-cta-actions">
           {(data.buttons || []).map((btn: any, i: number) => (
             <a key={i} href={btn.link || btn.url || '#'} className={`btn ${btn.primary ? 'btn-primary' : ''}`} data-cursor={btn.cursor || 'START'}>
-              <span className="btn-text">{btn.text}</span>
+              <span className="btn-text" dangerouslySetInnerHTML={{ __html: btn.text }} />
               <div className="btn-fill"></div>
             </a>
           ))}

@@ -82,8 +82,8 @@ const Hero: React.FC = () => {
           <p className="hero-desc" style={{ maxWidth: '850px', margin: '0 auto', visibility: 'hidden' }}>
             Impulse Digital helps enterprise teams turn scattered marketing data into AI-native growth intelligence they can actually act on.
           </p>
-          <Link to="/growth-intelligence/" className="hero-premium-cta" data-cursor="EXPLORE" style={{ opacity: 0 }}>
-            <span className="btn-text">See what your data is actually telling you</span>
+          <Link to="/growth-intelligence/" className="hero-premium-cta" data-cursor="EXPLORE" style={{ opacity: 0, marginTop: '2.5rem', marginBottom: '3rem' }}>
+            <span className="btn-text">FIND THE DECISIONS INSIDE YOUR DATA</span>
           </Link>
         </div>
       </div>

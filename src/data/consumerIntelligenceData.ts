@@ -113,6 +113,8 @@ export const consumerIntelligenceData = {
     ]
   },
   finalCta: {
+    headingFontSize: "clamp(2.8rem, 5vw, 5.5rem)",
+    headingLineHeight: "1.1",
     titleParts: ["Let the Consumer<br/>Shape Your<br/>", "Next Move."],
     accent: "Next Move.",
     body: "Tell us what decision you are trying to make. We will help you understand what your consumer needs, resists, trusts, and expects before you make it.",
