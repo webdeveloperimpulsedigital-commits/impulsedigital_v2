@@ -13,29 +13,30 @@
 
 
   # --------------------------------
-  # 2. REMOVE TRAILING SLASH (EXCEPT ROOT & FILES WITH EXTENSIONS)
+  # 2. LEGACY 301 REDIRECTS (OLD/SERVICES → NEW RESTORATIVE CANONICAL URLs)
   # --------------------------------
-  # /services/content-writing-services/ -> /services/content-writing-services
+  RewriteRule ^(?:services/)?search-engine-optimi[zs]ation/?$ https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/ [NC,R=301,L]
+  RewriteRule ^(?:services/search-engine-optimi[zs]ation/)?enterprise-seo-services?/?$ https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/enterprise-seo/ [NC,R=301,L]
+  RewriteRule ^(?:services/search-engine-optimi[zs]ation/)?ecommerce-seo-services?/?$ https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/ecommerce-seo/ [NC,R=301,L]
+  RewriteRule ^(?:services/search-engine-optimi[zs]ation/)?local-seo-services?/?$ https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/local-seo/ [NC,R=301,L]
+  RewriteRule ^(?:services/search-engine-optimi[zs]ation/)?b2b-seo-services?/?$ https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/b2b-seo/ [NC,R=301,L]
+  RewriteRule ^(?:services/)?social-media-marketing/?$ https://www.theimpulsedigital.com/brand-infrastructure/social-media-marketing/ [NC,R=301,L]
+  RewriteRule ^(?:services/)?website-development/?$ https://www.theimpulsedigital.com/brand-infrastructure/website-development/ [NC,R=301,L]
+  RewriteRule ^(?:services/performance-marketing|online-paid-advertising)/?$ https://www.theimpulsedigital.com/growth-intelligence/campaign-intelligence/ [NC,R=301,L]
+  RewriteRule ^(?:services/content-writing-services|content-marketing-services)/?$ https://www.theimpulsedigital.com/services/ [NC,R=301,L]
+  RewriteRule ^(?:services/)?branding-creative-services/?$ https://www.theimpulsedigital.com/brand-infrastructure/branding/ [NC,R=301,L]
+  RewriteRule ^(?:services/)?employer-branding-agency/?$ https://www.theimpulsedigital.com/brand-infrastructure/employer-branding/ [NC,R=301,L]
+  RewriteRule ^(?:services/)?social-media-video-production/?$ https://www.theimpulsedigital.com/brand-infrastructure/video-production/ [NC,R=301,L]
+
+  # --------------------------------
+  # 3. ADD TRAILING SLASH IF MISSING (FOR CANONICAL SEO & STATIC DIRECTORIES)
+  # --------------------------------
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_URI} !^/$
-  RewriteCond %{REQUEST_URI} !\.[^./]+$        # don't touch URLs with a file extension
-  RewriteRule ^(.+?)/$ /$1 [R=301,L]
-
-
-  # --------------------------------
-  # 3. LEGACY 301 REDIRECTS (OLD → NEW URLs)
-  # --------------------------------
-  RewriteRule ^search-engine-optimization/?$ https://www.theimpulsedigital.com/services/search-engine-optimization/ [R=301,L]
-  RewriteRule ^enterprise-seo-service/?$ https://www.theimpulsedigital.com/services/search-engine-optimization/enterprise-seo-services/ [R=301,L]
-  RewriteRule ^ecommerce-seo-service/?$ https://www.theimpulsedigital.com/services/search-engine-optimization/ecommerce-seo-services/ [R=301,L]
-  RewriteRule ^local-seo-service/?$ https://www.theimpulsedigital.com/services/search-engine-optimization/local-seo-services/ [R=301,L]
-  RewriteRule ^b2b-seo-service/?$ https://www.theimpulsedigital.com/services/search-engine-optimization/b2b-seo-services/ [R=301,L]
-  RewriteRule ^social-media-marketing/?$ https://www.theimpulsedigital.com/services/social-media-marketing/ [R=301,L]
-  RewriteRule ^website-development/?$ https://www.theimpulsedigital.com/services/website-development/ [R=301,L]
-  RewriteRule ^online-paid-advertising/?$ https://www.theimpulsedigital.com/services/performance-marketing/ [R=301,L]
-  RewriteRule ^content-marketing-services/?$ https://www.theimpulsedigital.com/services/content-writing-services/ [R=301,L]
-  RewriteRule ^branding-creative-services/?$ https://www.theimpulsedigital.com/services/branding-creative-services/ [R=301,L]
- RewriteRule ^employer-branding-agency/?$ https://www.theimpulsedigital.com/services/employer-branding-agency [R=301,L]
-  RewriteRule ^social-media-video-production/?$ https://www.theimpulsedigital.com/services/social-media-video-production/ [R=301,L]
+  RewriteCond %{REQUEST_URI} !(.*)/$
+  RewriteCond %{REQUEST_URI} !\.[^./]+$
+  RewriteRule ^(.*)$ /$1/ [R=301,L]
 
 
   # --------------------------------
