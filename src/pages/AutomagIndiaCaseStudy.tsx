@@ -6,7 +6,7 @@ const AutomagIndiaCaseStudy: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const isScrollingRef = useRef(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const scrollTimeoutRef = useRef<number | null>(null);
   const totalSlides = 7;
 
   useEffect(() => {

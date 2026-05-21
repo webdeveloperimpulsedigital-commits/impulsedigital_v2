@@ -144,7 +144,7 @@ const CaseStudyRow = ({ study, isReady }: { study: any, isReady: boolean }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const galleryRef = useRef<HTMLDivElement>(null);
   const isScrollingRef = useRef(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const scrollTimeoutRef = useRef<number | null>(null);
   const navigate = useNavigate();
 
   const handleHover = (index: number) => {
