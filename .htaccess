@@ -63,18 +63,22 @@
 
 
   # --------------------------------
-  # 6. REACT SPA ROUTING (FALLBACK TO index.html)
+  # 6. REACT SPA ROUTING (FALLBACK TO 200.html)
   # --------------------------------
-  # Don't rewrite the actual index.html file
-  RewriteRule ^index\.html$ - [L]
+  # Don't rewrite the actual index.html or 200.html file
+  RewriteRule ^(index|200)\.html$ - [L]
 
   # If the requested path is a real file or directory, serve it
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule . - [L]
 
-  # Otherwise, let React handle it
-  RewriteRule . /index.html [L]
+  # Serve prerendered index.html for directory routes without requiring a trailing slash
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f
+  RewriteRule ^(.*)$ /$1/index.html [L]
+
+  # Otherwise, let React handle it via the clean 200.html fallback
+  RewriteRule . /200.html [L]
 
 </IfModule>
 ########## END: REWRITE & REDIRECT RULES ##########
