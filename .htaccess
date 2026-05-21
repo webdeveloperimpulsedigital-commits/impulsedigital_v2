@@ -4,8 +4,9 @@
   RewriteBase /
 
   # --------------------------------
-  # 1. CANONICAL HOST (IP / non-www → www)
+  # 1. FORCE HTTPS & WWW CANONICAL HOST
   # --------------------------------
+  RewriteCond %{HTTPS} off [OR]
   RewriteCond %{HTTP_HOST} ^111\.118\.215\.65$ [NC,OR]
   RewriteCond %{HTTP_HOST} ^theimpulsedigital\.com$ [NC]
   RewriteCond %{REQUEST_URI} !^/\.well-known/
@@ -15,18 +16,26 @@
   # --------------------------------
   # 2. LEGACY 301 REDIRECTS (OLD/SERVICES → NEW RESTORATIVE CANONICAL URLs)
   # --------------------------------
+  # Specific Sub-Pages (Matched first to prevent parent path overlap)
+  RewriteRule ^(?:services/)?(?:video-production/)?ai-video-production/?$ https://www.theimpulsedigital.com/ai-marketing-systems/ai-video-production/ [NC,R=301,L]
+  RewriteRule ^(?:services/)?(?:search-engine-optimi[zs]ation/)?ai-seo-agency/?$ https://www.theimpulsedigital.com/ai-marketing-systems/generative-search-optimisation/ [NC,R=301,L]
+  RewriteRule ^(?:services/)?(?:search-engine-optimi[zs]ation/)?local-seo-services?/?$ https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/local-seo/ [NC,R=301,L]
+  RewriteRule ^(?:services/)?(?:search-engine-optimi[zs]ation/)?ecommerce-seo-services?/?$ https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/ecommerce-seo/ [NC,R=301,L]
+  RewriteRule ^(?:services/)?(?:search-engine-optimi[zs]ation/)?b2b-seo-services?/?$ https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/b2b-seo/ [NC,R=301,L]
+  RewriteRule ^(?:services/)?(?:search-engine-optimi[zs]ation/)?enterprise-seo-services?/?$ https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/enterprise-seo/ [NC,R=301,L]
+
+  # Parent & General Pages
+  RewriteRule ^(?:services/)?agentic-ai/?$ https://www.theimpulsedigital.com/ai-marketing-systems/agentic-ai/ [NC,R=301,L]
   RewriteRule ^(?:services/)?search-engine-optimi[zs]ation/?$ https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/ [NC,R=301,L]
-  RewriteRule ^(?:services/search-engine-optimi[zs]ation/)?enterprise-seo-services?/?$ https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/enterprise-seo/ [NC,R=301,L]
-  RewriteRule ^(?:services/search-engine-optimi[zs]ation/)?ecommerce-seo-services?/?$ https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/ecommerce-seo/ [NC,R=301,L]
-  RewriteRule ^(?:services/search-engine-optimi[zs]ation/)?local-seo-services?/?$ https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/local-seo/ [NC,R=301,L]
-  RewriteRule ^(?:services/search-engine-optimi[zs]ation/)?b2b-seo-services?/?$ https://www.theimpulsedigital.com/brand-infrastructure/search-engine-optimisation/b2b-seo/ [NC,R=301,L]
-  RewriteRule ^(?:services/)?social-media-marketing/?$ https://www.theimpulsedigital.com/brand-infrastructure/social-media-marketing/ [NC,R=301,L]
+  RewriteRule ^(?:services/)?social-media-(?:management|marketing)/?$ https://www.theimpulsedigital.com/brand-infrastructure/social-media-marketing/ [NC,R=301,L]
+  RewriteRule ^(?:services/)?(?:social-media-)?video-production/?$ https://www.theimpulsedigital.com/brand-infrastructure/video-production/ [NC,R=301,L]
   RewriteRule ^(?:services/)?website-development/?$ https://www.theimpulsedigital.com/brand-infrastructure/website-development/ [NC,R=301,L]
+  RewriteRule ^(?:services/)?employer-branding-agency/?$ https://www.theimpulsedigital.com/brand-infrastructure/employer-branding/ [NC,R=301,L]
+
+  # Other Legacy Redirects
   RewriteRule ^(?:services/performance-marketing|online-paid-advertising)/?$ https://www.theimpulsedigital.com/growth-intelligence/campaign-intelligence/ [NC,R=301,L]
   RewriteRule ^(?:services/content-writing-services|content-marketing-services)/?$ https://www.theimpulsedigital.com/services/ [NC,R=301,L]
   RewriteRule ^(?:services/)?branding-creative-services/?$ https://www.theimpulsedigital.com/brand-infrastructure/branding/ [NC,R=301,L]
-  RewriteRule ^(?:services/)?employer-branding-agency/?$ https://www.theimpulsedigital.com/brand-infrastructure/employer-branding/ [NC,R=301,L]
-  RewriteRule ^(?:services/)?social-media-video-production/?$ https://www.theimpulsedigital.com/brand-infrastructure/video-production/ [NC,R=301,L]
 
   # --------------------------------
   # 3. ADD TRAILING SLASH IF MISSING (FOR CANONICAL SEO & STATIC DIRECTORIES)
