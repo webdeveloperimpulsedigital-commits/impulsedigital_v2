@@ -561,6 +561,19 @@ const Careers: React.FC = () => {
     return () => {
       document.body.classList.remove('service-page', 'careers-page');
       document.body.style.backgroundColor = '';
+
+      if (window.ScrollTrigger) {
+        window.ScrollTrigger.getAll().forEach((t: any) => {
+          if (t.trigger && t.trigger.closest && t.trigger.closest('.careers-page-container')) {
+            t.kill();
+          }
+        });
+      }
+
+      if (window.gsap && (window as any).particlesMaterial) {
+        window.gsap.killTweensOf((window as any).particlesMaterial);
+        window.gsap.set((window as any).particlesMaterial, { opacity: 0.6 });
+      }
     };
   }, []);
 

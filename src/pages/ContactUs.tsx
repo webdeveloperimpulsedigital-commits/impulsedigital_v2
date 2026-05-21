@@ -115,6 +115,19 @@ const ContactUs: React.FC = () => {
         (hero as any)._cleanup();
       }
       clearInterval(waitForGsap);
+
+      if (window.ScrollTrigger) {
+        window.ScrollTrigger.getAll().forEach((t: any) => {
+          if (t.trigger && t.trigger.closest && t.trigger.closest('.contact-page-wrapper')) {
+            t.kill();
+          }
+        });
+      }
+
+      if (window.gsap && (window as any).particlesMaterial) {
+        window.gsap.killTweensOf((window as any).particlesMaterial);
+        window.gsap.set((window as any).particlesMaterial, { opacity: 0.6 });
+      }
     };
   }, []);
 

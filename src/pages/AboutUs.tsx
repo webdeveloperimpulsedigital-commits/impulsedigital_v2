@@ -283,6 +283,19 @@ const AboutUs: React.FC = () => {
     return () => {
       document.body.classList.remove('service-page', 'about-page');
       document.body.style.backgroundColor = '';
+
+      if (window.ScrollTrigger) {
+        window.ScrollTrigger.getAll().forEach((t: any) => {
+          if (t.trigger && t.trigger.closest && t.trigger.closest('.about-page-container')) {
+            t.kill();
+          }
+        });
+      }
+
+      if (window.gsap && window.particlesMaterial) {
+        window.gsap.killTweensOf(window.particlesMaterial);
+        window.gsap.set(window.particlesMaterial, { opacity: 0.6 });
+      }
     };
   }, []);
 

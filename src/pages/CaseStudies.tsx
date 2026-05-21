@@ -291,7 +291,13 @@ const CaseStudies: React.FC = () => {
       if ((window as any).particlesMaterial) {
         gsap.to((window as any).particlesMaterial, { opacity: 0.6, duration: 0 });
       }
-      ScrollTrigger.getAll().forEach((t: any) => t.kill());
+      if (window.ScrollTrigger) {
+        window.ScrollTrigger.getAll().forEach((t: any) => {
+          if (t.trigger && t.trigger.closest && t.trigger.closest('.work-wrapper')) {
+            t.kill();
+          }
+        });
+      }
     };
   }, []);
 

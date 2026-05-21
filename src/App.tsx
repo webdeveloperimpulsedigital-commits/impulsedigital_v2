@@ -128,7 +128,7 @@ const App: React.FC = () => {
       if ((window as any).THREE && (window as any).gsap && (window as any).ScrollTrigger && (window as any).SplitType) {
         const load = () => {
           const script = document.createElement('script');
-          script.src = `${import.meta.env.BASE_URL}js/script.js?v=57`; // bump version
+          script.src = `${import.meta.env.BASE_URL}js/script.js?v=58`; // bump version
           script.async = true;
           document.body.appendChild(script);
         };
