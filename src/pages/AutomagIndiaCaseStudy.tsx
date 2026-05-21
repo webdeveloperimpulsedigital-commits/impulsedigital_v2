@@ -5,6 +5,8 @@ import { initCaseStudyAnimations } from '../utils/caseStudyAnimations';
 const AutomagIndiaCaseStudy: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
+  const isScrollingRef = useRef(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const totalSlides = 7;
 
   useEffect(() => {
@@ -19,30 +21,82 @@ const AutomagIndiaCaseStudy: React.FC = () => {
 
   const handlePrev = () => {
     if (!trackRef.current) return;
-    const card = trackRef.current.querySelector('.cs-search-card') as HTMLElement;
-    if (card) {
-      trackRef.current.scrollBy({ left: -(card.offsetWidth + 20), behavior: 'smooth' });
+    
+    isScrollingRef.current = true;
+    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+    scrollTimeoutRef.current = setTimeout(() => {
+      isScrollingRef.current = false;
+    }, 600);
+    
+    const container = trackRef.current;
+    const children = Array.from(container.children) as HTMLElement[];
+    const prevIndex = Math.max(0, activeIndex - 1);
+    setActiveIndex(prevIndex);
+    
+    const slide = children[prevIndex];
+    if (slide) {
+      const containerRect = container.getBoundingClientRect();
+      const slideRect = slide.getBoundingClientRect();
+      const scrollPos = slideRect.left - containerRect.left + container.scrollLeft;
+      container.scrollTo({ left: scrollPos, behavior: 'smooth' });
     }
   };
 
   const handleNext = () => {
     if (!trackRef.current) return;
-    const card = trackRef.current.querySelector('.cs-search-card') as HTMLElement;
-    if (card) {
-      trackRef.current.scrollBy({ left: card.offsetWidth + 20, behavior: 'smooth' });
+    
+    isScrollingRef.current = true;
+    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+    scrollTimeoutRef.current = setTimeout(() => {
+      isScrollingRef.current = false;
+    }, 600);
+    
+    const container = trackRef.current;
+    const children = Array.from(container.children) as HTMLElement[];
+    const nextIndex = Math.min(totalSlides - 1, activeIndex + 1);
+    setActiveIndex(nextIndex);
+    
+    const slide = children[nextIndex];
+    if (slide) {
+      const containerRect = container.getBoundingClientRect();
+      const slideRect = slide.getBoundingClientRect();
+      const scrollPos = slideRect.left - containerRect.left + container.scrollLeft;
+      container.scrollTo({ left: scrollPos, behavior: 'smooth' });
     }
   };
 
   const handleScroll = () => {
+    if (isScrollingRef.current) return; // Prevent glitching the number during button clicks
     if (!trackRef.current) return;
-    const scrollLeft = trackRef.current.scrollLeft;
-    const card = trackRef.current.querySelector('.cs-search-card') as HTMLElement;
-    if (card) {
-      const cardW = card.offsetWidth + 20; // CSS gap is ~1.25rem = 20px
-      const newIndex = Math.round(scrollLeft / cardW);
-      if (newIndex >= 0 && newIndex < totalSlides) {
-        setActiveIndex(newIndex);
+    const container = trackRef.current;
+    const children = Array.from(container.children) as HTMLElement[];
+    const containerRect = container.getBoundingClientRect();
+    
+    const isAtEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 10;
+    if (isAtEnd) {
+      if (activeIndex !== totalSlides - 1) {
+        setActiveIndex(totalSlides - 1);
       }
+      return;
+    }
+    
+    let maxVisibleWidth = 0;
+    let mostVisibleIndex = 0;
+    
+    children.forEach((child, index) => {
+      const childRect = child.getBoundingClientRect();
+      const visibleLeft = Math.max(childRect.left, containerRect.left);
+      const visibleRight = Math.min(childRect.right, containerRect.right);
+      const visibleWidth = Math.max(0, visibleRight - visibleLeft);
+      
+      if (visibleWidth > maxVisibleWidth) {
+        maxVisibleWidth = visibleWidth;
+        mostVisibleIndex = index;
+      }
+    });
+    
+    if (mostVisibleIndex !== activeIndex) {
+      setActiveIndex(mostVisibleIndex);
     }
   };
 

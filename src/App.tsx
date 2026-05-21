@@ -41,6 +41,11 @@ const ABGKBCCaseStudy = lazy(() => import('./pages/ABGKBCCaseStudy'));
 const AutomagBajajAutoCaseStudy = lazy(() => import('./pages/AutomagBajajAutoCaseStudy'));
 const AutomagIndiaCaseStudy = lazy(() => import('./pages/AutomagIndiaCaseStudy'));
 const EmployerBrandingCaseStudy = lazy(() => import('./pages/EmployerBrandingCaseStudy'));
+const SaltCaseStudy = lazy(() => import('./pages/SaltCaseStudy'));
+const TataSoulfullCaseStudy = lazy(() => import('./pages/TataSoulfullCaseStudy'));
+const TcplCaseStudy = lazy(() => import('./pages/TcplCaseStudy'));
+const ChingsKurkureCaseStudy = lazy(() => import('./pages/ChingsKurkureCaseStudy'));
+const ChingsFoodfarmerCaseStudy = lazy(() => import('./pages/ChingsFoodfarmerCaseStudy'));
 import { useLocation } from 'react-router-dom';
 const Careers = lazy(() => import('./pages/Careers'));
 const ContactUs = lazy(() => import('./pages/ContactUs'));
@@ -196,6 +201,11 @@ const App: React.FC = () => {
         <Route path="/case-studies/automag-bajaj-auto/" element={<AutomagBajajAutoCaseStudy />} />
         <Route path="/case-studies/automag-india/" element={<AutomagIndiaCaseStudy />} />
         <Route path="/case-studies/employer-branding/" element={<EmployerBrandingCaseStudy />} />
+        <Route path="/case-studies/shaking-things-up/" element={<SaltCaseStudy />} />
+        <Route path="/case-studies/tata-soulfull/" element={<TataSoulfullCaseStudy />} />
+        <Route path="/case-studies/tcpl/" element={<TcplCaseStudy />} />
+        <Route path="/case-studies/chings-kurkure/" element={<ChingsKurkureCaseStudy />} />
+        <Route path="/case-studies/chings-foodfarmer/" element={<ChingsFoodfarmerCaseStudy />} />
         <Route path="/careers/" element={<Careers />} />
         <Route path="/contact-us/" element={<ContactUs />} />
         <Route path="/thank-you/" element={<ThankYou />} />

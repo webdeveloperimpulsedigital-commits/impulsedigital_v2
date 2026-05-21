@@ -5,6 +5,48 @@ import { Helmet } from 'react-helmet-async';
 
 const caseStudiesData = [
   {
+    client: "Tata Soulfull",
+    title: "The Next Bite",
+    category: "Brand Research",
+    description: "Decoding what drives trial, repeat purchase, and how the category could stretch from functional fuel to mainstream snacking.",
+    images: ["/images/case-study-image/tata-soulfull/Generated image 1.png"],
+    slug: "/case-studies/tata-soulfull"
+  },
+  {
+    client: "Tata Consumer Products",
+    subNames: ["Shaking Things Up", "What Should Travel"],
+    subDescriptions: [
+      "A mature staple category began showing early signals of transformation, with consumers moving beyond price and habit toward health and premium cues.",
+      "Identifying which products had the strongest market readiness, portfolio fit, and repeatable demand potential for Australia and the US."
+    ],
+    subSlugs: ["/case-studies/shaking-things-up", "/case-studies/tcpl"],
+    title: "Category Growth & Market Expansion",
+    category: "Brand Research",
+    description: "Decoding category transformation for staple ingredients and mapping diaspora demand to market launch.",
+    images: [
+      "/images/case-study-image/salt/shaking-things-up.png",
+      "/images/case-study-image/tcpl/AUS_us.png"
+    ],
+    slug: "/case-studies/shaking-things-up"
+  },
+  {
+    client: "Ching's Secret",
+    subNames: ["The Chatpata Test (Ching's × Kurkure)", "The Reputation Radar (Food Pharmer)"],
+    subDescriptions: [
+      "Decoding public response across search and social, reading sentiment, flavour expectations, celebrity impact, and brand recall signals.",
+      "A command-center approach tracked sentiment, platform narratives, creator influence, and reputational risk signals."
+    ],
+    subSlugs: ["/case-studies/chings-kurkure", "/case-studies/chings-foodfarmer"],
+    title: "Consumer Response & Reputation",
+    category: "Brand Monitoring",
+    description: "Decoding public response to a major brand collaboration and monitoring consumer pulse to manage reputational risk.",
+    images: [
+      "/images/case-study-image/chings- kurkure/CHing+Kurkure.png",
+      "/images/case-study-image/chings-foodfarmer/Foodfarmer.png"
+    ],
+    slug: "/case-studies/chings-kurkure"
+  },
+  {
     client: "Mastercard",
     title: "Merchant Outreach",
     category: "Outreach",
@@ -101,15 +143,25 @@ const caseStudiesData = [
 const CaseStudyRow = ({ study, isReady }: { study: any, isReady: boolean }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const galleryRef = useRef<HTMLDivElement>(null);
+  const isScrollingRef = useRef(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const navigate = useNavigate();
 
   const handleHover = (index: number) => {
     setActiveIndex(index);
     if (galleryRef.current) {
+      isScrollingRef.current = true;
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = setTimeout(() => {
+        isScrollingRef.current = false;
+      }, 600); // Wait for smooth scroll to finish
+
       const slide = galleryRef.current.children[index] as HTMLElement;
       if (slide) {
-        // Calculate the exact scroll position relative to the container
-        const scrollPos = slide.offsetLeft - galleryRef.current.offsetLeft;
+        const containerRect = galleryRef.current.getBoundingClientRect();
+        const slideRect = slide.getBoundingClientRect();
+        const scrollPos = slideRect.left - containerRect.left + galleryRef.current.scrollLeft;
+        
         galleryRef.current.scrollTo({
           left: scrollPos,
           behavior: 'smooth'
@@ -119,22 +171,42 @@ const CaseStudyRow = ({ study, isReady }: { study: any, isReady: boolean }) => {
   };
 
   const handleScroll = () => {
+    if (isScrollingRef.current) return; // Prevent glitching the number during button clicks
+
     if (galleryRef.current) {
       const container = galleryRef.current;
-      const scrollLeft = container.scrollLeft;
       const children = Array.from(container.children) as HTMLElement[];
-      let closestIndex = 0;
-      let minDiff = Infinity;
+      const containerRect = container.getBoundingClientRect();
+      
+      // If we've scrolled to the very end, force the last item as active
+      // Added a larger buffer of 10px to guarantee the end detection works across all browsers
+      const isAtEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 10;
+      if (isAtEnd) {
+        if (activeIndex !== children.length - 1) {
+          setActiveIndex(children.length - 1);
+        }
+        return;
+      }
+      
+      let maxVisibleWidth = 0;
+      let mostVisibleIndex = 0;
+      
       children.forEach((child, index) => {
-        // Find which child is closest to the left edge
-        const diff = Math.abs(child.offsetLeft - container.offsetLeft - scrollLeft);
-        if (diff < minDiff) {
-          minDiff = diff;
-          closestIndex = index;
+        const childRect = child.getBoundingClientRect();
+        
+        // Calculate how much of the slide is currently visible within the container's bounds
+        const visibleLeft = Math.max(childRect.left, containerRect.left);
+        const visibleRight = Math.min(childRect.right, containerRect.right);
+        const visibleWidth = Math.max(0, visibleRight - visibleLeft);
+        
+        if (visibleWidth > maxVisibleWidth) {
+          maxVisibleWidth = visibleWidth;
+          mostVisibleIndex = index;
         }
       });
-      if (closestIndex !== activeIndex) {
-        setActiveIndex(closestIndex);
+      
+      if (mostVisibleIndex !== activeIndex) {
+        setActiveIndex(mostVisibleIndex);
       }
     }
   };
@@ -408,10 +480,11 @@ const CaseStudies: React.FC = () => {
         <div className="work-container">
           <div className="work-hero-content">
             <h1 className="work-hero-title" style={{ visibility: 'hidden' }}>
-              Case <span style={{ color: '#aa3bff' }}>Studies.</span>
+              The Work <br />
+              <span style={{ whiteSpace: 'nowrap', color: '#aa3bff' }}>Behind the Numbers.</span>
             </h1>
             <p className="work-hero-desc" style={{ visibility: 'hidden' }}>
-              Discover how we build brand infrastructure and engineer growth for the world's most ambitious companies.
+              The final number is never the full story. The real story is what had to be questioned, rebuilt, sharpened and pushed before the result had a chance to happen.
             </p>
           </div>
         </div>
@@ -456,7 +529,7 @@ const CaseStudies: React.FC = () => {
         }
 
         .work-hero-content {
-          max-width: 1000px;
+          max-width: 1400px;
           margin: 0 auto;
           display: flex;
           flex-direction: column;
@@ -470,7 +543,7 @@ const CaseStudies: React.FC = () => {
           letter-spacing: -0.05em;
           line-height: 0.95;
           margin-bottom: 2rem;
-          text-transform: uppercase;
+          text-transform: none;
         }
 
         .work-hero-desc {

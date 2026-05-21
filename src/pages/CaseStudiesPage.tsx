@@ -18,6 +18,17 @@ type CaseStudyItem = {
 
 const caseStudies: CaseStudyItem[] = [
   {
+    id: 99,
+    client: 'Shaking Things Up',
+    category: 'Brand Research',
+    description: 'A mature staple category began showing early signals of transformation, with consumers moving beyond price and habit toward health, premium cues, provenance, and benefit-led choices.',
+    imgs: ['images/case-study-image/salt/shaking-things-up.png'],
+    theme: 'light',
+    accent: '#0F4C3A',
+    subLinks: [],
+    primaryLink: '/case-studies/shaking-things-up',
+  },
+  {
     id: 4,
     client: 'Mastercard',
     category: 'Merchant Outreach',
