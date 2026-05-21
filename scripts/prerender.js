@@ -48,6 +48,7 @@ const routes = [
   '/case-studies/employer-branding/',
   '/careers/',
   '/contact-us/',
+  '/thank-you/',
   '/digital-marketing-agency-in-india/',
   '/digital-marketing-agency-in-thane/',
   '/digital-marketing-agency-in-navi-mumbai/',

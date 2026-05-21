@@ -44,6 +44,7 @@ const EmployerBrandingCaseStudy = lazy(() => import('./pages/EmployerBrandingCas
 import { useLocation } from 'react-router-dom';
 const Careers = lazy(() => import('./pages/Careers'));
 const ContactUs = lazy(() => import('./pages/ContactUs'));
+const ThankYou = lazy(() => import('./pages/ThankYou'));
 const IndiaLocation = lazy(() => import('./pages/IndiaLocation'));
 const ThaneLocation = lazy(() => import('./pages/ThaneLocation'));
 const NaviMumbaiLocation = lazy(() => import('./pages/NaviMumbaiLocation'));
@@ -197,6 +198,7 @@ const App: React.FC = () => {
         <Route path="/case-studies/employer-branding/" element={<EmployerBrandingCaseStudy />} />
         <Route path="/careers/" element={<Careers />} />
         <Route path="/contact-us/" element={<ContactUs />} />
+        <Route path="/thank-you/" element={<ThankYou />} />
         <Route path="/digital-marketing-agency-in-india/" element={<IndiaLocation />} />
         <Route path="/digital-marketing-agency-in-thane/" element={<ThaneLocation />} />
         <Route path="/digital-marketing-agency-in-navi-mumbai/" element={<NaviMumbaiLocation />} />

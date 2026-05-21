@@ -856,3 +856,131 @@
         min-height: auto;
     }
 }
+
+/* ============================================================
+   THANK YOU PAGE
+   ============================================================ */
+.thank-you-page {
+    position: relative;
+    background-color: transparent;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 6rem 2rem;
+}
+
+.thank-you-hero {
+    position: relative;
+    z-index: 2;
+    width: min(800px, 100%);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.thank-you-glow {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(300px, 60vw, 600px);
+    height: clamp(300px, 60vw, 600px);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(138, 92, 246, 0.15) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.thank-you-mark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(280px, 50vw, 520px);
+    aspect-ratio: 1;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 1;
+    filter: drop-shadow(0 0 40px rgba(138, 92, 246, 0.2));
+}
+
+.thank-you-mark svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--impulse-violet);
+}
+
+.thank-you-container {
+    position: relative;
+    z-index: 3;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.5rem);
+    border: 1px solid rgba(138, 92, 246, 0.25);
+    border-radius: 4px 32px 4px 32px;
+    background: linear-gradient(180deg, rgba(84, 61, 152, 0.08), rgba(2, 0, 24, 0.45));
+    backdrop-filter: blur(12px);
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.thank-you-badge {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid rgba(138, 92, 246, 0.4);
+    border-radius: 999px;
+    background: rgba(138, 92, 246, 0.06);
+    margin-bottom: 2rem;
+}
+
+.thank-you-badge span {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgb(188, 178, 255);
+}
+
+.thank-you-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 6vw, 4.8rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 1.8rem;
+}
+
+.thank-you-text p {
+    font-family: var(--font-body);
+    font-size: clamp(1.02rem, 1.2vw, 1.2rem);
+    line-height: 1.6;
+    color: rgba(245, 245, 247, 0.76);
+    margin-bottom: 0.8rem;
+}
+
+.thank-you-text p:last-child {
+    margin-bottom: 0;
+}
+
+.thank-you-cta {
+    margin-top: 3rem;
+}
+
+@media (max-width: 640px) {
+    .thank-you-page {
+        padding: 5rem 1.2rem;
+    }
+    .thank-you-container {
+        padding: 2.5rem 1.5rem;
+    }
+}
+
