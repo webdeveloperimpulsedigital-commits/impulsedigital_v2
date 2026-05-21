@@ -141,18 +141,29 @@ const server = app.listen(PORT, async () => {
       // Remove the dynamically injected script.js tag so it doesn't execute twice/early on client load
       html = html.replace(/<script[^>]*src="[^"]*js\/script\.js[^"]*"[^>]*><\/script>/gi, '');
 
-      // Clean up duplicate SEO tags (React Helmet prepends its tags, so we keep the first one)
+      // Clean up duplicate SEO tags and ensure they match React 19's native layout (without data-rh="true" attributes)
       let titleCount = 0;
-      html = html.replace(/<title[^>]*>.*?<\/title>/gi, (match) => {
+      html = html.replace(/<title[^>]*>(.*?)<\/title>/gi, (match, content) => {
         titleCount++;
-        return titleCount === 1 ? match : '';
+        return titleCount === 1 ? `<title>${content}</title>` : '';
       });
 
       let canonicalCount = 0;
-      html = html.replace(/<link[^>]*rel=["']canonical["'][^>]*>/gi, (match) => {
+      html = html.replace(/<link([^>]*rel=["']canonical["'][^>]*)>/gi, (match, attrs) => {
         canonicalCount++;
-        return canonicalCount === 1 ? match : '';
+        if (canonicalCount === 1) {
+          const cleanAttrs = attrs.replace(/\s*data-rh=["']true["']/gi, '').trim();
+          return `<link ${cleanAttrs}>`;
+        }
+        return '';
       });
+
+      // Ensure meta tags managed by React 19 have no data-rh="true" to prevent client hydration mismatch
+      html = html.replace(/<meta([^>]*?(?:name|property)=["'](?:description|keywords|robots|og:|twitter:)[^>]*?)>/gi, (match, attrs) => {
+        const cleanAttrs = attrs.replace(/\s*data-rh=["']true["']/gi, '').trim();
+        return `<meta ${cleanAttrs}>`;
+      });
+
 
       const routeDir = path.join(DIST_DIR, route === '/' ? '' : route);
       if (!fs.existsSync(routeDir)) {
