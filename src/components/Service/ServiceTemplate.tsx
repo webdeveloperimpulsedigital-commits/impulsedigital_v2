@@ -5,12 +5,13 @@ import ServiceHandoff from './ServiceHandoff';
 import Logos from '../Logos';
 import Testimonials from '../Testimonials';
 import Contact from '../Contact';
+import { useServicePageBackground } from '../../hooks/useServicePageBackground';
 
 const { ScrollTrigger } = window as any;
 
 export const ServiceProblem: React.FC<{ data: any }> = ({ data }) => {
   useEffect(() => {
-    const { gsap, ScrollTrigger, particlesMaterial } = window as any;
+    const { gsap, ScrollTrigger } = window as any;
     if (!gsap || !ScrollTrigger) return;
     
     const triggers: any[] = [];
@@ -37,35 +38,8 @@ export const ServiceProblem: React.FC<{ data: any }> = ({ data }) => {
           });
         }
       }));
-    }
-
-    const cosmosTrigger = document.querySelector('#warp-start');
-    if (cosmosTrigger) {
-      triggers.push(ScrollTrigger.create({
-        trigger: cosmosTrigger,
-        start: 'top bottom',
-        end: 'top top',
-        scrub: true,
-        animation: gsap.fromTo(document.body, { backgroundColor: '#020018' }, { backgroundColor: '#000000', immediateRender: false })
-      }));
-      
-      if (particlesMaterial) {
-        triggers.push(ScrollTrigger.create({
-          trigger: cosmosTrigger,
-          start: 'top 80%',
-          end: 'top 20%',
-          scrub: true,
-          animation: gsap.fromTo(particlesMaterial, { opacity: 0.7 }, { opacity: 0, immediateRender: false })
-        }));
-      }
-    }
-
-    return () => {
+    }    return () => {
       triggers.forEach(t => t.kill());
-      gsap.set(document.body, { clearProps: 'backgroundColor' });
-      if (particlesMaterial) {
-        gsap.set(particlesMaterial, { opacity: 0.7 });
-      }
     };
   }, []);
 
@@ -738,9 +712,9 @@ export const ServiceStats: React.FC<{ data: any }> = ({ data }) => {
 };
 
 export const ServiceTemplate: React.FC<{ data: any }> = ({ data }) => {
+  useServicePageBackground();
+
   useEffect(() => {
-    document.body.classList.add('service-page');
-    
     const { gsap, ScrollTrigger, SplitType } = window as any;
     if (gsap && ScrollTrigger && SplitType) {
       setTimeout(() => {
@@ -767,8 +741,6 @@ export const ServiceTemplate: React.FC<{ data: any }> = ({ data }) => {
         ScrollTrigger.refresh();
       }, 100);
     }
-
-    return () => document.body.classList.remove('service-page');
   }, [data]);
 
   return (

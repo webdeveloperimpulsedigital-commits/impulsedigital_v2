@@ -25,7 +25,7 @@ const QureAICaseStudy: React.FC = () => {
       </section>
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/Qure.ai/QureAI Title.webp`} alt="Qure.ai healthcare AI SEO case study" />
+          <img src={`${base}case studies/Written Content/Qure.ai/QureAI Title.webp`} alt="Qure.ai healthcare AI SEO case study" fetchPriority="high" decoding="async" />
         </div>
       </div>
       <section className="cs-intro-block" id="warp-start">
@@ -106,7 +106,7 @@ const QureAICaseStudy: React.FC = () => {
       </section>
       <section className="cs-proof-module">
         <div className="cs-proof-media gsap-fade-up">
-          <img src={`${base}case studies/Written Content/Qure.ai/Supporting 1.webp`} alt="Qure.ai diagnostic scan interface with AI overlay - Impulse Digital Marketing Case Study" />
+          <img src={`${base}case studies/Written Content/Qure.ai/Supporting 1.webp`} alt="Qure.ai diagnostic scan interface with AI overlay - Impulse Digital Marketing Case Study" loading="lazy" decoding="async" />
         </div>
         <div className="cs-proof-copy">
           <h2 className="cs-proof-title split-text">The content had to respect the product reality.</h2>
@@ -149,7 +149,7 @@ const QureAICaseStudy: React.FC = () => {
           <p className="cs-proof-text split-text">The Google Analytics view showed the movement behind the result: organic sessions increased, engaged sessions improved, engagement rate rose, and bounce rate dropped.</p>
         </div>
         <div className="cs-proof-media gsap-fade-up">
-          <img src={`${base}case studies/Written Content/Qure.ai/Supporting 2.webp`} alt="Qure.ai Google Analytics traffic and engagement performance - Impulse Digital Marketing Case Study" />
+          <img src={`${base}case studies/Written Content/Qure.ai/Supporting 2.webp`} alt="Qure.ai Google Analytics traffic and engagement performance - Impulse Digital Marketing Case Study" loading="lazy" decoding="async" />
         </div>
       </section>
       <section className="cs-final">

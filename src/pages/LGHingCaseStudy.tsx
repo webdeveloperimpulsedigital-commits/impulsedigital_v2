@@ -37,7 +37,7 @@ const LGHingCaseStudy: React.FC = () => {
       </section>
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/LG/LG title.webp`} alt="LG Hing Diwali campaign case study" />
+          <img src={`${base}case studies/Written Content/LG/LG title.webp`} alt="LG Hing Diwali campaign case study" fetchPriority="high" decoding="async" />
         </div>
       </div>
       <section className="cs-intro-block" id="warp-start">

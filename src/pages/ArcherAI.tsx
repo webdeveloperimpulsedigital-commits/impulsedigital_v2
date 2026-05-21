@@ -5,6 +5,7 @@ import ServiceHandoff from '../components/Service/ServiceHandoff';
 import Logos from '../components/Logos';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
+import { useServicePageBackground } from '../hooks/useServicePageBackground';
 
 import {
   ServiceProblem,
@@ -19,10 +20,7 @@ import {
 import { archerAiData } from '../data/archerAiData';
 
 const ArcherAI: React.FC = () => {
-  useEffect(() => {
-    document.body.classList.add('service-page');
-    return () => document.body.classList.remove('service-page');
-  }, []);
+  useServicePageBackground();
 
   useEffect(() => {
     const { gsap } = window as any;

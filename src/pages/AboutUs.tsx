@@ -679,7 +679,7 @@ const AboutUs: React.FC = () => {
                 </svg>
               </div>
               <div className="ab-founder-portrait" data-portrait>
-                <img src={`${import.meta.env.BASE_URL}images/About%20Us/Adwait-cutout-v2.webp`} alt="Adwait Joshi - Founder and CEO of Impulse Digital Marketing Agency" />
+                <img src={`${import.meta.env.BASE_URL}images/About%20Us/Adwait-cutout-v2.webp`} alt="Adwait Joshi - Founder and CEO of Impulse Digital Marketing Agency" loading="lazy" decoding="async" />
               </div>
             </div>
             <div className="ab-founder-copy-wrap">
@@ -711,7 +711,7 @@ const AboutUs: React.FC = () => {
                 </svg>
               </div>
               <div className="ab-founder-portrait" data-portrait>
-                <img src={`${import.meta.env.BASE_URL}images/About%20Us/Abhishek-cutout-v2.webp`} alt="Abhishek Arekar - Co-Founder of Impulse Digital Marketing Agency" />
+                <img src={`${import.meta.env.BASE_URL}images/About%20Us/Abhishek-cutout-v2.webp`} alt="Abhishek Arekar - Co-Founder of Impulse Digital Marketing Agency" loading="lazy" decoding="async" />
               </div>
             </div>
             <div className="ab-founder-copy-wrap">

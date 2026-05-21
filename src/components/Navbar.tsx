@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
@@ -7,6 +7,21 @@ const Navbar: React.FC = () => {
 
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
+
+  useEffect(() => {
+    const lenis = (window as any).globalLenis;
+    if (isMobileMenuOpen) {
+      document.body.classList.add('mobile-menu-active');
+      lenis?.stop();
+    } else {
+      document.body.classList.remove('mobile-menu-active');
+      lenis?.start();
+    }
+    return () => {
+      document.body.classList.remove('mobile-menu-active');
+      lenis?.start();
+    };
+  }, [isMobileMenuOpen]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
