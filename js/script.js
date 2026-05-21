@@ -1,4 +1,11 @@
 (() => {
+// Simple seeded PRNG to ensure the background looks the same on every refresh
+let currentSeed = 42; // Fixed seed for consistent background
+function customRandom() {
+    currentSeed = (currentSeed * 9301 + 49297) % 233280;
+    return currentSeed / 233280;
+}
+
 // Helper: Circular particles
 const createCircleTexture = () => {
     const canvas = document.createElement('canvas');
@@ -36,9 +43,9 @@ const particlesCount = isMobile ? 1000 : 3000;
 const posArray = new Float32Array(particlesCount * 3);
 
 for(let i = 0; i < particlesCount * 3; i+=3) {
-    posArray[i] = (Math.random() - 0.5) * 120; // x
-    posArray[i+1] = (Math.random() - 0.5) * 120; // y
-    posArray[i+2] = (Math.random() - 0.5) * 120; // z (clean, massive sphere)
+    posArray[i] = (customRandom() - 0.5) * 120; // x
+    posArray[i+1] = (customRandom() - 0.5) * 120; // y
+    posArray[i+2] = (customRandom() - 0.5) * 120; // z (clean, massive sphere)
 }
 
 const particlesGeometry = new THREE.BufferGeometry();
@@ -66,9 +73,9 @@ window.particlesMaterial = particlesMaterial;
 const tunnelCount = isMobile ? 200 : 880; // Reduced by ~12% for the perfect balance
 const tunnelPos = new Float32Array(tunnelCount * 3);
 for(let i = 0; i < tunnelCount * 3; i+=3) {
-    tunnelPos[i] = (Math.random() - 0.5) * 2000; 
-    tunnelPos[i+1] = (Math.random() - 0.5) * 2000; 
-    tunnelPos[i+2] = (Math.random() * 3050) - 3000; 
+    tunnelPos[i] = (customRandom() - 0.5) * 2000; 
+    tunnelPos[i+1] = (customRandom() - 0.5) * 2000; 
+    tunnelPos[i+2] = (customRandom() * 3050) - 3000; 
 }
 const tunnelGeom = new THREE.BufferGeometry();
 tunnelGeom.setAttribute('position', new THREE.BufferAttribute(tunnelPos, 3));
@@ -92,12 +99,12 @@ const bgStarsPos = new Float32Array(bgStarsCount * 3);
 const bgStarsColors = new Float32Array(bgStarsCount * 3);
 
 for(let i = 0; i < bgStarsCount * 3; i+=3) {
-    bgStarsPos[i] = (Math.random() - 0.5) * 4000; 
-    bgStarsPos[i+1] = (Math.random() - 0.5) * 4000; 
-    bgStarsPos[i+2] = (Math.random() - 0.5) * 4000 - 1000;
+    bgStarsPos[i] = (customRandom() - 0.5) * 4000; 
+    bgStarsPos[i+1] = (customRandom() - 0.5) * 4000; 
+    bgStarsPos[i+2] = (customRandom() - 0.5) * 4000 - 1000;
 
     let r, g, b;
-    const colorType = Math.random();
+    const colorType = customRandom();
     if (colorType > 0.6) {
         r = 0.48; g = 0.22; b = 0.92; // Bright Violet
     } else if (colorType > 0.2) {
@@ -106,7 +113,7 @@ for(let i = 0; i < bgStarsCount * 3; i+=3) {
         r = 0.8; g = 0.7; b = 0.9; // White/Soft Violet
     }
 
-    const brightness = Math.random() > 0.85 ? 1.0 : (Math.random() * 0.3 + 0.1); 
+    const brightness = customRandom() > 0.85 ? 1.0 : (customRandom() * 0.3 + 0.1); 
     bgStarsColors[i] = r * brightness;
     bgStarsColors[i+1] = g * brightness;
     bgStarsColors[i+2] = b * brightness;
