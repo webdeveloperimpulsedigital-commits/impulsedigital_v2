@@ -4,7 +4,7 @@ export const videoProductionData = {
     headlineAccent: "Than Look Good.",
     description: "A good video is not just watched. It makes something land. A product becomes easier to understand. A brand becomes easier to remember. A campaign becomes easier to care about. A story becomes easier to carry forward. Impulse Digital helps brands create video content that gives the audience a reason to stop, feel, remember, and act.",
     buttons: [
-      { text: "Build Video That Carries the Idea", link: "/contact-us/", cursor: "BUILD" },
+      { text: "Build Video That Carries the Idea", link: "#connect", cursor: "BUILD" },
       { text: "See the Stories We Built", link: "#process", cursor: "EXPLORE" }
     ]
   },

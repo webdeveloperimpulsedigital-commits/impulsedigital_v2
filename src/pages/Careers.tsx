@@ -610,7 +610,7 @@ const Careers: React.FC = () => {
       <div className="svc-hero-page-content">
         <h1 className="svc-hero-headline car-hero-headline">
           For people who want<br />
-          more from the work.
+          <span style={{ color: 'var(--impulse-violet)' }}>more from the work.</span>
         </h1>
         <p className="car-hero-sub">Not just a job that fills the day.</p>
         <p className="svc-hero-page-desc car-hero-desc">

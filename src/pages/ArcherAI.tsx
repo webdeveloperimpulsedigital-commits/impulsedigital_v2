@@ -142,7 +142,7 @@ const ArcherAI: React.FC = () => {
         <div className="container">
           <h2 className="svc-h2 split-text">Built for Businesses Where<br/>Every Conversation Counts</h2>
           <p className="svc-channels-intro">Archer AI is not for blasting thousands of people. It is built for B2B businesses where the buyer is specific, the deal size justifies precision, and the sales cycle depends on real decision-makers.</p>
-          <div className="svc-channels-stage" id="channels-stage">
+          <div className="svc-channels-stage archer-channels-stage" id="channels-stage">
             <svg className="svc-channels-orbit-svg" id="channels-orbit-lines" aria-hidden="true"></svg>
             <div className="svc-channels-center" aria-hidden="true">
               <svg className="archer-reticle" viewBox="-100 -100 200 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
@@ -167,12 +167,12 @@ const ArcherAI: React.FC = () => {
               </svg>
             </div>
             <div className="svc-channels-orbit">
-              <span className="svc-channel-chip" style={{ left: '50%', top: '10%', transform: 'translate(-50%, -50%)' }}>Your referrals work, but do not scale.</span>
-              <span className="svc-channel-chip" style={{ left: '80%', top: '30%', transform: 'translate(-50%, -50%)' }}>Your closers convert, but the top of the funnel is thin.</span>
-              <span className="svc-channel-chip" style={{ left: '80%', top: '70%', transform: 'translate(-50%, -50%)' }}>Your ICP is narrow, senior, technical, or hard to reach.</span>
-              <span className="svc-channel-chip" style={{ left: '50%', top: '90%', transform: 'translate(-50%, -50%)' }}>Your offer needs context before someone takes it seriously.</span>
-              <span className="svc-channel-chip" style={{ left: '20%', top: '70%', transform: 'translate(-50%, -50%)' }}>Your sales team spends too much time finding the next right account.</span>
-              <span className="svc-channel-chip" style={{ left: '20%', top: '30%', transform: 'translate(-50%, -50%)' }}>Your next stage of growth needs a system, not just a network.</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '50%', '--chip-top': '10%', transform: 'translate(-50%, -50%)' } as React.CSSProperties}>Your referrals work, but do not scale.</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '85%', '--chip-top': '30%', transform: 'translate(-50%, -50%)' } as React.CSSProperties}>Your closers convert, but the top of the funnel is thin.</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '85%', '--chip-top': '70%', transform: 'translate(-50%, -50%)' } as React.CSSProperties}>Your ICP is narrow, senior, technical, or hard to reach.</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '50%', '--chip-top': '90%', transform: 'translate(-50%, -50%)' } as React.CSSProperties}>Your offer needs context before someone takes it seriously.</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '15%', '--chip-top': '70%', transform: 'translate(-50%, -50%)' } as React.CSSProperties}>Your sales team spends too much time finding the next right account.</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '15%', '--chip-top': '30%', transform: 'translate(-50%, -50%)' } as React.CSSProperties}>Your next stage of growth needs a system, not just a network.</span>
             </div>
           </div>
           <p style={{ textAlign: 'center', marginTop: '3rem', fontSize: '1.1rem', color: 'var(--soft-grey)', opacity: 0.85 }}>The point is not more outreach.</p>

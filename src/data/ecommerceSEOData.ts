@@ -9,7 +9,7 @@ export const ecommerceSEOData = {
     "buttons": [
       {
         "text": "Find Your Store's Search Gaps",
-        "link": "/contact-us/",
+        "link": "#connect",
         "cursor": "FIND"
       },
       {

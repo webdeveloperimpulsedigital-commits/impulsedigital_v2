@@ -4,7 +4,7 @@ export const aiVideoProductionData = {
     headlineAccent: "Produce Faster.",
     description: "Your best ideas can now travel further. Impulse Digital creates AI-led videos that turn one strong thought into campaign films, explainers, social assets, training videos, and multilingual versions. Human-led. AI-enabled. Built to scale.",
     buttons: [
-      { text: "Start an AI Video Project", link: "/contact-us/", cursor: "BUILD" },
+      { text: "Start an AI Video Project", link: "#connect", cursor: "BUILD" },
       { text: "See What AI Video Can Do", link: "#process", cursor: "EXPLORE" }
     ]
   },

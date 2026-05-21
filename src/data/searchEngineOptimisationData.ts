@@ -10,7 +10,7 @@ export const searchEngineOptimisationData = {
     "buttons": [
       {
         "text": "Find Your Search Gaps",
-        "link": "/contact-us/",
+        "link": "#connect",
         "cursor": "FIND"
       },
       {

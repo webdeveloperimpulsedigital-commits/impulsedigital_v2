@@ -4,7 +4,7 @@ export const consumerIntelligenceData = {
     headlineAccent: "Consumer You Imagine.",
     description: "Averages do not buy. Segments do not hesitate. Personas do not choose. People do. Impulse Digital helps brands understand the motivations, fears, habits, triggers, and expectations behind consumer behaviour, so strategy, messaging, and product decisions are built for the real buyer, not the convenient one.",
     buttons: [
-      { text: "Decode Your Consumer", link: "/contact-us/", cursor: "DECODE" },
+      { text: "Decode Your Consumer", link: "#connect", cursor: "DECODE" },
       { text: "See Where It Helps", link: "#use-cases", cursor: "EXPLORE" }
     ]
   },

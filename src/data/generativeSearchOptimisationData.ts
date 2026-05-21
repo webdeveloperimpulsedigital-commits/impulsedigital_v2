@@ -10,7 +10,7 @@ export const generativeSearchOptimisationData = {
     "buttons": [
       {
         "text": "Improve Your AI Search Visibility",
-        "link": "/contact-us/",
+        "link": "#connect",
         "cursor": "BUILD"
       },
       {

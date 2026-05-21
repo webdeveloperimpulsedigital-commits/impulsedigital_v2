@@ -9,7 +9,7 @@ export const socialMediaManagementData = {
     "buttons": [
       {
         "text": "Build Social That Matters",
-        "link": "/contact-us/",
+        "link": "#connect",
         "cursor": "BUILD"
       },
       {

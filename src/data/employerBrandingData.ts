@@ -9,7 +9,7 @@ export const employerBrandingData = {
     "buttons": [
       {
         "text": "Build Your Employer Brand",
-        "link": "/contact-us/",
+        "link": "#connect",
         "cursor": "BUILD"
       },
       {

@@ -4,7 +4,7 @@ export const marketIntelligenceData = {
     headlineAccent: "Surprise You.",
     description: "Competitors shift. Search behaviour changes. New signals appear before reports catch up. Impulse Digital helps brands read the market early, so positioning, content, e-commerce, and category decisions are made with sharper intelligence.",
     buttons: [
-      { text: "Map Your Market", link: "/contact-us/", cursor: "MAP" },
+      { text: "Map Your Market", link: "#connect", cursor: "MAP" },
       { text: "See What You're Missing", link: "#use-cases", cursor: "EXPLORE" }
     ]
   },

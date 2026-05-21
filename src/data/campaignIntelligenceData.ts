@@ -4,7 +4,7 @@ export const campaignIntelligenceData = {
     headlineAccent: "Victory.",
     description: "A campaign can be watched, clicked, shared, and still leave nothing behind. Impulse Digital helps brands understand what people remembered, what they felt, what moved them, and what the next campaign should do differently.",
     buttons: [
-      { text: "Decode Campaign Impact", link: "/contact-us/", cursor: "DECODE" },
+      { text: "Decode Campaign Impact", link: "#connect", cursor: "DECODE" },
       { text: "See What Actually Landed", link: "#use-cases", cursor: "EXPLORE" }
     ]
   },

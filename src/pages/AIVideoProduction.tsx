@@ -296,17 +296,17 @@ const AIVideoProduction: React.FC = () => {
               </svg>
             </div>
             <div className="svc-channels-orbit">
-              <span className="svc-channel-chip" style={{ left: '18%', top: '20%' }}>Reels & Shorts</span>
-              <span className="svc-channel-chip" style={{ left: '82%', top: '20%' }}>YouTube Videos</span>
-              <span className="svc-channel-chip" style={{ left: '92%', top: '50%' }}>LinkedIn Ads</span>
-              <span className="svc-channel-chip" style={{ left: '82%', top: '80%' }}>Website Banners</span>
-              <span className="svc-channel-chip" style={{ left: '50%', top: '92%' }}>Digital Ads</span>
-              <span className="svc-channel-chip" style={{ left: '18%', top: '80%' }}>Product Explainers</span>
-              <span className="svc-channel-chip" style={{ left: '8%', top: '50%' }}>Sales Decks</span>
-              <span className="svc-channel-chip" style={{ left: '35%', top: '35%' }}>Training Modules</span>
-              <span className="svc-channel-chip" style={{ left: '65%', top: '35%' }}>Employer Branding</span>
-              <span className="svc-channel-chip" style={{ left: '35%', top: '65%' }}>Internal Communication</span>
-              <span className="svc-channel-chip" style={{ left: '65%', top: '65%' }}>Multilingual Updates</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '18%', '--chip-top': '20%' } as React.CSSProperties}>Reels & Shorts</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '38%', '--chip-top': '12%' } as React.CSSProperties}>Training Modules</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '62%', '--chip-top': '12%' } as React.CSSProperties}>Employer Branding</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '82%', '--chip-top': '20%' } as React.CSSProperties}>YouTube Videos</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '92%', '--chip-top': '45%' } as React.CSSProperties}>LinkedIn Ads</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '88%', '--chip-top': '70%' } as React.CSSProperties}>Website Banners</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '70%', '--chip-top': '88%' } as React.CSSProperties}>Multilingual Updates</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '50%', '--chip-top': '95%' } as React.CSSProperties}>Digital Ads</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '30%', '--chip-top': '88%' } as React.CSSProperties}>Internal Communication</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '12%', '--chip-top': '70%' } as React.CSSProperties}>Product Explainers</span>
+              <span className="svc-channel-chip" style={{ '--chip-left': '8%', '--chip-top': '45%' } as React.CSSProperties}>Sales Decks</span>
             </div>
           </div>
           <p style={{ textAlign: 'center', color: 'var(--soft-grey)', fontSize: '1.15rem', marginTop: '3rem', fontStyle: 'italic' }}>

@@ -10,7 +10,7 @@ export const enterpriseSEOData = {
     "buttons": [
       {
         "text": "Find Your Enterprise Search Gaps",
-        "link": "/contact-us/",
+        "link": "#connect",
         "cursor": "FIND"
       },
       {

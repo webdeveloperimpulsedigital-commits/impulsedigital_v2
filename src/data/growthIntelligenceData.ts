@@ -4,7 +4,7 @@ export const growthIntelligenceData = {
     headlineAccent: "Most Reports Do.",
     description: "Deep data analysis and strategic intelligence to uncover hidden market mechanics — turning passive numbers into aggressive, predictable growth.",
     buttons: [
-      { text: "Unlock Your Intelligence Layer", link: "/contact-us/", cursor: "DECODE" },
+      { text: "Unlock Your Intelligence Layer", link: "#connect", cursor: "DECODE" },
       { text: "Explore the Pillars", link: "#services", cursor: "EXPLORE" }
     ]
   },

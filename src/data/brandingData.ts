@@ -9,7 +9,7 @@ export const brandingData = {
     "buttons": [
       {
         "text": "Build Your Brand System",
-        "link": "/contact-us/",
+        "link": "#connect",
         "cursor": "BUILD"
       },
       {

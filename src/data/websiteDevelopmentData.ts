@@ -9,7 +9,7 @@ export const websiteDevelopmentData = {
     "buttons": [
       {
         "text": "Build a Website That Converts",
-        "link": "/contact-us/",
+        "link": "#connect",
         "cursor": "BUILD"
       },
       {

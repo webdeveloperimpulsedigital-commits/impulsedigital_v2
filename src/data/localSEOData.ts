@@ -11,7 +11,7 @@ export const localSEOData = {
     "buttons": [
       {
         "text": "Find Your Local Search Gaps",
-        "link": "/contact-us/",
+        "link": "#connect",
         "cursor": "FIND"
       },
       {

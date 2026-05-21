@@ -10,7 +10,7 @@ export const b2bSEOData = {
     "buttons": [
       {
         "text": "Find Your B2B Search Gaps",
-        "link": "/contact-us/",
+        "link": "#connect",
         "cursor": "FIND"
       },
       {

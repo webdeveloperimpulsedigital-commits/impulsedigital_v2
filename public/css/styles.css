@@ -365,7 +365,8 @@ nav.scrolled {
 
 /* Hero */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2498,16 +2499,16 @@ button,
 
 .svc-vs-statement {
     font-family: var(--font-heading);
-    font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+    font-size: clamp(1.2rem, 2.8vw, 3.5rem);
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: -0.025em;
-    white-space: normal;
+    white-space: nowrap;
 }
 
 .svc-vs-statement-loud {
     font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 3.8vw, 3.8rem);
+    font-size: clamp(1.1rem, 2.1vw, 2.8rem);
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: -0.025em;
@@ -8828,3 +8829,24 @@ button,
     }
 }
 
+@media (max-width: 768px) {
+    .archer-channels-stage {
+        aspect-ratio: 1 / 1.1;
+        position: relative;
+        height: 600px;
+    }
+    .archer-channels-stage .svc-channels-orbit-svg {
+        display: block;
+    }
+    .archer-channels-stage .svc-channel-chip {
+        font-size: 0.55rem;
+        padding: 0.5rem 0.8rem;
+        letter-spacing: 1px;
+        white-space: normal;
+        max-width: 140px;
+        line-height: 1.3;
+        /* override the desktop clamp bounds so they can reach the edges on mobile */
+        left: clamp(10px, var(--chip-left, 50%), calc(100% - 10px)) !important;
+        top: clamp(10px, var(--chip-top, 50%), calc(100% - 10px)) !important;
+    }
+}
