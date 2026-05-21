@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useServicePageBackground } from '../hooks/useServicePageBackground';
 
 /* ── Impulse mark path ─────────────────────────────────── */
 const MARK =
@@ -85,37 +86,17 @@ const SERVICES = [
 ══════════════════════════════════════════════════════════ */
 const BrandInfrastructure: React.FC = () => {
   const pageRef = useRef<HTMLElement>(null);
+  useServicePageBackground('.gi2-split');
 
   useEffect(() => {
-    document.body.classList.add('service-page');
-
-    // Scroll-triggered background transition (Match Agentic AI)
-    const { gsap, ScrollTrigger, particlesMaterial } = window as any;
+    const { gsap, ScrollTrigger } = window as any;
     if (!gsap || !ScrollTrigger || !pageRef.current) return;
-
-    // Transition body to black and fade out hero particles when scrolling down the page
-    ScrollTrigger.create({
-      trigger: '.gi2-split',
-      start: 'top -5%', // Starts fading after scrolling down a little bit
-      end: 'top -25%',  // Fully black after a short scroll
-      scrub: true,
-      animation: gsap.to(document.body, { backgroundColor: '#000000', immediateRender: false })
-    });
-
-    if (particlesMaterial) {
-      ScrollTrigger.create({
-        trigger: '.gi2-split',
-        start: 'top -5%',
-        end: 'top -25%',
-        scrub: true,
-        animation: gsap.fromTo(particlesMaterial, { opacity: 0.7 }, { opacity: 0, immediateRender: false })
-      });
-    }
 
     /* ── Cards reveal ── */
     const cards = pageRef.current.querySelectorAll('.gi2-card');
+    let cardsTrigger: any = null;
     if (cards.length) {
-      ScrollTrigger.create({
+      cardsTrigger = ScrollTrigger.create({
         trigger: '.gi2-split',
         start: 'top 85%',
         once: true,
@@ -166,13 +147,7 @@ const BrandInfrastructure: React.FC = () => {
     });
 
     return () => {
-      document.body.classList.remove('service-page');
-      // Restore original site background colour and particles
-      gsap.set(document.body, { clearProps: 'backgroundColor' });
-      if (particlesMaterial) {
-        gsap.set(particlesMaterial, { opacity: 0.7 });
-      }
-      ScrollTrigger.getAll().forEach((t: any) => t.kill());
+      if (cardsTrigger) cardsTrigger.kill();
     };
   }, []);
 

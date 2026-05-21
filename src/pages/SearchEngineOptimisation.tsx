@@ -5,6 +5,7 @@ import ServiceHandoff from '../components/Service/ServiceHandoff';
 import Logos from '../components/Logos';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
+import { useServicePageBackground } from '../hooks/useServicePageBackground';
 
 import {
   ServiceStats,
@@ -23,8 +24,10 @@ import { searchEngineOptimisationData as data } from '../data/searchEngineOptimi
 const { gsap, ScrollTrigger } = window as any;
 
 const SearchEngineOptimisation: React.FC = () => {
+  useServicePageBackground();
+
   useEffect(() => {
-    document.body.classList.add('service-page', 'seo-page');
+    document.body.classList.add('seo-page');
     
     // Channels orbit animation
     const stage = document.getElementById('channels-stage');
@@ -142,7 +145,7 @@ const SearchEngineOptimisation: React.FC = () => {
     }
 
     return () => {
-      document.body.classList.remove('service-page', 'seo-page');
+      document.body.classList.remove('seo-page');
       window.removeEventListener('resize', measureFn);
       if (pulseTimer) clearInterval(pulseTimer);
       clearTimeout(measureTimeout1);

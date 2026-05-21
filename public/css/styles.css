@@ -81,6 +81,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+body.mobile-menu-active {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
 h1,
 h2,
 h3,
@@ -8758,5 +8763,46 @@ button,
     .gso-lens-label { top: -1.8rem; font-size: 0.64rem; }
     .gso-answer-card { justify-self: stretch; max-width: none; }
     .gso-clarity-lines { display: none; }
+}
+
+@media (max-width: 480px) {
+    .footer-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 2.5rem !important;
+    }
+    
+    .footer-col {
+        width: 100% !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    .footer-col:nth-child(2),
+    .footer-col:nth-child(3),
+    .footer-col:nth-child(4) {
+        text-align: center !important;
+        align-items: center !important;
+    }
+
+    .footer-col ul {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .footer-contact-col {
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .footer-contact-col .contact-item {
+        justify-content: center !important;
+        width: 100% !important;
+    }
 }
 

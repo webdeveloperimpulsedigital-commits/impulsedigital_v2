@@ -449,6 +449,9 @@ const CaseStudiesPage: React.FC = () => {
                                 src={`${base}${src}`}
                                 alt={`${cs.client} Digital Marketing Campaign Case Study - ${i + 1}`}
                                 className={i === 0 ? 'cs3-hover-media' : ''}
+                                loading={idx < 2 ? 'eager' : 'lazy'}
+                                fetchPriority={idx < 2 ? 'high' : 'low'}
+                                decoding="async"
                               />
                             </div>
                           ))}
@@ -459,6 +462,9 @@ const CaseStudiesPage: React.FC = () => {
                             src={`${base}${cs.imgs[0]}`}
                             alt={`${cs.client} Digital Marketing Campaign Case Study`}
                             className="cs3-hover-media"
+                            loading={idx < 2 ? 'eager' : 'lazy'}
+                            fetchPriority={idx < 2 ? 'high' : 'low'}
+                            decoding="async"
                           />
                           <div className="cs3-play-indicator">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">

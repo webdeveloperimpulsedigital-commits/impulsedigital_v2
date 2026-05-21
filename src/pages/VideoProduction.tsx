@@ -1,10 +1,11 @@
 import { Helmet } from 'react-helmet-async';
-import React, { useEffect } from 'react';
+import React from 'react';
 import ServiceHero from '../components/Service/ServiceHero';
 import ServiceHandoff from '../components/Service/ServiceHandoff';
 import Logos from '../components/Logos';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
+import { useServicePageBackground } from '../hooks/useServicePageBackground';
 
 import {
   ServiceStats,
@@ -22,13 +23,7 @@ import {
 import { videoProductionData } from '../data/videoProductionData';
 
 const VideoProduction: React.FC = () => {
-  useEffect(() => {
-    document.body.classList.add('service-page');
-    
-    return () => {
-      document.body.classList.remove('service-page');
-    };
-  }, []);
+  useServicePageBackground();
 
   return (
     <main id="main-content">

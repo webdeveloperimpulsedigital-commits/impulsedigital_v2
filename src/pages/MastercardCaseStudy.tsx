@@ -37,7 +37,7 @@ const MastercardCaseStudy: React.FC = () => {
       </section>
       <div className="cs-feature-wrapper">
         <div className="cs-feature-image">
-          <img src={`${base}case studies/Written Content/Mastercard/Mastercard Title.webp`} alt="Mastercard WhatsApp-led merchant outreach case study" />
+          <img src={`${base}case studies/Written Content/Mastercard/Mastercard Title.webp`} alt="Mastercard WhatsApp-led merchant outreach case study" fetchPriority="high" decoding="async" />
         </div>
       </div>
       <section className="cs-intro-block" id="warp-start">

@@ -5,6 +5,7 @@ import ServiceHandoff from '../components/Service/ServiceHandoff';
 import Logos from '../components/Logos';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
+import { useServicePageBackground } from '../hooks/useServicePageBackground';
 
 import {
   ServiceProblem,
@@ -22,8 +23,9 @@ import { aiVideoProductionData as data } from '../data/aiVideoProductionData';
 const { gsap, ScrollTrigger } = window as any;
 
 const AIVideoProduction: React.FC = () => {
+  useServicePageBackground();
+
   useEffect(() => {
-    document.body.classList.add('service-page');
 
     // Add specific style for this page
     const style = document.createElement('style');
@@ -217,7 +219,6 @@ const AIVideoProduction: React.FC = () => {
     }
 
     return () => {
-      document.body.classList.remove('service-page');
       if (document.head.contains(style)) document.head.removeChild(style);
       window.removeEventListener('resize', measureFn);
       if (pulseTimer) clearInterval(pulseTimer);

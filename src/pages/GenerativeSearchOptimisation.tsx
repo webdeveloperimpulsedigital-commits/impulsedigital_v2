@@ -5,6 +5,7 @@ import ServiceHandoff from '../components/Service/ServiceHandoff';
 import Logos from '../components/Logos';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
+import { useServicePageBackground } from '../hooks/useServicePageBackground';
 
 import {
   ServiceStats,
@@ -23,8 +24,9 @@ import { generativeSearchOptimisationData as data } from '../data/generativeSear
 const { gsap, ScrollTrigger } = window as any;
 
 const GenerativeSearchOptimisation: React.FC = () => {
+  useServicePageBackground();
+
   useEffect(() => {
-    document.body.classList.add('service-page');
     
     // GSO Clarity Stage Animation
     const clarityStage = document.getElementById('gso-clarity-stage');
@@ -179,7 +181,6 @@ const GenerativeSearchOptimisation: React.FC = () => {
     }
 
     return () => {
-      document.body.classList.remove('service-page');
       window.removeEventListener('resize', measureFn);
     };
   }, []);

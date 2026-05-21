@@ -5,6 +5,7 @@ import ServiceHandoff from '../components/Service/ServiceHandoff';
 import Logos from '../components/Logos';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
+import { useServicePageBackground } from '../hooks/useServicePageBackground';
 
 import {
   ServiceStats,
@@ -24,8 +25,10 @@ import { socialMediaManagementData as data } from '../data/socialMediaManagement
 const { gsap, ScrollTrigger } = window as any;
 
 const SocialMediaManagement: React.FC = () => {
+  useServicePageBackground();
+
   useEffect(() => {
-    document.body.classList.add('service-page', 'social-page');
+    document.body.classList.add('social-page');
     
     // Channels orbit animation
     const stage = document.getElementById('channels-stage');
@@ -143,7 +146,7 @@ const SocialMediaManagement: React.FC = () => {
     }
 
     return () => {
-      document.body.classList.remove('service-page', 'social-page');
+      document.body.classList.remove('social-page');
       window.removeEventListener('resize', measureFn);
       if (pulseTimer) clearInterval(pulseTimer);
       clearTimeout(measureTimeout1);
