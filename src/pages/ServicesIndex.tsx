@@ -188,8 +188,8 @@ const ServicesIndex: React.FC<ServicesIndexProps> = ({ categoryFilter }) => {
       if ((window as any).particlesMaterial) {
         gsap.to((window as any).particlesMaterial, { opacity: 0.6, duration: 0 });
       }
-      if (window.ScrollTrigger) {
-        window.ScrollTrigger.getAll().forEach((t: any) => {
+      if ((window as any).ScrollTrigger) {
+        (window as any).ScrollTrigger.getAll().forEach((t: any) => {
           if (t.trigger && t.trigger.closest && t.trigger.closest('.aww3-wrapper')) {
             t.kill();
           }

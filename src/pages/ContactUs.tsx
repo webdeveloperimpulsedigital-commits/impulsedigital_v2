@@ -116,17 +116,17 @@ const ContactUs: React.FC = () => {
       }
       clearInterval(waitForGsap);
 
-      if (window.ScrollTrigger) {
-        window.ScrollTrigger.getAll().forEach((t: any) => {
+      if ((window as any).ScrollTrigger) {
+        (window as any).ScrollTrigger.getAll().forEach((t: any) => {
           if (t.trigger && t.trigger.closest && t.trigger.closest('.contact-page-wrapper')) {
             t.kill();
           }
         });
       }
 
-      if (window.gsap && (window as any).particlesMaterial) {
-        window.gsap.killTweensOf((window as any).particlesMaterial);
-        window.gsap.set((window as any).particlesMaterial, { opacity: 0.6 });
+      if ((window as any).gsap && (window as any).particlesMaterial) {
+        (window as any).gsap.killTweensOf((window as any).particlesMaterial);
+        (window as any).gsap.set((window as any).particlesMaterial, { opacity: 0.6 });
       }
     };
   }, []);
