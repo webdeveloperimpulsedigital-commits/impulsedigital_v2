@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Contact from '../components/Contact';
 
 // Brands with multiple case studies get an `imgs` array (up to 3 shown stacked)
 // Single-case brands get one entry in the array
@@ -19,17 +18,26 @@ type CaseStudyItem = {
 
 const caseStudies: CaseStudyItem[] = [
   {
-    id: 1,
-    client: 'ABG × Brut India',
-    category: 'Brand Campaign',
-    description: '10 changemakers. 27M+ views. One purpose made human.',
-    imgs: [
-      'case studies/Written Content/ABG x Brut India/ABG Brut India Title.webp',
-    ],
+    id: 4,
+    client: 'Mastercard',
+    category: 'Merchant Outreach',
+    description: '90.9% merchant response rate through WhatsApp cluster-head outreach and real testimonial video.',
+    imgs: ['case studies/Written Content/Mastercard/Mastercard Title.webp'],
+    theme: 'light',
+    accent: '#000000',
+    subLinks: [],
+    primaryLink: '/case-studies/mastercard',
+  },
+  {
+    id: 3,
+    client: 'HUL',
+    category: 'Campaign Intelligence',
+    description: 'Geo-targeted digital coupon campaign delivering 90% higher CTR and 12,548 landing page sessions.',
+    imgs: ['case studies/Written Content/HUL 1/HUL 1 Title.webp'],
     theme: 'dark',
     accent: '#6B3FA0',
     subLinks: [],
-    primaryLink: '/case-studies/abg-brut-india',
+    primaryLink: '/case-studies/hul',
   },
   {
     id: 11,
@@ -45,6 +53,19 @@ const caseStudies: CaseStudyItem[] = [
     primaryLink: '/case-studies/abg-kbc',
   },
   {
+    id: 1,
+    client: 'ABG × Brut India',
+    category: 'Brand Campaign',
+    description: '10 changemakers. 27M+ views. One purpose made human.',
+    imgs: [
+      'case studies/Written Content/ABG x Brut India/ABG Brut India Title.webp',
+    ],
+    theme: 'dark',
+    accent: '#6B3FA0',
+    subLinks: [],
+    primaryLink: '/case-studies/abg-brut-india',
+  },
+  {
     id: 12,
     client: 'Fours for Good',
     category: 'Social Impact',
@@ -56,6 +77,50 @@ const caseStudies: CaseStudyItem[] = [
     accent: '#6B3FA0',
     subLinks: [],
     primaryLink: '/case-studies/fours-for-good',
+  },
+  {
+    id: 5,
+    client: 'DMart',
+    category: 'Digital-to-Store',
+    description: '13.43 lakh unique reach and 53K clicks driving measurable in-store footfall across Pune.',
+    imgs: ['case studies/Written Content/Dmart/Dmart Title.webp'],
+    theme: 'light',
+    accent: '#0F4C3A',
+    subLinks: [],
+    primaryLink: '/case-studies/dmart',
+  },
+  {
+    id: 6,
+    client: 'Uppercase',
+    category: 'AI Video Production',
+    description: 'A New Year brand film built entirely with AI — 5.49M plays, 868K+ views, 100K+ likes.',
+    imgs: ['case studies/Written Content/Uppercase/Uppercase Title.webp'],
+    theme: 'dark',
+    accent: '#3D2200',
+    subLinks: [],
+    primaryLink: '/case-studies/uppercase',
+  },
+  {
+    id: 8,
+    client: 'Qure.ai',
+    category: 'Healthcare SEO',
+    description: 'From a thin US presence to a search-led pipeline — 20 organic leads, 31% organic sessions, DA 46 to 49.',
+    imgs: ['case studies/Written Content/Qure.ai/QureAI Title.webp'],
+    theme: 'dark',
+    accent: '#aa3bff',
+    subLinks: [],
+    primaryLink: '/case-studies/qure-ai',
+  },
+  {
+    id: 9,
+    client: 'ElectroMech',
+    category: 'B2B Digital',
+    description: '20x verified leads growth and 200% increase in first-page rankings through website restructuring and SEO.',
+    imgs: ['case studies/Written Content/ElectroMech/ElectroMech title.webp'],
+    theme: 'dark',
+    accent: '#aa3bff',
+    subLinks: [],
+    primaryLink: '/case-studies/electromech',
   },
   {
     id: 2,
@@ -84,50 +149,6 @@ const caseStudies: CaseStudyItem[] = [
     primaryLink: '/case-studies/automag-bajaj-auto',
   },
   {
-    id: 3,
-    client: 'HUL',
-    category: 'Campaign Intelligence',
-    description: 'Geo-targeted digital coupon campaign delivering 90% higher CTR and 12,548 landing page sessions.',
-    imgs: ['case studies/Written Content/HUL 1/HUL 1 Title.webp'],
-    theme: 'dark',
-    accent: '#6B3FA0',
-    subLinks: [],
-    primaryLink: '/case-studies/hul',
-  },
-  {
-    id: 4,
-    client: 'Mastercard',
-    category: 'Merchant Outreach',
-    description: '90.9% merchant response rate through WhatsApp cluster-head outreach and real testimonial video.',
-    imgs: ['case studies/Written Content/Mastercard/Mastercard Title.webp'],
-    theme: 'light',
-    accent: '#000000',
-    subLinks: [],
-    primaryLink: '/case-studies/mastercard',
-  },
-  {
-    id: 5,
-    client: 'DMart',
-    category: 'Digital-to-Store',
-    description: '13.43 lakh unique reach and 53K clicks driving measurable in-store footfall across Pune.',
-    imgs: ['case studies/Written Content/Dmart/Dmart Title.webp'],
-    theme: 'light',
-    accent: '#0F4C3A',
-    subLinks: [],
-    primaryLink: '/case-studies/dmart',
-  },
-  {
-    id: 6,
-    client: 'Uppercase',
-    category: 'AI Video Production',
-    description: 'A New Year brand film built entirely with AI — 5.49M plays, 868K+ views, 100K+ likes.',
-    imgs: ['case studies/Written Content/Uppercase/Uppercase Title.webp'],
-    theme: 'dark',
-    accent: '#3D2200',
-    subLinks: [],
-    primaryLink: '/case-studies/uppercase',
-  },
-  {
     id: 7,
     client: 'Laljee Godhoo',
     category: 'Brand Campaign',
@@ -138,32 +159,11 @@ const caseStudies: CaseStudyItem[] = [
     subLinks: [],
     primaryLink: '/case-studies/lg-hing',
   },
-  {
-    id: 8,
-    client: 'Qure.ai',
-    category: 'Healthcare SEO',
-    description: 'From a thin US presence to a search-led pipeline — 20 organic leads, 31% organic sessions, DA 46 to 49.',
-    imgs: ['case studies/Written Content/Qure.ai/QureAI Title.webp'],
-    theme: 'dark',
-    accent: '#aa3bff',
-    subLinks: [],
-    primaryLink: '/case-studies/qure-ai',
-  },
-  {
-    id: 9,
-    client: 'ElectroMech',
-    category: 'B2B Digital',
-    description: '20x verified leads growth and 200% increase in first-page rankings through website restructuring and SEO.',
-    imgs: ['case studies/Written Content/ElectroMech/ElectroMech title.webp'],
-    theme: 'dark',
-    accent: '#aa3bff',
-    subLinks: [],
-    primaryLink: '/case-studies/electromech',
-  },
 ];
 
 const CaseStudiesPage: React.FC = () => {
   const navigate = useNavigate();
+  const svgPath = "M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z";
 
   useEffect(() => {
     const { gsap, ScrollTrigger, SplitType } = window as any;
@@ -493,18 +493,22 @@ const CaseStudiesPage: React.FC = () => {
         </div>
       </section>
 
-      {/* FOOTER CTA */}
-      <section className="cs3-footer-cta">
-        <div className="cs3-cta-content">
-          <h2 className="cs3-cta-heading">Ready to scale?</h2>
-          <a href="/contact-us/" className="btn cs3-cta-btn" data-cursor="HI">
-            <span className="btn-text">Start a Conversation</span>
-            <div className="btn-fill" />
-          </a>
+      <section className="svc-final-cta" id="connect">
+        <div className="svc-final-cta-mark" aria-hidden="true">
+          <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+            <path className="svc-final-cta-path" d={svgPath} fill="none" />
+          </svg>
+        </div>
+        <div className="container">
+          <h2 className="split-text" style={{ fontSize: 'clamp(4rem, 8vw, 8rem)', color: 'var(--white)', margin: '0 auto 2rem', fontWeight: 900, textAlign: 'center', lineHeight: 0.9 }}>Your Problem<br/>Next?</h2>
+          <div className="svc-final-cta-actions gsap-fade-up" style={{ display: 'flex', justifyContent: 'center' }}>
+            <a href="/contact-us" className="btn" data-cursor="START">
+              <span className="btn-text">START A CONVERSATION</span>
+              <div className="btn-fill"></div>
+            </a>
+          </div>
         </div>
       </section>
-
-      <Contact title="Build Something<br/>Worth<br/>Measuring." />
     </main>
   );
 };

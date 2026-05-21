@@ -158,7 +158,7 @@ const UppercaseCaseStudy: React.FC = () => {
         <div className="cs-final-punch gsap-fade-up">The bag became part of that movement.<br />Not as decoration.<br /><span>As the thing that carries the year forward.</span></div>
       </section>
       <section className="svc-final-cta" id="connect">
-        <div className="svc-final-cta-mark" aria-hidden="true" style={{ width: 'min(60vw, 800px)', height: 'min(60vw, 800px)' }}>
+        <div className="svc-final-cta-mark" aria-hidden="true">
           <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
             <path className="svc-final-cta-path" d={svgPath} fill="none" />
           </svg>

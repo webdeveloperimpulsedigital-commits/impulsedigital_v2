@@ -7831,7 +7831,8 @@ button,
 }
 
 .contact-page .contact-shell-form input,
-.contact-page .contact-shell-form textarea {
+.contact-page .contact-shell-form textarea,
+.contact-page .contact-shell-form select {
     width: 100%;
     min-width: 0;
     border: 1px solid rgba(255, 255, 255, 0.22);
@@ -7846,6 +7847,22 @@ button,
     transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
+.contact-page .contact-shell-form select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    cursor: pointer;
+}
+
+.contact-page .contact-shell-form select option {
+    background-color: #111;
+    color: #fff;
+    padding: 0.5rem;
+}
+
 .contact-page .contact-shell-form input::placeholder,
 .contact-page .contact-shell-form textarea::placeholder {
     color: rgba(255, 255, 255, 0.42);
@@ -7857,7 +7874,8 @@ button,
 }
 
 .contact-page .contact-shell-form input:focus,
-.contact-page .contact-shell-form textarea:focus {
+.contact-page .contact-shell-form textarea:focus,
+.contact-page .contact-shell-form select:focus {
     border-color: rgba(138, 92, 246, 0.78);
     background: rgba(7, 5, 18, 0.72);
     box-shadow: 0 0 0 1px rgba(138, 92, 246, 0.16), 0 0 24px rgba(138, 92, 246, 0.12);

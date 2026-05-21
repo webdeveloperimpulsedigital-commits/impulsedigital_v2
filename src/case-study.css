@@ -793,3 +793,21 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Fix for Case Study CTA background mark */
+.case-study-page .svc-final-cta-mark {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: min(60vw, 800px) !important;
+  height: min(60vw, 800px) !important;
+  margin: 0 !important;
+  opacity: 1 !important;
+  z-index: 0 !important;
+  pointer-events: none;
+}
+.case-study-page .svc-final-cta .container {
+  position: relative;
+  z-index: 2;
+}

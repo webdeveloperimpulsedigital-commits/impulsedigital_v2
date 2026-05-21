@@ -62,6 +62,8 @@ const originalIndexPath = path.resolve(DIST_DIR, 'index.html');
 const templatePath = path.resolve(DIST_DIR, 'template.html');
 if (fs.existsSync(originalIndexPath)) {
   fs.copyFileSync(originalIndexPath, templatePath);
+  // Create a clean fallback for the server so it doesn't serve the home page HTML for unknown routes
+  fs.copyFileSync(originalIndexPath, path.resolve(DIST_DIR, '200.html'));
 }
 
 // Start static server

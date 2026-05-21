@@ -2,7 +2,7 @@
 // @ts-nocheck
 import { Helmet } from 'react-helmet-async';
 import React, { useEffect } from 'react';
-import Contact from '../components/Contact';
+import CareersForm from '../components/CareersForm';
 
 const Careers: React.FC = () => {
   useEffect(() => {
@@ -618,12 +618,11 @@ const Careers: React.FC = () => {
         </p>
         <p className="car-hero-anchor">Impulse is for people who want their work to mean something.</p>
         <div className="svc-hero-cta-row">
-          <a href="#how-we-work" className="btn" data-cursor="EXPLORE">
-            <span className="btn-text">See how we work</span>
-            <div className="btn-fill"></div>
-          </a>
-          <a href="/contact-us/" className="btn" data-cursor="WRITE">
-            <span className="btn-text">Write to us</span>
+          <a href="#open-positions" className="btn" data-cursor="EXPLORE" onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('open-positions')?.scrollIntoView({ behavior: 'smooth' });
+          }}>
+            <span className="btn-text">Check open position</span>
             <div className="btn-fill"></div>
           </a>
         </div>
@@ -1060,49 +1059,55 @@ const Careers: React.FC = () => {
               </svg>
             </div>
             <div className="car-job-main">
-              <h3>Social Media Content Writer</h3>
+              <h3>Digital Marketing Manager</h3>
               <div className="car-job-tags">
                 <span>Full-Time</span>
                 <span>Mumbai, India</span>
-                <span>4+ years</span>
+                <span>5+ years</span>
               </div>
-              <p>Craft scroll-stopping content, from engaging hooks to clear, fluff-free scripts and carousels.</p>
+              <p>This role sits between clients and the internal team. The person in this seat manages calls with C-suite executives one hour, then pivots to supporting junior marketers the next.</p>
               <div className="car-job-actions">
                 <a className="car-job-apply-btn" href="#contact-form" onClick={(e) => {
                   e.preventDefault();
                   document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
                 }}>Apply</a>
-                <button className="car-job-toggle" type="button" aria-expanded="false" aria-controls="job-social-writer" aria-label="Toggle Social Media Content Writer details">
+                <button className="car-job-toggle" type="button" aria-expanded="false" aria-controls="job-digital-marketing-manager" aria-label="Toggle Digital Marketing Manager details">
                   <svg viewBox="0 0 10 6" aria-hidden="true" focusable="false">
                     <path d="M1 1L5 5L9 1" />
                   </svg>
                 </button>
               </div>
             </div>
-            <div className="car-job-details" id="job-social-writer">
-              <p>We are looking for a writer who understands how to adapt a single idea across platforms and industries without losing its punch.</p>
+            <div className="car-job-details" id="job-digital-marketing-manager">
+              <p>This is not a client servicing role. It is not a subject matter expert role. It is both, in balance.</p>
               <div className="car-job-detail-grid">
                 <div>
                   <h4>KEY RESPONSIBILITIES</h4>
                   <ul>
-                    <li>Write Instagram captions, reel/video scripts, carousel content, and LinkedIn posts.</li>
-                    <li>Convert briefs into structured content formats.</li>
-                    <li>Adapt one idea into multiple formats (reel, carousel, LinkedIn).</li>
-                    <li>Work across industries like Corporate/B2B, BFSI, Education, and Consumer brands.</li>
-                    <li>Create engaging hooks and scroll-stopping content.</li>
-                    <li>Maintain clarity, structure, and avoid fluff.</li>
-                    <li>Take feedback and iterate quickly.</li>
+                    <li>Manage client relationships across Growth Intelligence, AI Marketing Systems, and Brand Infrastructure engagements.</li>
+                    <li>Translate client needs into clear briefs for internal teams. Identify process breakdowns before they become client issues.</li>
+                    <li>Own account outcomes. When things go sideways, this person fixes them. Their name is on the result.</li>
+                    <li>Defend work internally when it's strong. Push back on client scope-creep without creating friction.</li>
+                    <li>Read the room. Know when to use technical language to assert authority. Know when to drop it because clarity matters more.</li>
+                    <li>Maintain account health through proactive communication, clear expectation-setting, and honest conversations.</li>
                   </ul>
                 </div>
                 <div>
                   <h4>CANDIDATE REQUIREMENTS</h4>
                   <ul>
-                    <li>Strong English writing skills (clear, simple, engaging).</li>
-                    <li>Understanding of social media hooks and engagement patterns.</li>
-                    <li>Ability to structure short-form and medium-form content.</li>
-                    <li>Good grasp of platform tone (LinkedIn vs Instagram).</li>
-                    <li>Basic Hindi/Marathi understanding is a plus.</li>
-                    <li>Ability to follow briefs and adapt across industries.</li>
+                    <li>Marketing expertise. Not just vocabulary. The ability to distinguish between sharp work and work that's been dressed up to sound sharp.</li>
+                    <li>Deep understanding of processes and systems. Most account problems are process problems, not creative problems.</li>
+                    <li>Command of language. The same sentence structured two different ways will either save an account or lose one.</li>
+                    <li>Proven ability to own outcomes and turn around difficult situations.</li>
+                    <li>Experience in enough client-facing scenarios to distinguish between real problems and reactive panic.</li>
+                    <li>Spine. The ability to hold a line without being defensive. To say no without making clients feel small.</li>
+                    <li>5+ years of client-facing work in marketing, strategy, or related fields.</li>
+                  </ul>
+                  <h4 style={{ marginTop: '2rem' }}>WHAT WE'RE NOT LOOKING FOR</h4>
+                  <ul>
+                    <li>Resume keywords or agency pedigree.</li>
+                    <li>Certifications or awards as primary proof points.</li>
+                    <li>People who blame process when things go wrong.</li>
                   </ul>
                 </div>
               </div>
@@ -1112,6 +1117,60 @@ const Careers: React.FC = () => {
           <article className="car-job-card" data-job-card>
             <div className="car-job-visual" aria-hidden="true">
               <span className="car-job-index">02</span>
+              <svg className="car-job-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+                <path className="car-job-mark-path"
+                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+              </svg>
+            </div>
+            <div className="car-job-main">
+              <h3>HR Executive</h3>
+              <div className="car-job-tags">
+                <span>Full-time</span>
+                <span>Mumbai, India</span>
+                <span>2-3 years</span>
+              </div>
+              <p>Manage recruitment, onboarding, and employee relations to help build a culture that thrives on excellence.</p>
+              <div className="car-job-actions">
+                <a className="car-job-apply-btn" href="#contact-form" onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                }}>Apply</a>
+                <button className="car-job-toggle" type="button" aria-expanded="false" aria-controls="job-hr-executive" aria-label="Toggle HR Executive details">
+                  <svg viewBox="0 0 10 6" aria-hidden="true" focusable="false">
+                    <path d="M1 1L5 5L9 1" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div className="car-job-details" id="job-hr-executive">
+              <p>We need an organized, empathetic HR professional to manage the people who make our work possible.</p>
+              <div className="car-job-detail-grid">
+                <div>
+                  <h4>KEY RESPONSIBILITIES</h4>
+                  <ul>
+                    <li>Perform HR activities such as recruitment, onboarding, employee relations, performance management, and compensation and benefits.</li>
+                    <li>Execute HR policies and procedures.</li>
+                    <li>Monitor employee satisfaction and engagement.</li>
+                    <li>Collaborate with HR team for HR initiatives.</li>
+                    <li>Stay updated with HR trends and regulations.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>CANDIDATE REQUIREMENTS</h4>
+                  <ul>
+                    <li>1–2 years of HR experience.</li>
+                    <li>Good communication and coordination skills.</li>
+                    <li>Ability to manage multiple tasks.</li>
+                    <li>Basic understanding of HR processes.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article className="car-job-card" data-job-card>
+            <div className="car-job-visual" aria-hidden="true">
+              <span className="car-job-index">03</span>
               <svg className="car-job-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
                 <path className="car-job-mark-path"
                   d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
@@ -1164,67 +1223,13 @@ const Careers: React.FC = () => {
               </div>
             </div>
           </article>
-
-          <article className="car-job-card" data-job-card>
-            <div className="car-job-visual" aria-hidden="true">
-              <span className="car-job-index">03</span>
-              <svg className="car-job-mark" viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
-                <path className="car-job-mark-path"
-                  d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
-              </svg>
-            </div>
-            <div className="car-job-main">
-              <h3>HR Executive</h3>
-              <div className="car-job-tags">
-                <span>Full-time</span>
-                <span>Mumbai, India</span>
-                <span>2-3 years</span>
-              </div>
-              <p>Manage recruitment, onboarding, and employee relations to help build a culture that thrives on excellence.</p>
-              <div className="car-job-actions">
-                <a className="car-job-apply-btn" href="#contact-form" onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
-                }}>Apply</a>
-                <button className="car-job-toggle" type="button" aria-expanded="false" aria-controls="job-hr-executive" aria-label="Toggle HR Executive details">
-                  <svg viewBox="0 0 10 6" aria-hidden="true" focusable="false">
-                    <path d="M1 1L5 5L9 1" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div className="car-job-details" id="job-hr-executive">
-              <p>We need an organized, empathetic HR professional to manage the people who make our work possible.</p>
-              <div className="car-job-detail-grid">
-                <div>
-                  <h4>KEY RESPONSIBILITIES</h4>
-                  <ul>
-                    <li>Perform HR activities such as recruitment, onboarding, employee relations, performance management, and compensation and benefits.</li>
-                    <li>Execute HR policies and procedures.</li>
-                    <li>Monitor employee satisfaction and engagement.</li>
-                    <li>Collaborate with HR team for HR initiatives.</li>
-                    <li>Stay updated with HR trends and regulations.</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>CANDIDATE REQUIREMENTS</h4>
-                  <ul>
-                    <li>1–2 years of HR experience.</li>
-                    <li>Good communication and coordination skills.</li>
-                    <li>Ability to manage multiple tasks.</li>
-                    <li>Basic understanding of HR processes.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </article>
         </div>
       </div>
     </section>
 
   
 
-      <Contact />
+      <CareersForm title="Join the<br>team." />
     </main>
   );
 };

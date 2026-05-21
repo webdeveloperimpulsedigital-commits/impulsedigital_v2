@@ -148,7 +148,7 @@ const LGHingCaseStudy: React.FC = () => {
         <div className="cs-final-punch gsap-fade-up">Food.<br />Celebration.<br /><span>Enterprise and community, brought into the same Diwali story.</span></div>
       </section>
       <section className="svc-final-cta" id="connect">
-        <div className="svc-final-cta-mark" aria-hidden="true" style={{ width: 'min(60vw, 800px)', height: 'min(60vw, 800px)' }}>
+        <div className="svc-final-cta-mark" aria-hidden="true">
           <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
             <path className="svc-final-cta-path" d={svgPath} fill="none" />
           </svg>

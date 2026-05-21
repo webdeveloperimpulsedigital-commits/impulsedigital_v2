@@ -1,39 +1,50 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { initCaseStudyAnimations } from '../utils/caseStudyAnimations';
 
 const AutomagIndiaCaseStudy: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const totalSlides = 7;
+
   useEffect(() => {
     document.body.classList.add('case-study-page');
     const cleanup = initCaseStudyAnimations();
-
-    // Search proof slider
-    const track = document.querySelector('.cs-search-track') as HTMLDivElement;
-    const countEl = document.querySelector('.cs-search-count');
-    const progressFill = document.querySelector('.cs-search-progress-fill') as HTMLElement;
-    const prevBtn = document.querySelector('[data-search-prev]');
-    const nextBtn = document.querySelector('[data-search-next]');
-    let current = 0;
-    const cards = track ? Array.from(track.querySelectorAll('.cs-search-card')) : [];
-    const total = cards.length;
-
-    const updateSlider = () => {
-      if (!track) return;
-      const card = cards[0] as HTMLElement;
-      const cardW = card ? card.offsetWidth + 24 : 0;
-      track.style.transform = `translateX(-${current * cardW}px)`;
-      if (countEl) countEl.textContent = `${current + 1} / ${total}`;
-      if (progressFill) progressFill.style.transform = `scaleX(${(current + 1) / total})`;
-    };
-
-    if (prevBtn) prevBtn.addEventListener('click', () => { if (current > 0) { current--; updateSlider(); } });
-    if (nextBtn) nextBtn.addEventListener('click', () => { if (current < total - 1) { current++; updateSlider(); } });
 
     return () => {
       document.body.classList.remove('case-study-page');
       cleanup();
     };
   }, []);
+
+  const handlePrev = () => {
+    if (!trackRef.current) return;
+    const card = trackRef.current.querySelector('.cs-search-card') as HTMLElement;
+    if (card) {
+      trackRef.current.scrollBy({ left: -(card.offsetWidth + 20), behavior: 'smooth' });
+    }
+  };
+
+  const handleNext = () => {
+    if (!trackRef.current) return;
+    const card = trackRef.current.querySelector('.cs-search-card') as HTMLElement;
+    if (card) {
+      trackRef.current.scrollBy({ left: card.offsetWidth + 20, behavior: 'smooth' });
+    }
+  };
+
+  const handleScroll = () => {
+    if (!trackRef.current) return;
+    const scrollLeft = trackRef.current.scrollLeft;
+    const card = trackRef.current.querySelector('.cs-search-card') as HTMLElement;
+    if (card) {
+      const cardW = card.offsetWidth + 20; // CSS gap is ~1.25rem = 20px
+      const newIndex = Math.round(scrollLeft / cardW);
+      if (newIndex >= 0 && newIndex < totalSlides) {
+        setActiveIndex(newIndex);
+      }
+    }
+  };
 
   const base = import.meta.env.BASE_URL;
   const svgPath = "M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z";
@@ -77,7 +88,7 @@ const AutomagIndiaCaseStudy: React.FC = () => {
         <p className="cs-p split-text" style={{ fontSize: '1.5rem', maxWidth: '900px' }}>In under four months, focused B2B SEO helped turn that gap into a lead-generation engine.</p>
       </section>
 
-      <section className="cs-results-module">
+      <section className="cs-results-module automag-results">
         <h2 className="cs-results-title split-text">The Outcome</h2>
         <div className="cs-result-item gsap-fade-up"><div className="cs-result-number"><span className="counter" data-target="45">0</span><span className="cs-result-suffix">+</span></div><div className="cs-result-label">leads a month</div></div>
         <div className="cs-result-item gsap-fade-up"><div className="cs-result-number"><span className="counter" data-target="2400">0</span><span className="cs-result-suffix">%+</span></div><div className="cs-result-label">growth in lead volume</div></div>
@@ -193,12 +204,32 @@ const AutomagIndiaCaseStudy: React.FC = () => {
       <section className="cs-search-proof">
         <div className="cs-search-header">
           <div className="cs-search-controls" aria-label="Ranking proof gallery controls">
-            <button className="cs-search-nav-btn" type="button" data-search-prev aria-label="Previous ranking proof"><i className="fas fa-arrow-left" aria-hidden="true"></i></button>
-            <span className="cs-search-count" aria-live="polite">1 / 7</span>
-            <button className="cs-search-nav-btn" type="button" data-search-next aria-label="Next ranking proof"><i className="fas fa-arrow-right" aria-hidden="true"></i></button>
+            <button 
+              className="cs-search-nav-btn" 
+              type="button" 
+              onClick={handlePrev} 
+              disabled={activeIndex === 0}
+              aria-label="Previous ranking proof"
+            >
+              <i className="fas fa-arrow-left" aria-hidden="true"></i>
+            </button>
+            <span className="cs-search-count" aria-live="polite">{activeIndex + 1} / {totalSlides}</span>
+            <button 
+              className="cs-search-nav-btn" 
+              type="button" 
+              onClick={handleNext}
+              disabled={activeIndex === totalSlides - 1}
+              aria-label="Next ranking proof"
+            >
+              <i className="fas fa-arrow-right" aria-hidden="true"></i>
+            </button>
           </div>
         </div>
-        <div className="cs-search-track">
+        <div 
+          className="cs-search-track" 
+          ref={trackRef} 
+          onScroll={handleScroll}
+        >
           {[1,2,3,4,5,6,7].map(n => (
             <div key={n} className="cs-search-card gsap-fade-up">
               <img src={`${base}case studies/Written Content/Automag India/Automag SEO/automag images upscaled/Supporting ${n}.webp`} alt={`Automag ranking proof ${n}`} loading="lazy" decoding="async" />
@@ -206,7 +237,10 @@ const AutomagIndiaCaseStudy: React.FC = () => {
           ))}
         </div>
         <div className="cs-search-progress" aria-hidden="true">
-          <div className="cs-search-progress-fill"></div>
+          <div 
+            className="cs-search-progress-fill"
+            style={{ transform: `scaleX(${(activeIndex + 1) / totalSlides})`, transformOrigin: 'left center', transition: 'transform 0.3s ease' }}
+          ></div>
         </div>
       </section>
 
@@ -228,7 +262,7 @@ const AutomagIndiaCaseStudy: React.FC = () => {
       </section>
 
       <section className="svc-final-cta" id="connect">
-        <div className="svc-final-cta-mark" aria-hidden="true" style={{ width: 'min(60vw, 800px)', height: 'min(60vw, 800px)' }}>
+        <div className="svc-final-cta-mark" aria-hidden="true">
           <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
             <path className="svc-final-cta-path" d={svgPath} fill="none" />
           </svg>

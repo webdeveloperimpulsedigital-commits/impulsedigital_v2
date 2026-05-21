@@ -146,7 +146,7 @@ const DMartCaseStudy: React.FC = () => {
         <div className="cs-final-punch gsap-fade-up">That is what made the campaign useful.<br />Not just seen. Not just clicked.<br /><span>Built to move people closer to the store.</span></div>
       </section>
       <section className="svc-final-cta" id="connect">
-        <div className="svc-final-cta-mark" aria-hidden="true" style={{ width: 'min(60vw, 800px)', height: 'min(60vw, 800px)' }}>
+        <div className="svc-final-cta-mark" aria-hidden="true">
           <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
             <path className="svc-final-cta-path" d={svgPath} fill="none" />
           </svg>
