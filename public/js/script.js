@@ -570,7 +570,7 @@ window.addEventListener('resize', () => {
 
         if (!path || !numEl) return;
 
-        const pathLen = path.getTotalLength();
+        const pathLen = path.getTotalLength() || 1462;
         gsap.set(path, { strokeDasharray: pathLen, strokeDashoffset: pathLen });
         gsap.set([numEl, titleEl, labelEl], { opacity: 0, y: 28 });
         gsap.set(descEl, { opacity: 0, y: 28 });

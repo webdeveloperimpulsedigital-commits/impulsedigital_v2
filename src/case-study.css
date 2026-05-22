@@ -33,7 +33,7 @@
 .cs-hero-title {
   font-size: clamp(2.2rem, 10vw, 12rem);
   font-weight: 900;
-  line-height: 0.9;
+  line-height: 1.1;
   letter-spacing: -0.04em;
   margin-bottom: 2rem;
   color: var(--white);
@@ -170,7 +170,7 @@
   font-family: var(--font-heading);
   font-size: clamp(2.5rem, 5vw, 5rem);
   font-weight: 900;
-  line-height: 0.95;
+  line-height: 1.1;
   letter-spacing: -0.04em;
   color: var(--white);
   margin-bottom: 1rem;
@@ -568,7 +568,7 @@
   font-size: clamp(4rem, 8vw, 8rem);
   color: var(--white);
   margin-bottom: 2rem;
-  line-height: 0.9;
+  line-height: 1.1;
   font-weight: 900;
   letter-spacing: -0.04em;
   text-transform: uppercase;

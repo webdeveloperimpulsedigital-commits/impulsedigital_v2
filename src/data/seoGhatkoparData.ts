@@ -1,0 +1,212 @@
+export const seoGhatkoparData = {
+  "location": "Ghatkopar",
+  "hero": {
+    "title": "SEO Agency in Ghatkopar",
+    "headline": "Performance Focused SEO Agency in Ghatkopar",
+    "subHeadline": "SEO – Helping your business get discovered by the right audience",
+    "description": [
+      "If you’re running a business in Ghatkopar, you’ve probably noticed how much people depend on search before making a decision. Whether it’s finding a service or comparing options, most of it starts online now.",
+      "And in most cases, people don’t spend too much time exploring. They look at a few options, pick one that feels right, and move on.",
+      "That’s why visibility matters more than it seems. As an SEO company in Ghatkopar, we focus on helping your business show up consistently, not just once, but in a way that keeps bringing relevant traffic over time."
+    ]
+  },
+  "services": {
+    "title": "SEO That Feels Practical",
+    "items": [
+      {
+        "title": "AI SEO",
+        "text": [
+          "Search is slowly shifting, and people are beginning to rely more on AI tools to find answers. This changes how content gets discovered and presented. We make sure your website content is structured in a way that works across both traditional search and these newer platforms."
+        ]
+      },
+      {
+        "title": "Enterprise SEO",
+        "text": [
+          "As websites grow, small issues can start affecting performance - things like indexing gaps, unclear structure, or broken internal links. We help organize and clean things up so your website performs more smoothly and consistently."
+        ]
+      },
+      {
+        "title": "E-Commerce SEO",
+        "text": [
+          "For online stores, visibility plays a big role in how many people actually find your products. If they don’t show up, they don’t get clicked. We work on enhancing how your products and categories show up in search results."
+        ]
+      },
+      {
+        "title": "Local SEO",
+        "text": [
+          "If your customers are based around Ghatkopar, local searches become especially important. People nearby are often ready to take action. We help your business appear in those searches so you can attract more relevant local inquiries."
+        ]
+      },
+      {
+        "title": "B2B SEO",
+        "text": [
+          "For service-based businesses, it’s not just about getting traffic; it’s about getting the right kind of traffic. We focus on targeting searches that reflect real intent, so your leads are more meaningful."
+        ]
+      },
+      {
+        "title": "App Store Optimization",
+        "text": [
+          "If you have an app, visibility within app stores matters just as much as website visibility. We improve how your app appears so more users can discover it easily."
+        ]
+      },
+      {
+        "title": "International SEO",
+        "text": [
+          "If you’re planning to expand beyond your current market, your SEO setup needs to support that. We help structure your website so it can target different regions effectively."
+        ]
+      },
+      {
+        "title": "Shopify SEO",
+        "text": [
+          "Shopify websites sometimes need structural improvements to perform better in search. We optimize your store so search engines can better understand and rank your products."
+        ]
+      },
+      {
+        "title": "Conversion Rate Optimization",
+        "text": [
+          "Getting traffic is one part of the process. What users do after landing on your site matters just as much. We look at user behaviour and make small improvements that help increase conversions."
+        ]
+      },
+      {
+        "title": "Content Marketing",
+        "text": [
+          "Content works best when it matches what people are actually searching for. Otherwise, it doesn’t add much value. We focus on creating content that feels useful and answers real questions."
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "title": "Why Businesses in Ghatkopar Work With Us",
+    "items": [
+      {
+        "title": "We Keep Things Clear",
+        "text": [
+          "SEO can feel confusing if it’s over-explained. We try to keep things simple and focused on what actually works. As an SEO company in Ghatkopar, we believe clarity helps you understand what’s happening at every step."
+        ]
+      },
+      {
+        "title": "Decisions Based on Real Data",
+        "text": [
+          "We rely on actual search trends, competitor insights, and user behaviour. This helps us focus on efforts that are more likely to bring results."
+        ]
+      },
+      {
+        "title": "No Fixed Strategy",
+        "text": [
+          "Every business has different needs and challenges. We adjust our approach based on your goals instead of following a standard template."
+        ]
+      },
+      {
+        "title": "Built for Changing Search Trends",
+        "text": [
+          "Search behaviour keeps evolving, sometimes without obvious signs. We keep refining strategies so your visibility doesn’t drop over time."
+        ]
+      }
+    ]
+  },
+  "process": {
+    "title": "How We Approach SEO",
+    "items": [
+      {
+        "title": "First, We Understand Your Current Position",
+        "text": [
+          "We look at your website, your competition, and your current visibility. Sometimes small issues can have a bigger impact than expected."
+        ]
+      },
+      {
+        "title": "Then, We Plan the Next Steps",
+        "text": [
+          "We create a roadmap based on what we find. This usually includes technical fixes and content improvements. It’s kept simple and practical, so it’s easier to execute."
+        ]
+      },
+      {
+        "title": "Then We Start Implementing",
+        "text": [
+          "We work on improving pages, fixing issues, and building what’s missing. Some changes show results earlier, while others take a bit more time to build momentum."
+        ]
+      },
+      {
+        "title": "Then We Keep Improving",
+        "text": [
+          "SEO isn’t something you do once and forget. We keep tracking performance and refining things so growth stays consistent."
+        ]
+      }
+    ]
+  },
+  "deliverables": {
+    "title": "What Our SEO Work Covers",
+    "items": [
+      {
+        "title": "Website Audit",
+        "text": [
+          "We analyze your website to identify technical issues, content gaps, and opportunities. This gives us a clear starting point for improvements."
+        ]
+      },
+      {
+        "title": "Keyword Research",
+        "text": [
+          "We focus on real search behaviour, including terms like SEO company in Ghatkopar, but we don’t force them everywhere. The idea is to match intent rather than repeat keywords unnecessarily."
+        ]
+      },
+      {
+        "title": "Local SEO Improvements",
+        "text": [
+          "We help your business show up in searches happening around Ghatkopar. This increases the chances of attracting nearby customers."
+        ]
+      },
+      {
+        "title": "Technical Fixes",
+        "text": [
+          "Things like page speed, indexing, and structure can quietly affect performance. We fix these, so your website runs more smoothly."
+        ]
+      },
+      {
+        "title": "Content Work",
+        "text": [
+          "We improve existing content and create new pages where needed. The focus is always on relevance and usefulness."
+        ]
+      },
+      {
+        "title": "Reporting",
+        "text": [
+          "You get a clear idea of what’s improving and what still needs attention. No complicated reports, just straightforward updates."
+        ]
+      }
+    ]
+  },
+  "faq": {
+    "title": "FAQ's Curious Much?",
+    "items": [
+      {
+        "question": "Why should I choose your SEO services in Ghatkopar?",
+        "answer": [
+          "We focus on steady, practical growth that brings real inquiries. The goal is to make your business easier to find and trust."
+        ]
+      },
+      {
+        "question": "How do you decide the SEO strategy?",
+        "answer": [
+          "It depends on your business, your competition, and your current position. We don’t follow a fixed template."
+        ]
+      },
+      {
+        "question": "How long does it take to see results?",
+        "answer": [
+          "SEO typically takes a few months before you start seeing meaningful results. It builds gradually over time."
+        ]
+      },
+      {
+        "question": "Do you only work with local businesses?",
+        "answer": [
+          "No, but we do help improve local visibility if your audience is nearby."
+        ]
+      },
+      {
+        "question": "How do you measure success?",
+        "answer": [
+          "We track rankings, traffic, and most importantly, whether you're getting more leads or inquiries."
+        ]
+      }
+    ]
+  }
+};

@@ -157,7 +157,7 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
 
             <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <span style={labelSpanStyle}>
-                Phone Number <span style={{ color: '#8a5cf6' }}>*</span>
+                Phone Number <span style={{ color: '#ef4444' }}>*</span>
               </span>
               <input
                 type="tel"
@@ -173,7 +173,7 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
 
             <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <span style={labelSpanStyle}>
-                What are you looking to improve? <span style={{ color: '#8a5cf6' }}>*</span>
+                What are you looking to improve? <span style={{ color: '#ef4444' }}>*</span>
               </span>
               <select
                 required
@@ -205,7 +205,7 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
 
             <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <span style={labelSpanStyle}>
-                Company Website <span style={{ color: '#8a5cf6' }}>*</span>
+                Company Website <span style={{ color: '#ef4444' }}>*</span>
               </span>
               <input
                 type="url"
