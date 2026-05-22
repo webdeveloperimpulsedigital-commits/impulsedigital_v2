@@ -331,10 +331,10 @@ const CaseStudyRow = ({ study, isReady }: { study: any, isReady: boolean }) => {
                   borderBottomLeftRadius: '64px',
                   borderBottomRightRadius: '12px'
                 }}>
-                  <h3 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, textTransform: 'uppercase' }}>
+                  <h3 className="slide-title" style={{ margin: 0, fontWeight: 700, textTransform: 'uppercase' }}>
                     {slideTitle}
                   </h3>
-                  <p style={{ margin: 0, fontSize: '1rem', lineHeight: 1.4, opacity: 0.9 }}>
+                  <p className="slide-desc" style={{ margin: 0, lineHeight: 1.4, opacity: 0.9 }}>
                     {slideDesc}
                   </p>
                 </div>
@@ -451,7 +451,7 @@ const CaseStudies: React.FC = () => {
           <div className="work-hero-content">
             <h1 className="work-hero-title hero-copy-reveal">
               The Work <br />
-              <span style={{ whiteSpace: 'nowrap', color: '#aa3bff' }}>Behind the Numbers.</span>
+              <span className="work-hero-highlight" style={{ color: '#aa3bff' }}>Behind the Numbers.</span>
             </h1>
             <p className="work-hero-desc hero-copy-reveal">
               The final number is never the full story. The real story is what had to be questioned, rebuilt, sharpened and pushed before the result had a chance to happen.
@@ -632,6 +632,18 @@ const CaseStudies: React.FC = () => {
           border-radius: 12px 64px 12px 64px;
         }
 
+        .slide-title {
+          font-size: 1.5rem;
+        }
+
+        .slide-desc {
+          font-size: 1rem;
+        }
+
+        .work-hero-highlight {
+          white-space: nowrap;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
           .work-list-item {
@@ -653,8 +665,17 @@ const CaseStudies: React.FC = () => {
             padding-bottom: 4rem;
           }
           .work-hero-title {
-            font-size: clamp(3rem, 15vw, 4.5rem);
+            font-size: clamp(2.5rem, 10vw, 3.5rem);
             margin-bottom: 1.5rem;
+          }
+          .work-hero-highlight {
+            white-space: normal;
+          }
+          .slide-title {
+            font-size: 1.1rem;
+          }
+          .slide-desc {
+            font-size: 0.85rem;
           }
           .work-list-section {
             padding: 4rem 0;
