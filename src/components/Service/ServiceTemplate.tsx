@@ -517,6 +517,28 @@ export const ServiceFinalCTA: React.FC<{ data: any }> = ({ data }) => {
           <path className="svc-final-cta-path" d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" fill="none" />
         </svg>
       </div>
+      <style>{`
+        @media (max-width: 768px) {
+          .svc-final-cta {
+            padding: 3rem 0 3rem !important;
+          }
+          .svc-final-cta h2 {
+            font-size: 2.2rem !important;
+            margin-bottom: 1.2rem !important;
+          }
+          .svc-final-cta-body {
+            font-size: 0.95rem !important;
+            margin-bottom: 2rem !important;
+          }
+          .svc-final-cta-mark {
+            width: 95vw !important;
+            height: 95vw !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            transform-origin: center !important;
+          }
+        }
+      `}</style>
       <div className="container">
         {(data.headingFontSize || data.headingLineHeight) && <style>{`.svc-final-cta .svc-final-cta-heading { ${data.headingFontSize ? `font-size: ${data.headingFontSize} !important;` : ''} ${data.headingLineHeight ? `line-height: ${data.headingLineHeight} !important;` : ''} }`}</style>}
         <h2 className="split-text svc-final-cta-heading" dangerouslySetInnerHTML={{ __html: data.titleParts ? `${data.titleParts[0]}<span style="color: var(--impulse-violet);">${data.accent}</span>` : data.title || '' }} />

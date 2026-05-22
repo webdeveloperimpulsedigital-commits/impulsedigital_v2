@@ -34,6 +34,25 @@ const AIVideoProduction: React.FC = () => {
         top: 100% !important;
         height: 2px !important;
       }
+      .ai-video-orbit .svc-channel-chip {
+        --chip-left: var(--chip-left-desktop);
+        --chip-top: var(--chip-top-desktop);
+      }
+      @media (max-width: 768px) {
+        .ai-video-orbit .svc-channel-chip:nth-child(1) { --chip-left: 50%; --chip-top: 4%; }
+        .ai-video-orbit .svc-channel-chip:nth-child(2) { --chip-left: 80%; --chip-top: 16%; }
+        .ai-video-orbit .svc-channel-chip:nth-child(3) { --chip-left: 85%; --chip-top: 32%; }
+        .ai-video-orbit .svc-channel-chip:nth-child(4) { --chip-left: 88%; --chip-top: 50%; }
+        .ai-video-orbit .svc-channel-chip:nth-child(5) { --chip-left: 85%; --chip-top: 68%; }
+        .ai-video-orbit .svc-channel-chip:nth-child(6) { --chip-left: 80%; --chip-top: 84%; }
+        .ai-video-orbit .svc-channel-chip:nth-child(7) { --chip-left: 50%; --chip-top: 96%; }
+        .ai-video-orbit .svc-channel-chip:nth-child(8) { --chip-left: 20%; --chip-top: 84%; }
+        .ai-video-orbit .svc-channel-chip:nth-child(9) { --chip-left: 15%; --chip-top: 68%; }
+        .ai-video-orbit .svc-channel-chip:nth-child(10) { --chip-left: 15%; --chip-top: 32%; }
+        .ai-video-orbit .svc-channel-chip:nth-child(11) { --chip-left: 20%; --chip-top: 16%; }
+        
+        #channels-stage.svc-channels-stage { min-height: 900px !important; }
+      }
     `;
     document.head.appendChild(style);
     
@@ -295,18 +314,18 @@ const AIVideoProduction: React.FC = () => {
                 <path d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
               </svg>
             </div>
-            <div className="svc-channels-orbit">
-              <span className="svc-channel-chip" style={{ '--chip-left': '18%', '--chip-top': '20%' } as React.CSSProperties}>Reels & Shorts</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '38%', '--chip-top': '12%' } as React.CSSProperties}>Training Modules</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '62%', '--chip-top': '12%' } as React.CSSProperties}>Employer Branding</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '82%', '--chip-top': '20%' } as React.CSSProperties}>YouTube Videos</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '92%', '--chip-top': '45%' } as React.CSSProperties}>LinkedIn Ads</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '88%', '--chip-top': '70%' } as React.CSSProperties}>Website Banners</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '70%', '--chip-top': '88%' } as React.CSSProperties}>Multilingual Updates</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '50%', '--chip-top': '95%' } as React.CSSProperties}>Digital Ads</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '30%', '--chip-top': '88%' } as React.CSSProperties}>Internal Communication</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '12%', '--chip-top': '70%' } as React.CSSProperties}>Product Explainers</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '8%', '--chip-top': '45%' } as React.CSSProperties}>Sales Decks</span>
+            <div className="svc-channels-orbit ai-video-orbit">
+              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '50%', '--chip-top-desktop': '5%' } as React.CSSProperties}>Reels & Shorts</span>
+              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '74%', '--chip-top-desktop': '12%' } as React.CSSProperties}>Training Modules</span>
+              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '91%', '--chip-top-desktop': '31%' } as React.CSSProperties}>Employer Branding</span>
+              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '94%', '--chip-top-desktop': '56%' } as React.CSSProperties}>YouTube Videos</span>
+              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '84%', '--chip-top-desktop': '79%' } as React.CSSProperties}>LinkedIn Ads</span>
+              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '62%', '--chip-top-desktop': '93%' } as React.CSSProperties}>Website Banners</span>
+              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '37%', '--chip-top-desktop': '93%' } as React.CSSProperties}>Multilingual Updates</span>
+              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '16%', '--chip-top-desktop': '79%' } as React.CSSProperties}>Digital Ads</span>
+              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '5%', '--chip-top-desktop': '56%' } as React.CSSProperties}>Internal Communication</span>
+              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '9%', '--chip-top-desktop': '31%' } as React.CSSProperties}>Product Explainers</span>
+              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '25%', '--chip-top-desktop': '12%' } as React.CSSProperties}>Sales Decks</span>
             </div>
           </div>
           <p style={{ textAlign: 'center', color: 'var(--soft-grey)', fontSize: '1.15rem', marginTop: '3rem', fontStyle: 'italic' }}>

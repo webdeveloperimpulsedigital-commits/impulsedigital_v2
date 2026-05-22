@@ -7,8 +7,13 @@ interface DownloadCaseStudyFormProps {
 
 const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, pdfLink }) => {
   const [submitted, setSubmitted] = useState(false);
-  const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [designation, setDesignation] = useState('');
+  const [phone, setPhone] = useState('');
+  const [improvementArea, setImprovementArea] = useState('');
+  const [website, setWebsite] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,6 +26,31 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
       link.click();
       document.body.removeChild(link);
     }
+  };
+
+  const inputStyle = {
+    width: '100%', padding: '0.9rem 1rem',
+    background: 'rgba(255,255,255,0.04)',
+    border: '1px solid rgba(255,255,255,0.1)',
+    borderRadius: '10px', color: '#fff', fontSize: '1rem',
+    outline: 'none', transition: 'border-color 0.25s, box-shadow 0.25s',
+    boxSizing: 'border-box' as const,
+  };
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
+    e.target.style.borderColor = '#8a5cf6';
+    e.target.style.boxShadow = '0 0 0 3px rgba(138,92,246,0.15)';
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
+    e.target.style.borderColor = 'rgba(255,255,255,0.1)';
+    e.target.style.boxShadow = 'none';
+  };
+
+  const labelSpanStyle = {
+    fontSize: '0.78rem', fontWeight: 700,
+    color: 'rgba(255,255,255,0.4)',
+    textTransform: 'uppercase' as const, letterSpacing: '1.5px',
   };
 
   return (
@@ -62,12 +92,8 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
 
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <span style={{
-                fontSize: '0.78rem', fontWeight: 700,
-                color: 'rgba(255,255,255,0.4)',
-                textTransform: 'uppercase', letterSpacing: '1.5px',
-              }}>
-                Full Name <span style={{ color: '#8a5cf6' }}>*</span>
+              <span style={labelSpanStyle}>
+                Full Name <span style={{ color: '#ef4444' }}>*</span>
               </span>
               <input
                 type="text"
@@ -75,26 +101,15 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
                 value={name}
                 onChange={e => setName(e.target.value)}
                 placeholder="John Smith"
-                style={{
-                  width: '100%', padding: '0.9rem 1rem',
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  borderRadius: '10px', color: '#fff', fontSize: '1rem',
-                  outline: 'none', transition: 'border-color 0.25s, box-shadow 0.25s',
-                  boxSizing: 'border-box',
-                }}
-                onFocus={e => { e.target.style.borderColor = '#8a5cf6'; e.target.style.boxShadow = '0 0 0 3px rgba(138,92,246,0.15)'; }}
-                onBlur={e  => { e.target.style.borderColor = 'rgba(255,255,255,0.1)'; e.target.style.boxShadow = 'none'; }}
+                style={inputStyle}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
               />
             </label>
 
             <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <span style={{
-                fontSize: '0.78rem', fontWeight: 700,
-                color: 'rgba(255,255,255,0.4)',
-                textTransform: 'uppercase', letterSpacing: '1.5px',
-              }}>
-                Business Email <span style={{ color: '#8a5cf6' }}>*</span>
+              <span style={labelSpanStyle}>
+                Work Email <span style={{ color: '#ef4444' }}>*</span>
               </span>
               <input
                 type="email"
@@ -102,16 +117,105 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="john@company.com"
+                style={inputStyle}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              />
+            </label>
+
+            <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <span style={labelSpanStyle}>
+                Company Name <span style={{ color: '#ef4444' }}>*</span>
+              </span>
+              <input
+                type="text"
+                required
+                value={companyName}
+                onChange={e => setCompanyName(e.target.value)}
+                placeholder="Your Company"
+                style={inputStyle}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              />
+            </label>
+
+            <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <span style={labelSpanStyle}>
+                Designation / Role <span style={{ color: '#ef4444' }}>*</span>
+              </span>
+              <input
+                type="text"
+                required
+                value={designation}
+                onChange={e => setDesignation(e.target.value)}
+                placeholder="e.g. Marketing Manager"
+                style={inputStyle}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              />
+            </label>
+
+            <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <span style={labelSpanStyle}>
+                Phone Number <span style={{ color: '#8a5cf6' }}>*</span>
+              </span>
+              <input
+                type="tel"
+                required
+                value={phone}
+                onChange={e => setPhone(e.target.value)}
+                placeholder="+91 98765 43210"
+                style={inputStyle}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              />
+            </label>
+
+            <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <span style={labelSpanStyle}>
+                What are you looking to improve? <span style={{ color: '#8a5cf6' }}>*</span>
+              </span>
+              <select
+                required
+                value={improvementArea}
+                onChange={e => setImprovementArea(e.target.value)}
                 style={{
-                  width: '100%', padding: '0.9rem 1rem',
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  borderRadius: '10px', color: '#fff', fontSize: '1rem',
-                  outline: 'none', transition: 'border-color 0.25s, box-shadow 0.25s',
-                  boxSizing: 'border-box',
+                  ...inputStyle,
+                  appearance: 'none',
+                  backgroundImage: `url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%238a5cf6%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E")`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right 1rem top 50%',
+                  backgroundSize: '0.65rem auto',
+                  color: improvementArea ? '#fff' : 'rgba(255,255,255,0.5)',
                 }}
-                onFocus={e => { e.target.style.borderColor = '#8a5cf6'; e.target.style.boxShadow = '0 0 0 3px rgba(138,92,246,0.15)'; }}
-                onBlur={e  => { e.target.style.borderColor = 'rgba(255,255,255,0.1)'; e.target.style.boxShadow = 'none'; }}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              >
+                <option value="" disabled>Select an option</option>
+                <option value="Generate more qualified leads" style={{ color: '#000' }}>Generate more qualified leads</option>
+                <option value="Improve SEO and organic visibility" style={{ color: '#000' }}>Improve SEO and organic visibility</option>
+                <option value="Build stronger brand storytelling" style={{ color: '#000' }}>Build stronger brand storytelling</option>
+                <option value="Create AI-led video or campaign assets" style={{ color: '#000' }}>Create AI-led video or campaign assets</option>
+                <option value="Improve website conversion" style={{ color: '#000' }}>Improve website conversion</option>
+                <option value="Strengthen social media and content" style={{ color: '#000' }}>Strengthen social media and content</option>
+                <option value="Build employer brand visibility" style={{ color: '#000' }}>Build employer brand visibility</option>
+                <option value="Something else" style={{ color: '#000' }}>Something else</option>
+              </select>
+            </label>
+
+            <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <span style={labelSpanStyle}>
+                Company Website <span style={{ color: '#8a5cf6' }}>*</span>
+              </span>
+              <input
+                type="url"
+                required
+                value={website}
+                onChange={e => setWebsite(e.target.value)}
+                placeholder="https://company.com"
+                style={inputStyle}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
               />
             </label>
 
