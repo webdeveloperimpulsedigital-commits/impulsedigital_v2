@@ -37,7 +37,16 @@ const Logos: React.FC<LogosProps> = ({ title }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!gsap || !ScrollTrigger) return;
+    if (!gsap || !ScrollTrigger) {
+      // Fallback: make all cards visible if GSAP isn't available
+      const cards = sectionRef.current?.querySelectorAll('.logo-card');
+      cards?.forEach((card: any) => {
+        (card as HTMLElement).style.opacity = '1';
+        (card as HTMLElement).style.visibility = 'visible';
+        (card as HTMLElement).style.transform = 'none';
+      });
+      return;
+    }
     
     let ctx: any;
     const timeout = setTimeout(() => {
@@ -64,26 +73,52 @@ const Logos: React.FC<LogosProps> = ({ title }) => {
           }
         }
 
-        // Logo Grid Reveal
-        const cards = gsap.utils.toArray('.logo-card');
+        // Logo Grid Reveal — scoped only to THIS section's cards
+        const section = sectionRef.current;
+        if (!section) return;
+        const cards = section.querySelectorAll('.logo-card:not(.logo-duplicate)');
         if (cards.length) {
           gsap.set(cards, { autoAlpha: 0, y: 30, scale: 0.95 });
+          ScrollTrigger.refresh();
           gsap.to(cards, {
             scrollTrigger: {
-              trigger: ".logos",
-              start: "top 75%",
-              toggleActions: "play none none reverse"
+              trigger: section,
+              start: 'top 85%',
+              once: true,
+              onEnter: () => {
+                gsap.to(cards, {
+                  autoAlpha: 1,
+                  y: 0,
+                  scale: 1,
+                  stagger: 0.04,
+                  duration: 0.8,
+                  ease: 'back.out(1.4)'
+                });
+              }
             },
             autoAlpha: 1,
             y: 0,
             scale: 1,
-            stagger: 0.03,
-            duration: 1,
-            ease: "back.out(1.4)"
+            stagger: 0.04,
+            duration: 0.8,
+            ease: 'back.out(1.4)'
           });
+
+          // Safety net: if section is already in view on load, animate immediately
+          const rect = section.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.85) {
+            gsap.to(cards, {
+              autoAlpha: 1,
+              y: 0,
+              scale: 1,
+              stagger: 0.04,
+              duration: 0.8,
+              ease: 'back.out(1.4)'
+            });
+          }
         }
       }, sectionRef);
-    }, 100);
+    }, 150);
 
     return () => {
       clearTimeout(timeout);
@@ -111,7 +146,12 @@ const Logos: React.FC<LogosProps> = ({ title }) => {
                     alt={logo.alt}
                     className={logo.fixGrid ? 'fix-logo-grid' : ''}
                     style={logo.scale ? { '--base-scale': logo.scale } as React.CSSProperties : undefined}
-                  loading="lazy" decoding="async"  width="200" height="100" />
+                    loading="eager"
+                    decoding="async"
+                    width="200"
+                    height="100"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
                 </div>
               </div>
             ))}
