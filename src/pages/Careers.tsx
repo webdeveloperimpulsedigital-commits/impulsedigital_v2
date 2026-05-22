@@ -1059,7 +1059,7 @@ const Careers: React.FC = () => {
                 </svg>
               </div>
               <div className="car-job-main">
-                <h3>Digital Marketing Manager</h3>
+                <h3>Account Manager</h3>
                 <div className="car-job-tags">
                   <span>Full-Time</span>
                   <span>Mumbai, India</span>
