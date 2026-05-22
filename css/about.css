@@ -917,7 +917,7 @@
    The cutout portraits sit on the actual Impulse brand mark,
    not the previous generic circular backdrop.
    ============================================================ */
-.ab-founders { padding: 8rem 0 3rem; overflow: visible; }
+.ab-founders { padding: 8rem 0 3rem; overflow-x: clip; }
 .ab-founders-intro {
   text-align: center;
   max-width: 1300px;
@@ -940,7 +940,7 @@
   min-height: 95vh;
   display: flex;
   align-items: center;
-  overflow: visible;
+  overflow-x: clip;
 }
 
 /* Layer 3: monumental outlined ghost name spanning the
