@@ -101,60 +101,38 @@ export const ServiceLargeText: React.FC<{ data: any }> = ({ data }) => (
 export const ServiceVs: React.FC<{ data: any }> = ({ data }) => {
   useEffect(() => {
     const { gsap } = window as any;
-    if (!gsap || !ScrollTrigger) return;
-    
-    const vsSection = document.querySelector('.svc-vs');
-    if (vsSection) {
-      const lineQuiet = vsSection.querySelector('.line-quiet');
-      const lineLoud = vsSection.querySelector('.svc-vs-line:not(.line-quiet)');
-      const strike = vsSection.querySelector('.svc-vs-strike') as HTMLElement;
-      const highlight = vsSection.querySelector('.svc-vs-highlight') as HTMLElement;
-      const closing = vsSection.querySelector('.svc-vs-closing');
-      
-      gsap.set([lineQuiet, lineLoud, closing], { opacity: 0, y: 28 });
-      
-      ScrollTrigger.create({
-        trigger: vsSection,
-        start: 'top 55%',
-        once: true,
-        onEnter: () => {
-          const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-          tl.to(lineQuiet, { opacity: 0.7, y: 0, duration: 0.7 }, 0)
-            .to(lineLoud, { opacity: 1, y: 0, duration: 0.8 }, 0.2)
-            .add(() => {
-              if(!strike) return;
-              let prog = { v: 0 };
-              gsap.to(prog, {
-                v: 108,
-                duration: 0.65,
-                ease: 'power2.inOut',
-                onUpdate: () => strike.style.setProperty('--strike-w', prog.v + '%')
-              });
-            }, 1.2)
-            .add(() => {
-              if(!highlight) return;
-              let prog = { v: 0 };
-              gsap.to(prog, {
-                v: 100,
-                duration: 0.7,
-                ease: 'power3.out',
-                onUpdate: () => highlight.style.setProperty('--hl-w', prog.v + '%')
-              });
-            }, 1.6)
-            .to(closing, { opacity: 1, y: 0, duration: 0.7 }, 2.4);
-        }
-      });
+    const vsSection = document.querySelector('.plain-english-section');
+    const timers: number[] = [];
+    let observer: IntersectionObserver | null = null;
 
-      const strikeStyle = document.createElement('style');
-      strikeStyle.textContent = `
-        .svc-vs-strike::after { width: var(--strike-w, 0%) !important; }
-        .svc-vs-highlight::after { width: var(--hl-w, 0%) !important; }
-      `;
-      document.head.appendChild(strikeStyle);
+    if (vsSection) {
+      const showFinalState = () => {
+        vsSection.classList.add('is-copy-visible', 'is-struck', 'is-highlighted');
+      };
+
+      if (
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        !('IntersectionObserver' in window)
+      ) {
+        showFinalState();
+      } else {
+        observer = new IntersectionObserver((entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+
+          vsSection.classList.add('is-copy-visible');
+          timers.push(window.setTimeout(() => vsSection.classList.add('is-struck'), 725));
+          timers.push(window.setTimeout(() => vsSection.classList.add('is-highlighted'), 2145));
+          observer?.disconnect();
+        }, {
+          rootMargin: '0px 0px -18%',
+          threshold: 0.2,
+        });
+        observer.observe(vsSection);
+      }
     }
 
     const vsSteps = document.querySelectorAll('.svc-vs-step');
-    if (vsSteps.length) {
+    if (gsap && ScrollTrigger && vsSteps.length) {
       gsap.set(vsSteps, { opacity: 0, x: -16 });
       ScrollTrigger.create({
         trigger: '.svc-vs-pipeline',
@@ -176,23 +154,28 @@ export const ServiceVs: React.FC<{ data: any }> = ({ data }) => {
         }
       });
     }
+
+    return () => {
+      observer?.disconnect();
+      timers.forEach((timer) => window.clearTimeout(timer));
+    };
   }, []);
 
   return (
-    <section className="svc-vs">
+    <section className="svc-vs plain-english-section">
       <div className="container">
         <h2 className="svc-h2 split-text" style={{ fontSize: 'clamp(2rem, 3.2vw, 3.8rem)' }}>{data.title}</h2>
         <div className="svc-vs-stack">
-          <div className="svc-vs-line line-quiet">
+          <div className="svc-vs-line plain-english-copy line-quiet">
             <div className="svc-vs-label">{data.leftLabel}</div>
             <div className="svc-vs-statement">
-              <span className="svc-vs-strike">{data.leftStrike}</span>
+              <span className="plain-english-mark plain-english-mark--strike svc-vs-strike">{data.leftStrike}</span>
             </div>
           </div>
-          <div className="svc-vs-line">
+          <div className="svc-vs-line plain-english-copy">
             <div className="svc-vs-label">{data.rightLabel}</div>
             <div className="svc-vs-statement-loud">
-              <span dangerouslySetInnerHTML={{ __html: data.rightText }} /><span className="svc-vs-highlight" dangerouslySetInnerHTML={{ __html: data.rightHighlight }} />.
+              <span dangerouslySetInnerHTML={{ __html: data.rightText }} /><span className="plain-english-mark plain-english-mark--highlight svc-vs-highlight" dangerouslySetInnerHTML={{ __html: data.rightHighlight }} />.
             </div>
           </div>
           {data.steps && data.steps.length > 0 && (

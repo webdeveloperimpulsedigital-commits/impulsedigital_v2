@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { ServiceVs } from '../components/Service/ServiceTemplate';
 import { startHeroCopyReveal } from '../utils/heroCopyReveal';
 
 /**
@@ -179,39 +180,22 @@ const EmployerBrandingCaseStudy: React.FC = () => {
       <div className="svc-handoff" aria-hidden="true"><div className="svc-handoff-line"></div><div className="svc-handoff-mark"><ImpulseMark /></div></div>
 
       {/* VS */}
-      <section className="svc-vs">
-        <div className="container">
-          <h2 className="svc-h2 split-text">Employer Branding, in Plain English</h2>
-          <div className="svc-vs-stack">
-            <div className="svc-vs-line line-quiet">
-              <div className="svc-vs-label">Recruitment</div>
-              <div className="svc-vs-statement"><span className="svc-vs-strike">tells people there is a role.</span></div>
-            </div>
-            <div className="svc-vs-line">
-              <div className="svc-vs-label">Employer Branding</div>
-              <div className="svc-vs-statement">tells them <span className="svc-vs-highlight">why it matters</span>.</div>
-            </div>
-            <div className="svc-vs-pipeline">
-              {[
-                'Define what makes your workplace worth choosing',
-                'Turn culture into a clear talent story',
-                'Build a stronger Employee Value Proposition',
-                'Create communication that attracts the right candidates',
-                'Help employees become advocates, not just staff',
-              ].map((label, i) => (
-                <div key={i} className="svc-vs-step">
-                  <div className="step-marker"><span className="step-dot"></span></div>
-                  <div className="step-content">
-                    <span className="step-num">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="step-label">{label}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p className="svc-vs-closing">The output is not a campaign slogan. It is a talent-facing brand system that helps people understand why they should join, stay, and grow with you.</p>
-          </div>
-        </div>
-      </section>
+      <ServiceVs data={{
+        title: 'Employer Branding, in Plain English',
+        leftLabel: 'Recruitment',
+        leftStrike: 'tells people there is a role.',
+        rightLabel: 'Employer Branding',
+        rightText: 'tells them ',
+        rightHighlight: 'why it matters',
+        steps: [
+          { num: '01', text: 'Define what makes your workplace worth choosing' },
+          { num: '02', text: 'Turn culture into a clear talent story' },
+          { num: '03', text: 'Build a stronger Employee Value Proposition' },
+          { num: '04', text: 'Create communication that attracts the right candidates' },
+          { num: '05', text: 'Help employees become advocates, not just staff' },
+        ],
+        closing: 'The output is not a campaign slogan. It is a talent-facing brand system that helps people understand why they should join, stay, and grow with you.',
+      }} />
 
       <div className="svc-handoff" aria-hidden="true"><div className="svc-handoff-line"></div><div className="svc-handoff-mark"><ImpulseMark /></div></div>
 

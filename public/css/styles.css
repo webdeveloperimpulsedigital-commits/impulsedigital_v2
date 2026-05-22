@@ -2530,47 +2530,91 @@ button,
     color: var(--soft-grey);
 }
 
-/* Strikethrough across "replies." — draws as the agentic line lands.
-   The line is the recall moment: the chatbot's reply gets crossed out. */
-.svc-vs-strike {
-    position: relative;
-    display: inline-block;
+/* The comparison marks stay inline so wraps keep their own decoration fragment. */
+.plain-english-copy,
+.plain-english-section .svc-vs-closing {
+    opacity: 0;
+    transform: translate3d(0, 1.35rem, 0);
+    transition:
+        opacity 0.45s ease,
+        transform 0.45s cubic-bezier(0.2, 0.75, 0.2, 1);
 }
 
-.svc-vs-strike::after {
-    content: "";
-    position: absolute;
-    left: -4%;
-    top: 56%;
-    width: 0;
-    height: 3px;
-    background: linear-gradient(to right,
-            rgba(138, 92, 246, 0) 0%,
-            rgba(138, 92, 246, 0.95) 12%,
-            rgba(138, 92, 246, 0.95) 88%,
-            rgba(138, 92, 246, 0) 100%);
-    transform: translateY(-50%);
-    box-shadow: 0 0 14px rgba(138, 92, 246, 0.55);
-    pointer-events: none;
+.plain-english-section .line-quiet {
+    opacity: 0;
 }
 
-/* Violet underline draws under "the next step" once the headline arrives. */
-.svc-vs-highlight {
-    position: relative;
+.plain-english-section.is-copy-visible .plain-english-copy {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.plain-english-section.is-copy-visible .line-quiet {
+    opacity: 0.7;
+}
+
+.plain-english-section.is-highlighted .svc-vs-closing {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition-delay: 0.22s;
+}
+
+.plain-english-mark {
+    display: inline;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+.plain-english-mark--strike {
+    background-image: linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent calc(52% - 0.06em),
+        rgba(138, 92, 246, 0.98) calc(52% - 0.06em),
+        rgba(138, 92, 246, 0.98) calc(52% + 0.06em),
+        transparent calc(52% + 0.06em)
+    );
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    transition: background-size 1.02s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.plain-english-section.is-struck .plain-english-mark--strike {
+    background-size: 100% 100%;
+}
+
+.plain-english-mark--highlight {
     color: var(--impulse-violet);
-    display: inline-block;
+    background-image: linear-gradient(
+        to top,
+        rgba(138, 92, 246, 0.98) 0,
+        rgba(138, 92, 246, 0.98) 0.11em,
+        rgba(138, 92, 246, 0.16) 0.11em,
+        rgba(138, 92, 246, 0.16) 0.2em,
+        transparent 0.2em
+    );
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    transition: background-size 1.02s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.svc-vs-highlight::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -0.05em;
-    width: 0;
-    height: 4px;
-    background: var(--impulse-violet);
-    box-shadow: 0 0 18px rgba(138, 92, 246, 0.85);
-    pointer-events: none;
+.plain-english-section.is-highlighted .plain-english-mark--highlight {
+    background-size: 100% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .plain-english-copy,
+    .plain-english-section .svc-vs-closing {
+        transition: none;
+        transform: none;
+    }
+
+    .plain-english-mark--strike,
+    .plain-english-mark--highlight {
+        transition: none;
+    }
 }
 
 .svc-vs-actions {
