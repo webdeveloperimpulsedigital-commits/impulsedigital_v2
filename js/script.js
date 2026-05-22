@@ -356,12 +356,12 @@ window.addEventListener('resize', () => {
         // Initial State: Position cards deep in a true 3D tunnel using Z-axis
         cosmosCards.forEach((card, index) => {
             const isLeft = index % 2 === 0;
-            // X position is completely fixed. Perspective naturally moves them outward as you fly closer.
-            // Phones keep the fly-through centered so the 3D path cannot widen the viewport.
-            const offsetMultiplier = isMobile ? 0 : 0.3;
+            // X position is fixed. Perspective naturally moves them outward as you fly closer.
+            // On mobile, push them perfectly to the sides (0.45 * width) so they don't overlap in the center even with 80vw width!
+            const offsetMultiplier = isMobile ? 0.45 : 0.3;
             const xOffset = isLeft ? -window.innerWidth * offsetMultiplier : window.innerWidth * offsetMultiplier;
-            // On mobile, we also need a vertical offset so they don't completely overlap in the center tunnel
-            const yOffset = isMobile ? (isLeft ? -window.innerHeight * 0.15 : window.innerHeight * 0.15) : 0;
+            // No vertical offset needed if they are neatly on the sides
+            const yOffset = 0;
             
             gsap.set(card, { 
                 x: xOffset, 
@@ -372,7 +372,7 @@ window.addEventListener('resize', () => {
                 scale: 1, // Let CSS perspective handle sizing natively
                 opacity: 0, 
                 pointerEvents: 'none',
-                rotationZ: isLeft ? -5 : 5
+                rotationZ: isMobile ? 0 : (isLeft ? -5 : 5)
             });
         });
         
@@ -433,8 +433,10 @@ window.addEventListener('resize', () => {
         });
 
         cosmosCards.forEach((card, index) => {
-            const startTime = index * 2.0; // Stagger their appearance in the tunnel
-            const flyDuration = 5.0; // Slow, constant, majestic fly-by speed
+            // Restore desktop-style time stagger so two cards are visible, but our new yOffset prevents physical overlap
+            const staggerTime = 2.0; 
+            const startTime = index * staggerTime; 
+            const flyDuration = 5.0; 
 
             // 1. Fade in as it approaches from the deep vanishing point
             tl.to(card, {
