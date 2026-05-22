@@ -849,9 +849,14 @@ nav.scrolled {
     justify-content: center;
     position: relative;
     overflow: visible; /* CRITICAL: Allow the aura to spill outside */
-    opacity: 0; 
     will-change: transform, opacity;
     transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.5s ease;
+    /* Fallback: if GSAP never fires, logos become visible after 1.5s */
+    animation: logoFallbackReveal 0s 1.5s forwards;
+}
+
+@keyframes logoFallbackReveal {
+    to { opacity: 1 !important; visibility: visible !important; }
 }
 
 /* THE COSMIC HALO (Outer Aura Spill) */
