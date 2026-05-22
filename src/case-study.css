@@ -427,6 +427,18 @@
   }
 }
 
+@media (max-width: 640px) {
+  .cs-journey-container {
+    padding-inline: 1.25rem;
+    gap: 2.75rem;
+  }
+
+  .cs-journey-title {
+    font-size: clamp(1.95rem, 9.1vw, 2.7rem);
+    overflow-wrap: break-word;
+  }
+}
+
 .cs-journey-left {
   position: sticky;
   top: 150px;
@@ -810,4 +822,39 @@
 .case-study-page .svc-final-cta .container {
   position: relative;
   z-index: 2;
+}
+
+@media (max-width: 640px) {
+  .cs-journey-left,
+  .cs-journey-title,
+  .cs-final-punch {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
+  .cs-journey-title {
+    font-size: clamp(1.95rem, 9.1vw, 2.7rem);
+  }
+
+  .cs-journey-container {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cs-journey-title .line-wrapper,
+  .cs-journey-title .line {
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal !important;
+  }
+
+  .cs-final {
+    padding-inline: 1.25rem;
+  }
+
+  .cs-final-punch {
+    display: block;
+    width: 100%;
+    padding: clamp(1.5rem, 7vw, 2.25rem) clamp(1rem, 5vw, 1.5rem);
+  }
 }

@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-
-const { gsap, SplitType } = window as any;
+import React, { useLayoutEffect } from 'react';
+import { startHeroCopyReveal } from '../../utils/heroCopyReveal';
 
 interface ServiceHeroProps {
   headlineParts?: string[];
@@ -11,54 +10,12 @@ interface ServiceHeroProps {
 }
 
 const ServiceHero: React.FC<ServiceHeroProps> = ({ headlineParts, headlineAccent, headlineHtml, description, buttons }) => {
-  useEffect(() => {
-    const heroHeadline = document.querySelector('.svc-hero-headline');
-    const heroDesc = document.querySelector('.svc-hero-page-desc');
-    const heroCtas = document.querySelectorAll('.svc-hero-cta-row .btn');
-
-    if (!heroHeadline || !heroDesc) return;
-
-    // Reset visibility if it was hidden by css
-    (heroHeadline as HTMLElement).style.visibility = 'visible';
-    (heroDesc as HTMLElement).style.visibility = 'visible';
-
-    const split = new SplitType(heroHeadline as HTMLElement, { types: 'lines,words' });
-    split.lines?.forEach((line: HTMLElement) => {
-      const w = document.createElement('div');
-      w.classList.add('line-wrapper');
-      line.parentNode?.insertBefore(w, line);
-      w.appendChild(line);
+  useLayoutEffect(() => {
+    return startHeroCopyReveal({
+      primary: document.querySelector('.svc-hero-headline'),
+      supporting: document.querySelector('.svc-hero-page-desc'),
+      actions: Array.from(document.querySelectorAll('.svc-hero-cta-row .btn')),
     });
-
-    const descSplit = new SplitType(heroDesc as HTMLElement, { types: 'lines' });
-    descSplit.lines?.forEach((line: HTMLElement) => {
-      const w = document.createElement('div');
-      w.classList.add('line-wrapper');
-      line.parentNode?.insertBefore(w, line);
-      w.appendChild(line);
-    });
-
-    const tl = gsap.timeline({ delay: 0.2 });
-
-    tl.fromTo(split.words,
-      { yPercent: 120, opacity: 0 },
-      { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.02, ease: 'power4.out' }
-    )
-    .fromTo(descSplit.lines,
-      { yPercent: 100, opacity: 0 },
-      { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: 'power3.out' },
-      "-=0.4"
-    )
-    .fromTo(heroCtas,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out' },
-      "-=0.4"
-    );
-
-    return () => {
-      split.revert();
-      descSplit.revert();
-    };
   }, []);
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
@@ -75,9 +32,9 @@ const ServiceHero: React.FC<ServiceHeroProps> = ({ headlineParts, headlineAccent
     <section className="svc-hero-page" id="hero">
       <div className="svc-hero-page-content">
         {headlineHtml ? (
-          <h1 className="svc-hero-headline" style={{ visibility: 'hidden' }} dangerouslySetInnerHTML={{ __html: headlineHtml }} />
+          <h1 className="svc-hero-headline hero-copy-reveal" dangerouslySetInnerHTML={{ __html: headlineHtml }} />
         ) : (
-          <h1 className="svc-hero-headline" style={{ visibility: 'hidden' }}>
+          <h1 className="svc-hero-headline hero-copy-reveal">
             {headlineParts?.map((part, i) => (
               <React.Fragment key={i}>
                 {part === headlineAccent ? (
@@ -90,15 +47,15 @@ const ServiceHero: React.FC<ServiceHeroProps> = ({ headlineParts, headlineAccent
             ))}
           </h1>
         )}
-        <p className="svc-hero-page-desc" style={{ visibility: 'hidden' }} dangerouslySetInnerHTML={{ __html: description }} />
+        <p className="svc-hero-page-desc hero-copy-reveal" dangerouslySetInnerHTML={{ __html: description }} />
         <div className="svc-hero-cta-row">
           {buttons.map((btn, idx) => (
             <a 
               key={idx} 
               href={btn.link} 
-              className="btn" 
+              className="btn hero-copy-reveal"
               data-cursor={btn.cursor} 
-              style={{ opacity: 0 }}
+              style={{ '--hero-copy-offset': '1.15rem' } as React.CSSProperties}
               onClick={(e) => handleSmoothScroll(e, btn.link)}
             >
               <span className="btn-text" dangerouslySetInnerHTML={{ __html: btn.text }} />

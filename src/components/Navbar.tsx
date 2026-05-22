@@ -125,6 +125,7 @@ const Navbar: React.FC = () => {
           <Link to="/case-studies/" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Case Studies</Link>
           <a href="#blogs" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Blogs</a>
           <Link to="/careers/" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Careers</Link>
+          <Link to="/contact-us/" className="nav-item mobile-contact-item" data-cursor="HI" onClick={handleNavClick}>Contact Us</Link>
         </div>
         <div className="nav-right">
           <Link to="/contact-us/" className="btn-nav" data-cursor="HI" onClick={handleNavClick}>Contact Us</Link>

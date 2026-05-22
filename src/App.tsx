@@ -114,6 +114,23 @@ const ScrollToTop = () => {
   return null;
 };
 
+const RouteAnimationState = () => {
+  const { pathname } = useLocation();
+
+  useLayoutEffect(() => {
+    document.body.dataset.impulseRoute = pathname;
+
+    const background = (window as any).impulseBackground;
+    if (background?.resetForRoute) {
+      background.resetForRoute(pathname);
+    }
+
+    window.dispatchEvent(new CustomEvent('impulse:route-change', { detail: { pathname } }));
+  }, [pathname]);
+
+  return null;
+};
+
 const App: React.FC = () => {
   useEffect(() => {
     // Dynamically load Three.js to prevent it from blocking the initial page load (LCP/FCP)
@@ -134,7 +151,7 @@ const App: React.FC = () => {
       if ((window as any).THREE && (window as any).gsap && (window as any).ScrollTrigger && (window as any).SplitType) {
         const load = () => {
           const script = document.createElement('script');
-          script.src = `${import.meta.env.BASE_URL}js/script.js?v=58`; // bump version
+          script.src = `${import.meta.env.BASE_URL}js/script.js?v=59`; // bump version
           script.async = true;
           document.body.appendChild(script);
         };
@@ -155,6 +172,7 @@ const App: React.FC = () => {
   return (
     <Router basename={import.meta.env.BASE_URL}>
       <ScrollToTop />
+      <RouteAnimationState />
       <Background />
       <Navbar />
       <Suspense fallback={<div style={{ minHeight: '100vh', background: '#020018' }}></div>}>
@@ -221,8 +239,6 @@ const App: React.FC = () => {
 };
 
 export default App;
-
-
 
 
 

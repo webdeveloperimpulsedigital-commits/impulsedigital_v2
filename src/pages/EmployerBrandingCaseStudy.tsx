@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { startHeroCopyReveal } from '../utils/heroCopyReveal';
 
 /**
  * Employer Branding service page converted from employer-branding.html
@@ -8,6 +9,11 @@ import { Helmet } from 'react-helmet-async';
 const EmployerBrandingCaseStudy: React.FC = () => {
   useEffect(() => {
     document.body.classList.add('service-page', 'employer-page');
+    const stopHeroReveal = startHeroCopyReveal({
+      primary: document.querySelector('.svc-hero-headline'),
+      supporting: document.querySelector('.svc-hero-page-desc'),
+      actions: Array.from(document.querySelectorAll('.svc-hero-cta-row .btn')),
+    });
 
     const { gsap, ScrollTrigger, SplitType } = window as any;
     if (gsap && ScrollTrigger) {
@@ -62,6 +68,7 @@ const EmployerBrandingCaseStudy: React.FC = () => {
     }
 
     return () => {
+      stopHeroReveal();
       document.body.classList.remove('service-page', 'employer-page');
       const { gsap, ScrollTrigger } = window as any;
       if (gsap) gsap.to(document.body, { backgroundColor: '', duration: 0 });
@@ -108,11 +115,11 @@ const EmployerBrandingCaseStudy: React.FC = () => {
       {/* Hero */}
       <section className="svc-hero-page" id="hero">
         <div className="svc-hero-page-content">
-          <h1 className="svc-hero-headline split-text">Talent Chooses the Story<br />Before the Offer.</h1>
-          <p className="svc-hero-page-desc split-text">The best candidates are not only comparing salaries. They are reading your culture, your leaders, your people, your purpose, and the way your workplace shows up before they ever apply. Impulse Digital helps brands turn employee experience into a clear employer story, so the right people understand why your company is worth joining, staying with, and growing inside.</p>
+          <h1 className="svc-hero-headline hero-copy-reveal">Talent Chooses the Story<br />Before the Offer.</h1>
+          <p className="svc-hero-page-desc hero-copy-reveal">The best candidates are not only comparing salaries. They are reading your culture, your leaders, your people, your purpose, and the way your workplace shows up before they ever apply. Impulse Digital helps brands turn employee experience into a clear employer story, so the right people understand why your company is worth joining, staying with, and growing inside.</p>
           <div className="svc-hero-cta-row">
-            <a href="/contact-us" className="btn" data-cursor="BUILD"><span className="btn-text">Build Your Employer Brand</span><div className="btn-fill"></div></a>
-            <a href="#use-cases" className="btn" data-cursor="EXPLORE"><span className="btn-text">See How It Works</span><div className="btn-fill"></div></a>
+            <a href="/contact-us" className="btn hero-copy-reveal" data-cursor="BUILD"><span className="btn-text">Build Your Employer Brand</span><div className="btn-fill"></div></a>
+            <a href="#use-cases" className="btn hero-copy-reveal" data-cursor="EXPLORE"><span className="btn-text">See How It Works</span><div className="btn-fill"></div></a>
           </div>
         </div>
       </section>

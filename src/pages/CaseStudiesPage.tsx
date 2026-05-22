@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { startHeroCopyReveal } from '../utils/heroCopyReveal';
 
 // Brands with multiple case studies get an `imgs` array (up to 3 shown stacked)
 // Single-case brands get one entry in the array
@@ -177,45 +178,12 @@ const CaseStudiesPage: React.FC = () => {
   const svgPath = "M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z";
 
   useEffect(() => {
-    const { gsap, ScrollTrigger, SplitType } = window as any;
-    if (!gsap || !ScrollTrigger) return;
-
-    // Hero title split text
-    if (SplitType) {
-      const heroHeadline = document.querySelector('.cs3-hero-title');
-      const heroDesc = document.querySelector('.cs3-hero-desc');
-
-      if (heroHeadline && heroDesc) {
-        (heroHeadline as HTMLElement).style.visibility = 'visible';
-        (heroDesc as HTMLElement).style.visibility = 'visible';
-
-        const split = new SplitType(heroHeadline as HTMLElement, { types: 'lines,words' });
-        split.lines?.forEach((line: HTMLElement) => {
-          const w = document.createElement('div');
-          w.classList.add('line-wrapper');
-          line.parentNode?.insertBefore(w, line);
-          w.appendChild(line);
-        });
-
-        const descSplit = new SplitType(heroDesc as HTMLElement, { types: 'lines' });
-        descSplit.lines?.forEach((line: HTMLElement) => {
-          const w = document.createElement('div');
-          w.classList.add('line-wrapper');
-          line.parentNode?.insertBefore(w, line);
-          w.appendChild(line);
-        });
-
-        const tl = gsap.timeline({ delay: 0.2 });
-        tl.fromTo(split.words,
-          { yPercent: 120, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.02, ease: 'power4.out' }
-        ).fromTo(descSplit.lines,
-          { yPercent: 100, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: 'power3.out' },
-          '-=0.4'
-        );
-      }
-    }
+    const stopHeroReveal = startHeroCopyReveal({
+      primary: document.querySelector('.cs3-hero-title'),
+      supporting: document.querySelector('.cs3-hero-desc'),
+    });
+    const { gsap, ScrollTrigger } = window as any;
+    if (!gsap || !ScrollTrigger) return stopHeroReveal;
 
     // Grid item entrance
     const items = document.querySelectorAll('.cs3-grid-item');
@@ -260,6 +228,7 @@ const CaseStudiesPage: React.FC = () => {
     });
 
     setTimeout(() => { if (ScrollTrigger) ScrollTrigger.refresh(); }, 300);
+    return stopHeroReveal;
   }, []);
 
   const base = import.meta.env.BASE_URL;
@@ -287,10 +256,10 @@ const CaseStudiesPage: React.FC = () => {
       {/* HERO */}
       <section className="cs3-hero">
         <div className="cs3-hero-container">
-          <h1 className="cs3-hero-title" style={{ visibility: 'hidden' }}>
+          <h1 className="cs3-hero-title hero-copy-reveal">
             Work that earned<br/>its numbers.
           </h1>
-          <p className="cs3-hero-desc" style={{ visibility: 'hidden' }}>
+          <p className="cs3-hero-desc hero-copy-reveal">
             An archive of decisions, strategies, and executions that didn't just look good, but fundamentally moved the needle for the brands we partner with.
           </p>
         </div>

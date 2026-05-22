@@ -3,55 +3,25 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { startHeroCopyReveal } from '../utils/heroCopyReveal';
 
 
 const AboutUs: React.FC = () => {
   useEffect(() => {
     document.body.classList.add('service-page', 'about-page');
 
-    const { gsap, ScrollTrigger, SplitType } = window as any;
+    const { gsap, ScrollTrigger } = window as any;
 
 
 
-    // ===== HERO entry choreography =====
-    const runHeroAnim = () => {
-      const reveal = () => {
-        document.querySelectorAll('.ab-hero-h, .ab-hero-tagline, .ab-hero-truths, .ab-hero-foot')
-          .forEach(el => el.style.visibility = 'visible');
-      };
-      if (!window.gsap || !window.SplitType) { reveal(); return; }
-
-      const headline = document.querySelector('.ab-hero-h');
-      const tagline = document.querySelector('.ab-hero-tagline');
-      const truths = document.querySelectorAll('.ab-truth');
-      const foot = document.querySelector('.ab-hero-foot');
-
-      reveal();
-
-      if (headline) {
-        const split = new SplitType(headline, { types: 'lines, words' });
-        split.lines.forEach((line) => {
-          const w = document.createElement('div');
-          w.classList.add('line-wrapper');
-          line.parentNode.insertBefore(w, line);
-          w.appendChild(line);
-        });
-        gsap.set(split.words, { yPercent: 120, opacity: 0 });
-        gsap.to(split.words, {
-          yPercent: 0, opacity: 1,
-          duration: 0.8, stagger: 0.015, ease: 'power4.out', delay: 0.1
-        });
-      }
-      if (tagline) gsap.fromTo(tagline, { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: 1.0 });
-      if (truths.length) gsap.fromTo(truths, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, stagger: 0.12, ease: 'power3.out', delay: 1.25 });
-      if (foot) gsap.fromTo(foot, { y: 24, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: 1.7,
-        onComplete: () => window.ScrollTrigger && ScrollTrigger.refresh()
-      });
-    };
-
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(runHeroAnim);
-    else setTimeout(runHeroAnim, 250);
+    const stopHeroReveal = startHeroCopyReveal({
+      primary: document.querySelector('.ab-hero-h'),
+      supporting: [
+        document.querySelector('.ab-hero-tagline'),
+        document.querySelector('.ab-hero-truths'),
+      ],
+      actions: document.querySelector('.ab-hero-foot'),
+    });
 
     // ===== Generic scroll reveals =====
     if (window.gsap && window.ScrollTrigger) {
@@ -281,6 +251,7 @@ const AboutUs: React.FC = () => {
 
 
     return () => {
+      stopHeroReveal();
       document.body.classList.remove('service-page', 'about-page');
       document.body.style.backgroundColor = '';
 
@@ -329,10 +300,10 @@ const AboutUs: React.FC = () => {
       <section className="ab-section ab-hero" id="hero">
         <div className="ab-wrap-full">
           <div className="ab-hero-inner">
-            <h1 className="ab-hero-h">Momentum for<br/><span style={{ color: 'var(--impulse-violet)' }}>brands with appetite.</span></h1>
-            <p className="ab-hero-tagline">The best brands are never truly still.</p>
+            <h1 className="ab-hero-h hero-copy-reveal">Momentum for<br/><span style={{ color: 'var(--impulse-violet)' }}>brands with appetite.</span></h1>
+            <p className="ab-hero-tagline hero-copy-reveal">The best brands are never truly still.</p>
 
-            <div className="ab-hero-truths">
+            <div className="ab-hero-truths hero-copy-reveal">
               <div className="ab-truth">
                 <p className="ab-truth-text">They question what has become routine.</p>
               </div>
@@ -344,7 +315,7 @@ const AboutUs: React.FC = () => {
               </div>
             </div>
 
-            <div className="ab-hero-foot">
+            <div className="ab-hero-foot hero-copy-reveal">
               <p className="ab-hero-lede">Impulse Digital helps such brands turn ambition into commercial momentum by bringing
                 strategy, creativity, content, search, performance, technology, AI, and execution into formation.</p>
               <div className="ab-hero-cta-row">
