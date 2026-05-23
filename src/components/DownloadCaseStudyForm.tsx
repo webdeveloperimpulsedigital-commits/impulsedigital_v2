@@ -226,7 +226,6 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
           />
         </label>
 
-<<<<<<< HEAD
         <label style={{ display: 'flex', flexDirection: 'column' }}>
           <span style={labelSpanStyle}>Company Name <span style={{ color: '#ef4444' }}>*</span></span>
           <input
@@ -271,71 +270,6 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
             onBlur={handleBlur}
           />
         </label>
-=======
-            <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <span style={labelSpanStyle}>
-                Phone Number <span style={{ color: '#ef4444' }}>*</span>
-              </span>
-              <input
-                type="tel"
-                required
-                value={phone}
-                onChange={e => setPhone(e.target.value)}
-                placeholder="+91 98765 43210"
-                style={inputStyle}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-              />
-            </label>
-
-            <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <span style={labelSpanStyle}>
-                What are you looking to improve? <span style={{ color: '#ef4444' }}>*</span>
-              </span>
-              <select
-                required
-                value={improvementArea}
-                onChange={e => setImprovementArea(e.target.value)}
-                style={{
-                  ...inputStyle,
-                  appearance: 'none',
-                  backgroundImage: `url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%238a5cf6%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E")`,
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'right 1rem top 50%',
-                  backgroundSize: '0.65rem auto',
-                  color: improvementArea ? '#fff' : 'rgba(255,255,255,0.5)',
-                }}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-              >
-                <option value="" disabled>Select an option</option>
-                <option value="Generate more qualified leads" style={{ color: '#000' }}>Generate more qualified leads</option>
-                <option value="Improve SEO and organic visibility" style={{ color: '#000' }}>Improve SEO and organic visibility</option>
-                <option value="Build stronger brand storytelling" style={{ color: '#000' }}>Build stronger brand storytelling</option>
-                <option value="Create AI-led video or campaign assets" style={{ color: '#000' }}>Create AI-led video or campaign assets</option>
-                <option value="Improve website conversion" style={{ color: '#000' }}>Improve website conversion</option>
-                <option value="Strengthen social media and content" style={{ color: '#000' }}>Strengthen social media and content</option>
-                <option value="Build employer brand visibility" style={{ color: '#000' }}>Build employer brand visibility</option>
-                <option value="Something else" style={{ color: '#000' }}>Something else</option>
-              </select>
-            </label>
-
-            <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <span style={labelSpanStyle}>
-                Company Website <span style={{ color: '#ef4444' }}>*</span>
-              </span>
-              <input
-                type="url"
-                required
-                value={website}
-                onChange={e => setWebsite(e.target.value)}
-                placeholder="https://company.com"
-                style={inputStyle}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-              />
-            </label>
->>>>>>> 7ff1c48ad807335b3924cbdce44e66f718d7362d
 
         <label style={{ display: 'flex', flexDirection: 'column' }}>
           <span style={labelSpanStyle}>What are you looking to improve? <span style={{ color: '#8a5cf6' }}>*</span></span>
