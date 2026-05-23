@@ -52,7 +52,17 @@ const TcplCaseStudy: React.FC = () => {
       </section>
 
       <section style={{ maxWidth: '1000px', margin: '0 auto' }}>
-        <DownloadCaseStudyForm ctaText="Access the full case study to see how diaspora demand was translated into a market-entry roadmap." pdfLink={`${base}images/case-study-image/tcpl/AUS_us.png`} />
+        <DownloadCaseStudyForm
+          ctaText="Access the full case study to see how diaspora demand was translated into a market-entry roadmap."
+          zoho={{
+            formId: '1132219000001842121',
+            xnQsjsdp: '20dbb20a9b894c5ed9ed9a87362b39e6a68f43b048d0a77fd225c9776d0a5e23',
+            xmIwtLD: '34d18d74fda9deef11300b92cec09524b0f62e5b0c869cdfd951431fdd254f2e7d740f602502730dce6486edb588fc6b',
+            leadSource: 'tcpl',
+            analyticsRid: '0e44a44d5101b6010dd8285925542ce7b0b8a88623d04e6c04795152d9f7d7885bc185b4eba85a54d2b80789ad3b4f7egid5b84587bd299c059282bfa96ddbcb8714f0d218337f2f46902e5c9992dd9c218gid98ec56cc67faef4d1944e0353d0424c1987924275ba83e58cd09e08d846e5250gida427bb88a60817c00fcb18ab7ad85e97da242a727cb1a443767773ae3a9992d6',
+            pdfPath: '/case-studies-pdf/US AUS fod trends.pdf',
+          }}
+        />
       </section>
     </main>
   );

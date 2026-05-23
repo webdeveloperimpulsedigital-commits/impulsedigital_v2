@@ -14,11 +14,11 @@ const TataSoulfullCaseStudy: React.FC = () => {
   return (
     <main id="main-content">
       <Helmet>
-        <title>The Next Bite: Decoding India’s Health Snacking Bar Consumer | Impulse Digital</title>
+        <title>The Next Bite: Decoding India's Health Snacking Bar Consumer | Impulse Digital</title>
         <meta name="description" content="Decoding what drives trial, repeat purchase, and how the category could stretch from functional fuel to mainstream snacking." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/tata-soulfull/" />
-        <meta property="og:title" content="The Next Bite: Decoding India’s Health Snacking Bar Consumer | Impulse Digital" />
+        <meta property="og:title" content="The Next Bite: Decoding India's Health Snacking Bar Consumer | Impulse Digital" />
         <meta property="og:description" content="Decoding what drives trial, repeat purchase, and how the category could stretch from functional fuel to mainstream snacking." />
         <meta property="og:image" content="https://www.theimpulsedigital.com/images/case-study-image/tata-soulfull/Generated image 1.png" />
         <meta property="og:url" content="https://www.theimpulsedigital.com/case-studies/tata-soulfull/" />
@@ -28,7 +28,7 @@ const TataSoulfullCaseStudy: React.FC = () => {
       <section className="cs-hero">
         <div className="cs-hero-header">
           <h1 className="cs-hero-title">The Next Bite</h1>
-          <h2 className="cs-hero-subtitle">Decoding India’s Health Snacking Bar Consumer</h2>
+          <h2 className="cs-hero-subtitle">Decoding India's Health Snacking Bar Consumer</h2>
         </div>
       </section>
       <div className="cs-feature-wrapper">
@@ -38,7 +38,7 @@ const TataSoulfullCaseStudy: React.FC = () => {
       </div>
       <section className="cs-intro-block" id="warp-start" style={{ paddingBottom: '4rem', maxWidth: '1000px', margin: '0 auto' }}>
         <p className="cs-p split-text" style={{ fontSize: '1.5rem', marginBottom: '2rem', lineHeight: 1.6 }}>
-          India’s health snacking bar category sits at the intersection of nutrition, taste, convenience, and trust.
+          India's health snacking bar category sits at the intersection of nutrition, taste, convenience, and trust.
         </p>
         <p className="cs-p split-text" style={{ fontSize: '1.5rem', marginBottom: '2rem', lineHeight: 1.6 }}>
           While consumers enter the category with better-for-you intent, their actual choices are shaped by flavour, texture, indulgence, protein cues, and everyday usage moments.
@@ -52,7 +52,17 @@ const TataSoulfullCaseStudy: React.FC = () => {
       </section>
 
       <section style={{ maxWidth: '1000px', margin: '0 auto' }}>
-        <DownloadCaseStudyForm ctaText="Access the full case study to understand what could shape the next bite in health snacking." pdfLink={`${base}images/case-study-image/tata-soulfull/Generated%20image%201.png`} />
+        <DownloadCaseStudyForm
+          ctaText="Access the full case study to understand what could shape the next bite in health snacking."
+          zoho={{
+            formId: '1132219000001842099',
+            xnQsjsdp: '96bff1dfe23d92891f775a70adc8b70d0f283273de5071995fb7f3469014fbae',
+            xmIwtLD: '7e64992051ec2faad0a40d97857ec021c844ba0f03464cd50c57cc6f2a8cb2b875d4126d72cc3ac285c9145b8b7e79df',
+            leadSource: 'tata-soulfull',
+            analyticsRid: 'c00664901f9065d026bdb17e20ebaba86f2c91485ea0ec45f15f3d60107a527ec405f0580f7363413831b8278128e830gideb963ae612abcb94f648329306d922823d2a010c2a137ce667a141d99d219f22gid6b502ccb6e4ce7f70ed39a876d503d8975b4aa571cbecb41c6a39657dcb4995bgid025c5ffcd0156b39d4d8df57119122bb1c84f8193c37bd1b7443f6265af3eb0e',
+            pdfPath: '/case-studies-pdf/Snacking Bar Case Study - Tata Soulful.pdf',
+          }}
+        />
       </section>
     </main>
   );

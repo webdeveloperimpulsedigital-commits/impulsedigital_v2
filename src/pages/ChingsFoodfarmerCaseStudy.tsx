@@ -52,7 +52,17 @@ const ChingsFoodfarmerCaseStudy: React.FC = () => {
       </section>
 
       <section style={{ maxWidth: '1000px', margin: '0 auto' }}>
-        <DownloadCaseStudyForm ctaText="Access the full case study to see how brands can read the internet before the internet decides for them." pdfLink={`${base}images/case-study-image/chings-foodfarmer/Foodfarmer.png`} />
+        <DownloadCaseStudyForm
+          ctaText="Access the full case study to see how brands can read the internet before the internet decides for them."
+          zoho={{
+            formId: '1132219000001842143',
+            xnQsjsdp: 'c1c57be7888ea44f63706d8b1db319a544568e6b50948a484470d6fcbcaab749',
+            xmIwtLD: '0f6a0f4bc44ffffb9e9664a4cd8cf643191d3e933ecbe731bb776edd992897f17917a77e94ac378b6590528afcbe5b98',
+            leadSource: 'chings-foodfarmer',
+            analyticsRid: 'bd1f9c2e0662cec515af38b34428c01a582f9087cad353013ace555e45d0d7d7af370aa77ae0eaee0d970c7e871fdd31gid4d5450e0a5b452d58821ac98fd3310aa840ec221f951c991e70d132d9ae72cfcgidd6d1916e281aa5a8bd0139b871d2d53f038708f8178e9765f5c458a6d29b895agid4190898d895c926e7e624429d4379bd59f44598c27d03794cad8500cb452b58c',
+            pdfPath: '/case-studies-pdf/chings-foodpharmer-case-study.pdf',
+          }}
+        />
       </section>
     </main>
   );
