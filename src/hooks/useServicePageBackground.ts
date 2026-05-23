@@ -13,7 +13,9 @@ export function useServicePageBackground(triggerSelector: string = '#hero') {
     document.body.classList.add('service-page');
 
     const { gsap, ScrollTrigger } = window as any;
-    if (!gsap || !ScrollTrigger) return;
+    if (!gsap || !ScrollTrigger) {
+      return () => document.body.classList.remove('service-page');
+    }
 
     let trigger = document.querySelector(triggerSelector);
     if (!trigger) {
@@ -40,10 +42,16 @@ export function useServicePageBackground(triggerSelector: string = '#hero') {
     // Particle opacity transition: Fade out dense particles on scroll
     let attempts = 0;
     let particleTrigger: any = null;
+    let particleTimer: number | undefined;
+    let disposed = false;
 
     const setupParticleAnimation = () => {
+      if (disposed) return;
+
       const { particlesMaterial } = window as any;
       if (particlesMaterial && gsap && ScrollTrigger) {
+        gsap.killTweensOf(particlesMaterial);
+        gsap.set(particlesMaterial, { opacity: 0.6 });
         particleTrigger = ScrollTrigger.create({
           trigger: trigger,
           start: 'top -5%',
@@ -58,7 +66,7 @@ export function useServicePageBackground(triggerSelector: string = '#hero') {
         triggers.push(particleTrigger);
       } else if (attempts < 100) {
         attempts++;
-        setTimeout(setupParticleAnimation, 50);
+        particleTimer = window.setTimeout(setupParticleAnimation, 50);
       }
     };
 
@@ -67,6 +75,8 @@ export function useServicePageBackground(triggerSelector: string = '#hero') {
     // Cleanup on unmount
     return () => {
       document.body.classList.remove('service-page');
+      disposed = true;
+      if (particleTimer) window.clearTimeout(particleTimer);
       
       // Kill ScrollTriggers
       triggers.forEach(t => t.kill());

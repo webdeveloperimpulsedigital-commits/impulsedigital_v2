@@ -55,6 +55,30 @@ const ThaneLocation = lazy(() => import('./pages/ThaneLocation'));
 const NaviMumbaiLocation = lazy(() => import('./pages/NaviMumbaiLocation'));
 const PuneLocation = lazy(() => import('./pages/PuneLocation'));
 
+const SeoAiroliLocation = lazy(() => import('./pages/seo-locations/SeoAiroliLocation'));
+const SeoAndheriLocation = lazy(() => import('./pages/seo-locations/SeoAndheriLocation'));
+const SeoBandraLocation = lazy(() => import('./pages/seo-locations/SeoBandraLocation'));
+const SeoBorivaliLocation = lazy(() => import('./pages/seo-locations/SeoBorivaliLocation'));
+const SeoDadarLocation = lazy(() => import('./pages/seo-locations/SeoDadarLocation'));
+const SeoGhansoliLocation = lazy(() => import('./pages/seo-locations/SeoGhansoliLocation'));
+const SeoGhatkoparLocation = lazy(() => import('./pages/seo-locations/SeoGhatkoparLocation'));
+const SeoGoregaonLocation = lazy(() => import('./pages/seo-locations/SeoGoregaonLocation'));
+const SeoJogeshwariLocation = lazy(() => import('./pages/seo-locations/SeoJogeshwariLocation'));
+const SeoKandivaliLocation = lazy(() => import('./pages/seo-locations/SeoKandivaliLocation'));
+const SeoKhargharLocation = lazy(() => import('./pages/seo-locations/SeoKhargharLocation'));
+const SeoKoparkhairaneLocation = lazy(() => import('./pages/seo-locations/SeoKoparkhairaneLocation'));
+const SeoMaladLocation = lazy(() => import('./pages/seo-locations/SeoMaladLocation'));
+const SeoMansarovarLocation = lazy(() => import('./pages/seo-locations/SeoMansarovarLocation'));
+const SeoMiraRoadLocation = lazy(() => import('./pages/seo-locations/SeoMiraRoadLocation'));
+const SeoMulundLocation = lazy(() => import('./pages/seo-locations/SeoMulundLocation'));
+const SeoMumbaiLocation = lazy(() => import('./pages/seo-locations/SeoMumbaiLocation'));
+const SeoNaviMumbaiLocation = lazy(() => import('./pages/seo-locations/SeoNaviMumbaiLocation'));
+const SeoNerulLocation = lazy(() => import('./pages/seo-locations/SeoNerulLocation'));
+const SeoPanvelLocation = lazy(() => import('./pages/seo-locations/SeoPanvelLocation'));
+const SeoSanpadaLocation = lazy(() => import('./pages/seo-locations/SeoSanpadaLocation'));
+const SeoTurbheLocation = lazy(() => import('./pages/seo-locations/SeoTurbheLocation'));
+const SeoVashiLocation = lazy(() => import('./pages/seo-locations/SeoVashiLocation'));
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -114,6 +138,23 @@ const ScrollToTop = () => {
   return null;
 };
 
+const RouteAnimationState = () => {
+  const { pathname } = useLocation();
+
+  useLayoutEffect(() => {
+    document.body.dataset.impulseRoute = pathname;
+
+    const background = (window as any).impulseBackground;
+    if (background?.resetForRoute) {
+      background.resetForRoute(pathname);
+    }
+
+    window.dispatchEvent(new CustomEvent('impulse:route-change', { detail: { pathname } }));
+  }, [pathname]);
+
+  return null;
+};
+
 const App: React.FC = () => {
   useEffect(() => {
     // Dynamically load Three.js to prevent it from blocking the initial page load (LCP/FCP)
@@ -134,7 +175,7 @@ const App: React.FC = () => {
       if ((window as any).THREE && (window as any).gsap && (window as any).ScrollTrigger && (window as any).SplitType) {
         const load = () => {
           const script = document.createElement('script');
-          script.src = `${import.meta.env.BASE_URL}js/script.js?v=58`; // bump version
+          script.src = `${import.meta.env.BASE_URL}js/script.js?v=59`; // bump version
           script.async = true;
           document.body.appendChild(script);
         };
@@ -155,6 +196,7 @@ const App: React.FC = () => {
   return (
     <Router basename={import.meta.env.BASE_URL}>
       <ScrollToTop />
+      <RouteAnimationState />
       <Background />
       <Navbar />
       <Suspense fallback={<div style={{ minHeight: '100vh', background: '#020018' }}></div>}>
@@ -213,6 +255,29 @@ const App: React.FC = () => {
         <Route path="/digital-marketing-agency-in-thane/" element={<ThaneLocation />} />
         <Route path="/digital-marketing-agency-in-navi-mumbai/" element={<NaviMumbaiLocation />} />
         <Route path="/digital-marketing-agency-in-pune/" element={<PuneLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/airoli/" element={<SeoAiroliLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/andheri/" element={<SeoAndheriLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/bandra/" element={<SeoBandraLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/borivali/" element={<SeoBorivaliLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/dadar/" element={<SeoDadarLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/ghansoli/" element={<SeoGhansoliLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/ghatkopar/" element={<SeoGhatkoparLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/goregaon/" element={<SeoGoregaonLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/jogeshwari/" element={<SeoJogeshwariLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/kandivali/" element={<SeoKandivaliLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/kharghar/" element={<SeoKhargharLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/koparkhairane/" element={<SeoKoparkhairaneLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/malad/" element={<SeoMaladLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/mansarovar/" element={<SeoMansarovarLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/mira-road/" element={<SeoMiraRoadLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/mulund/" element={<SeoMulundLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/mumbai/" element={<SeoMumbaiLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/navi-mumbai/" element={<SeoNaviMumbaiLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/nerul/" element={<SeoNerulLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/panvel/" element={<SeoPanvelLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/sanpada/" element={<SeoSanpadaLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/turbhe/" element={<SeoTurbheLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/vashi/" element={<SeoVashiLocation />} />
       </Routes>
         </Suspense>
       <Footer />
@@ -221,8 +286,6 @@ const App: React.FC = () => {
 };
 
 export default App;
-
-
 
 
 

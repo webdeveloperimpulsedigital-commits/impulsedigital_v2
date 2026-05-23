@@ -19,6 +19,8 @@ import {
   ServiceFAQ
 } from '../components/Service/ServiceTemplate';
 
+import { SEOLocationsGrid } from '../components/Service/SEOLocationsGrid';
+
 import { searchEngineOptimisationData as data } from '../data/searchEngineOptimisationData';
 
 const { gsap, ScrollTrigger } = window as any;
@@ -240,7 +242,15 @@ const SearchEngineOptimisation: React.FC = () => {
       
       {data.finalCta && <ServiceFinalCTA data={data.finalCta} />}
       <Contact />
-      {data.faq && data.faq.items.length > 0 && <ServiceFAQ data={data.faq} />}
+      {data.faq && data.faq.items.length > 0 && (
+        <>
+          <ServiceHandoff />
+          <ServiceFAQ data={data.faq} />
+        </>
+      )}
+      
+      <ServiceHandoff />
+      <SEOLocationsGrid />
     </main>
   );
 };

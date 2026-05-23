@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { startHeroCopyReveal } from '../utils/heroCopyReveal';
 
 const { gsap, ScrollTrigger } = window as any;
 
@@ -70,44 +71,12 @@ const ServicesIndex: React.FC<ServicesIndexProps> = ({ categoryFilter }) => {
 
   useEffect(() => {
     document.body.classList.add('services-index-page');
+    const stopHeroReveal = startHeroCopyReveal({
+      primary: document.querySelector('.aww3-hero-title'),
+      supporting: document.querySelector('.aww3-hero-desc'),
+    });
 
     if (gsap && ScrollTrigger && containerRef.current) {
-      
-      // Hero text split animation
-      const heroHeadline = document.querySelector('.aww3-hero-title');
-      const heroDesc = document.querySelector('.aww3-hero-desc');
-      
-      if (heroHeadline && heroDesc && (window as any).SplitType) {
-        (heroHeadline as HTMLElement).style.visibility = 'visible';
-        (heroDesc as HTMLElement).style.visibility = 'visible';
-
-        const split = new ((window as any).SplitType)(heroHeadline as HTMLElement, { types: 'lines,words' });
-        split.lines?.forEach((line: HTMLElement) => {
-          const w = document.createElement('div');
-          w.classList.add('line-wrapper');
-          line.parentNode?.insertBefore(w, line);
-          w.appendChild(line);
-        });
-
-        const descSplit = new ((window as any).SplitType)(heroDesc as HTMLElement, { types: 'lines' });
-        descSplit.lines?.forEach((line: HTMLElement) => {
-          const w = document.createElement('div');
-          w.classList.add('line-wrapper');
-          line.parentNode?.insertBefore(w, line);
-          w.appendChild(line);
-        });
-
-        const tl = gsap.timeline({ delay: 0.2 });
-        tl.fromTo(split.lines,
-          { y: 100, opacity: 0, rotateX: -20 },
-          { y: 0, opacity: 1, rotateX: 0, duration: 1.2, stagger: 0.15, ease: 'power4.out' }
-        )
-        .fromTo(descSplit.lines,
-          { y: 50, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: 'power3.out' },
-          "-=0.8"
-        );
-
         // Background color inversion & particle fade (like agentic-ai.html)
         const firstSection = document.querySelector('.aww3-main-content');
         if (firstSection) {
@@ -136,7 +105,6 @@ const ServicesIndex: React.FC<ServicesIndexProps> = ({ categoryFilter }) => {
             );
           }
         }
-      }
 
       const sections = containerRef.current.querySelectorAll('.aww3-category-section');
       sections.forEach((sec: any) => {
@@ -183,6 +151,7 @@ const ServicesIndex: React.FC<ServicesIndexProps> = ({ categoryFilter }) => {
     }
 
     return () => {
+      stopHeroReveal();
       document.body.classList.remove('services-index-page');
       gsap.to(document.body, { backgroundColor: '#020018', duration: 0 });
       if ((window as any).particlesMaterial) {
@@ -224,7 +193,7 @@ const ServicesIndex: React.FC<ServicesIndexProps> = ({ categoryFilter }) => {
 
         <div className="aww3-container">
           <div className="aww3-hero-content">
-            <h1 className="aww3-hero-title" style={{ visibility: 'hidden' }}>
+            <h1 className="aww3-hero-title hero-copy-reveal">
               {categoryFilter ? (
                 <>
                   {categoryFilter.split(' ')[0]} <br className="aww3-mobile-break" />
@@ -237,7 +206,7 @@ const ServicesIndex: React.FC<ServicesIndexProps> = ({ categoryFilter }) => {
                 </>
               )}
             </h1>
-            <p className="aww3-hero-desc" style={{ visibility: 'hidden' }}>
+            <p className="aww3-hero-desc hero-copy-reveal">
               {categoryFilter 
                 ? displayData[0]?.description
                 : "We architect intelligent growth systems. Explore our comprehensive suite of AI-native marketing, search dominance, and elite brand infrastructure."}

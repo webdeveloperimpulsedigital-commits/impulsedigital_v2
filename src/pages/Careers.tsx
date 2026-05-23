@@ -3,6 +3,7 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useEffect } from 'react';
 import CareersForm from '../components/CareersForm';
+import { startHeroCopyReveal } from '../utils/heroCopyReveal';
 
 const Careers: React.FC = () => {
   useEffect(() => {
@@ -13,68 +14,15 @@ const Careers: React.FC = () => {
 
 
 
-    // --- HERO ENTRY ---
-    const runHero = () => {
-      if (!gsap || !SplitType) return;
-      const headline = document.querySelector('.car-hero-headline');
-      const sub = document.querySelector('.car-hero-sub');
-      const desc = document.querySelector('.car-hero-desc');
-      const anchor = document.querySelector('.car-hero-anchor');
-      const ctas = document.querySelectorAll('.car-hero .svc-hero-cta-row .btn');
-
-      [headline, sub, desc, anchor].forEach(el => { if (el) el.style.visibility = 'visible'; });
-
-      if (headline) {
-        const split = new SplitType(headline, { types: 'lines, words' });
-        split.lines.forEach((line: any) => {
-          const w = document.createElement('div');
-          w.classList.add('line-wrapper');
-          line.parentNode.insertBefore(w, line);
-          w.appendChild(line);
-        });
-        gsap.set(split.words, { yPercent: 120, opacity: 0 });
-        gsap.to(split.words, {
-          yPercent: 0, opacity: 1,
-          duration: 1.4, stagger: 0.07,
-          ease: 'power4.out', delay: 0.25
-        });
-      }
-
-      [sub, desc, anchor].forEach((el: any, i: number) => {
-        if (!el) return;
-        const split = new SplitType(el, { types: 'lines' });
-        split.lines.forEach((line: any) => {
-          const w = document.createElement('div');
-          w.classList.add('line-wrapper');
-          line.parentNode.insertBefore(w, line);
-          w.appendChild(line);
-        });
-        gsap.set(split.lines, { y: 30, opacity: 0 });
-        gsap.to(split.lines, {
-          y: 0, opacity: 1,
-          duration: 0.9, stagger: 0.06,
-          ease: 'power3.out',
-          delay: 1.1 + i * 0.18
-        });
-      });
-
-      if (ctas.length) {
-        gsap.set(ctas, { scale: 0.9, opacity: 0 });
-        gsap.to(ctas, {
-          scale: 1, opacity: 1,
-          duration: 0.8, stagger: 0.12,
-          ease: 'back.out(1.6)',
-          delay: 2.0,
-          onComplete: () => { if (ScrollTrigger) ScrollTrigger.refresh(); }
-        });
-      }
-    };
-
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(runHero);
-    } else {
-      setTimeout(runHero, 100);
-    }
+    const stopHeroReveal = startHeroCopyReveal({
+      primary: document.querySelector('.car-hero-headline'),
+      supporting: [
+        document.querySelector('.car-hero-sub'),
+        document.querySelector('.car-hero-desc'),
+        document.querySelector('.car-hero-anchor'),
+      ],
+      actions: Array.from(document.querySelectorAll('.car-hero .svc-hero-cta-row .btn')),
+    });
 
     // --- BACKGROUND TRANSITION — purple → black, drift fades ---
     const waitForGsap = setInterval(() => {
@@ -559,6 +507,7 @@ const Careers: React.FC = () => {
 
 
     return () => {
+      stopHeroReveal();
       document.body.classList.remove('service-page', 'careers-page');
       document.body.style.backgroundColor = '';
 
@@ -608,17 +557,17 @@ const Careers: React.FC = () => {
           <svg viewBox="801 344 274 272"><use href="#impulse-mark" /></svg>
         </div>
         <div className="svc-hero-page-content">
-          <h1 className="svc-hero-headline car-hero-headline">
+          <h1 className="svc-hero-headline car-hero-headline hero-copy-reveal">
             For people who want<br />
             <span style={{ color: 'var(--impulse-violet)' }}>more from the work.</span>
           </h1>
-          <p className="car-hero-sub">Not just a job that fills the day.</p>
-          <p className="svc-hero-page-desc car-hero-desc">
+          <p className="car-hero-sub hero-copy-reveal">Not just a job that fills the day.</p>
+          <p className="svc-hero-page-desc car-hero-desc hero-copy-reveal">
             We are interested in people who want to think harder, take ownership, ask better questions, and leave behind work they are proud of.
           </p>
-          <p className="car-hero-anchor">Impulse is for people who want their work to mean something.</p>
+          <p className="car-hero-anchor hero-copy-reveal">Impulse is for people who want their work to mean something.</p>
           <div className="svc-hero-cta-row">
-            <a href="#open-positions" className="btn" data-cursor="EXPLORE" onClick={(e) => {
+            <a href="#open-positions" className="btn hero-copy-reveal" data-cursor="EXPLORE" onClick={(e) => {
               e.preventDefault();
               document.getElementById('open-positions')?.scrollIntoView({ behavior: 'smooth' });
             }}>

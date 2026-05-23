@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { startHeroCopyReveal } from '../utils/heroCopyReveal';
 
 
 const caseStudiesData = [
@@ -330,10 +331,10 @@ const CaseStudyRow = ({ study, isReady }: { study: any, isReady: boolean }) => {
                   borderBottomLeftRadius: '64px',
                   borderBottomRightRadius: '12px'
                 }}>
-                  <h3 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, textTransform: 'uppercase' }}>
+                  <h3 className="slide-title" style={{ margin: 0, fontWeight: 700, textTransform: 'uppercase' }}>
                     {slideTitle}
                   </h3>
-                  <p style={{ margin: 0, fontSize: '1rem', lineHeight: 1.4, opacity: 0.9 }}>
+                  <p className="slide-desc" style={{ margin: 0, lineHeight: 1.4, opacity: 0.9 }}>
                     {slideDesc}
                   </p>
                 </div>
@@ -366,44 +367,13 @@ const CaseStudies: React.FC = () => {
   useEffect(() => {
     document.body.classList.add('work-page');
     document.body.classList.add('service-page');
+    const stopHeroReveal = startHeroCopyReveal({
+      primary: containerRef.current?.querySelector('.work-hero-title'),
+      supporting: containerRef.current?.querySelector('.work-hero-desc'),
+    });
     
     const { gsap, ScrollTrigger } = window as any;
     if (gsap && ScrollTrigger && containerRef.current) {
-      // Intro Animation
-      const heroHeadline = containerRef.current.querySelector('.work-hero-title');
-      const heroDesc = containerRef.current.querySelector('.work-hero-desc');
-      
-      if (heroHeadline && heroDesc && (window as any).SplitType) {
-        (heroHeadline as HTMLElement).style.visibility = 'visible';
-        (heroDesc as HTMLElement).style.visibility = 'visible';
-
-        const split = new ((window as any).SplitType)(heroHeadline as HTMLElement, { types: 'lines,words' });
-        split.lines?.forEach((line: HTMLElement) => {
-          const w = document.createElement('div');
-          w.classList.add('line-wrapper');
-          line.parentNode?.insertBefore(w, line);
-          w.appendChild(line);
-        });
-
-        const descSplit = new ((window as any).SplitType)(heroDesc as HTMLElement, { types: 'lines' });
-        descSplit.lines?.forEach((line: HTMLElement) => {
-          const w = document.createElement('div');
-          w.classList.add('line-wrapper');
-          line.parentNode?.insertBefore(w, line);
-          w.appendChild(line);
-        });
-
-        const tl = gsap.timeline({ delay: 0.2 });
-        tl.fromTo(split.lines,
-          { y: 100, opacity: 0, rotateX: -20 },
-          { y: 0, opacity: 1, rotateX: 0, duration: 1.2, stagger: 0.15, ease: 'power4.out' }
-        )
-        .fromTo(descSplit.lines,
-          { y: 50, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: 'power3.out' },
-          "-=0.8"
-        );
-
         // Background color inversion & particle fade
         const triggerEl = document.querySelector('.work-list-section');
         if (triggerEl) {
@@ -432,7 +402,6 @@ const CaseStudies: React.FC = () => {
             );
           }
         }
-      }
 
       // Handoff Line Reveal
       const separators = containerRef.current.querySelectorAll('.work-list-separator');
@@ -449,6 +418,7 @@ const CaseStudies: React.FC = () => {
     }
 
     return () => {
+      stopHeroReveal();
       document.body.classList.remove('work-page');
       document.body.classList.remove('service-page');
       gsap.to(document.body, { backgroundColor: '#020018', duration: 0 });
@@ -479,11 +449,11 @@ const CaseStudies: React.FC = () => {
       <section className="work-hero">
         <div className="work-container">
           <div className="work-hero-content">
-            <h1 className="work-hero-title" style={{ visibility: 'hidden' }}>
+            <h1 className="work-hero-title hero-copy-reveal">
               The Work <br />
-              <span style={{ whiteSpace: 'nowrap', color: '#aa3bff' }}>Behind the Numbers.</span>
+              <span className="work-hero-highlight" style={{ color: '#aa3bff' }}>Behind the Numbers.</span>
             </h1>
-            <p className="work-hero-desc" style={{ visibility: 'hidden' }}>
+            <p className="work-hero-desc hero-copy-reveal">
               The final number is never the full story. The real story is what had to be questioned, rebuilt, sharpened and pushed before the result had a chance to happen.
             </p>
           </div>
@@ -662,6 +632,18 @@ const CaseStudies: React.FC = () => {
           border-radius: 12px 64px 12px 64px;
         }
 
+        .slide-title {
+          font-size: 1.5rem;
+        }
+
+        .slide-desc {
+          font-size: 1rem;
+        }
+
+        .work-hero-highlight {
+          white-space: nowrap;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
           .work-list-item {
@@ -683,8 +665,17 @@ const CaseStudies: React.FC = () => {
             padding-bottom: 4rem;
           }
           .work-hero-title {
-            font-size: clamp(3rem, 15vw, 4.5rem);
+            font-size: clamp(2.5rem, 10vw, 3.5rem);
             margin-bottom: 1.5rem;
+          }
+          .work-hero-highlight {
+            white-space: normal;
+          }
+          .slide-title {
+            font-size: 1.1rem;
+          }
+          .slide-desc {
+            font-size: 0.85rem;
           }
           .work-list-section {
             padding: 4rem 0;

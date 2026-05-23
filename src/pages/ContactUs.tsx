@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useEffect } from 'react';
+import { startHeroCopyReveal } from '../utils/heroCopyReveal';
 
 const ContactUs: React.FC = () => {
   useEffect(() => {
@@ -7,32 +8,11 @@ const ContactUs: React.FC = () => {
 
     const { gsap, ScrollTrigger } = window as any;
 
-    const runContactIntro = () => {
-      if (!gsap) return;
-      const headline = document.querySelector('.contact-headline');
-      const lede = document.querySelector('.contact-lede');
-      const form = document.querySelector('.contact-shell-form');
-
-      if (headline) {
-        gsap.fromTo(headline,
-          { y: 34 },
-          { y: 0, duration: 1.05, ease: 'power3.out', delay: 0.12 }
-        );
-      }
-
-      if (lede) {
-        gsap.fromTo(lede.querySelectorAll('p'), { y: 24 }, { y: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out', delay: 0.75 });
-      }
-      if (form) {
-        gsap.fromTo(form, { y: 38, scale: 0.985 }, { y: 0, scale: 1, duration: 1.1, ease: 'power3.out', delay: 0.45 });
-      }
-    };
-
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(runContactIntro);
-    } else {
-      setTimeout(runContactIntro, 120);
-    }
+    const stopHeroReveal = startHeroCopyReveal({
+      primary: document.querySelector('.contact-headline'),
+      supporting: Array.from(document.querySelectorAll('.contact-lede p')),
+      actions: document.querySelector('.contact-shell-form'),
+    });
 
     const waitForGsap = setInterval(() => {
       if ((window as any).gsap && (window as any).ScrollTrigger) {
@@ -109,6 +89,7 @@ const ContactUs: React.FC = () => {
     }
 
     return () => {
+      stopHeroReveal();
       document.body.classList.remove('service-page', 'contact-page');
       document.body.style.backgroundColor = ''; // Reset background
       if (hero && (hero as any)._cleanup) {
@@ -357,11 +338,11 @@ const ContactUs: React.FC = () => {
         </div>
         <div className="contact-hero-grid">
           <div className="contact-hero-copy">
-            <h1 className="contact-headline">Bring Us the Problem You Can No Longer Ignore.</h1>
+            <h1 className="contact-headline hero-copy-reveal">Bring Us the Problem You Can No Longer Ignore.</h1>
             <div className="contact-lede">
-              <p>Most good conversations do not begin with a service name.</p>
-              <p>They begin with a problem that has become too expensive to keep carrying.</p>
-              <p>Tell us what that problem is. We will tell you if we are the right room for it.</p>
+              <p className="hero-copy-reveal">Most good conversations do not begin with a service name.</p>
+              <p className="hero-copy-reveal">They begin with a problem that has become too expensive to keep carrying.</p>
+              <p className="hero-copy-reveal">Tell us what that problem is. We will tell you if we are the right room for it.</p>
             </div>
           </div>
 
@@ -390,7 +371,7 @@ const ContactUs: React.FC = () => {
               method="POST"
               onSubmit={handleSubmit}
               acceptCharset="UTF-8"
-              className="contact-shell-form" 
+              className="contact-shell-form hero-copy-reveal"
               encType="multipart/form-data"
             >
               <input type="text" style={{display:'none'}} name="xnQsjsdp" value="3fdab897f0bcfb046c089a96653ff3ce3e052ac4ee2710bf1975f74e718c56f5" readOnly />

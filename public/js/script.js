@@ -87,9 +87,48 @@ const tunnelMat = new THREE.PointsMaterial({
     transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false
 });
 const tunnelMesh = new THREE.Points(tunnelGeom, tunnelMat);
-tunnelMesh.visible = true;
+tunnelMesh.visible = false;
 scene.add(tunnelMesh);
 window.tunnelMat = tunnelMat;
+
+const reducedMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+const setCaseStudyWarpActive = (active) => {
+    const shouldRenderWarp = Boolean(active) && !reducedMotionMedia.matches;
+    tunnelMesh.visible = shouldRenderWarp;
+    if (!shouldRenderWarp) {
+        tunnelMat.opacity = 0;
+    }
+};
+
+const resetBackgroundForRoute = () => {
+    setCaseStudyWarpActive(false);
+
+    if (window.gsap) {
+        gsap.killTweensOf([particlesMaterial, tunnelMat, document.body]);
+    }
+
+    particlesMaterial.opacity = 0.6;
+    document.body.style.backgroundColor = '';
+};
+
+window.impulseBackground = {
+    resetForRoute: resetBackgroundForRoute,
+    setCaseStudyWarpActive,
+    getState: () => ({
+        particlesOpacity: particlesMaterial.opacity,
+        tunnelOpacity: tunnelMat.opacity,
+        tunnelVisible: tunnelMesh.visible
+    })
+};
+
+window.addEventListener('impulse:route-change', resetBackgroundForRoute);
+reducedMotionMedia.addEventListener('change', () => {
+    if (reducedMotionMedia.matches) {
+        setCaseStudyWarpActive(false);
+    }
+});
+resetBackgroundForRoute();
 
 // ==========================================
 // 4. DEEP SPACE BACKGROUND (Static & Sparkly)
@@ -187,15 +226,17 @@ function animate3D(time) {
         brandMesh.position.y = 2 + floatOffset + scrollOffsetIn3D; 
     }
 
-    particlesMesh.rotation.y = elapsedTime * 0.05;
+    if (!reducedMotionMedia.matches) {
+        particlesMesh.rotation.y = elapsedTime * 0.05;
+    }
 
     // Ambient drift for the deep space background
-    if (bgStarsMesh) {
+    if (bgStarsMesh && !reducedMotionMedia.matches) {
         bgStarsMesh.rotation.y += 0.0003;
         bgStarsMesh.rotation.x += 0.0001;
     }
     
-    camera.position.y = -(scrollY * 0.015);
+    camera.position.y = reducedMotionMedia.matches ? 0 : -(scrollY * 0.015);
 
     // Infinite Cosmos Travel Effect (Only when active)
     if(tunnelMesh.visible) {
@@ -296,6 +337,12 @@ window.addEventListener('resize', () => {
     });
 
     window.initHomeDOMAnimations = () => {
+    if (window.cleanupHomeDOMAnimations) {
+        window.cleanupHomeDOMAnimations();
+    }
+
+    const preExistingHomeTriggers = new Set(ScrollTrigger.getAll());
+
     // ==========================================
     // CASE STUDIES: Center-to-Sides Cosmos Zoom
     // ==========================================
@@ -309,12 +356,12 @@ window.addEventListener('resize', () => {
         // Initial State: Position cards deep in a true 3D tunnel using Z-axis
         cosmosCards.forEach((card, index) => {
             const isLeft = index % 2 === 0;
-            // X position is completely fixed. Perspective naturally moves them outward as you fly closer.
-            // On mobile, use a smaller offset so cards don't clip off screen.
-            const offsetMultiplier = isMobile ? 0.2 : 0.3;
+            // X position is fixed. Perspective naturally moves them outward as you fly closer.
+            // On mobile, push them perfectly to the sides (0.45 * width) so they don't overlap in the center even with 80vw width!
+            const offsetMultiplier = isMobile ? 0.45 : 0.3;
             const xOffset = isLeft ? -window.innerWidth * offsetMultiplier : window.innerWidth * offsetMultiplier;
-            // On mobile, we also need a vertical offset so they don't completely overlap in the center tunnel
-            const yOffset = isMobile ? (isLeft ? -window.innerHeight * 0.15 : window.innerHeight * 0.15) : 0;
+            // No vertical offset needed if they are neatly on the sides
+            const yOffset = 0;
             
             gsap.set(card, { 
                 x: xOffset, 
@@ -325,7 +372,7 @@ window.addEventListener('resize', () => {
                 scale: 1, // Let CSS perspective handle sizing natively
                 opacity: 0, 
                 pointerEvents: 'none',
-                rotationZ: isLeft ? -5 : 5
+                rotationZ: isMobile ? 0 : (isLeft ? -5 : 5)
             });
         });
         
@@ -348,7 +395,18 @@ window.addEventListener('resize', () => {
 
         gsap.fromTo(tunnelMat, 
             { opacity: 0 },
-            { opacity: 0.8, scrollTrigger: { trigger: cosmosSection, start: 'top 80%', end: 'top 20%', scrub: true } }
+            {
+                opacity: 0.8,
+                scrollTrigger: {
+                    trigger: cosmosSection,
+                    start: 'top 80%',
+                    end: 'top 20%',
+                    scrub: true,
+                    onEnter: () => setCaseStudyWarpActive(true),
+                    onEnterBack: () => setCaseStudyWarpActive(true),
+                    onLeaveBack: () => setCaseStudyWarpActive(false)
+                }
+            }
         );
         
         // Hide warp particles smoothly when exiting into the Logos/Services section
@@ -364,18 +422,21 @@ window.addEventListener('resize', () => {
                 end: () => '+=' + (cosmosCards.length * 1080), // Reduced distance by 10% to make them fly faster
                 onLeave: () => {
                     // Fade out the warp strictly AFTER the pinned section finishes
-                    gsap.to(tunnelMat, { opacity: 0, duration: 0.5 });
+                    gsap.to(tunnelMat, { opacity: 0, duration: 0.5, onComplete: () => setCaseStudyWarpActive(false) });
                 },
                 onEnterBack: () => {
                     // Bring back the warp if scrolling up into the case studies again
+                    setCaseStudyWarpActive(true);
                     gsap.to(tunnelMat, { opacity: 0.8, duration: 0.5 });
                 }
             }
         });
 
         cosmosCards.forEach((card, index) => {
-            const startTime = index * 2.0; // Stagger their appearance in the tunnel
-            const flyDuration = 5.0; // Slow, constant, majestic fly-by speed
+            // Restore desktop-style time stagger so two cards are visible, but our new yOffset prevents physical overlap
+            const staggerTime = 2.0; 
+            const startTime = index * staggerTime; 
+            const flyDuration = 5.0; 
 
             // 1. Fade in as it approaches from the deep vanishing point
             tl.to(card, {
@@ -511,7 +572,7 @@ window.addEventListener('resize', () => {
 
         if (!path || !numEl) return;
 
-        const pathLen = path.getTotalLength();
+        const pathLen = path.getTotalLength() || 1462;
         gsap.set(path, { strokeDasharray: pathLen, strokeDashoffset: pathLen });
         gsap.set([numEl, titleEl, labelEl], { opacity: 0, y: 28 });
         gsap.set(descEl, { opacity: 0, y: 28 });
@@ -584,6 +645,13 @@ window.addEventListener('resize', () => {
     }
 
     setTimeout(() => { ScrollTrigger.refresh(); }, 500);
+
+    const ownedHomeTriggers = ScrollTrigger.getAll().filter((trigger) => !preExistingHomeTriggers.has(trigger));
+    window.cleanupHomeDOMAnimations = () => {
+        ownedHomeTriggers.forEach((trigger) => trigger.kill());
+        gsap.killTweensOf([particlesMaterial, tunnelMat]);
+        setCaseStudyWarpActive(false);
+    };
 
     };
     window.initHomeDOMAnimations();

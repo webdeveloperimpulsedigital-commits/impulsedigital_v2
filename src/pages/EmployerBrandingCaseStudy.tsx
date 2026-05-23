@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { ServiceVs } from '../components/Service/ServiceTemplate';
+import { startHeroCopyReveal } from '../utils/heroCopyReveal';
 
 /**
  * Employer Branding service page converted from employer-branding.html
@@ -8,6 +10,11 @@ import { Helmet } from 'react-helmet-async';
 const EmployerBrandingCaseStudy: React.FC = () => {
   useEffect(() => {
     document.body.classList.add('service-page', 'employer-page');
+    const stopHeroReveal = startHeroCopyReveal({
+      primary: document.querySelector('.svc-hero-headline'),
+      supporting: document.querySelector('.svc-hero-page-desc'),
+      actions: Array.from(document.querySelectorAll('.svc-hero-cta-row .btn')),
+    });
 
     const { gsap, ScrollTrigger, SplitType } = window as any;
     if (gsap && ScrollTrigger) {
@@ -62,6 +69,7 @@ const EmployerBrandingCaseStudy: React.FC = () => {
     }
 
     return () => {
+      stopHeroReveal();
       document.body.classList.remove('service-page', 'employer-page');
       const { gsap, ScrollTrigger } = window as any;
       if (gsap) gsap.to(document.body, { backgroundColor: '', duration: 0 });
@@ -108,11 +116,11 @@ const EmployerBrandingCaseStudy: React.FC = () => {
       {/* Hero */}
       <section className="svc-hero-page" id="hero">
         <div className="svc-hero-page-content">
-          <h1 className="svc-hero-headline split-text">Talent Chooses the Story<br />Before the Offer.</h1>
-          <p className="svc-hero-page-desc split-text">The best candidates are not only comparing salaries. They are reading your culture, your leaders, your people, your purpose, and the way your workplace shows up before they ever apply. Impulse Digital helps brands turn employee experience into a clear employer story, so the right people understand why your company is worth joining, staying with, and growing inside.</p>
+          <h1 className="svc-hero-headline hero-copy-reveal">Talent Chooses the Story<br />Before the Offer.</h1>
+          <p className="svc-hero-page-desc hero-copy-reveal">The best candidates are not only comparing salaries. They are reading your culture, your leaders, your people, your purpose, and the way your workplace shows up before they ever apply. Impulse Digital helps brands turn employee experience into a clear employer story, so the right people understand why your company is worth joining, staying with, and growing inside.</p>
           <div className="svc-hero-cta-row">
-            <a href="/contact-us" className="btn" data-cursor="BUILD"><span className="btn-text">Build Your Employer Brand</span><div className="btn-fill"></div></a>
-            <a href="#use-cases" className="btn" data-cursor="EXPLORE"><span className="btn-text">See How It Works</span><div className="btn-fill"></div></a>
+            <a href="/contact-us" className="btn hero-copy-reveal" data-cursor="BUILD"><span className="btn-text">Build Your Employer Brand</span><div className="btn-fill"></div></a>
+            <a href="#use-cases" className="btn hero-copy-reveal" data-cursor="EXPLORE"><span className="btn-text">See How It Works</span><div className="btn-fill"></div></a>
           </div>
         </div>
       </section>
@@ -172,39 +180,22 @@ const EmployerBrandingCaseStudy: React.FC = () => {
       <div className="svc-handoff" aria-hidden="true"><div className="svc-handoff-line"></div><div className="svc-handoff-mark"><ImpulseMark /></div></div>
 
       {/* VS */}
-      <section className="svc-vs">
-        <div className="container">
-          <h2 className="svc-h2 split-text">Employer Branding, in Plain English</h2>
-          <div className="svc-vs-stack">
-            <div className="svc-vs-line line-quiet">
-              <div className="svc-vs-label">Recruitment</div>
-              <div className="svc-vs-statement"><span className="svc-vs-strike">tells people there is a role.</span></div>
-            </div>
-            <div className="svc-vs-line">
-              <div className="svc-vs-label">Employer Branding</div>
-              <div className="svc-vs-statement">tells them <span className="svc-vs-highlight">why it matters</span>.</div>
-            </div>
-            <div className="svc-vs-pipeline">
-              {[
-                'Define what makes your workplace worth choosing',
-                'Turn culture into a clear talent story',
-                'Build a stronger Employee Value Proposition',
-                'Create communication that attracts the right candidates',
-                'Help employees become advocates, not just staff',
-              ].map((label, i) => (
-                <div key={i} className="svc-vs-step">
-                  <div className="step-marker"><span className="step-dot"></span></div>
-                  <div className="step-content">
-                    <span className="step-num">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="step-label">{label}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p className="svc-vs-closing">The output is not a campaign slogan. It is a talent-facing brand system that helps people understand why they should join, stay, and grow with you.</p>
-          </div>
-        </div>
-      </section>
+      <ServiceVs data={{
+        title: 'Employer Branding, in Plain English',
+        leftLabel: 'Recruitment',
+        leftStrike: 'tells people there is a role.',
+        rightLabel: 'Employer Branding',
+        rightText: 'tells them ',
+        rightHighlight: 'why it matters',
+        steps: [
+          { num: '01', text: 'Define what makes your workplace worth choosing' },
+          { num: '02', text: 'Turn culture into a clear talent story' },
+          { num: '03', text: 'Build a stronger Employee Value Proposition' },
+          { num: '04', text: 'Create communication that attracts the right candidates' },
+          { num: '05', text: 'Help employees become advocates, not just staff' },
+        ],
+        closing: 'The output is not a campaign slogan. It is a talent-facing brand system that helps people understand why they should join, stay, and grow with you.',
+      }} />
 
       <div className="svc-handoff" aria-hidden="true"><div className="svc-handoff-line"></div><div className="svc-handoff-mark"><ImpulseMark /></div></div>
 
