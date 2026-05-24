@@ -148,5 +148,10 @@ export const marketIntelligenceData = {
     ]
   },
   logosTitle: "Trusted by Teams That Need the Market to Make Sense",
-  contactTitle: "See What Your Market Is Already Telling You."
+  contactTitle: "See What Your Market Is Already Telling You.",
+  seo: {
+    title: "Market & Competitive Intelligence Services | Impulse Digital",
+    description: "Impulse Digital's Market and Competitive Intelligence helps brands track category shifts, competitor moves, search behaviour, and e-commerce signals to build sharper strategy.",
+    canonical: "https://www.theimpulsedigital.com/growth-intelligence/market-intelligence/"
+  }
 };

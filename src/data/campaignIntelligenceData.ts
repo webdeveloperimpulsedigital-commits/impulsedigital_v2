@@ -153,5 +153,10 @@ export const campaignIntelligenceData = {
   },
   logosTitle: "Trusted by Teams That Need More Than Metrics",
   contactTitle: "Decode<br/>Campaign<br/>Impact.",
-  whenToUseAfterGuardrails: true
+  whenToUseAfterGuardrails: true,
+  seo: {
+    title: "Campaign & Performance Intelligence | Impulse Digital",
+    description: "Impulse Digital's Campaign Intelligence helps brands measure what their campaigns actually changed — recall, sentiment, influencer fit — and sharpen every next marketing decision.",
+    canonical: "https://www.theimpulsedigital.com/growth-intelligence/campaign-intelligence/"
+  }
 };
