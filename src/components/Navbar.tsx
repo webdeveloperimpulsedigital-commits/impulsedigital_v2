@@ -79,7 +79,7 @@ const Navbar: React.FC = () => {
           <Link to="/" className="logo" onClick={handleNavClick}><img src={`${import.meta.env.BASE_URL}ImpulseDigital_Logo.svg`} alt="Impulse Digital - Leading Digital Marketing Agency in Mumbai" /></Link>
         </div>
         
-        <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+        <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`} data-lenis-prevent="true">
           <Link to="/" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Home</Link>
           <Link to="/about-us/" className="nav-item" data-cursor="GO" onClick={handleNavClick}>About Us</Link>
           <div className="nav-dropdown" onMouseLeave={handleDropdownMouseLeave}>
