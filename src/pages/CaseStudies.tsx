@@ -441,8 +441,15 @@ const CaseStudies: React.FC = () => {
     <main id="main-content" className="work-wrapper" ref={containerRef}>
       <Helmet>
         <title>Case Studies | Impulse Digital</title>
-      
+        <meta name="description" content="Explore Impulse Digital's case studies — brand research, campaign intelligence, SEO, social media, and AI marketing work for brands like Tata, HUL, Mastercard, DMart, and more." />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/" />
+        <meta property="og:title" content="Case Studies | Impulse Digital" />
+        <meta property="og:description" content="Explore Impulse Digital's case studies — brand research, campaign intelligence, SEO, social media, and AI marketing work for brands like Tata, HUL, Mastercard, DMart, and more." />
+        <meta property="og:url" content="https://www.theimpulsedigital.com/case-studies/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Impulse Digital" />
+        <meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
       </Helmet>
 
       {/* Hero Section */}

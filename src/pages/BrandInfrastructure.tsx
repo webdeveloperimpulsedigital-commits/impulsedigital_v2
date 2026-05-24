@@ -157,6 +157,7 @@ const BrandInfrastructure: React.FC = () => {
         <title>Brand Infrastructure | Impulse Digital</title>
         <meta name="description" content="A premium brand demands an unbreakable foundation. We architect authoritative digital footprints that dominate search and command absolute trust." />
         <link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/" />
+        <meta name="robots" content="index, follow" />
       </Helmet>
 
       {/* ══ SPLIT LAYOUT ═══════════════════════════════════ */}
