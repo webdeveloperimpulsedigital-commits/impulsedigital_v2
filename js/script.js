@@ -357,8 +357,8 @@ window.addEventListener('resize', () => {
         cosmosCards.forEach((card, index) => {
             const isLeft = index % 2 === 0;
             // X position is fixed. Perspective naturally moves them outward as you fly closer.
-            // On mobile, push them perfectly to the sides (0.45 * width) so they don't overlap in the center even with 80vw width!
-            const offsetMultiplier = isMobile ? 0.45 : 0.3;
+            // On mobile, push them perfectly to the sides (0.26 * width) so they don't overlap in the center and don't go off screen with 44vw width!
+            const offsetMultiplier = isMobile ? 0.26 : 0.3;
             const xOffset = isLeft ? -window.innerWidth * offsetMultiplier : window.innerWidth * offsetMultiplier;
             // No vertical offset needed if they are neatly on the sides
             const yOffset = 0;

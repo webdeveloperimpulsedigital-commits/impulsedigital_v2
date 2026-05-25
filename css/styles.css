@@ -948,9 +948,14 @@ nav.scrolled {
     max-width: 85%;
     max-height: 70%;
     object-fit: contain;
-    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.5s ease-out;
     position: relative;
     z-index: 6;
+}
+
+.logo-card img.loaded {
+    opacity: 1;
 }
 
 .logo-card:hover img {
@@ -9347,19 +9352,25 @@ button,
     }
 
     .cosmos-card {
-        width: 80vw !important;
-        height: 60vh !important;
+        width: 44vw !important;
+        height: auto !important;
+        aspect-ratio: 6 / 5 !important;
         transform: translate(-50%, -50%);
     }
 
+    .cosmos-card .hs-card-inner {
+        padding: 0.4rem !important;
+    }
+
     .cosmos-card .hs-client {
-        font-size: 1.25rem !important;
-        margin-bottom: 0.25rem !important;
+        font-size: 0.6rem !important;
+        margin-bottom: 0.15rem !important;
+        line-height: 1.1 !important;
     }
 
     .cosmos-card .hs-desc {
-        font-size: 0.85rem !important;
-        line-height: 1.3 !important;
+        font-size: 0.45rem !important;
+        line-height: 1.15 !important;
     }
 
     .cosmos-wrapper {
