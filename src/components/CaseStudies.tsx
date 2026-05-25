@@ -24,19 +24,19 @@ const CaseStudies: React.FC = () => {
           </div>
         </Link>
 
-        <Link to="/case-studies/abg-kbc/" className="cosmos-card" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <img src={`${import.meta.env.BASE_URL}case studies/Written Content/ABG x KBC/ABG x KBC Title.webp`} className="hs-card-img" alt="Aditya Birla Group x KBC CSR Campaign Case Study" loading="lazy" decoding="async"  width="600" height="400" />
+        <Link to="/case-studies/shaking-things-up/" className="cosmos-card" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <img src={`${import.meta.env.BASE_URL}images/case-study-image/salt/shaking-things-up.png`} className="hs-card-img" alt="Tata Consumer Products Case Study" loading="lazy" decoding="async"  width="600" height="400" />
           <div className="hs-card-inner">
-            <h3 className="hs-client">ABG × KBC</h3>
-            <p className="hs-desc">A question on KBC became a child’s shot at education.</p>
+            <h3 className="hs-client">Tata Consumer Products</h3>
+            <p className="hs-desc">Decoding category transformation for staple ingredients and mapping diaspora demand to market launch.</p>
           </div>
         </Link>
 
-        <Link to="/case-studies/dmart/" className="cosmos-card" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <img src={`${import.meta.env.BASE_URL}case studies/Written Content/Dmart/Dmart Title.webp`} className="hs-card-img" alt="DMart Retail Footfall Generation Campaign Case Study" loading="lazy" decoding="async"  width="600" height="400" />
+        <Link to="/case-studies/abg-kbc/" className="cosmos-card" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <img src={`${import.meta.env.BASE_URL}case studies/Written Content/ABG x KBC/ABG x KBC Title.webp`} className="hs-card-img" alt="Aditya Birla Group x KBC CSR Campaign Case Study" loading="lazy" decoding="async"  width="600" height="400" />
           <div className="hs-card-inner">
-            <h3 className="hs-client">DMart</h3>
-            <p className="hs-desc">13.43 lakh Pune shoppers reached for a sale built to move from scroll to store.</p>
+            <h3 className="hs-client">Aditya Birla Group × KBC</h3>
+            <p className="hs-desc">A question on KBC became a child’s shot at education.</p>
           </div>
         </Link>
 

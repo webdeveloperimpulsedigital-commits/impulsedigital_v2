@@ -39,18 +39,18 @@ const Home: React.FC = () => {
     <main id="main-content">
       <Helmet>
         <title>Best Digital Marketing Agency in Mumbai | Impulse Digital</title>
-<meta name="description" content="Impulse Digital is a top digital marketing agency in Mumbai that helps businesses expand their reach in the digital space with strategy, performance marketing, SEO, social media, content, and creative solutions for brands like Amazon, HUL, OLA, Dmart, HDFC and more." />
-<meta name="keywords" content="digital marketing agency in mumbai, digital marketing company, impulse digital" />
-<meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/" />
-<meta property="og:title" content="Best Digital Marketing Agency in Mumbai | Impulse Digital" />
-<meta property="og:description" content="Impulse Digital is a top digital marketing agency in Mumbai that helps businesses expand their reach in the digital space with strategy, performance marketing, SEO, social media, content, and creative solutions." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
-<meta property="og:url" content="https://www.theimpulsedigital.com" />
-<meta property="og:type" content="website" />
-      
-<script type="application/ld+json">
-{`
+        <meta name="description" content="Impulse Digital is a top digital marketing agency in Mumbai that helps businesses expand their reach in the digital space with strategy, performance marketing, SEO, social media, content, and creative solutions for brands like Amazon, HUL, OLA, Dmart, HDFC and more." />
+        <meta name="keywords" content="digital marketing agency in mumbai, digital marketing company, impulse digital" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://www.theimpulsedigital.com/" />
+        <meta property="og:title" content="Best Digital Marketing Agency in Mumbai | Impulse Digital" />
+        <meta property="og:description" content="Impulse Digital is a top digital marketing agency in Mumbai that helps businesses expand their reach in the digital space with strategy, performance marketing, SEO, social media, content, and creative solutions." />
+        <meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
+        <meta property="og:url" content="https://www.theimpulsedigital.com" />
+        <meta property="og:type" content="website" />
+
+        <script type="application/ld+json">
+          {`
 {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -107,9 +107,9 @@ const Home: React.FC = () => {
   }
 }
 `}
-</script>
-<script type="application/ld+json">
-{`
+        </script>
+        <script type="application/ld+json">
+          {`
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -125,23 +125,23 @@ const Home: React.FC = () => {
   },
   "primaryImageOfPage": {
     "@type": "ImageObject",
-    "url": "https://www.theimpulsedigital.com/header-logo.png"
+    "url": "https://www.theimpulsedigital.com/ImpulseDigital_Logo.svg"
   },
   "publisher": {
     "@id": "https://www.theimpulsedigital.com/#organization"
   }
 }
 `}
-</script>
-<script type="application/ld+json">
-{`
+        </script>
+        <script type="application/ld+json">
+          {`
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": "https://www.theimpulsedigital.com/#website",
   "url": "https://www.theimpulsedigital.com/",
   "name": "Impulse Digital",
-  "alternateName": "Impulse Digital Marketing Agency",
+  "alternateName": "Impulse Digital",
   "description": "Impulse Digital is a digital marketing agency offering social media, performance marketing, content, website development, branding, Agentic AI, AI video production, and generative search optimisation services.",
   "publisher": {
     "@id": "https://www.theimpulsedigital.com/#organization"
@@ -153,7 +153,7 @@ const Home: React.FC = () => {
   }
 }
 `}
-</script>
+        </script>
       </Helmet>
       <Hero />
       <CaseStudies />

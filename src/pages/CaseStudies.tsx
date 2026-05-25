@@ -6,12 +6,20 @@ import { startHeroCopyReveal } from '../utils/heroCopyReveal';
 
 const caseStudiesData = [
   {
-    client: "Tata Soulfull",
-    title: "The Next Bite",
-    category: "Brand Research",
-    description: "Decoding what drives trial, repeat purchase, and how the category could stretch from functional fuel to mainstream snacking.",
-    images: ["/images/case-study-image/tata-soulfull/Generated image 1.png"],
-    slug: "/case-studies/tata-soulfull"
+    client: "Mastercard",
+    title: "Merchant Outreach",
+    category: "Outreach",
+    description: "90.9% merchant response rate through an AI-led WhatsApp cluster-head outreach strategy.",
+    images: ["/case studies/Written Content/Mastercard/Mastercard Title.webp"],
+    slug: "/case-studies/mastercard"
+  },
+  {
+    client: "HUL",
+    title: "Consumer Centricity",
+    category: "Growth Intelligence",
+    description: "Geo-targeted digital coupon campaign delivering 90% higher CTR and 12,548 landing page sessions.",
+    images: ["/case studies/Written Content/HUL 1/HUL 1 Title.webp"],
+    slug: "/case-studies/hul"
   },
   {
     client: "Tata Consumer Products",
@@ -29,39 +37,6 @@ const caseStudiesData = [
       "/images/case-study-image/tcpl/AUS_us.png"
     ],
     slug: "/case-studies/shaking-things-up"
-  },
-  {
-    client: "Ching's Secret",
-    subNames: ["The Chatpata Test (Ching's × Kurkure)", "The Reputation Radar (Food Pharmer)"],
-    subDescriptions: [
-      "Decoding public response across search and social, reading sentiment, flavour expectations, celebrity impact, and brand recall signals.",
-      "A command-center approach tracked sentiment, platform narratives, creator influence, and reputational risk signals."
-    ],
-    subSlugs: ["/case-studies/chings-kurkure", "/case-studies/chings-foodfarmer"],
-    title: "Consumer Response & Reputation",
-    category: "Brand Monitoring",
-    description: "Decoding public response to a major brand collaboration and monitoring consumer pulse to manage reputational risk.",
-    images: [
-      "/images/case-study-image/chings- kurkure/CHing+Kurkure.png",
-      "/images/case-study-image/chings-foodfarmer/Foodfarmer.png"
-    ],
-    slug: "/case-studies/chings-kurkure"
-  },
-  {
-    client: "Mastercard",
-    title: "Merchant Outreach",
-    category: "Outreach",
-    description: "90.9% merchant response rate through an AI-led WhatsApp cluster-head outreach strategy.",
-    images: ["/case studies/Written Content/Mastercard/Mastercard Title.webp"],
-    slug: "/case-studies/mastercard"
-  },
-  {
-    client: "HUL",
-    title: "Consumer Centricity",
-    category: "Growth Intelligence",
-    description: "Geo-targeted digital coupon campaign delivering 90% higher CTR and 12,548 landing page sessions.",
-    images: ["/case studies/Written Content/HUL 1/HUL 1 Title.webp"],
-    slug: "/case-studies/hul"
   },
   {
     client: "Aditya Birla Group",
@@ -83,20 +58,29 @@ const caseStudiesData = [
     slug: "/case-studies/abg-kbc"
   },
   {
-    client: "DMart",
-    title: "Digital Retail Transformation",
-    category: "Growth Intelligence",
-    description: "13.43 lakh unique reach and 53K clicks that drove measurable in-store footfall at scale.",
-    images: ["/case studies/Written Content/Dmart/Dmart Title.webp"],
-    slug: "/case-studies/dmart"
+    client: "Tata Soulfull",
+    title: "The Next Bite",
+    category: "Brand Research",
+    description: "Decoding what drives trial, repeat purchase, and how the category could stretch from functional fuel to mainstream snacking.",
+    images: ["/images/case-study-image/tata-soulfull/Generated image 1.png"],
+    slug: "/case-studies/tata-soulfull"
   },
   {
-    client: "Uppercase",
-    title: "Sustainable Luggage",
-    category: "AI Marketing Systems",
-    description: "A complete brand film produced entirely with generative AI—script, visuals, voice, and edit.",
-    images: ["/case studies/Written Content/Uppercase/Uppercase Title.webp"],
-    slug: "/case-studies/uppercase"
+    client: "Ching's Secret",
+    subNames: ["The Chatpata Test (Ching's × Kurkure)", "The Reputation Radar (Food Pharmer)"],
+    subDescriptions: [
+      "Decoding public response across search and social, reading sentiment, flavour expectations, celebrity impact, and brand recall signals.",
+      "A command-center approach tracked sentiment, platform narratives, creator influence, and reputational risk signals."
+    ],
+    subSlugs: ["/case-studies/chings-kurkure", "/case-studies/chings-foodfarmer"],
+    title: "Consumer Response & Reputation",
+    category: "Brand Monitoring",
+    description: "Decoding public response to a major brand collaboration and monitoring consumer pulse to manage reputational risk.",
+    images: [
+      "/images/case-study-image/chings- kurkure/CHing+Kurkure.png",
+      "/images/case-study-image/chings-foodfarmer/Foodfarmer.png"
+    ],
+    slug: "/case-studies/chings-kurkure"
   },
   {
     client: "Qure.ai",
@@ -105,6 +89,14 @@ const caseStudiesData = [
     description: "Rebuilt Qure.ai’s US SEO structure from a one-page presence into a search-led system.",
     images: ["/case studies/Written Content/Qure.ai/QureAI Title.webp"],
     slug: "/case-studies/qure-ai"
+  },
+  {
+    client: "DMart",
+    title: "Digital Retail Transformation",
+    category: "Growth Intelligence",
+    description: "13.43 lakh unique reach and 53K clicks that drove measurable in-store footfall at scale.",
+    images: ["/case studies/Written Content/Dmart/Dmart Title.webp"],
+    slug: "/case-studies/dmart"
   },
   {
     client: "ElectroMech",
@@ -130,6 +122,14 @@ const caseStudiesData = [
       "/case studies/Written Content/Automag India/Automag x Bajaj Auto title.webp"
     ],
     slug: "/case-studies/automag-india"
+  },
+  {
+    client: "Uppercase",
+    title: "Sustainable Luggage",
+    category: "AI Marketing Systems",
+    description: "A complete brand film produced entirely with generative AI—script, visuals, voice, and edit.",
+    images: ["/case studies/Written Content/Uppercase/Uppercase Title.webp"],
+    slug: "/case-studies/uppercase"
   },
   {
     client: "LG Hing",
