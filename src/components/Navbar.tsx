@@ -141,7 +141,7 @@ const Navbar: React.FC = () => {
                   <span 
                     className="mobile-only-icon" 
                     onClick={(e) => toggleSubMenu('growth', e)}
-                    style={{ cursor: 'pointer', padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                    style={{ cursor: 'pointer', padding: '0.5rem' }}
                   >
                     {openSubMenu === 'growth' ? '−' : '+'}
                   </span>
@@ -165,7 +165,7 @@ const Navbar: React.FC = () => {
                   <span 
                     className="mobile-only-icon" 
                     onClick={(e) => toggleSubMenu('ai', e)}
-                    style={{ cursor: 'pointer', padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                    style={{ cursor: 'pointer', padding: '0.5rem' }}
                   >
                     {openSubMenu === 'ai' ? '−' : '+'}
                   </span>
@@ -189,7 +189,7 @@ const Navbar: React.FC = () => {
                   <span 
                     className="mobile-only-icon" 
                     onClick={(e) => toggleSubMenu('brand', e)}
-                    style={{ cursor: 'pointer', padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                    style={{ cursor: 'pointer', padding: '0.5rem' }}
                   >
                     {openSubMenu === 'brand' ? '−' : '+'}
                   </span>

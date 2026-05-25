@@ -127,7 +127,7 @@ const caseStudiesData = [
     client: "Uppercase",
     title: "Sustainable Luggage",
     category: "AI Marketing Systems",
-    description: "A complete brand film produced entirely with generative AI—script, visuals, voice, and edit.",
+    description: "5.49M plays for a New Year idea built with AI, led by human instinct.",
     images: ["/case studies/Written Content/Uppercase/Uppercase Title.webp"],
     slug: "/case-studies/uppercase"
   },

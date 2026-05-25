@@ -105,7 +105,7 @@ const caseStudies: CaseStudyItem[] = [
     id: 6,
     client: 'Uppercase',
     category: 'AI Video Production',
-    description: 'A New Year brand film built entirely with AI — 5.49M plays, 868K+ views, 100K+ likes.',
+    description: '5.49M plays for a New Year idea built with AI, led by human instinct.',
     imgs: ['case studies/Written Content/Uppercase/Uppercase Title.webp'],
     theme: 'dark',
     accent: '#3D2200',
