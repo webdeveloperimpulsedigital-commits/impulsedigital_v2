@@ -26,8 +26,5 @@ dist-ssr
 # Ignore zip files
 *.zip
 
-# WordPress sensitive config — never commit credentials
-blog/wp-config.php
-
-# WordPress dynamic content — plugins/themes/uploads contain secrets and change at runtime
-blog/wp-content/
+# WordPress blog — managed separately on server, not tracked in git
+blog/
