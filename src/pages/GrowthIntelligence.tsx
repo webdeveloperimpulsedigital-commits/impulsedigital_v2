@@ -105,7 +105,7 @@ const GrowthIntelligence: React.FC = () => {
   }, []);
 
   return (
-    <main id="main-content" ref={pageRef}>
+    <main id="main-content" className="service-listing-page" ref={pageRef}>
       <Helmet>
         <title>Growth Intelligence | Impulse Digital</title>
         <meta name="description" content="Consumer, Market, Campaign and Always-On Intelligence — four disciplines that turn market data into competitive advantage." />

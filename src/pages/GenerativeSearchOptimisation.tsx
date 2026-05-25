@@ -5,6 +5,7 @@ import ServiceHandoff from '../components/Service/ServiceHandoff';
 import Logos from '../components/Logos';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
+import MobileSignalPipeline from '../components/Service/MobileSignalPipeline';
 import { useServicePageBackground } from '../hooks/useServicePageBackground';
 
 import {
@@ -38,8 +39,11 @@ const GenerativeSearchOptimisation: React.FC = () => {
     const answerProof = document.querySelectorAll('.gso-answer-proof span');
 
     let measureFn: () => void = () => {};
+    let measureTimeout: number | undefined;
+    let clarityTrigger: any = null;
+    const isMobileClarity = window.matchMedia('(max-width: 768px)').matches;
 
-    if (clarityStage && clarityLines && signalChips.length && lens && ringProgress && answerCard && gsap && ScrollTrigger) {
+    if (!isMobileClarity && clarityStage && clarityLines && signalChips.length && lens && ringProgress && answerCard && gsap && ScrollTrigger) {
       const ringLength = 2 * Math.PI * 68;
       gsap.set(ringProgress, { strokeDasharray: ringLength, strokeDashoffset: ringLength });
       gsap.set(signalChips, { opacity: 0, x: -20 });
@@ -169,10 +173,10 @@ const GenerativeSearchOptimisation: React.FC = () => {
       };
 
       measureFn();
-      setTimeout(measureFn, 250);
+      measureTimeout = window.setTimeout(measureFn, 250);
       window.addEventListener('resize', measureFn);
 
-      ScrollTrigger.create({
+      clarityTrigger = ScrollTrigger.create({
         trigger: clarityStage,
         start: 'top 58%',
         once: true,
@@ -182,6 +186,8 @@ const GenerativeSearchOptimisation: React.FC = () => {
 
     return () => {
       window.removeEventListener('resize', measureFn);
+      if (measureTimeout) window.clearTimeout(measureTimeout);
+      if (clarityTrigger) clarityTrigger.kill();
     };
   }, []);
 
@@ -233,7 +239,7 @@ const GenerativeSearchOptimisation: React.FC = () => {
       <ServiceHandoff />
 
       {/* CHANNELS Section specifically for GSO */}
-      <section className="svc-channels gso-understanding">
+      <section className="svc-channels gso-understanding has-mobile-pipeline">
         <div className="container">
           <h2 className="svc-h2 split-text">{data.channels.title}</h2>
           <p className="svc-channels-intro">{data.channels.intro1}</p>
@@ -267,6 +273,19 @@ const GenerativeSearchOptimisation: React.FC = () => {
               <p>Chosen starts with understood.</p>
             </div>
           </div>
+          <MobileSignalPipeline
+            inputs={data.channels.list.map((item: any) => item.label)}
+            centerLabel="AI reads the signals"
+            outputEyebrow="Recommendation layer"
+            outputTitle="Your brand becomes easier to find, explain, and recommend."
+            outputProof={[
+              'Category is clear',
+              'Proof is visible',
+              'Expertise is structured',
+              'Content answers real questions'
+            ]}
+            outputClosing="Chosen starts with understood."
+          />
         </div>
       </section>
 

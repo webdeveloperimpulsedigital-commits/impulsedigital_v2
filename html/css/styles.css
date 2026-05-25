@@ -4498,16 +4498,24 @@ a, button, [role="button"], .acc-header, .logo-card, .social-icon, .nav-item, .b
         grid-template-columns: 1fr;
         grid-template-areas:
             "main"
-            "visual"
             "details";
         min-height: auto;
     }
     .careers-page .car-jobs-list .car-job-visual {
-        min-height: 150px;
-        justify-content: flex-start;
+        position: absolute;
+        top: clamp(2rem, 4vw, 4.2rem);
+        right: clamp(1.25rem, 5vw, 4.8rem);
+        min-height: auto;
+        height: auto;
+        width: auto;
+        z-index: 10;
+        justify-content: flex-end;
     }
     .careers-page .car-jobs-list .car-job-mark {
-        width: min(52vw, 220px);
+        display: none !important;
+    }
+    .careers-page .car-jobs-list .car-job-index {
+        display: none;
     }
 }
 

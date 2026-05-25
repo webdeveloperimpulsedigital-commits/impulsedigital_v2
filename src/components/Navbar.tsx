@@ -9,15 +9,25 @@ const Navbar: React.FC = () => {
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
 
   useEffect(() => {
-    const lenis = (window as any).globalLenis;
+    const checkAndToggleLenis = () => {
+      const lenis = (window as any).globalLenis;
+      if (lenis) {
+        if (isMobileMenuOpen) {
+          lenis.stop();
+        } else {
+          lenis.start();
+        }
+        return true;
+      }
+      return false;
+    };
+
     if (isMobileMenuOpen) {
       // Save scroll position and lock body
       const scrollY = window.scrollY;
       document.body.dataset.scrollY = String(scrollY);
       document.body.style.top = `-${scrollY}px`;
       document.body.classList.add('mobile-menu-active');
-      // Stop Lenis so it doesn't fight with the locked body
-      lenis?.stop();
     } else {
       // Restore scroll position when menu closes
       const scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
@@ -25,16 +35,35 @@ const Navbar: React.FC = () => {
       document.body.style.top = '';
       delete document.body.dataset.scrollY;
       window.scrollTo({ top: scrollY, behavior: 'instant' });
-      // Small delay so body is un-fixed before Lenis resumes
-      setTimeout(() => lenis?.start(), 50);
     }
+
+    const success = checkAndToggleLenis();
+
+    let intervalId: any;
+    if (isMobileMenuOpen) {
+      if (!success) {
+        intervalId = setInterval(() => {
+          if (checkAndToggleLenis()) {
+            clearInterval(intervalId);
+          }
+        }, 50);
+      }
+    } else {
+      setTimeout(() => {
+        const lenis = (window as any).globalLenis;
+        lenis?.start();
+      }, 50);
+    }
+
     return () => {
       const scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
       document.body.classList.remove('mobile-menu-active');
       document.body.style.top = '';
       delete document.body.dataset.scrollY;
       if (scrollY > 0) window.scrollTo({ top: scrollY, behavior: 'instant' });
-      setTimeout(() => lenis?.start(), 50);
+      if (intervalId) clearInterval(intervalId);
+      const lenis = (window as any).globalLenis;
+      lenis?.start();
     };
   }, [isMobileMenuOpen]);
 

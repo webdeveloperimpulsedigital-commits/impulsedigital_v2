@@ -152,7 +152,7 @@ const BrandInfrastructure: React.FC = () => {
   }, []);
 
   return (
-    <main id="main-content" ref={pageRef}>
+    <main id="main-content" className="service-listing-page" ref={pageRef}>
       <Helmet>
         <title>Brand Infrastructure | Impulse Digital</title>
         <meta name="description" content="A premium brand demands an unbreakable foundation. We architect authoritative digital footprints that dominate search and command absolute trust." />

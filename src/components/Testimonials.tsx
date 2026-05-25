@@ -56,19 +56,54 @@ const Testimonials: React.FC = () => {
 
   const handleScroll = () => {
     if (sliderRef.current) {
-      const scrollPosition = sliderRef.current.scrollLeft;
-      const cardWidth = sliderRef.current.clientWidth;
-      const newIndex = Math.round(scrollPosition / cardWidth);
-      setActiveIndex(newIndex);
+      const slider = sliderRef.current;
+      const scrollLeft = slider.scrollLeft;
+      const sliderWidth = slider.clientWidth;
+      const scrollWidth = slider.scrollWidth;
+      const children = Array.from(slider.children);
+
+      if (scrollLeft <= 10) {
+        setActiveIndex(0);
+        return;
+      }
+
+      if (scrollLeft + sliderWidth >= scrollWidth - 10) {
+        setActiveIndex(children.length - 1);
+        return;
+      }
+
+      const sliderCenter = scrollLeft + sliderWidth / 2;
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      children.forEach((child, index) => {
+        const htmlChild = child as HTMLElement;
+        const childCenter = htmlChild.offsetLeft + htmlChild.offsetWidth / 2;
+        const distance = Math.abs(sliderCenter - childCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setActiveIndex(closestIndex);
     }
   };
 
   const scrollToSlide = (index: number) => {
     if (sliderRef.current) {
-      const cardWidth = sliderRef.current.clientWidth;
-      sliderRef.current.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
+      const slider = sliderRef.current;
+      const children = Array.from(slider.children);
+      const targetChild = children[index] as HTMLElement;
+      if (targetChild) {
+        const sliderWidth = slider.clientWidth;
+        const childCenter = targetChild.offsetLeft + targetChild.offsetWidth / 2;
+        const targetScrollLeft = childCenter - sliderWidth / 2;
+        slider.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
+      }
     }
   };
+
 
   return (
     <section className="testimonials glass-panel" ref={sectionRef}>

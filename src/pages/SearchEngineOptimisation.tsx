@@ -5,6 +5,7 @@ import ServiceHandoff from '../components/Service/ServiceHandoff';
 import Logos from '../components/Logos';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
+import MobileSignalRail from '../components/Service/MobileSignalRail';
 import { useServicePageBackground } from '../hooks/useServicePageBackground';
 
 import {
@@ -43,7 +44,9 @@ const SearchEngineOptimisation: React.FC = () => {
     let sectionObs: IntersectionObserver | null = null;
     let measureFn: () => void = () => {};
 
-    if (stage && linesSvg && centerEl && centerPath && gsap && ScrollTrigger) {
+    const isMobileChannels = window.matchMedia('(max-width: 768px)').matches;
+
+    if (!isMobileChannels && stage && linesSvg && centerEl && centerPath && gsap && ScrollTrigger) {
       let chipPositions: any[] = [];
       let cx = 0, cy = 0;
       let markRadius = 80;
@@ -208,7 +211,7 @@ const SearchEngineOptimisation: React.FC = () => {
       
       {/* CHANNELS */}
       {data.channels && (
-        <section className="svc-channels">
+        <section className="svc-channels has-mobile-signal">
           <div className="container">
             <h2 className="svc-h2 split-text">{data.channels.title}</h2>
             {data.channels.intro.split('\n').map((p: string, i: number) => (
@@ -229,6 +232,7 @@ const SearchEngineOptimisation: React.FC = () => {
                 ))}
               </div>
             </div>
+            <MobileSignalRail items={data.channels.list.map((item: any) => item.label)} />
             {data.channels.outro && data.channels.outro.split('\n').map((p: string, i: number) => (
               <p className="svc-channels-intro" key={i} dangerouslySetInnerHTML={{ __html: p }}></p>
             ))}
