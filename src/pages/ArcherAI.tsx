@@ -132,6 +132,8 @@ const ArcherAI: React.FC = () => {
 <meta name="twitter:description" content="Meet Archer AI, a leading AI outbound sales agent. We build AI outbound agents that engage prospects with authentic conversations to drive real growth." />
 <meta name="twitter:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
 <meta name="twitter:site" content="@impulsedigi" />
+      
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({"@context":"https://schema.org","@type":"Service","@id":"https://www.theimpulsedigital.com/ai-marketing-systems/archer-ai/#service","name":"Archer AI Services","url":"https://www.theimpulsedigital.com/ai-marketing-systems/archer-ai/","description":"Impulse Digital provides Archer AI, an AI-powered outbound intelligence engine that detects buying signals, identifies decision-makers, enriches prospect data, and supports personalised B2B outreach.","serviceType":["Archer AI","AI Outbound Engine","B2B Lead Intelligence","ICP Diagnostic","Prospect Discovery","LinkedIn Outreach","Email Outreach"],"areaServed":["IN","US"],"provider":{"@type":"Organization","name":"Impulse Digital","url":"https://www.theimpulsedigital.com/"}}) }} />
       </Helmet>
       <ServiceHero 
         headlineParts={archerAiData.hero.headlineParts}

@@ -158,6 +158,8 @@ const BrandInfrastructure: React.FC = () => {
         <meta name="description" content="A premium brand demands an unbreakable foundation. We architect authoritative digital footprints that dominate search and command absolute trust." />
         <link rel="canonical" href="https://www.theimpulsedigital.com/brand-infrastructure/" />
         <meta name="robots" content="index, follow" />
+      
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({"@context":"https://schema.org","@type":"Service","@id":"https://www.theimpulsedigital.com/brand-infrastructure/#service","name":"Brand Infrastructure Services","url":"https://www.theimpulsedigital.com/brand-infrastructure/","description":"Impulse Digital provides Brand Infrastructure services including branding, SEO, social media marketing, video production, website development, and employer branding.","serviceType":["Brand Infrastructure","Branding","Search Engine Optimisation","Social Media Marketing","Video Production","Website Development","Employer Branding"],"areaServed":["IN","US"],"provider":{"@type":"Organization","name":"Impulse Digital","url":"https://www.theimpulsedigital.com/"}}) }} />
       </Helmet>
 
       {/* ══ SPLIT LAYOUT ═══════════════════════════════════ */}

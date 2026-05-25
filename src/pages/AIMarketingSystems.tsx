@@ -116,6 +116,8 @@ const AIMarketingSystems: React.FC = () => {
         <meta name="description" content="Deploy autonomous, intelligent systems that scale your marketing exponentially without human bottlenecks." />
         <link rel="canonical" href="https://www.theimpulsedigital.com/ai-marketing-systems/" />
         <meta name="robots" content="index, follow" />
+      
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({"@context":"https://schema.org","@type":"Service","@id":"https://www.theimpulsedigital.com/ai-marketing-systems/#service","name":"AI Marketing Systems","url":"https://www.theimpulsedigital.com/ai-marketing-systems/","description":"Impulse Digital builds AI marketing systems for brands, including agentic AI, AI-powered outbound engines, AI video production, and generative search optimisation.","serviceType":["AI Marketing Systems","Agentic AI","AI Video Production","Generative Search Optimisation","AI Outbound Automation"],"areaServed":["IN","US"],"provider":{"@type":"Organization","name":"Impulse Digital","url":"https://www.theimpulsedigital.com/"}}) }} />
       </Helmet>
 
       {/* ══ SPLIT LAYOUT ═══════════════════════════════════ */}

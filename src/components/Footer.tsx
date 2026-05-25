@@ -38,11 +38,11 @@ const Footer: React.FC = () => {
             <img src={`${import.meta.env.BASE_URL}ImpulseDigital_Logo.svg`} alt="Impulse Digital Logo" className="footer-logo" loading="lazy" decoding="async" />
             
             <div className="footer-socials">
-              <a href="#" className="social-icon" data-cursor="FOLLOW"><i className="fab fa-facebook-f"></i></a>
-              <a href="#" className="social-icon" data-cursor="FOLLOW"><i className="fa-brands fa-x-twitter"></i></a>
-              <a href="#" className="social-icon" data-cursor="FOLLOW"><i className="fab fa-instagram"></i></a>
-              <a href="#" className="social-icon" data-cursor="FOLLOW"><i className="fab fa-linkedin-in"></i></a>
-              <a href="#" className="social-icon" data-cursor="FOLLOW"><i className="fab fa-youtube"></i></a>
+              <a href="https://www.facebook.com/theimpulsedigital/" target="_blank" rel="noopener noreferrer" className="social-icon" data-cursor="FOLLOW"><i className="fab fa-facebook-f"></i></a>
+              <a href="https://x.com/impulsedigi" target="_blank" rel="noopener noreferrer" className="social-icon" data-cursor="FOLLOW"><i className="fa-brands fa-x-twitter"></i></a>
+              <a href="https://www.instagram.com/_impulse_digital/" target="_blank" rel="noopener noreferrer" className="social-icon" data-cursor="FOLLOW"><i className="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/company/impulse-digital-marketing-mumbai/?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className="social-icon" data-cursor="FOLLOW"><i className="fab fa-linkedin-in"></i></a>
+              <a href="https://www.youtube.com/channel/UCzQglQAeXGI99Z-LZI9jBkw" target="_blank" rel="noopener noreferrer" className="social-icon" data-cursor="FOLLOW"><i className="fab fa-youtube"></i></a>
             </div>
           </div>
 

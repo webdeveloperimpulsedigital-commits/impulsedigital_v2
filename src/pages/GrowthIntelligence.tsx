@@ -111,6 +111,8 @@ const GrowthIntelligence: React.FC = () => {
         <meta name="description" content="Consumer, Market, Campaign and Always-On Intelligence — four disciplines that turn market data into competitive advantage." />
         <link rel="canonical" href="https://www.theimpulsedigital.com/growth-intelligence/" />
         <meta name="robots" content="index, follow" />
+      
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({"@context":"https://schema.org","@type":"Service","@id":"https://www.theimpulsedigital.com/growth-intelligence/#service","name":"Growth Intelligence Services","url":"https://www.theimpulsedigital.com/growth-intelligence/","description":"Impulse Digital provides Growth Intelligence services that help brands make sharper marketing, consumer, market, campaign, and performance decisions through data-backed insights.","serviceType":["Growth Intelligence","Consumer Intelligence","Market Intelligence","Campaign Intelligence","Performance Intelligence"],"areaServed":["IN","US"],"provider":{"@type":"Organization","name":"Impulse Digital","url":"https://www.theimpulsedigital.com/"}}) }} />
       </Helmet>
 
       {/* ══ SPLIT LAYOUT ═══════════════════════════════════ */}

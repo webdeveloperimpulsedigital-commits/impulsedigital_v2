@@ -146,10 +146,19 @@ const Logos: React.FC<LogosProps> = ({ title }) => {
                     alt={logo.alt}
                     className={logo.fixGrid ? 'fix-logo-grid' : ''}
                     style={logo.scale ? { '--base-scale': logo.scale } as React.CSSProperties : undefined}
-                    loading="eager"
+                    loading="lazy"
                     decoding="async"
                     width="200"
                     height="100"
+                    onLoad={(e) => {
+                      const img = e.currentTarget;
+                      img.classList.add('loaded');
+                    }}
+                    ref={(img) => {
+                      if (img && img.complete) {
+                        img.classList.add('loaded');
+                      }
+                    }}
                     onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                   />
                 </div>

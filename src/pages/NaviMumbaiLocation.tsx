@@ -9,6 +9,49 @@ import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
 
+const locationFaqs = [
+  {
+    "question": "What does Impulse Digital do for brands in Navi Mumbai?",
+    "answer": "As a trusted digital marketing agency in Navi Mumbai, Impulse Digital plans and executes digital marketing strategies that align closely with business goals. Our team blends strategy, creative, media, web, content, and analytics to build strong visibility, meaningful engagement, and consistent conversions."
+  },
+  {
+    "question": "How do you create a strategy that matches our goals and timelines?",
+    "answer": "We begin with discovery and an audit of your market and current performance, define clear objectives, and build a roadmap that prioritizes actions by expected impact and required effort."
+  },
+  {
+    "question": "Which services can you manage within one engagement?",
+    "answer": "We manage performance marketing, search engine optimization, social media, content creation, branding, website design and development, video production, and analytics under one coordinated plan."
+  },
+  {
+    "question": "Do you work only with brands in Navi Mumbai or across regions as well?",
+    "answer": "While we are a digital marketing agency in Navi Mumbai, we partner with clients across India and overseas. Our collaborations are supported through shared workspaces, regular reviews, and clear points of contact to ensure seamless communication and execution across regions."
+  },
+  {
+    "question": "How do you measure success and report progress?",
+    "answer": "Success is defined through agreed KPIs such as reach, engagement, qualified leads, sales, and return on investment. Dashboards and review calls translate data into actions for the next cycle."
+  },
+  {
+    "question": "How quickly can we expect results after launch?",
+    "answer": "Paid campaigns can show early signals within days once tracking is verified, while organic growth builds over weeks and months as technical fixes, content, and community programs take effect."
+  },
+  {
+    "question": "Will you handle content creation and production or do we need other partners?",
+    "answer": "Our in-house teams produce copy, design, and video so execution stays consistent with strategy. We can also collaborate with your existing partners where preferred."
+  },
+  {
+    "question": "Can you share case studies and learning resources before we decide?",
+    "answer": "Yes. Public case studies and knowledge resources are available, and additional references can be shared on request subject to confidentiality. We can outline expected benchmarks for similar categories."
+  },
+  {
+    "question": "How do you ensure brand safety and data privacy?",
+    "answer": "We request only the access required, follow your privacy and compliance policies, and document permissions in the agreement. Creative and placements follow platform guidelines and category norms."
+  },
+  {
+    "question": "How do we get a proposal tailored to our needs?",
+    "answer": "As a digital marketing agency in Navi Mumbai, we start by understanding your objectives, timelines, target markets, and any past reports shared through our contact form. We then set up a discovery call and return with a clear plan that outlines scope, milestones, and measurement."
+  }
+];
+
 const NaviMumbaiLocation: React.FC = () => {
   useEffect(() => {
     document.body.classList.add('service-page');
@@ -65,7 +108,7 @@ const NaviMumbaiLocation: React.FC = () => {
       <BrandFilm />
       <Services />
       <Testimonials />
-      <FAQ />
+      <FAQ data={locationFaqs} />
       <Contact />
     </main>
   );

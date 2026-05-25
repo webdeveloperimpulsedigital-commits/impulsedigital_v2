@@ -9,6 +9,41 @@ import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
 
+const locationFaqs = [
+  {
+    "question": "What does it mean that Impulse Digital is a growth partner rather than a vendor?",
+    "answer": "As a leading digital marketing agency in Pune, it means we work as an extension of your team, aligning strategy and execution with your goals and sharing responsibility for outcomes. Collaboration, transparency, and measurable progress drive every decision."
+  },
+  {
+    "question": "How do you build a strategy that fits my brand and market?",
+    "answer": "We begin with discovery and a performance audit, define clear objectives, and map audience journeys. From there we create a test and learn roadmap that prioritizes initiatives by impact and effort."
+  },
+  {
+    "question": "How will success be measured and reported to us?",
+    "answer": "At our digital marketing agency in Pune, we set KPIs at the start and track visibility, engagement, conversions, and return on investment. Dashboards and review calls convert the data into actions for the next cycle."
+  },
+  {
+    "question": "Do you serve only Pune based businesses or work across regions as well?",
+    "answer": "While we are a digital marketing company in Pune, we support clients across India and overseas. Our delivery models remain flexible so collaboration stays smooth regardless of location."
+  },
+  {
+    "question": "What services can you manage under one engagement?",
+    "answer": "We offer performance marketing, search engine optimization, social media, content, branding, website design and development, video production, and analytics. You can choose full service or project based support."
+  },
+  {
+    "question": "How soon can we expect results from a new engagement?",
+    "answer": "Paid campaigns can show directional signals within days once tracking is verified. Organic growth compounds over weeks and months as technical and content improvements take effect."
+  },
+  {
+    "question": "What does the process look like from first call to launch?",
+    "answer": "We align on goals, run an audit, agree on a plan with milestones, set up tracking, and prepare creative and landing experiences. Launch follows a quality checklist so that data and delivery are reliable from day one."
+  },
+  {
+    "question": "Can you share case studies and references before we decide?",
+    "answer": "Yes. As a transparent digital marketing company in Pune, we provide public case studies and can share additional references on request, subject to confidentiality terms."
+  }
+];
+
 const PuneLocation: React.FC = () => {
   useEffect(() => {
     document.body.classList.add('service-page');
@@ -71,7 +106,7 @@ const PuneLocation: React.FC = () => {
       <BrandFilm />
       <Services />
       <Testimonials />
-      <FAQ />
+      <FAQ data={locationFaqs} />
       <Contact />
     </main>
   );
