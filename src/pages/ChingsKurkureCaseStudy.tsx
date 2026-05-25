@@ -56,10 +56,11 @@ const ChingsKurkureCaseStudy: React.FC = () => {
           ctaText="Access the full case study to see what consumers really heard, remembered, and wanted next."
           zoho={{
             formId: '1132219000001842132',
-            xnQsjsdp: 'd120614e39acaf61192252f796e6ebdec555d799ec29196c0cf55dfcb072a23a',
-            xmIwtLD: '939f0b1426f97fa4c0cefb276660a34729e81567da307fce079868ab434659d55be791b964ac392cb10a20d537a5313a',
+            xnQsjsdp: '20fff8920bccc5938435eb30c27d84bff5761d19cf5b612763fa514581006399',
+            xmIwtLD: 'c1ce63843ad61f48293eaee78c788b8cd0a91cb99e3c22ea5b5acb1717ace9a924bfb7b9f323577170e3f226328f116a',
             leadSource: 'chings-kurkure',
-            analyticsRid: 'c00664901f9065d026bdb17e20ebaba86f2c91485ea0ec45f15f3d60107a527ec405f0580f7363413831b8278128e830gideb963ae612abcb94f648329306d922823d2a010c2a137ce667a141d99d219f22gid6b502ccb6e4ce7f70ed39a876d503d8975b4aa571cbecb41c6a39657dcb4995bgid025c5ffcd0156b39d4d8df57119122bb1c84f8193c37bd1b7443f6265af3eb0e',
+            analyticsRid: '82d726f440493bc3133db56775cd4e26ccc6dbd8d2602ac8fe5ef02b4a4e210153c6f3922f47edff96c82e42fce5ee50gide01635f086e7513c8139d10c620b0f1a656d4d835ecc68c987bb45e297f7e03fgidf97a680f683fb1c42fe9847f8f90937d1ee4a278c812aebc68286f11042b52ccgid6558fd0b01c80f9b666752c12e3f17265ac7496c98fa0e11a634effa49dfdded',
+            analyticsTw: 'e9c02442b426b7dc74ebf6208701d32207ee82a0291cf99d873d67fb7920b90b',
             pdfPath: '/case-studies-pdf/chings+kurkue.pdf',
           }}
         />

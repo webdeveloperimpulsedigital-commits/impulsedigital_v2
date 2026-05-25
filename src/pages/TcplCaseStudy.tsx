@@ -56,10 +56,11 @@ const TcplCaseStudy: React.FC = () => {
           ctaText="Access the full case study to see how diaspora demand was translated into a market-entry roadmap."
           zoho={{
             formId: '1132219000001842121',
-            xnQsjsdp: '20dbb20a9b894c5ed9ed9a87362b39e6a68f43b048d0a77fd225c9776d0a5e23',
-            xmIwtLD: '34d18d74fda9deef11300b92cec09524b0f62e5b0c869cdfd951431fdd254f2e7d740f602502730dce6486edb588fc6b',
+            xnQsjsdp: '3de682f589787613bdcdf4cb27278b8ea922155a0c3bc970f8d43b0b2b1e2e68',
+            xmIwtLD: 'ffe6d2e98c5a480b1fd1f18887232a8f6229e9373732551868ad41d7620c24e24d332c626d5a9ac5301e4a68422d5962',
             leadSource: 'tcpl',
-            analyticsRid: '0e44a44d5101b6010dd8285925542ce7b0b8a88623d04e6c04795152d9f7d7885bc185b4eba85a54d2b80789ad3b4f7egid5b84587bd299c059282bfa96ddbcb8714f0d218337f2f46902e5c9992dd9c218gid98ec56cc67faef4d1944e0353d0424c1987924275ba83e58cd09e08d846e5250gida427bb88a60817c00fcb18ab7ad85e97da242a727cb1a443767773ae3a9992d6',
+            analyticsRid: '12ded64395a2a19783e561f2687a280aefa272d61d78679f9bdc1ade459b3feea3c2fba6d812d7ab85532e0cdd3efe83gid40d5c7211b0f8192e229740875451256e4053bf22edb00c112a3667131f78795gid06d611af6010cb7a5cc6f7fbe3e90f12b603213ef05788d2f36177635e3f5dd4gid1804cef848911cecded5f77287b5e716009e21c1a493dc5e962bf472873c80aa',
+            analyticsTw: '13ef263429f98e6c193774f2cd8e04414db1cd428b8c7759ba8d5a739a8eea76',
             pdfPath: '/case-studies-pdf/US AUS fod trends.pdf',
           }}
         />

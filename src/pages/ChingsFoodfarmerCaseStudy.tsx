@@ -56,10 +56,11 @@ const ChingsFoodfarmerCaseStudy: React.FC = () => {
           ctaText="Access the full case study to see how brands can read the internet before the internet decides for them."
           zoho={{
             formId: '1132219000001842143',
-            xnQsjsdp: 'c1c57be7888ea44f63706d8b1db319a544568e6b50948a484470d6fcbcaab749',
-            xmIwtLD: '0f6a0f4bc44ffffb9e9664a4cd8cf643191d3e933ecbe731bb776edd992897f17917a77e94ac378b6590528afcbe5b98',
+            xnQsjsdp: 'c48029f70df3f1877e963bc81f3d76a14b91ccc65be08d2e9eae9e4cdce52fa9',
+            xmIwtLD: 'b69341e189cd0a2b9cc3c520ec842367e7449a9ced8114027e9185808f5d3ae40ab35617d064f58a7869e22229ba66b5',
             leadSource: 'chings-foodfarmer',
-            analyticsRid: 'bd1f9c2e0662cec515af38b34428c01a582f9087cad353013ace555e45d0d7d7af370aa77ae0eaee0d970c7e871fdd31gid4d5450e0a5b452d58821ac98fd3310aa840ec221f951c991e70d132d9ae72cfcgidd6d1916e281aa5a8bd0139b871d2d53f038708f8178e9765f5c458a6d29b895agid4190898d895c926e7e624429d4379bd59f44598c27d03794cad8500cb452b58c',
+            analyticsRid: '82f24e9e22695c08bbd304295d0465ed6497c3cb2f9d4871465712e754e98f4e671ff7c6e4514f83d238fc1a8564c6e2gid5b534e3754c0010fb2197149597fd26b850d21b72adaa20d4c7e6d516b556956gidadc5319bca29d1262562cd2c0b2c63f7dd97bfc9ab4c32fbb60668a3a012a98agid239f85617e029646cca4b608a2e065df4348fde09137641a2e8afff42a98af75',
+            analyticsTw: '6194cc9caff9518b6920c8ee6a8e994c91487989be9efce200c8d3fdad2e4763',
             pdfPath: '/case-studies-pdf/chings-foodpharmer-case-study.pdf',
           }}
         />

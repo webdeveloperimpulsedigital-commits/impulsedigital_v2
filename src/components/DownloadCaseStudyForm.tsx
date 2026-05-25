@@ -6,6 +6,10 @@ export interface ZohoFormConfig {
   xmIwtLD: string;
   leadSource: string;
   analyticsRid: string;
+  /** Per-form &tw= token appended to the Zoho analytics script URL (do not remove). */
+  analyticsTw: string;
+  /** Whether the Company Website field is mandatory for this form. Defaults to false. */
+  websiteRequired?: boolean;
   /** Reference only — the PDF path to configure in Zoho CRM's email workflow. Not used by the frontend. */
   pdfPath?: string;
 }
@@ -25,21 +29,27 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
     if (!document.getElementById(analScriptId)) {
       const analScript = document.createElement('script');
       analScript.id = analScriptId;
-      analScript.src = `https://crm.zohopublic.in/crm/WebFormAnalyticsServeServlet?rid=${zoho.analyticsRid}&tw=cd1f12e6e12b106883e521d24a6c077ecb0bc8f0bc8a56cfae7a7c6b67a89778`;
+      analScript.src = `https://crm.zohopublic.in/crm/WebFormAnalyticsServeServlet?rid=${zoho.analyticsRid}&tw=${zoho.analyticsTw}`;
       document.body.appendChild(analScript);
     }
     return () => {
       const s = document.getElementById(`zoho-anal-${zoho.formId}`);
       if (s) s.remove();
     };
-  }, [zoho.formId, zoho.analyticsRid]);
+  }, [zoho.formId, zoho.analyticsRid, zoho.analyticsTw]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     const form = e.currentTarget;
 
     // Mandatory field validation
-    const mandatoryFields = ['Company', 'Last Name', 'Designation', 'Phone', 'Website', 'Secondary Email', 'LEADCF21'];
-    const fieldLabels = ['Company Name', 'Full Name', 'Designation / Role', 'Phone Number', 'Company Website', 'Secondary Email', 'Pick List 1'];
+    const baseMandatory = ['Company', 'Last Name', 'Designation', 'Phone', 'Secondary Email', 'LEADCF21'];
+    const baseLabels    = ['Company Name', 'Full Name', 'Designation / Role', 'Phone Number', 'Secondary Email', 'Pick List 1'];
+    const mandatoryFields = zoho.websiteRequired
+      ? ['Company', 'Last Name', 'Designation', 'Phone', 'Website', 'Secondary Email', 'LEADCF21']
+      : baseMandatory;
+    const fieldLabels = zoho.websiteRequired
+      ? ['Company Name', 'Full Name', 'Designation / Role', 'Phone Number', 'Company Website', 'Secondary Email', 'Pick List 1']
+      : baseLabels;
 
     for (let i = 0; i < mandatoryFields.length; i++) {
       const field = form.elements.namedItem(mandatoryFields[i]) as HTMLInputElement | HTMLSelectElement | null;
@@ -304,12 +314,18 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
         </label>
 
         <label style={{ display: 'flex', flexDirection: 'column' }}>
-          <span style={labelSpanStyle}>Company Website <span style={{ color: '#ef4444' }}>*</span></span>
+          <span style={labelSpanStyle}>
+            Company Website{' '}
+            {zoho.websiteRequired
+              ? <span style={{ color: '#ef4444' }}>*</span>
+              : <span style={{ color: 'rgba(255,255,255,0.3)', fontWeight: 400, textTransform: 'none', fontSize: '0.72rem' }}>(optional)</span>
+            }
+          </span>
           <input
             type="text"
             id={`Website_${zoho.formId}`}
             name="Website"
-            aria-required="true"
+            aria-required={zoho.websiteRequired ? 'true' : 'false'}
             maxLength={255}
             placeholder="https://company.com"
             style={inputStyle}
