@@ -153,5 +153,10 @@ export const alwaysOnIntelligenceData = {
   },
   logosTitle: "Trusted by Teams That Cannot Afford Blind Spots",
   contactTitle: "Build Your Intelligence System.",
-  whenToUseAfterGuardrails: true
+  whenToUseAfterGuardrails: true,
+  seo: {
+    title: "Always-On Intelligence | Brand Monitoring Services | Impulse Digital",
+    description: "Impulse Digital's Always-On Intelligence tracks brand conversations, sentiment, reviews, and reputation signals continuously so your team acts early — not after the fact.",
+    canonical: "https://www.theimpulsedigital.com/growth-intelligence/always-on-intelligence/"
+  }
 };

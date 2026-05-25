@@ -16,6 +16,7 @@ const QureAICaseStudy: React.FC = () => {
         <title>Qure.ai Healthcare AI SEO Case Study | Impulse Digital</title>
         <meta name="description" content="How Impulse Digital rebuilt Qure.ai's US SEO presence from a single page to a multi-page system, generating 20 organic leads in one month with a 31% organic session share." />
         <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/qure-ai/" />
+        <meta name="robots" content="index, follow" />
       </Helmet>
       <section className="cs-hero">
         <div className="cs-hero-header">

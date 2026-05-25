@@ -257,7 +257,7 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
         </label>
 
         <label style={{ display: 'flex', flexDirection: 'column' }}>
-          <span style={labelSpanStyle}>Phone Number <span style={{ color: '#8a5cf6' }}>*</span></span>
+          <span style={labelSpanStyle}>Phone Number <span style={{ color: '#ef4444' }}>*</span></span>
           <input
             type="text"
             id={`Phone_${zoho.formId}`}
@@ -272,7 +272,7 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
         </label>
 
         <label style={{ display: 'flex', flexDirection: 'column' }}>
-          <span style={labelSpanStyle}>What are you looking to improve? <span style={{ color: '#8a5cf6' }}>*</span></span>
+          <span style={labelSpanStyle}>What are you looking to improve? <span style={{ color: '#ef4444' }}>*</span></span>
           <select
             id={`LEADCF21_${zoho.formId}`}
             name="LEADCF21"
@@ -300,7 +300,11 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
         </label>
 
         <label style={{ display: 'flex', flexDirection: 'column' }}>
+<<<<<<< HEAD
           <span style={labelSpanStyle}>Company Website <span style={{ color: 'rgba(255,255,255,0.3)', fontWeight: 400, textTransform: 'none', fontSize: '0.72rem' }}>(optional)</span></span>
+=======
+          <span style={labelSpanStyle}>Company Website <span style={{ color: '#ef4444' }}>*</span></span>
+>>>>>>> 3be22161577460d118702f3d189b222d4ba743d5
           <input
             type="text"
             id={`Website_${zoho.formId}`}

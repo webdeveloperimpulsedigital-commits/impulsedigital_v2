@@ -26,6 +26,29 @@ const routes = [
   '/brand-infrastructure/search-engine-optimisation/ecommerce-seo/',
   '/brand-infrastructure/search-engine-optimisation/enterprise-seo/',
   '/brand-infrastructure/search-engine-optimisation/b2b-seo/',
+  '/brand-infrastructure/search-engine-optimisation/airoli/',
+  '/brand-infrastructure/search-engine-optimisation/andheri/',
+  '/brand-infrastructure/search-engine-optimisation/bandra/',
+  '/brand-infrastructure/search-engine-optimisation/borivali/',
+  '/brand-infrastructure/search-engine-optimisation/dadar/',
+  '/brand-infrastructure/search-engine-optimisation/ghansoli/',
+  '/brand-infrastructure/search-engine-optimisation/ghatkopar/',
+  '/brand-infrastructure/search-engine-optimisation/goregaon/',
+  '/brand-infrastructure/search-engine-optimisation/jogeshwari/',
+  '/brand-infrastructure/search-engine-optimisation/kandivali/',
+  '/brand-infrastructure/search-engine-optimisation/kharghar/',
+  '/brand-infrastructure/search-engine-optimisation/koparkhairane/',
+  '/brand-infrastructure/search-engine-optimisation/malad/',
+  '/brand-infrastructure/search-engine-optimisation/mansarovar/',
+  '/brand-infrastructure/search-engine-optimisation/mira-road/',
+  '/brand-infrastructure/search-engine-optimisation/mulund/',
+  '/brand-infrastructure/search-engine-optimisation/mumbai/',
+  '/brand-infrastructure/search-engine-optimisation/navi-mumbai/',
+  '/brand-infrastructure/search-engine-optimisation/nerul/',
+  '/brand-infrastructure/search-engine-optimisation/panvel/',
+  '/brand-infrastructure/search-engine-optimisation/sanpada/',
+  '/brand-infrastructure/search-engine-optimisation/turbhe/',
+  '/brand-infrastructure/search-engine-optimisation/vashi/',
   '/brand-infrastructure/social-media-marketing/',
   '/brand-infrastructure/website-development/',
   '/brand-infrastructure/branding/',
@@ -46,6 +69,11 @@ const routes = [
   '/case-studies/automag-bajaj-auto/',
   '/case-studies/automag-india/',
   '/case-studies/employer-branding/',
+  '/case-studies/shaking-things-up/',
+  '/case-studies/tata-soulfull/',
+  '/case-studies/tcpl/',
+  '/case-studies/chings-kurkure/',
+  '/case-studies/chings-foodfarmer/',
   '/careers/',
   '/contact-us/',
   '/thank-you/',
@@ -127,12 +155,20 @@ const server = app.listen(PORT, async () => {
         timeout: 30000
       });
       
-      // Wait for React Helmet to inject tags
+      // Wait for React Helmet to inject page-specific tags
+      // Checks that title has moved away from the generic index.html fallback
       await page.waitForFunction(() => {
-        return document.querySelector('title') !== null && 
-               document.title !== 'Impulse Digital Mumbai | AI-Native Growth Intelligence' &&
-               document.querySelector('meta[name="description"]');
-      }, { timeout: 5000 }).catch(() => {}); // catch timeout if title doesn't change
+        const defaultTitles = [
+          'Impulse Digital | Digital Marketing Agency in Mumbai',
+          'Impulse Digital Mumbai | AI-Native Growth Intelligence',
+          '',
+        ];
+        const title = document.title.trim();
+        const hasMeta = !!document.querySelector('meta[name="description"]');
+        return title.length > 0 && !defaultTitles.includes(title) && hasMeta;
+      }, { timeout: 8000 }).catch(() => {
+        console.warn(`Warning: Helmet title may not have updated for route: ${route}`);
+      });
 
       // Give a tiny buffer for GSAP or any final DOM updates
       await new Promise(resolve => setTimeout(resolve, 500));
@@ -142,31 +178,56 @@ const server = app.listen(PORT, async () => {
       // Remove the dynamically injected script.js tag so it doesn't execute twice/early on client load
       html = html.replace(/<script[^>]*src="[^"]*js\/script\.js[^"]*"[^>]*><\/script>/gi, '');
 
-      // Clean up duplicate SEO tags and ensure they match React 19's native layout (without data-rh="true" attributes)
-      let titleCount = 0;
-      html = html.replace(/<title[^>]*>(.*?)<\/title>/gi, (match, content) => {
-        titleCount++;
-        return titleCount === 1 ? `<title>${content}</title>` : '';
-      });
+      // Clean up duplicate SEO tags — keep the LAST occurrence (Helmet-injected, page-specific),
+      // not the first (which is the generic fallback from index.html)
+      const allTitles = [...html.matchAll(/<title[^>]*>(.*?)<\/title>/gi)];
+      if (allTitles.length > 1) {
+        // Remove ALL title tags first, then reinsert just the last one
+        const lastTitle = allTitles[allTitles.length - 1][1];
+        html = html.replace(/<title[^>]*>.*?<\/title>/gi, '');
+        html = html.replace('</head>', `<title>${lastTitle}</title></head>`);
+      } else if (allTitles.length === 1) {
+        // Clean up data-rh attribute if present
+        html = html.replace(/<title[^>]*>(.*?)<\/title>/gi, '<title>$1</title>');
+      }
 
-      let canonicalCount = 0;
-      html = html.replace(/<link([^>]*rel=["']canonical["'][^>]*)>/gi, (match, attrs) => {
-        canonicalCount++;
-        if (canonicalCount === 1) {
-          const cleanAttrs = attrs.replace(/\s*data-rh=["']true["']/gi, '').trim();
-          return `<link ${cleanAttrs}>`;
+      // Deduplicate meta description — keep last (Helmet) one
+      const allDescs = [...html.matchAll(/<meta[^>]*name=["']description["'][^>]*>/gi)];
+      if (allDescs.length > 1) {
+        const lastDesc = allDescs[allDescs.length - 1][0].replace(/\s*data-rh=["']true["']/gi, '');
+        html = html.replace(/<meta[^>]*name=["']description["'][^>]*>/gi, '');
+        html = html.replace('</head>', `${lastDesc}</head>`);
+      }
+
+      // Deduplicate meta robots — keep last (Helmet) one
+      const allRobots = [...html.matchAll(/<meta[^>]*name=["']robots["'][^>]*>/gi)];
+      if (allRobots.length > 1) {
+        const lastRobots = allRobots[allRobots.length - 1][0].replace(/\s*data-rh=["']true["']/gi, '');
+        html = html.replace(/<meta[^>]*name=["']robots["'][^>]*>/gi, '');
+        html = html.replace('</head>', `${lastRobots}</head>`);
+      }
+
+      // Deduplicate og:type, og:site_name, og:image fallbacks — keep last (Helmet) one for each
+      ['og:type', 'og:site_name', 'og:image', 'og:title', 'og:description', 'og:url'].forEach(prop => {
+        const propRegex = new RegExp(`<meta[^>]*property=["']${prop.replace(':', '\\:')}["'][^>]*>`, 'gi');
+        const allMatches = [...html.matchAll(propRegex)];
+        if (allMatches.length > 1) {
+          const lastMatch = allMatches[allMatches.length - 1][0].replace(/\s*data-rh=["']true["']/gi, '');
+          html = html.replace(propRegex, '');
+          html = html.replace('</head>', `${lastMatch}</head>`);
         }
-        return '';
       });
 
-      // Ensure meta tags managed by React 19 have no data-rh="true" to prevent client hydration mismatch
-      html = html.replace(/<meta([^>]*?(?:name|property)=["'](?:description|keywords|robots|og:|twitter:)[^>]*?)>/gi, (match, attrs) => {
-        const cleanAttrs = attrs.replace(/\s*data-rh=["']true["']/gi, '').trim();
-        return `<meta ${cleanAttrs}>`;
-      });
-
+      // Deduplicate canonical link — keep last (Helmet) one
+      const allCanonicals = [...html.matchAll(/<link[^>]*rel=["']canonical["'][^>]*>/gi)];
+      if (allCanonicals.length > 1) {
+        const lastCanonical = allCanonicals[allCanonicals.length - 1][0].replace(/\s*data-rh=["']true["']/gi, '');
+        html = html.replace(/<link[^>]*rel=["']canonical["'][^>]*>/gi, '');
+        html = html.replace('</head>', `${lastCanonical}</head>`);
+      }
 
       const routeDir = path.join(DIST_DIR, route === '/' ? '' : route);
+
       if (!fs.existsSync(routeDir)) {
         fs.mkdirSync(routeDir, { recursive: true });
       }

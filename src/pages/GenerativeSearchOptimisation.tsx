@@ -189,21 +189,27 @@ const GenerativeSearchOptimisation: React.FC = () => {
     <main id="main-content">
       <Helmet>
         <title>AI SEO Agency in India | Advanced AI SEO Service</title>
-<meta name="description" content="Partner with a top AI SEO agency in Mumbai, India that delivers data-driven AI SEO services to boost organic rankings, enhance search visibility, and accelerate business growth with intelligent automation and strategic optimization." />
-<meta name="keywords" content="ai seo agency, ai seo service, ai seo company, mumbai, india, impulse digital" />
-<meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.theimpulsedigital.com/ai-marketing-systems/generative-search-optimisation/" />
-<meta property="og:title" content="AI SEO Agency in India | Advanced AI SEO Service" />
-<meta property="og:description" content="Partner with a top AI SEO agency in Mumbai, India that delivers data-driven AI SEO services to boost organic rankings, enhance search visibility, and accelerate business growth with intelligent automation and strategic optimization. team helps us stand out from a cluster of digital marketing agencies in Mumbai. We are handling a plethora of clients which includes Amazon, HUL, OLA, Dmart, HDFC, and more big market giants." />
-<meta property="og:image" content="https://www.theimpulsedigital.com/AI-SEO-Agency.webp" />
-<meta property="og:url" content="https://www.theimpulsedigital.com" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Impulse Digital" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="AI SEO Agency in India | Advanced AI SEO Service" />
-<meta name="twitter:description" content="Partner with a top AI SEO agency in Mumbai, India that delivers data-driven AI SEO services to boost organic rankings, enhance search visibility, and accelerate business growth with intelligent automation and strategic optimization. team helps us stand out from a cluster of digital marketing agencies in Mumbai. We are handling a plethora of clients which includes Amazon, HUL, OLA, Dmart, HDFC, and more big market giants." />
-<meta name="twitter:image" content="https://www.theimpulsedigital.com/AI-SEO-Agency.webp" />
-<meta name="twitter:site" content="@impulsedigi" />
+        <meta name="description" content="Partner with a top AI SEO agency in Mumbai, India that delivers data-driven AI SEO services to boost organic rankings, enhance search visibility, and accelerate business growth with intelligent automation and strategic optimization." />
+        <meta name="keywords" content="ai seo agency, ai seo service, ai seo company, mumbai, india, impulse digital" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://www.theimpulsedigital.com/ai-marketing-systems/generative-search-optimisation/" />
+        <meta property="og:title" content="AI SEO Agency in India | Advanced AI SEO Service" />
+        <meta property="og:description" content="Partner with a top AI SEO agency in Mumbai, India that delivers data-driven AI SEO services to boost organic rankings, enhance search visibility, and accelerate business growth with intelligent automation and strategic optimization." />
+        <meta property="og:image" content="https://www.theimpulsedigital.com/AI-SEO-Agency.webp" />
+        <meta property="og:url" content="https://www.theimpulsedigital.com/ai-marketing-systems/generative-search-optimisation/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Impulse Digital" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="AI SEO Agency in India | Advanced AI SEO Service" />
+        <meta name="twitter:description" content="Partner with a top AI SEO agency in Mumbai, India that delivers data-driven AI SEO services to boost organic rankings, enhance search visibility, and accelerate business growth with intelligent automation and strategic optimization." />
+        <meta name="twitter:image" content="https://www.theimpulsedigital.com/AI-SEO-Agency.webp" />
+        <meta name="twitter:site" content="@impulsedigi" />
+        <script type="application/ld+json">{`
+{"@context":"https://schema.org","@type":"Service","@id":"https://www.theimpulsedigital.com/ai-marketing-systems/generative-search-optimisation/#service","name":"Generative Search Optimisation Services","url":"https://www.theimpulsedigital.com/ai-marketing-systems/generative-search-optimisation/","description":"Impulse Digital provides Generative Search Optimisation services to help brands improve visibility across AI search engines, answer engines, large language models, and generative discovery platforms.","serviceType":["Generative Search Optimisation","GEO","AI SEO","Answer Engine Optimisation","Entity SEO","Structured Data Optimisation"],"areaServed":["IN","US"],"provider":{"@type":"Organization","name":"Impulse Digital","url":"https://www.theimpulsedigital.com/"}}
+        `}</script>
+        <script type="application/ld+json">{`
+{"@context":"https://schema.org","@type":"FAQPage","@id":"https://www.theimpulsedigital.com/ai-marketing-systems/generative-search-optimisation/#faq","url":"https://www.theimpulsedigital.com/ai-marketing-systems/generative-search-optimisation/","mainEntity":[{"@type":"Question","name":"What is AI SEO and how is it different from traditional SEO?","acceptedAnswer":{"@type":"Answer","text":"AI SEO applies machine learning, predictive analytics, and automation to decisions that traditionally relied on manual research. It accelerates insight discovery, improves targeting, and adapts in real time while still maintaining the fundamentals of relevance, authority, and user experience."}},{"@type":"Question","name":"What are AEO and GEO and why do they matter now?","acceptedAnswer":{"@type":"Answer","text":"AEO (Answer Engine Optimization) focuses on improving visibility across voice assistants and AI-driven answer experiences. GEO (Generative Engine Optimization) focuses on gaining visibility inside AI summaries, recommendations, and generated responses. Both are essential as users increasingly expect direct answers rather than browsing multiple links."}},{"@type":"Question","name":"How do you use AI for keyword and intent research?","acceptedAnswer":{"@type":"Answer","text":"We analyze intent clusters, entities, query patterns, and user journeys to surface high-intent themes and conversion-ready opportunities. AI-driven models help identify gaps, emerging trends, and supporting topics that guide page structure and internal linking."}},{"@type":"Question","name":"How do you optimize content for AI answers and summaries?","acceptedAnswer":{"@type":"Answer","text":"We create authoritative, conversational, and well-structured content with verified facts, examples, and clear formatting. Content is aligned to common questions, use cases, and real-world outcomes so AI systems can extract accurate, helpful responses."}},{"@type":"Question","name":"What is entity optimization and how does it improve results?","acceptedAnswer":{"@type":"Answer","text":"Entity optimization clarifies your brand's identity, offerings, attributes, and relationships with products, people, and locations. By standardizing this information across your website and profiles, AI systems can better connect your brand with relevant queries."}},{"@type":"Question","name":"Do you implement structured data and schema, and why is it important?","acceptedAnswer":{"@type":"Answer","text":"Yes. We implement schema markup for products, services, FAQs, reviews, how-to guides, and more. Structured data helps AI and search engines understand page meaning clearly, increasing eligibility for rich results and answer experiences."}},{"@type":"Question","name":"How do you align content with large language models like GPT or Gemini?","acceptedAnswer":{"@type":"Answer","text":"We structure content using model-friendly patterns including concise definitions, step-by-step lists, comparisons, and evidence-backed explanations. By removing ambiguity and adding contextual depth, we ensure LLMs interpret and summarize your information accurately."}},{"@type":"Question","name":"How is performance tracked and reported in an AI SEO program?","acceptedAnswer":{"@type":"Answer","text":"We monitor visibility across search and AI answer surfaces, track entity coverage, measure engagement and conversions, and analyze cross-channel impact. Dashboards highlight trends and insights, guiding the next stage of optimization."}}]}
+        `}</script>
       </Helmet>
       <ServiceHero 
         headlineHtml={data.hero.headlineHtml}
@@ -272,13 +278,13 @@ const GenerativeSearchOptimisation: React.FC = () => {
           <div className="svc-systems-grid">
             <div className="svc-systems-intro">
               <h2 className="svc-h2 split-text" style={{ marginBottom: '2.5rem' }}>{data.channels.systemsTitle}</h2>
-              {data.channels.systemsParagraphs.map((p, i) => <p key={i}>{p}</p>)}
+              {data.channels.systemsParagraphs.map((p: string, i: number) => <p key={i}>{p}</p>)}
               <p className="closer">{data.channels.closer}</p>
             </div>
             <div>
               <p style={{ fontSize: '0.75rem', color: 'var(--impulse-violet)', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '1.5rem' }}>{data.channels.pillsHeading}</p>
               <div className="svc-systems-pills">
-                {data.channels.pills.map((pill, i) => {
+                {data.channels.pills.map((pill: any, i: number) => {
                   if (typeof pill === 'string' && pill.includes(':')) {
                     const [label, desc] = pill.split(':');
                     return (

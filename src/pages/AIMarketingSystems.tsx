@@ -115,6 +115,7 @@ const AIMarketingSystems: React.FC = () => {
         <title>AI Marketing Systems | Impulse Digital</title>
         <meta name="description" content="Deploy autonomous, intelligent systems that scale your marketing exponentially without human bottlenecks." />
         <link rel="canonical" href="https://www.theimpulsedigital.com/ai-marketing-systems/" />
+        <meta name="robots" content="index, follow" />
       </Helmet>
 
       {/* ══ SPLIT LAYOUT ═══════════════════════════════════ */}
