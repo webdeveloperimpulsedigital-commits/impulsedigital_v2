@@ -38,8 +38,8 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
     const form = e.currentTarget;
 
     // Mandatory field validation
-    const mandatoryFields = ['Company', 'Last Name', 'Designation', 'Email', 'Phone', 'Website'];
-    const fieldLabels = ['Company Name', 'Full Name', 'Designation / Role', 'Work Email', 'Phone Number', 'Company Website'];
+    const mandatoryFields = ['Company', 'Last Name', 'Designation', 'Email', 'Phone'];
+    const fieldLabels = ['Company Name', 'Full Name', 'Designation / Role', 'Work Email', 'Phone Number'];
 
     for (let i = 0; i < mandatoryFields.length; i++) {
       const field = form.elements.namedItem(mandatoryFields[i]) as HTMLInputElement | null;
@@ -300,12 +300,12 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
         </label>
 
         <label style={{ display: 'flex', flexDirection: 'column' }}>
-          <span style={labelSpanStyle}>Company Website <span style={{ color: '#8a5cf6' }}>*</span></span>
+          <span style={labelSpanStyle}>Company Website <span style={{ color: 'rgba(255,255,255,0.3)', fontWeight: 400, textTransform: 'none', fontSize: '0.72rem' }}>(optional)</span></span>
           <input
             type="text"
             id={`Website_${zoho.formId}`}
             name="Website"
-            aria-required="true"
+            aria-required="false"
             maxLength={255}
             placeholder="https://company.com"
             style={inputStyle}
