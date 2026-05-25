@@ -83,6 +83,12 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useLayoutEffect(() => {
+    // Reset title immediately on navigation so the previous page's title
+    // never lingers in the rendered DOM while Suspense loads the next page
+    document.title = '';
+    const descMeta = document.querySelector('meta[name="description"]');
+    if (descMeta) descMeta.setAttribute('content', '');
+
     // Disable browser automatic scroll restoration
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';

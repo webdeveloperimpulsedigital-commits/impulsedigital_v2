@@ -28,3 +28,6 @@ dist-ssr
 
 # WordPress sensitive config — never commit credentials
 blog/wp-config.php
+
+# WordPress dynamic content — plugins/themes/uploads contain secrets and change at runtime
+blog/wp-content/
