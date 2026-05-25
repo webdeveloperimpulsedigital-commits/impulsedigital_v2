@@ -17,6 +17,7 @@ const AutomagBajajAutoCaseStudy: React.FC = () => {
         <meta name="description" content="How Impulse Digital turned Automag's conveyor deployment at Bajaj Auto's Akurdi plant into compelling business proof through a technical case study film." />
       
         <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/automag-bajaj-auto/" />
+        <meta name="robots" content="index, follow" />
       </Helmet>
       <section className="cs-hero">
         <div className="cs-hero-header">

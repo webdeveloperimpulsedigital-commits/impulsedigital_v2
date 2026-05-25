@@ -139,5 +139,10 @@ export const consumerIntelligenceData = {
     ]
   },
   logosTitle: "Trusted by Teams That Need More Than Research",
-  contactTitle: "Decode Your Consumer."
+  contactTitle: "Decode Your Consumer.",
+  seo: {
+    title: "Consumer Intelligence Services | Impulse Digital",
+    description: "Impulse Digital's Consumer Intelligence service decodes consumer motivations, behaviour, triggers, and barriers to help brands build strategy around real buyers — not assumptions.",
+    canonical: "https://www.theimpulsedigital.com/growth-intelligence/consumer-intelligence/"
+  }
 };

@@ -1,10 +1,12 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useServicePageBackground } from '../hooks/useServicePageBackground';
 
 const ThankYou: React.FC = () => {
   useServicePageBackground('.thank-you-hero');
+  const [searchParams] = useSearchParams();
+  const isCaseStudy = searchParams.get('source') === 'case-study';
 
   useEffect(() => {
     document.body.classList.add('thank-you-page-body');
@@ -68,6 +70,8 @@ const ThankYou: React.FC = () => {
       setTimeout(runThankYouIntro, 120);
     }
 
+    // No auto-download; Zoho CRM emails the PDF automatically.
+
     return () => {
       document.body.classList.remove('service-page', 'thank-you-page-body');
       if (gsap) {
@@ -78,7 +82,7 @@ const ThankYou: React.FC = () => {
         gsap.killTweensOf('.thank-you-cta');
       }
     };
-  }, []);
+  }, [isCaseStudy]);
 
   return (
     <main id="main-content" className="thank-you-page">
@@ -115,14 +119,23 @@ const ThankYou: React.FC = () => {
 
         <div className="thank-you-container glass-panel">
           <div className="thank-you-badge">
-            <span>Conversation Initiated</span>
+            <span>{isCaseStudy ? 'Case Study On Its Way' : 'Conversation Initiated'}</span>
           </div>
 
           <h1 className="thank-you-title">Thank You.</h1>
           
           <div className="thank-you-text">
-            <p>We have received your details.</p>
-            <p>Our team is reviewing the information and we will get back to you shortly.</p>
+            {isCaseStudy ? (
+              <>
+                <p>We've emailed the case study to your inbox.</p>
+                <p>If it doesn't arrive within a few minutes, please check your spam folder.</p>
+              </>
+            ) : (
+              <>
+                <p>We have received your details.</p>
+                <p>Our team is reviewing the information and we will get back to you shortly.</p>
+              </>
+            )}
           </div>
 
           <div className="thank-you-cta">

@@ -23,29 +23,50 @@ const Navbar: React.FC = () => {
     };
 
     if (isMobileMenuOpen) {
+      // Save scroll position and lock body
+      const scrollY = window.scrollY;
+      document.body.dataset.scrollY = String(scrollY);
+      document.body.style.top = `-${scrollY}px`;
       document.body.classList.add('mobile-menu-active');
     } else {
+      // Restore scroll position when menu closes
+      const scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
       document.body.classList.remove('mobile-menu-active');
+      document.body.style.top = '';
+      delete document.body.dataset.scrollY;
+      window.scrollTo({ top: scrollY, behavior: 'instant' });
     }
 
     const success = checkAndToggleLenis();
 
     let intervalId: any;
-    if (!success && isMobileMenuOpen) {
-      intervalId = setInterval(() => {
-        if (checkAndToggleLenis()) {
-          clearInterval(intervalId);
-        }
+    if (isMobileMenuOpen) {
+      if (!success) {
+        intervalId = setInterval(() => {
+          if (checkAndToggleLenis()) {
+            clearInterval(intervalId);
+          }
+        }, 50);
+      }
+    } else {
+      setTimeout(() => {
+        const lenis = (window as any).globalLenis;
+        lenis?.start();
       }, 50);
     }
 
     return () => {
+      const scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
       document.body.classList.remove('mobile-menu-active');
+      document.body.style.top = '';
+      delete document.body.dataset.scrollY;
+      if (scrollY > 0) window.scrollTo({ top: scrollY, behavior: 'instant' });
       if (intervalId) clearInterval(intervalId);
       const lenis = (window as any).globalLenis;
       lenis?.start();
     };
   }, [isMobileMenuOpen]);
+
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -87,7 +108,7 @@ const Navbar: React.FC = () => {
           <Link to="/" className="logo" onClick={handleNavClick}><img src={`${import.meta.env.BASE_URL}ImpulseDigital_Logo.svg`} alt="Impulse Digital - Leading Digital Marketing Agency in Mumbai" /></Link>
         </div>
         
-        <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`} data-lenis-prevent>
+        <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`} data-lenis-prevent="true">
           <Link to="/" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Home</Link>
           <Link to="/about-us/" className="nav-item" data-cursor="GO" onClick={handleNavClick}>About Us</Link>
           <div className="nav-dropdown" onMouseLeave={handleDropdownMouseLeave}>

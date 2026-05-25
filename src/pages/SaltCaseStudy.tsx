@@ -57,8 +57,17 @@ const SaltCaseStudy: React.FC = () => {
       </section>
 
       <section style={{ maxWidth: '1000px', margin: '0 auto' }}>
-        
-        <DownloadCaseStudyForm ctaText="Access the full case study to see where the next growth wave in salt could come from." pdfLink={`${base}images/case-study-image/salt/shaking-things-up.png`} />
+        <DownloadCaseStudyForm
+          ctaText="Access the full case study to see where the next growth wave in salt could come from."
+          zoho={{
+            formId: '1132219000001842110',
+            xnQsjsdp: '1c10ae81e1b13384f80c2767b6cd47385fcfe946af467a6837b9a91aeba38b0c',
+            xmIwtLD: 'd2a6f12cd876bab4b99b30e786110e33f8168c970704f8b2493bf4343660c95120a38e1f2a4b4d7e563e79e2053c1b5f',
+            leadSource: 'shaking-things-up',
+            analyticsRid: '7b7522e42e9cd57f901de0b51aa1ff54a140b100745b947b4fe128ca3213744306785c06cbc919345d5f70c4f2a52ac6gid157c460e6bf41c2fe9c14682fc1bf282ab6d5e4b62800fc7509a13028a39372cgid3e9b4f5cd564ded0c02e6aa2806ce33468341067f4858bf2ff8389d841e3874egida64e3c5c0b386e5628e527f6154adbf12ed92c7447046a6189a53c87956faba9',
+            pdfPath: '/case-studies-pdf/salt+tata.pdf',
+          }}
+        />
       </section>
     </main>
   );

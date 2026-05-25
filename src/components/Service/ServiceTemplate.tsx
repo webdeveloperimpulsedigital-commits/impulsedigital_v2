@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import ServiceHero from './ServiceHero';
 import ServiceHandoff from './ServiceHandoff';
 import Logos from '../Logos';
@@ -750,6 +751,20 @@ export const ServiceTemplate: React.FC<{ data: any }> = ({ data }) => {
 
   return (
     <main id="main-content">
+      {data.seo && (
+        <Helmet>
+          <title>{data.seo.title}</title>
+          <meta name="description" content={data.seo.description} />
+          <meta name="robots" content="index, follow" />
+          <link rel="canonical" href={data.seo.canonical} />
+          <meta property="og:title" content={data.seo.title} />
+          <meta property="og:description" content={data.seo.description} />
+          <meta property="og:url" content={data.seo.canonical} />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="Impulse Digital" />
+          <meta property="og:image" content="https://www.theimpulsedigital.com/img/logo-id-new.webp" />
+        </Helmet>
+      )}
       <ServiceHero 
         headlineParts={data.hero.headlineParts}
         headlineAccent={data.hero.headlineAccent}

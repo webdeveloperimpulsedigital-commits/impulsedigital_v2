@@ -16,6 +16,7 @@ const UppercaseCaseStudy: React.FC = () => {
         <title>Uppercase – Carry Your Resolution Campaign Case Study | Impulse Digital</title>
         <meta name="description" content="How Impulse Digital created an AI-led New Year social film for Uppercase that achieved 5.49M plays, 868K+ views, and 100K+ likes." />
         <link rel="canonical" href="https://www.theimpulsedigital.com/case-studies/uppercase/" />
+        <meta name="robots" content="index, follow" />
       </Helmet>
       <section className="cs-hero">
         <div className="cs-hero-header">

@@ -110,6 +110,7 @@ const GrowthIntelligence: React.FC = () => {
         <title>Growth Intelligence | Impulse Digital</title>
         <meta name="description" content="Consumer, Market, Campaign and Always-On Intelligence — four disciplines that turn market data into competitive advantage." />
         <link rel="canonical" href="https://www.theimpulsedigital.com/growth-intelligence/" />
+        <meta name="robots" content="index, follow" />
       </Helmet>
 
       {/* ══ SPLIT LAYOUT ═══════════════════════════════════ */}
