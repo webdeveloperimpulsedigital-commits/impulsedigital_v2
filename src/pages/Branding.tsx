@@ -178,6 +178,34 @@ const Branding: React.FC = () => {
 <meta name="twitter:site" content="@impulsedigi" />
       
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does Impulse Digital offer in branding services?","acceptedAnswer":{"@type":"Answer","text":"We create brand strategy, visual identity, logo systems, brand guidelines, lookbooks, packaging, collaterals, campaign design assets, and communication systems that help brands show up consistently."}},{"@type":"Question","name":"How is branding different from logo design?","acceptedAnswer":{"@type":"Answer","text":"A logo is one part of your identity. Branding is the complete system that defines how your business is recognised, remembered, and understood across touchpoints."}},{"@type":"Question","name":"What is included in a brand style guide?","acceptedAnswer":{"@type":"Answer","text":"A brand style guide usually includes logo usage, colour palette, typography, layout rules, imagery direction, tone guidance, iconography, templates, and usage examples."}},{"@type":"Question","name":"Can you refresh an existing brand instead of creating one from scratch?","acceptedAnswer":{"@type":"Answer","text":"Yes. We can audit the current identity, identify what should be retained, refined, or retired, and modernise the brand without losing useful existing equity."}},{"@type":"Question","name":"Do you design product packaging?","acceptedAnswer":{"@type":"Answer","text":"Yes. We design packaging that supports brand recognition, product clarity, shelf presence, claim hierarchy, and customer experience."}},{"@type":"Question","name":"What are brand collaterals?","acceptedAnswer":{"@type":"Answer","text":"Brand collaterals are communication assets such as brochures, presentations, business cards, social templates, print material, sales decks, ads, and other branded touchpoints."}},{"@type":"Question","name":"How do you keep the brand consistent after launch?","acceptedAnswer":{"@type":"Answer","text":"We create guidelines, templates, usage rules, and handover assets so internal teams, external partners, and future campaigns can apply the brand correctly."}},{"@type":"Question","name":"How do you measure branding success?","acceptedAnswer":{"@type":"Answer","text":"Branding can be evaluated through recognition, engagement, branded search, consistency across touchpoints, conversion movement on key pages, and audience recall where measurement is required."}},{"@type":"Question","name":"Who should be involved from our side?","acceptedAnswer":{"@type":"Answer","text":"Leadership, marketing, communications, product, sales, and any team responsible for applying the brand should usually be involved in the process."}}],"@id":"https://www.theimpulsedigital.com/brand-infrastructure/branding/#faq","url":"https://www.theimpulsedigital.com/brand-infrastructure/branding/"}) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "@id": "https://www.theimpulsedigital.com/brand-infrastructure/branding/#service",
+          "name": "Branding Services",
+          "url": "https://www.theimpulsedigital.com/brand-infrastructure/branding/",
+          "description": "Impulse Digital provides branding services that help businesses build a clear, consistent, and memorable brand identity through brand strategy, visual identity, logo systems, brand guidelines, packaging, collaterals, campaign design assets, and communication systems.",
+          "serviceType": [
+            "Branding",
+            "Brand Strategy",
+            "Visual Identity Design",
+            "Logo Design",
+            "Brand Guidelines",
+            "Packaging Design",
+            "Brand Collaterals",
+            "Campaign Design Assets",
+            "Communication Systems"
+          ],
+          "areaServed": [
+            "IN",
+            "US"
+          ],
+          "provider": {
+            "@type": "Organization",
+            "name": "Impulse Digital",
+            "url": "https://www.theimpulsedigital.com/"
+          }
+        }) }} />
       </Helmet>
       <ServiceHero 
         headlineParts={data.hero.headlineParts}
