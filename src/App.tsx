@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, lazy, Suspense } from 'react';
+﻿import React, { useEffect, useLayoutEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Background from './components/Background';
 import Navbar from './components/Navbar';
@@ -81,20 +81,8 @@ const SeoVashiLocation = lazy(() => import('./pages/seo-locations/SeoVashiLocati
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  const isFirstRender = useRef(true);
 
   useLayoutEffect(() => {
-    // On the very first load the prerendered HTML already has the correct
-    // title — skip the clear so crawlers and users always see a valid title.
-    // On subsequent navigations, clear immediately so the previous page's
-    // title never lingers while Suspense loads the next page.
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-    } else {
-      document.title = '';
-      const descMeta = document.querySelector('meta[name="description"]');
-      if (descMeta) descMeta.setAttribute('content', '');
-    }
 
     // Disable browser automatic scroll restoration
     if ('scrollRestoration' in window.history) {
@@ -168,6 +156,95 @@ const RouteAnimationState = () => {
   return null;
 };
 
+// Extracts routes so useLocation() is available inside the Router context.
+// key={location.key} on Suspense forces the old page to fully unmount on
+// every navigation â€” guaranteeing its <Helmet> is torn down before the new
+// page's <Helmet> mounts, so the title always reflects the current page.
+const AppRoutes: React.FC = () => {
+  const location = useLocation();
+  return (
+    <Suspense key={location.key} fallback={<div style={{ minHeight: '100vh', background: '#020018' }} />}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about-us/" element={<AboutUs />} />
+        <Route path="/growth-intelligence/consumer-intelligence/" element={<ConsumerIntelligence />} />
+        <Route path="/growth-intelligence/market-intelligence/" element={<MarketIntelligence />} />
+        <Route path="/growth-intelligence/always-on-intelligence/" element={<AlwaysOnIntelligence />} />
+        <Route path="/growth-intelligence/campaign-intelligence/" element={<CampaignIntelligence />} />
+        <Route path="/ai-marketing-systems/archer-ai/" element={<ArcherAI />} />
+        <Route path="/ai-marketing-systems/agentic-ai/" element={<AgenticAI />} />
+        <Route path="/ai-marketing-systems/generative-search-optimisation/" element={<GenerativeSearchOptimisation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/" element={<SearchEngineOptimisation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/local-seo/" element={<LocalSEO />} />
+        <Route path="/local seo" element={<LocalSEO />} />
+        <Route path="/local%20seo" element={<LocalSEO />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/ecommerce-seo/" element={<ECommerceSEO />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/enterprise-seo/" element={<EnterpriseSEO />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/b2b-seo/" element={<B2BSEO />} />
+        <Route path="/brand-infrastructure/social-media-marketing/" element={<SocialMediaManagement />} />
+        <Route path="/brand-infrastructure/website-development/" element={<WebsiteDevelopment />} />
+        <Route path="/brand-infrastructure/branding/" element={<Branding />} />
+        <Route path="/brand-infrastructure/employer-branding/" element={<EmployerBranding />} />
+        <Route path="/brand-infrastructure/video-production/" element={<VideoProduction />} />
+        <Route path="/ai-marketing-systems/ai-video-production/" element={<AIVideoProduction />} />
+        <Route path="/growth-intelligence/" element={<GrowthIntelligence />} />
+        <Route path="/ai-marketing-systems/" element={<AIMarketingSystems />} />
+        <Route path="/brand-infrastructure/" element={<BrandInfrastructure />} />
+        <Route path="/services/" element={<ServicesIndex />} />
+        <Route path="/case-studies/" element={<CaseStudies />} />
+        <Route path="/case-studies/uppercase/" element={<UppercaseCaseStudy />} />
+        <Route path="/case-studies/qure-ai/" element={<QureAICaseStudy />} />
+        <Route path="/case-studies/mastercard/" element={<MastercardCaseStudy />} />
+        <Route path="/case-studies/lg-hing/" element={<LGHingCaseStudy />} />
+        <Route path="/case-studies/dmart/" element={<DMartCaseStudy />} />
+        <Route path="/case-studies/hul/" element={<HULCaseStudy />} />
+        <Route path="/case-studies/fours-for-good/" element={<FoursForGoodCaseStudy />} />
+        <Route path="/case-studies/electromech/" element={<ElectroMechCaseStudy />} />
+        <Route path="/case-studies/abg-brut-india/" element={<ABGBrutIndiaCaseStudy />} />
+        <Route path="/case-studies/abg-kbc/" element={<ABGKBCCaseStudy />} />
+        <Route path="/case-studies/automag-bajaj-auto/" element={<AutomagBajajAutoCaseStudy />} />
+        <Route path="/case-studies/automag-india/" element={<AutomagIndiaCaseStudy />} />
+        <Route path="/case-studies/employer-branding/" element={<EmployerBrandingCaseStudy />} />
+        <Route path="/case-studies/shaking-things-up/" element={<SaltCaseStudy />} />
+        <Route path="/case-studies/tata-soulfull/" element={<TataSoulfullCaseStudy />} />
+        <Route path="/case-studies/tcpl/" element={<TcplCaseStudy />} />
+        <Route path="/case-studies/chings-kurkure/" element={<ChingsKurkureCaseStudy />} />
+        <Route path="/case-studies/chings-foodfarmer/" element={<ChingsFoodfarmerCaseStudy />} />
+        <Route path="/careers/" element={<Careers />} />
+        <Route path="/contact-us/" element={<ContactUs />} />
+        <Route path="/thank-you/" element={<ThankYou />} />
+        <Route path="/digital-marketing-agency-in-india/" element={<IndiaLocation />} />
+        <Route path="/digital-marketing-agency-in-thane/" element={<ThaneLocation />} />
+        <Route path="/digital-marketing-agency-in-navi-mumbai/" element={<NaviMumbaiLocation />} />
+        <Route path="/digital-marketing-agency-in-pune/" element={<PuneLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/airoli/" element={<SeoAiroliLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/andheri/" element={<SeoAndheriLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/bandra/" element={<SeoBandraLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/borivali/" element={<SeoBorivaliLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/dadar/" element={<SeoDadarLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/ghansoli/" element={<SeoGhansoliLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/ghatkopar/" element={<SeoGhatkoparLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/goregaon/" element={<SeoGoregaonLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/jogeshwari/" element={<SeoJogeshwariLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/kandivali/" element={<SeoKandivaliLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/kharghar/" element={<SeoKhargharLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/koparkhairane/" element={<SeoKoparkhairaneLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/malad/" element={<SeoMaladLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/mansarovar/" element={<SeoMansarovarLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/mira-road/" element={<SeoMiraRoadLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/mulund/" element={<SeoMulundLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/mumbai/" element={<SeoMumbaiLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/navi-mumbai/" element={<SeoNaviMumbaiLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/nerul/" element={<SeoNerulLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/panvel/" element={<SeoPanvelLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/sanpada/" element={<SeoSanpadaLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/turbhe/" element={<SeoTurbheLocation />} />
+        <Route path="/brand-infrastructure/search-engine-optimisation/vashi/" element={<SeoVashiLocation />} />
+      </Routes>
+    </Suspense>
+  );
+};
+
 const App: React.FC = () => {
   useEffect(() => {
     // Dynamically load Three.js to prevent it from blocking the initial page load (LCP/FCP)
@@ -212,94 +289,11 @@ const App: React.FC = () => {
       <RouteAnimationState />
       <Background />
       <Navbar />
-      <Suspense fallback={<div style={{ minHeight: '100vh', background: '#020018' }}></div>}>
-        <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about-us/" element={<AboutUs />} />
-        <Route path="/growth-intelligence/consumer-intelligence/" element={<ConsumerIntelligence />} />
-        <Route path="/growth-intelligence/market-intelligence/" element={<MarketIntelligence />} />
-        <Route path="/growth-intelligence/always-on-intelligence/" element={<AlwaysOnIntelligence />} />
-        <Route path="/growth-intelligence/campaign-intelligence/" element={<CampaignIntelligence />} />
-        <Route path="/ai-marketing-systems/archer-ai/" element={<ArcherAI />} />
-        <Route path="/ai-marketing-systems/agentic-ai/" element={<AgenticAI />} />
-        <Route path="/ai-marketing-systems/generative-search-optimisation/" element={<GenerativeSearchOptimisation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/" element={<SearchEngineOptimisation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/local-seo/" element={<LocalSEO />} />
-        <Route path="/local seo" element={<LocalSEO />} />
-        <Route path="/local%20seo" element={<LocalSEO />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/ecommerce-seo/" element={<ECommerceSEO />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/enterprise-seo/" element={<EnterpriseSEO />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/b2b-seo/" element={<B2BSEO />} />
-        <Route path="/brand-infrastructure/social-media-marketing/" element={<SocialMediaManagement />} />
-        <Route path="/brand-infrastructure/website-development/" element={<WebsiteDevelopment />} />
-        <Route path="/brand-infrastructure/branding/" element={<Branding />} />
-        <Route path="/brand-infrastructure/employer-branding/" element={<EmployerBranding />} />
-        <Route path="/brand-infrastructure/video-production/" element={<VideoProduction />} />
-        <Route path="/ai-marketing-systems/ai-video-production/" element={<AIVideoProduction />} />
-        <Route path="/growth-intelligence/" element={<GrowthIntelligence />} />
-        <Route path="/ai-marketing-systems/" element={<AIMarketingSystems />} />
-        <Route path="/brand-infrastructure/" element={<BrandInfrastructure />} />
-        <Route path="/services/" element={<ServicesIndex />} />
-        <Route path="/case-studies/" element={<CaseStudies />} />
-        <Route path="/case-studies/uppercase/" element={<UppercaseCaseStudy />} />
-        <Route path="/case-studies/qure-ai/" element={<QureAICaseStudy />} />
-        <Route path="/case-studies/mastercard/" element={<MastercardCaseStudy />} />
-        <Route path="/case-studies/lg-hing/" element={<LGHingCaseStudy />} />
-        {/* Temporary routes for pending case studies */}
-        <Route path="/case-studies/dmart/" element={<DMartCaseStudy />} />
-        <Route path="/case-studies/hul/" element={<HULCaseStudy />} />
-        <Route path="/case-studies/fours-for-good/" element={<FoursForGoodCaseStudy />} />
-        <Route path="/case-studies/electromech/" element={<ElectroMechCaseStudy />} />
-        {/* New case study routes */}
-        <Route path="/case-studies/abg-brut-india/" element={<ABGBrutIndiaCaseStudy />} />
-        <Route path="/case-studies/abg-kbc/" element={<ABGKBCCaseStudy />} />
-        <Route path="/case-studies/automag-bajaj-auto/" element={<AutomagBajajAutoCaseStudy />} />
-        <Route path="/case-studies/automag-india/" element={<AutomagIndiaCaseStudy />} />
-        <Route path="/case-studies/employer-branding/" element={<EmployerBrandingCaseStudy />} />
-        <Route path="/case-studies/shaking-things-up/" element={<SaltCaseStudy />} />
-        <Route path="/case-studies/tata-soulfull/" element={<TataSoulfullCaseStudy />} />
-        <Route path="/case-studies/tcpl/" element={<TcplCaseStudy />} />
-        <Route path="/case-studies/chings-kurkure/" element={<ChingsKurkureCaseStudy />} />
-        <Route path="/case-studies/chings-foodfarmer/" element={<ChingsFoodfarmerCaseStudy />} />
-        <Route path="/careers/" element={<Careers />} />
-        <Route path="/contact-us/" element={<ContactUs />} />
-        <Route path="/thank-you/" element={<ThankYou />} />
-        <Route path="/digital-marketing-agency-in-india/" element={<IndiaLocation />} />
-        <Route path="/digital-marketing-agency-in-thane/" element={<ThaneLocation />} />
-        <Route path="/digital-marketing-agency-in-navi-mumbai/" element={<NaviMumbaiLocation />} />
-        <Route path="/digital-marketing-agency-in-pune/" element={<PuneLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/airoli/" element={<SeoAiroliLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/andheri/" element={<SeoAndheriLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/bandra/" element={<SeoBandraLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/borivali/" element={<SeoBorivaliLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/dadar/" element={<SeoDadarLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/ghansoli/" element={<SeoGhansoliLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/ghatkopar/" element={<SeoGhatkoparLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/goregaon/" element={<SeoGoregaonLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/jogeshwari/" element={<SeoJogeshwariLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/kandivali/" element={<SeoKandivaliLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/kharghar/" element={<SeoKhargharLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/koparkhairane/" element={<SeoKoparkhairaneLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/malad/" element={<SeoMaladLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/mansarovar/" element={<SeoMansarovarLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/mira-road/" element={<SeoMiraRoadLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/mulund/" element={<SeoMulundLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/mumbai/" element={<SeoMumbaiLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/navi-mumbai/" element={<SeoNaviMumbaiLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/nerul/" element={<SeoNerulLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/panvel/" element={<SeoPanvelLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/sanpada/" element={<SeoSanpadaLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/turbhe/" element={<SeoTurbheLocation />} />
-        <Route path="/brand-infrastructure/search-engine-optimisation/vashi/" element={<SeoVashiLocation />} />
-      </Routes>
-        </Suspense>
+      <AppRoutes />
       <Footer />
     </Router>
   );
 };
 
 export default App;
-
-
-
 
