@@ -25,7 +25,7 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
     if (!document.getElementById(analScriptId)) {
       const analScript = document.createElement('script');
       analScript.id = analScriptId;
-      analScript.src = `https://crm.zohopublic.in/crm/WebFormAnalyticsServeServlet?rid=${zoho.analyticsRid}`;
+      analScript.src = `https://crm.zohopublic.in/crm/WebFormAnalyticsServeServlet?rid=${zoho.analyticsRid}&tw=cd1f12e6e12b106883e521d24a6c077ecb0bc8f0bc8a56cfae7a7c6b67a89778`;
       document.body.appendChild(analScript);
     }
     return () => {
@@ -38,30 +38,33 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
     const form = e.currentTarget;
 
     // Mandatory field validation
-    const mandatoryFields = ['Company', 'Last Name', 'Designation', 'Email', 'Phone'];
-    const fieldLabels = ['Company Name', 'Full Name', 'Designation / Role', 'Work Email', 'Phone Number'];
+    const mandatoryFields = ['Company', 'Last Name', 'Designation', 'Phone', 'Website', 'Secondary Email', 'LEADCF21'];
+    const fieldLabels = ['Company Name', 'Full Name', 'Designation / Role', 'Phone Number', 'Company Website', 'Secondary Email', 'Pick List 1'];
 
     for (let i = 0; i < mandatoryFields.length; i++) {
-      const field = form.elements.namedItem(mandatoryFields[i]) as HTMLInputElement | null;
-      if (field && field.value.trim().length === 0) {
-        alert(`${fieldLabels[i]} cannot be empty`);
-        field.focus();
-        e.preventDefault();
-        return;
+      const field = form.elements.namedItem(mandatoryFields[i]) as HTMLInputElement | HTMLSelectElement | null;
+      if (field) {
+        if (field.nodeName === 'SELECT') {
+          const sel = field as HTMLSelectElement;
+          if (sel.options[sel.selectedIndex]?.value === '-None-') {
+            alert(`${fieldLabels[i]} cannot be none`);
+            sel.focus();
+            e.preventDefault();
+            return;
+          }
+        } else if ((field as HTMLInputElement).value.trim().length === 0) {
+          alert(`${fieldLabels[i]} cannot be empty`);
+          field.focus();
+          e.preventDefault();
+          return;
+        }
       }
     }
 
-    // LEADCF21 dropdown validation
-    const select = form.elements.namedItem('LEADCF21') as HTMLSelectElement | null;
-    if (select && select.options[select.selectedIndex]?.value === '-None-') {
-      alert('Pick List 1 cannot be none');
-      select.focus();
-      e.preventDefault();
-      return;
-    }
+    // LEADCF21 is already validated in the mandatory loop above
 
-    // Email format validation
-    const emailField = form.elements.namedItem('Email') as HTMLInputElement | null;
+    // Secondary Email format validation
+    const emailField = form.elements.namedItem('Secondary Email') as HTMLInputElement | null;
     if (emailField) {
       const v = emailField.value.trim();
       if (v.length > 0) {
@@ -84,7 +87,8 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
         if (lduvidField) lduvidField.value = $zohoObj.salesiq.visitor.uniqueid?.() ?? '';
         const nameField = form.elements.namedItem('Last Name') as HTMLInputElement | null;
         if (nameField) $zohoObj.salesiq.visitor.name(nameField.value);
-        if (emailField) $zohoObj.salesiq.visitor.email(emailField.value);
+        const secEmailField = form.elements.namedItem('Secondary Email') as HTMLInputElement | null;
+        if (secEmailField) $zohoObj.salesiq.visitor.email(secEmailField.value);
       }
     } catch (_) { }
 
@@ -182,7 +186,7 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
           type="text"
           style={{ display: 'none' }}
           name="returnURL"
-          defaultValue="https://www.theimpulsedigital.com/thank-you/?source=case-study"
+          defaultValue="https://www.theimpulsedigital.com/thank-you/"
           readOnly
         />
         {/* Do not remove these two */}
@@ -215,8 +219,8 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
           <input
             type="text"
             {...{ ftype: 'email' }}
-            id={`Email_${zoho.formId}`}
-            name="Email"
+            id={`Secondary_Email_${zoho.formId}`}
+            name="Secondary Email"
             aria-required="true"
             maxLength={100}
             placeholder="john@company.com"
@@ -300,12 +304,12 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
         </label>
 
         <label style={{ display: 'flex', flexDirection: 'column' }}>
-          <span style={labelSpanStyle}>Company Website <span style={{ color: 'rgba(255,255,255,0.3)', fontWeight: 400, textTransform: 'none', fontSize: '0.72rem' }}>(optional)</span></span>
+          <span style={labelSpanStyle}>Company Website <span style={{ color: '#ef4444' }}>*</span></span>
           <input
             type="text"
             id={`Website_${zoho.formId}`}
             name="Website"
-            aria-required="false"
+            aria-required="true"
             maxLength={255}
             placeholder="https://company.com"
             style={inputStyle}
