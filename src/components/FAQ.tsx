@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 interface FAQItem {
@@ -54,8 +54,7 @@ const defaultFaqs: FAQItem[] = [
 ];
 
 const FAQ: React.FC<FAQProps> = ({ data = defaultFaqs }) => {
-  const isDefault = data === defaultFaqs;
-  const url = typeof window !== 'undefined' ? window.location.href : '';
+
 
   const schema = {
     "@context": "https://schema.org",
