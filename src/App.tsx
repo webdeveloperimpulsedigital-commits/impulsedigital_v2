@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useLayoutEffect, lazy, Suspense } from 'react';
+import React, { useEffect, useLayoutEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Background from './components/Background';
 import Navbar from './components/Navbar';
@@ -50,6 +50,7 @@ import { useLocation } from 'react-router-dom';
 const Careers = lazy(() => import('./pages/Careers'));
 const ContactUs = lazy(() => import('./pages/ContactUs'));
 const ThankYou = lazy(() => import('./pages/ThankYou'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 const IndiaLocation = lazy(() => import('./pages/IndiaLocation'));
 const ThaneLocation = lazy(() => import('./pages/ThaneLocation'));
 const NaviMumbaiLocation = lazy(() => import('./pages/NaviMumbaiLocation'));
@@ -240,6 +241,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/brand-infrastructure/search-engine-optimisation/sanpada/" element={<SeoSanpadaLocation />} />
         <Route path="/brand-infrastructure/search-engine-optimisation/turbhe/" element={<SeoTurbheLocation />} />
         <Route path="/brand-infrastructure/search-engine-optimisation/vashi/" element={<SeoVashiLocation />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );
