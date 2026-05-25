@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, lazy, Suspense } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Background from './components/Background';
 import Navbar from './components/Navbar';
@@ -81,13 +81,20 @@ const SeoVashiLocation = lazy(() => import('./pages/seo-locations/SeoVashiLocati
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
+  const isFirstRender = useRef(true);
 
   useLayoutEffect(() => {
-    // Reset title immediately on navigation so the previous page's title
-    // never lingers in the rendered DOM while Suspense loads the next page
-    document.title = '';
-    const descMeta = document.querySelector('meta[name="description"]');
-    if (descMeta) descMeta.setAttribute('content', '');
+    // On the very first load the prerendered HTML already has the correct
+    // title — skip the clear so crawlers and users always see a valid title.
+    // On subsequent navigations, clear immediately so the previous page's
+    // title never lingers while Suspense loads the next page.
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+    } else {
+      document.title = '';
+      const descMeta = document.querySelector('meta[name="description"]');
+      if (descMeta) descMeta.setAttribute('content', '');
+    }
 
     // Disable browser automatic scroll restoration
     if ('scrollRestoration' in window.history) {
