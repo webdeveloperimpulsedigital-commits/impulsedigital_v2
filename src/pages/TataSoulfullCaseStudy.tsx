@@ -56,10 +56,12 @@ const TataSoulfullCaseStudy: React.FC = () => {
           ctaText="Access the full case study to understand what could shape the next bite in health snacking."
           zoho={{
             formId: '1132219000001842099',
-            xnQsjsdp: '96bff1dfe23d92891f775a70adc8b70d0f283273de5071995fb7f3469014fbae',
-            xmIwtLD: '7e64992051ec2faad0a40d97857ec021c844ba0f03464cd50c57cc6f2a8cb2b875d4126d72cc3ac285c9145b8b7e79df',
+            xnQsjsdp: 'c439e8a9342b510d57769ee5478a35c4a3b2c3c5c6e14af7c0a2357f8dcac648',
+            xmIwtLD: 'd45ce7c6d5b19944f611dae8e043c576f152477e93d1323d24d9ed33b79a3dc3f57010284d945ad457fceb3707e4d0c7',
             leadSource: 'tata-soulfull',
-            analyticsRid: 'c00664901f9065d026bdb17e20ebaba86f2c91485ea0ec45f15f3d60107a527ec405f0580f7363413831b8278128e830gideb963ae612abcb94f648329306d922823d2a010c2a137ce667a141d99d219f22gid6b502ccb6e4ce7f70ed39a876d503d8975b4aa571cbecb41c6a39657dcb4995bgid025c5ffcd0156b39d4d8df57119122bb1c84f8193c37bd1b7443f6265af3eb0e',
+            analyticsRid: '7e7926dc9b08e96be554d07e89b470260f167b25c215e5f8218d69c90f66034e77e9c221bdfc302e1e6a9cd1393ca832gidc1e5b1727e8c9ab357fa5f2f48426d006b116fc20a9efe91d11f6e68e13dbffbgidb75dda681dc9577cb244a78432768d38878d86cd0306686fa977cae36b903384gid191293ecbce15db510876169567eced4dae96ee476dd7739ccd279dfd99052e5',
+            analyticsTw: 'cd1f12e6e12b106883e521d24a6c077ecb0bc8f0bc8a56cfae7a7c6b67a89778',
+            websiteRequired: true,
             pdfPath: '/case-studies-pdf/Snacking Bar Case Study - Tata Soulful.pdf',
           }}
         />

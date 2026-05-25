@@ -27,9 +27,6 @@ jobs:
       - name: Build the project
         run: npm run build
 
-      - name: Preserve blog folder on server
-        run: echo "blog/" > dist/.gitignore
-
       - name: Push built files to production branch
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -37,3 +34,4 @@ jobs:
           publish_dir: ./dist
           publish_branch: hostinger-deploy
           dotfiles: true
+          keep_files: true

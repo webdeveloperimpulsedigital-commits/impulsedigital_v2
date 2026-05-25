@@ -61,10 +61,11 @@ const SaltCaseStudy: React.FC = () => {
           ctaText="Access the full case study to see where the next growth wave in salt could come from."
           zoho={{
             formId: '1132219000001842110',
-            xnQsjsdp: '1c10ae81e1b13384f80c2767b6cd47385fcfe946af467a6837b9a91aeba38b0c',
-            xmIwtLD: 'd2a6f12cd876bab4b99b30e786110e33f8168c970704f8b2493bf4343660c95120a38e1f2a4b4d7e563e79e2053c1b5f',
+            xnQsjsdp: '8b3a9efc131c5420cc972ad812df7050f0a651b64f76aa7f6e8b138cb480f8c0',
+            xmIwtLD: '62a9e3548e6707de97d9ecefabee5b834cf0f3e6e5b656e2daec783ac9be239beedfe1ec14a08f4a81a8f9291e328a3e',
             leadSource: 'shaking-things-up',
-            analyticsRid: '7b7522e42e9cd57f901de0b51aa1ff54a140b100745b947b4fe128ca3213744306785c06cbc919345d5f70c4f2a52ac6gid157c460e6bf41c2fe9c14682fc1bf282ab6d5e4b62800fc7509a13028a39372cgid3e9b4f5cd564ded0c02e6aa2806ce33468341067f4858bf2ff8389d841e3874egida64e3c5c0b386e5628e527f6154adbf12ed92c7447046a6189a53c87956faba9',
+            analyticsRid: 'ceb5d44719917962f2b217db48791ca28b7b9634225475d3512ff7324ff265cb069c0bcf76b787f011a9721db494d72dgidf1cd4b418afb87d5ca1b3500fb9aab70297da95a2e1fbb397097da1f1e54881cgid54b9193e85fbb32f7689017ff7c4546a4e985f690c4e059d4d683c04e36bbc54gid5e6420470b939ab6e4412f9148b9cd06827df7ee83fabe6e3d525b694074856c',
+            analyticsTw: '2d1633b0ecec025d81976088e50013c5eb732058930660d1faaaf807948f3444',
             pdfPath: '/case-studies-pdf/salt+tata.pdf',
           }}
         />
