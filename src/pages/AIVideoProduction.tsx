@@ -22,6 +22,36 @@ import { aiVideoProductionData as data } from '../data/aiVideoProductionData';
 
 const { gsap, ScrollTrigger } = window as any;
 
+const aiVideoChannels = [
+  'Reels & Shorts',
+  'Training Modules',
+  'Employer Branding',
+  'YouTube Videos',
+  'LinkedIn Ads',
+  'Website Banners',
+  'Multilingual Updates',
+  'Digital Ads',
+  'Internal Communication',
+  'Product Explainers',
+  'Sales Decks'
+];
+
+type ChannelPositionStyle = React.CSSProperties & Record<'--chip-left-desktop' | '--chip-top-desktop', string>;
+
+const aiVideoChannelPositions: ChannelPositionStyle[] = [
+  { '--chip-left-desktop': '50%', '--chip-top-desktop': '5%' },
+  { '--chip-left-desktop': '74%', '--chip-top-desktop': '12%' },
+  { '--chip-left-desktop': '91%', '--chip-top-desktop': '31%' },
+  { '--chip-left-desktop': '94%', '--chip-top-desktop': '56%' },
+  { '--chip-left-desktop': '84%', '--chip-top-desktop': '79%' },
+  { '--chip-left-desktop': '62%', '--chip-top-desktop': '93%' },
+  { '--chip-left-desktop': '37%', '--chip-top-desktop': '93%' },
+  { '--chip-left-desktop': '16%', '--chip-top-desktop': '79%' },
+  { '--chip-left-desktop': '5%', '--chip-top-desktop': '56%' },
+  { '--chip-left-desktop': '9%', '--chip-top-desktop': '31%' },
+  { '--chip-left-desktop': '25%', '--chip-top-desktop': '12%' }
+];
+
 const AIVideoProduction: React.FC = () => {
   useServicePageBackground();
 
@@ -38,30 +68,225 @@ const AIVideoProduction: React.FC = () => {
         --chip-left: var(--chip-left-desktop);
         --chip-top: var(--chip-top-desktop);
       }
+      .ai-video-signal-rail-stage {
+        display: none;
+      }
       @media (max-width: 768px) {
-        .ai-video-orbit .svc-channel-chip:nth-child(1) { --chip-left: 50%; --chip-top: 4%; }
-        .ai-video-orbit .svc-channel-chip:nth-child(2) { --chip-left: 80%; --chip-top: 16%; }
-        .ai-video-orbit .svc-channel-chip:nth-child(3) { --chip-left: 85%; --chip-top: 32%; }
-        .ai-video-orbit .svc-channel-chip:nth-child(4) { --chip-left: 88%; --chip-top: 50%; }
-        .ai-video-orbit .svc-channel-chip:nth-child(5) { --chip-left: 85%; --chip-top: 68%; }
-        .ai-video-orbit .svc-channel-chip:nth-child(6) { --chip-left: 80%; --chip-top: 84%; }
-        .ai-video-orbit .svc-channel-chip:nth-child(7) { --chip-left: 50%; --chip-top: 96%; }
-        .ai-video-orbit .svc-channel-chip:nth-child(8) { --chip-left: 20%; --chip-top: 84%; }
-        .ai-video-orbit .svc-channel-chip:nth-child(9) { --chip-left: 15%; --chip-top: 68%; }
-        .ai-video-orbit .svc-channel-chip:nth-child(10) { --chip-left: 15%; --chip-top: 32%; }
-        .ai-video-orbit .svc-channel-chip:nth-child(11) { --chip-left: 20%; --chip-top: 16%; }
-        
-        #channels-stage.svc-channels-stage { min-height: 900px !important; }
+        .ai-video-channels .container {
+          width: min(100% - 2rem, 1120px);
+        }
+        .ai-video-channels .svc-channels-intro {
+          margin-bottom: 2.25rem;
+        }
+        .ai-video-channels-orbit-stage {
+          display: none !important;
+        }
+        body.ai-video-production-page .scroll-to-top {
+          display: none !important;
+        }
+        .ai-video-signal-rail-stage {
+          --rail-x: 34px;
+          --card-offset: 86px;
+          display: block;
+          position: relative;
+          width: 100%;
+          margin: 3rem auto 0;
+          padding: 4.5rem 0 0;
+          overflow: visible;
+        }
+        .ai-video-signal-brand {
+          position: absolute;
+          top: 0;
+          left: calc(var(--rail-x) - 31px);
+          width: 62px;
+          height: 62px;
+          border: 1px solid rgba(168, 130, 255, 0.72);
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          background: rgba(4, 0, 24, 0.86);
+          box-shadow: 0 0 0 rgba(138, 92, 246, 0);
+          opacity: 0;
+          transform: scale(0.92);
+          transition: opacity 350ms ease, transform 350ms ease, box-shadow 350ms ease;
+          z-index: 4;
+        }
+        .ai-video-signal-brand svg {
+          width: 36px;
+          height: 36px;
+          display: block;
+        }
+        .ai-video-signal-brand path {
+          fill: none;
+          stroke: rgba(245, 239, 255, 0.96);
+          stroke-width: 20;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        .ai-video-signal-brand.is-visible,
+        .ai-video-signal-rail-stage.is-reduced .ai-video-signal-brand {
+          opacity: 1;
+          transform: scale(1);
+          box-shadow: 0 0 22px rgba(138, 92, 246, 0.62);
+        }
+        .ai-video-signal-brand.is-pulsing {
+          transform: scale(1.08);
+          box-shadow: 0 0 34px rgba(187, 156, 255, 0.86);
+        }
+        .ai-video-signal-rail-line {
+          position: absolute;
+          top: 3.5rem;
+          bottom: 0.65rem;
+          left: var(--rail-x);
+          width: 2px;
+          border-radius: 999px;
+          background: linear-gradient(180deg, rgba(222, 205, 255, 0.98), rgba(138, 92, 246, 0.88) 48%, rgba(93, 40, 220, 0.18));
+          box-shadow: 0 0 16px rgba(138, 92, 246, 0.45);
+          transform: scaleY(0);
+          transform-origin: top;
+          opacity: 0;
+          transition: opacity 220ms ease, transform 500ms ease;
+          z-index: 1;
+        }
+        .ai-video-signal-rail-line.is-visible,
+        .ai-video-signal-rail-stage.is-reduced .ai-video-signal-rail-line {
+          opacity: 1;
+          transform: scaleY(1);
+        }
+        .ai-video-signal-list {
+          position: relative;
+          display: grid;
+          gap: 0.95rem;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          z-index: 2;
+        }
+        .ai-video-signal-item {
+          position: relative;
+          margin-left: var(--card-offset);
+          opacity: 0;
+          transform: translateY(16px);
+          transition: opacity 300ms ease, transform 300ms ease;
+        }
+        .ai-video-signal-item.is-visible,
+        .ai-video-signal-rail-stage.is-reduced .ai-video-signal-item {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .ai-video-signal-connector {
+          position: absolute;
+          top: 50%;
+          left: calc(var(--rail-x) - var(--card-offset));
+          width: calc(var(--card-offset) - var(--rail-x));
+          height: 2px;
+          transform: translateY(-50%);
+          border-radius: 999px;
+          background: rgba(138, 92, 246, 0.34);
+          box-shadow: 0 0 0 rgba(138, 92, 246, 0);
+          transition: background 180ms ease, box-shadow 180ms ease;
+        }
+        .ai-video-signal-connector::before {
+          content: "";
+          position: absolute;
+          left: -5px;
+          top: 50%;
+          width: 10px;
+          height: 10px;
+          border: 2px solid rgba(229, 217, 255, 0.86);
+          border-radius: 50%;
+          background: #050014;
+          box-shadow: 0 0 14px rgba(138, 92, 246, 0.58);
+          transform: translateY(-50%);
+        }
+        .ai-video-signal-item.is-active .ai-video-signal-connector {
+          background: rgba(208, 187, 255, 0.95);
+          box-shadow: 0 0 18px rgba(138, 92, 246, 0.82);
+        }
+        .ai-video-signal-card {
+          min-height: 72px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          padding: 1rem 1rem;
+          border: 1px solid rgba(138, 92, 246, 0.34);
+          border-radius: 8px;
+          background: rgba(3, 0, 20, 0.98);
+          box-shadow: inset 0 0 26px rgba(28, 11, 71, 0.2);
+          color: var(--white);
+          font-family: var(--font-body);
+          font-size: clamp(0.88rem, 3.8vw, 1rem);
+          font-weight: 650;
+          letter-spacing: 0;
+          line-height: 1.35;
+          transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+        }
+        .ai-video-signal-item.is-active .ai-video-signal-card {
+          border-color: rgba(201, 178, 255, 0.92);
+          box-shadow: 0 0 20px rgba(138, 92, 246, 0.28), inset 0 0 28px rgba(95, 50, 195, 0.22);
+          background: rgba(8, 2, 30, 0.98);
+        }
+        .ai-video-signal-dot {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 11px;
+          height: 11px;
+          border-radius: 50%;
+          background: #f5efff;
+          box-shadow: 0 0 14px rgba(168, 130, 255, 1), 0 0 26px rgba(138, 92, 246, 0.72);
+          opacity: 0;
+          pointer-events: none;
+          transform: translate3d(var(--rail-x), 0, 0);
+          z-index: 5;
+        }
+        .ai-video-signal-rail-stage.is-complete .ai-video-signal-rail-line {
+          box-shadow: 0 0 18px rgba(138, 92, 246, 0.5);
+        }
+      }
+      @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+        .ai-video-signal-brand,
+        .ai-video-signal-rail-line,
+        .ai-video-signal-item,
+        .ai-video-signal-card,
+        .ai-video-signal-connector {
+          transition: none !important;
+          animation: none !important;
+        }
+        .ai-video-signal-dot {
+          display: none !important;
+        }
+      }
+      @media (max-width: 380px) {
+        .ai-video-signal-rail-stage {
+          --rail-x: 27px;
+          --card-offset: 72px;
+        }
+        .ai-video-signal-brand {
+          left: calc(var(--rail-x) - 27px);
+          width: 54px;
+          height: 54px;
+        }
+        .ai-video-signal-brand svg {
+          width: 31px;
+          height: 31px;
+        }
+        .ai-video-signal-card {
+          padding: 0.9rem 0.85rem;
+        }
       }
     `;
     document.head.appendChild(style);
+    document.body.classList.add('ai-video-production-page');
     
+    const pageScrollTriggers: any[] = [];
+
     // Stats reveal sequence
     const statsGrid = document.querySelector('.svc-stats-grid');
     const statsCols = document.querySelectorAll('.svc-stat');
     if (statsGrid && statsCols.length && gsap && ScrollTrigger) {
       gsap.set(statsCols, { opacity: 0, y: 32 });
-      ScrollTrigger.create({
+      const statsTrigger = ScrollTrigger.create({
         trigger: statsGrid,
         start: 'top 70%',
         once: true,
@@ -94,6 +319,7 @@ const AIVideoProduction: React.FC = () => {
           });
         }
       });
+      pageScrollTriggers.push(statsTrigger);
     }
 
     // Problem gaps broken-chain specific animation for AI Video
@@ -101,7 +327,7 @@ const AIVideoProduction: React.FC = () => {
     if (gapItems.length && gsap && ScrollTrigger) {
       // Clear any generic ScrollTriggers on this element from other scripts
       // Then re-init for specific animation
-      ScrollTrigger.create({
+      const gapTrigger = ScrollTrigger.create({
         trigger: '.svc-problem-gaps',
         start: 'top 65%',
         once: true,
@@ -120,6 +346,193 @@ const AIVideoProduction: React.FC = () => {
           });
         }
       });
+      pageScrollTriggers.push(gapTrigger);
+    }
+
+    const isMobileChannels = window.matchMedia('(max-width: 768px)').matches;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Mobile signal rail animation
+    const signalStage = document.getElementById('ai-video-signal-rail');
+    let signalObs: IntersectionObserver | null = null;
+    let signalCancelled = false;
+    let signalScrollRaf: number | null = null;
+    let checkSignalRailTrigger: () => void = () => {};
+    let signalItemObs: IntersectionObserver | null = null;
+    let signalDotPlayed = false;
+    let visibleSignalCount = 0;
+    let lastRevealedSignalItem: HTMLElement | null = null;
+    let signalRevealQueue: HTMLElement[] = [];
+    let signalRevealTimer: number | null = null;
+    const signalTimers: number[] = [];
+
+    const wait = (ms: number) => new Promise<void>((resolve) => {
+      const timer = window.setTimeout(resolve, ms);
+      signalTimers.push(timer);
+    });
+
+    const animateSignalDot = async (item: HTMLElement, dot: HTMLElement, brand: HTMLElement) => {
+      const card = item.querySelector<HTMLElement>('.ai-video-signal-card');
+      if (!card) {
+        await wait(520);
+        return;
+      }
+
+      const stageRect = signalStage!.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+      const brandRect = brand.getBoundingClientRect();
+      const railX = parseFloat(getComputedStyle(signalStage!).getPropertyValue('--rail-x')) || 34;
+      const signalY = cardRect.top - stageRect.top + cardRect.height / 2;
+      const brandY = brandRect.top - stageRect.top + brandRect.height / 2;
+      const startX = cardRect.left - stageRect.left - 5;
+
+      dot.style.transition = 'none';
+      dot.style.opacity = '0';
+      dot.style.transform = `translate3d(${startX}px, ${signalY}px, 0)`;
+      dot.getBoundingClientRect();
+
+      dot.style.opacity = '1';
+      dot.style.transition = 'transform 160ms ease-out, opacity 100ms ease-out';
+      dot.style.transform = `translate3d(${railX - 5}px, ${signalY}px, 0)`;
+      await wait(160);
+      if (signalCancelled) return;
+
+      dot.style.transition = 'transform 420ms cubic-bezier(0.33, 0, 0.2, 1), opacity 120ms ease-out';
+      dot.style.transform = `translate3d(${railX - 5}px, ${brandY}px, 0)`;
+      await wait(420);
+      dot.style.opacity = '0';
+      await wait(70);
+    };
+
+    const playFinalSignalDot = async (dot: HTMLElement, brand: HTMLElement) => {
+      if (signalDotPlayed || !lastRevealedSignalItem) return;
+      signalDotPlayed = true;
+      await wait(120);
+      if (signalCancelled) return;
+      await animateSignalDot(lastRevealedSignalItem, dot, brand);
+      if (signalCancelled) return;
+
+      brand.classList.add('is-pulsing');
+      await wait(220);
+      brand.classList.remove('is-pulsing');
+
+      signalStage?.classList.add('is-complete');
+    };
+
+    const playSignalRail = async () => {
+      if (!signalStage || signalStage.classList.contains('is-running')) return;
+
+      const brand = signalStage.querySelector<HTMLElement>('.ai-video-signal-brand');
+      const rail = signalStage.querySelector<HTMLElement>('.ai-video-signal-rail-line');
+      const dot = signalStage.querySelector<HTMLElement>('.ai-video-signal-dot');
+      const items = [...signalStage.querySelectorAll<HTMLElement>('[data-signal-card]')];
+      if (!brand || !rail || !dot || !items.length) return;
+
+      signalStage.classList.add('is-running');
+      brand.classList.add('is-visible');
+      await wait(180);
+      if (signalCancelled) return;
+
+      rail.classList.add('is-visible');
+      await wait(180);
+      if (signalCancelled) return;
+
+      const revealItem = (item: HTMLElement) => {
+        if (item.classList.contains('is-visible')) return;
+        item.classList.add('is-visible', 'is-active');
+        lastRevealedSignalItem = item;
+        visibleSignalCount += 1;
+        const activeTimer = window.setTimeout(() => item.classList.remove('is-active'), 260);
+        signalTimers.push(activeTimer);
+
+        if (visibleSignalCount >= items.length) {
+          signalItemObs?.disconnect();
+          playFinalSignalDot(dot, brand);
+        }
+      };
+
+      const flushRevealQueue = () => {
+        signalRevealTimer = null;
+        if (signalCancelled) return;
+
+        const nextItem = signalRevealQueue.shift();
+        if (nextItem) {
+          revealItem(nextItem);
+        }
+
+        if (signalRevealQueue.length) {
+          signalRevealTimer = window.setTimeout(flushRevealQueue, 90);
+          signalTimers.push(signalRevealTimer);
+        }
+      };
+
+      const queueRevealItem = (item: HTMLElement) => {
+        if (item.classList.contains('is-visible') || signalRevealQueue.includes(item)) return;
+
+        signalRevealQueue.push(item);
+        if (!signalRevealTimer) {
+          signalRevealTimer = window.setTimeout(flushRevealQueue, 60);
+          signalTimers.push(signalRevealTimer);
+        }
+      };
+
+      signalItemObs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          queueRevealItem(entry.target as HTMLElement);
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+
+      items.forEach((item) => {
+        signalItemObs?.observe(item);
+        const rect = item.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.88 && rect.bottom > 0) {
+          queueRevealItem(item);
+        }
+      });
+    };
+
+    if (signalStage && isMobileChannels) {
+      if (reducedMotion) {
+        signalStage.classList.add('is-reduced', 'is-complete');
+      } else {
+        const triggerSignalRail = () => {
+          if (signalStage.classList.contains('is-running')) return;
+          if (signalScrollRaf) {
+            window.cancelAnimationFrame(signalScrollRaf);
+            signalScrollRaf = null;
+          }
+          window.removeEventListener('scroll', checkSignalRailTrigger);
+          window.removeEventListener('resize', checkSignalRailTrigger);
+          playSignalRail();
+        };
+
+        checkSignalRailTrigger = () => {
+          if (signalScrollRaf) return;
+          signalScrollRaf = window.requestAnimationFrame(() => {
+            signalScrollRaf = null;
+            const triggerRect = signalStage.getBoundingClientRect();
+            const triggerLine = Math.min(window.innerHeight * 0.68, 620);
+            if (triggerRect.top <= triggerLine && triggerRect.bottom > 0) {
+              signalObs?.disconnect();
+              triggerSignalRail();
+            }
+          });
+        };
+
+        signalObs = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            observer.disconnect();
+            checkSignalRailTrigger();
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
+        signalObs.observe(signalStage);
+
+        window.addEventListener('scroll', checkSignalRailTrigger, { passive: true });
+        window.addEventListener('resize', checkSignalRailTrigger);
+        checkSignalRailTrigger();
+      }
     }
 
     // Channels orbit animation
@@ -134,7 +547,7 @@ const AIVideoProduction: React.FC = () => {
     let sectionObs: IntersectionObserver | null = null;
     let measureFn: () => void = () => {};
 
-    if (stage && linesSvg && centerEl && centerPath && gsap && ScrollTrigger) {
+    if (!isMobileChannels && stage && linesSvg && centerEl && centerPath && gsap && ScrollTrigger) {
       let chipPositions: any[] = [];
       let cx = 0, cy = 0;
       let markRadius = 80;
@@ -239,11 +652,22 @@ const AIVideoProduction: React.FC = () => {
 
     return () => {
       if (document.head.contains(style)) document.head.removeChild(style);
+      document.body.classList.remove('ai-video-production-page');
       window.removeEventListener('resize', measureFn);
       if (pulseTimer) clearInterval(pulseTimer);
+      signalCancelled = true;
+      signalTimers.forEach((timer) => clearTimeout(timer));
+      signalRevealQueue = [];
+      signalRevealTimer = null;
+      if (signalScrollRaf) window.cancelAnimationFrame(signalScrollRaf);
+      window.removeEventListener('scroll', checkSignalRailTrigger);
+      window.removeEventListener('resize', checkSignalRailTrigger);
+      if (signalObs) signalObs.disconnect();
+      if (signalItemObs) signalItemObs.disconnect();
       clearTimeout(measureTimeout1);
       clearTimeout(measureTimeout2);
       if (sectionObs) sectionObs.disconnect();
+      pageScrollTriggers.forEach((trigger) => trigger.kill());
     };
   }, []);
 
@@ -303,11 +727,11 @@ const AIVideoProduction: React.FC = () => {
       <ServiceHandoff />
       
       {/* CHANNELS */}
-      <section className="svc-channels">
+      <section className="svc-channels ai-video-channels">
         <div className="container">
           <h2 className="svc-h2 split-text">Built for the Screens People Actually Watch</h2>
           <p className="svc-channels-intro">AI-led videos can be created and adapted for:</p>
-          <div className="svc-channels-stage" id="channels-stage">
+          <div className="svc-channels-stage ai-video-channels-orbit-stage" id="channels-stage">
             <svg className="svc-channels-orbit-svg" id="channels-orbit-lines" aria-hidden="true"></svg>
             <div className="svc-channels-center" aria-hidden="true">
               <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
@@ -315,18 +739,27 @@ const AIVideoProduction: React.FC = () => {
               </svg>
             </div>
             <div className="svc-channels-orbit ai-video-orbit">
-              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '50%', '--chip-top-desktop': '5%' } as React.CSSProperties}>Reels & Shorts</span>
-              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '74%', '--chip-top-desktop': '12%' } as React.CSSProperties}>Training Modules</span>
-              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '91%', '--chip-top-desktop': '31%' } as React.CSSProperties}>Employer Branding</span>
-              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '94%', '--chip-top-desktop': '56%' } as React.CSSProperties}>YouTube Videos</span>
-              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '84%', '--chip-top-desktop': '79%' } as React.CSSProperties}>LinkedIn Ads</span>
-              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '62%', '--chip-top-desktop': '93%' } as React.CSSProperties}>Website Banners</span>
-              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '37%', '--chip-top-desktop': '93%' } as React.CSSProperties}>Multilingual Updates</span>
-              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '16%', '--chip-top-desktop': '79%' } as React.CSSProperties}>Digital Ads</span>
-              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '5%', '--chip-top-desktop': '56%' } as React.CSSProperties}>Internal Communication</span>
-              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '9%', '--chip-top-desktop': '31%' } as React.CSSProperties}>Product Explainers</span>
-              <span className="svc-channel-chip" style={{ '--chip-left-desktop': '25%', '--chip-top-desktop': '12%' } as React.CSSProperties}>Sales Decks</span>
+              {aiVideoChannels.map((channel, i) => (
+                <span className="svc-channel-chip" style={aiVideoChannelPositions[i]} key={channel}>{channel}</span>
+              ))}
             </div>
+          </div>
+          <div className="ai-video-signal-rail-stage" id="ai-video-signal-rail">
+            <div className="ai-video-signal-brand" aria-hidden="true">
+              <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1014.2,569.56c1.74-38.31.87-92.29-14.17-126.43-4.45-10.09-11.39-18.02-21.2-22.92-19.98-9.99-55.06-15.74-77.2-15.78l-54.99-.1c-11.88-.02-22.87-4.01-24.19-14.77-1.4-11.46,9.4-19.23,20.5-20.7,37.6-5.01,74.9-7.39,112.77-5.34,18.7,1.01,36.2,3.78,53.65,9.6,17.16,5.73,29.66,17.62,35.66,34.79s8.71,34.06,9.87,52.44c2.45,39.04-.02,77.43-5.33,116.08-1.52,11.09-10.07,21.87-21.85,19.47-10.45-2.12-14.04-14.54-13.51-26.33Z" />
+              </svg>
+            </div>
+            <div className="ai-video-signal-rail-line" aria-hidden="true"></div>
+            <ol className="ai-video-signal-list">
+              {aiVideoChannels.map((channel) => (
+                <li className="ai-video-signal-item" data-signal-card key={channel}>
+                  <span className="ai-video-signal-connector" aria-hidden="true"></span>
+                  <div className="ai-video-signal-card">{channel}</div>
+                </li>
+              ))}
+            </ol>
+            <span className="ai-video-signal-dot" aria-hidden="true"></span>
           </div>
           <p style={{ textAlign: 'center', color: 'var(--soft-grey)', fontSize: '1.15rem', marginTop: '3rem', fontStyle: 'italic' }}>
             One idea can become a film, a teaser, a vertical cut, an internal video, and an ad asset.<br/>That is where AI starts creating scale.

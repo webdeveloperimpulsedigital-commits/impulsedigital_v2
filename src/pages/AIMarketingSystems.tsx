@@ -110,7 +110,7 @@ const AIMarketingSystems: React.FC = () => {
   }, []);
 
   return (
-    <main id="main-content" ref={pageRef}>
+    <main id="main-content" className="service-listing-page" ref={pageRef}>
       <Helmet>
         <title>AI Marketing Systems | Impulse Digital</title>
         <meta name="description" content="Deploy autonomous, intelligent systems that scale your marketing exponentially without human bottlenecks." />

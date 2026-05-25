@@ -5,6 +5,7 @@ import ServiceHandoff from '../components/Service/ServiceHandoff';
 import Logos from '../components/Logos';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
+import MobileSignalRail from '../components/Service/MobileSignalRail';
 import { useServicePageBackground } from '../hooks/useServicePageBackground';
 
 import {
@@ -24,6 +25,17 @@ import { agenticAiData } from '../data/agenticAiData';
 
 const { gsap, ScrollTrigger } = window as any;
 
+const agenticChannels = [
+  'WhatsApp',
+  'Email',
+  'Voice notes',
+  'Facebook Messenger',
+  'Instagram DM',
+  'SMS',
+  'Website chat',
+  'CRM workflows'
+];
+
 const AgenticAI: React.FC = () => {
   useServicePageBackground();
 
@@ -41,7 +53,9 @@ const AgenticAI: React.FC = () => {
     let sectionObs: IntersectionObserver | null = null;
     let measureFn: () => void = () => {};
 
-    if (stage && linesSvg && centerEl && centerPath && gsap && ScrollTrigger) {
+    const isMobileChannels = window.matchMedia('(max-width: 768px)').matches;
+
+    if (!isMobileChannels && stage && linesSvg && centerEl && centerPath && gsap && ScrollTrigger) {
       let chipPositions: any[] = [];
       let cx = 0, cy = 0;
       let markRadius = 80;
@@ -195,11 +209,11 @@ const AgenticAI: React.FC = () => {
       <ServiceHandoff />
       
       {/* CHANNELS — Built Across the Channels Your Customers Already Use */}
-      <section className="svc-channels">
+      <section className="svc-channels has-mobile-signal">
         <div className="container">
           <h2 className="svc-h2 split-text">Built Across the Channels Your Customers Already Use</h2>
           <p className="svc-channels-intro">Your customers do not think in channels. They message where it is convenient. Your AI system should keep the experience connected across:</p>
-          <div className="svc-channels-stage" id="channels-stage">
+            <div className="svc-channels-stage" id="channels-stage">
             <svg className="svc-channels-orbit-svg" id="channels-orbit-lines" aria-hidden="true"></svg>
             <div className="svc-channels-center" aria-hidden="true">
               <svg viewBox="801 344 274 272" xmlns="http://www.w3.org/2000/svg">
@@ -217,6 +231,7 @@ const AgenticAI: React.FC = () => {
               <span className="svc-channel-chip" style={{ '--chip-left': '15%', '--chip-top': '50%' } as React.CSSProperties}>CRM workflows</span>
             </div>
           </div>
+          <MobileSignalRail items={agenticChannels} />
         </div>
       </section>
 

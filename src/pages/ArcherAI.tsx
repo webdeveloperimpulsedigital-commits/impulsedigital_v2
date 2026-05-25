@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import React, { useEffect } from 'react';
 import ServiceHero from '../components/Service/ServiceHero';
 import ServiceHandoff from '../components/Service/ServiceHandoff';
+import MobileRadarStack from '../components/Service/MobileRadarStack';
 import Logos from '../components/Logos';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
@@ -19,10 +20,22 @@ import {
 
 import { archerAiData } from '../data/archerAiData';
 
+const archerChannelSignals = [
+  { text: 'Your referrals work, but do not scale.', left: '50%', top: '10%' },
+  { text: 'Your closers convert, but the top of the funnel is thin.', left: '85%', top: '30%' },
+  { text: 'Your ICP is narrow, senior, technical, or hard to reach.', left: '85%', top: '70%' },
+  { text: 'Your offer needs context before someone takes it seriously.', left: '50%', top: '90%' },
+  { text: 'Your sales team spends too much time finding the next right account.', left: '15%', top: '70%' },
+  { text: 'Your next stage of growth needs a system, not just a network.', left: '15%', top: '30%' }
+];
+
 const ArcherAI: React.FC = () => {
   useServicePageBackground();
 
   useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile) return;
+
     const { gsap } = window as any;
     const stage = document.getElementById('channels-stage');
     const linesSvg = document.getElementById('channels-orbit-lines');
@@ -138,7 +151,7 @@ const ArcherAI: React.FC = () => {
       <ServiceHandoff />
       
       {/* CHANNELS — Built for Businesses Where Every Conversation Counts */}
-      <section className="svc-channels">
+      <section className="svc-channels archer-channels has-mobile-radar">
         <div className="container">
           <h2 className="svc-h2 split-text">Built for Businesses Where<br/>Every Conversation Counts</h2>
           <p className="svc-channels-intro">Archer AI is not for blasting thousands of people. It is built for B2B businesses where the buyer is specific, the deal size justifies precision, and the sales cycle depends on real decision-makers.</p>
@@ -167,14 +180,18 @@ const ArcherAI: React.FC = () => {
               </svg>
             </div>
             <div className="svc-channels-orbit">
-              <span className="svc-channel-chip" style={{ '--chip-left': '50%', '--chip-top': '10%', transform: 'translate(-50%, -50%)' } as React.CSSProperties}>Your referrals work, but do not scale.</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '85%', '--chip-top': '30%', transform: 'translate(-50%, -50%)' } as React.CSSProperties}>Your closers convert, but the top of the funnel is thin.</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '85%', '--chip-top': '70%', transform: 'translate(-50%, -50%)' } as React.CSSProperties}>Your ICP is narrow, senior, technical, or hard to reach.</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '50%', '--chip-top': '90%', transform: 'translate(-50%, -50%)' } as React.CSSProperties}>Your offer needs context before someone takes it seriously.</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '15%', '--chip-top': '70%', transform: 'translate(-50%, -50%)' } as React.CSSProperties}>Your sales team spends too much time finding the next right account.</span>
-              <span className="svc-channel-chip" style={{ '--chip-left': '15%', '--chip-top': '30%', transform: 'translate(-50%, -50%)' } as React.CSSProperties}>Your next stage of growth needs a system, not just a network.</span>
+              {archerChannelSignals.map((item) => (
+                <span
+                  className="svc-channel-chip"
+                  style={{ '--chip-left': item.left, '--chip-top': item.top, transform: 'translate(-50%, -50%)' } as React.CSSProperties}
+                  key={item.text}
+                >
+                  {item.text}
+                </span>
+              ))}
             </div>
           </div>
+          <MobileRadarStack items={archerChannelSignals.map((item) => item.text)} />
           <p style={{ textAlign: 'center', marginTop: '3rem', fontSize: '1.1rem', color: 'var(--soft-grey)', opacity: 0.85 }}>The point is not more outreach.</p>
           <p style={{ textAlign: 'center', fontSize: '1.3rem', color: 'var(--white)', fontFamily: 'var(--font-heading)', fontWeight: 600, marginTop: '0.5rem' }}>The point is better reasons to start the right conversation.</p>
         </div>

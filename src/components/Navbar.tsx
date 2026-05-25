@@ -9,16 +9,40 @@ const Navbar: React.FC = () => {
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
 
   useEffect(() => {
-    const lenis = (window as any).globalLenis;
+    const checkAndToggleLenis = () => {
+      const lenis = (window as any).globalLenis;
+      if (lenis) {
+        if (isMobileMenuOpen) {
+          lenis.stop();
+        } else {
+          lenis.start();
+        }
+        return true;
+      }
+      return false;
+    };
+
     if (isMobileMenuOpen) {
       document.body.classList.add('mobile-menu-active');
-      lenis?.stop();
     } else {
       document.body.classList.remove('mobile-menu-active');
-      lenis?.start();
     }
+
+    const success = checkAndToggleLenis();
+
+    let intervalId: any;
+    if (!success && isMobileMenuOpen) {
+      intervalId = setInterval(() => {
+        if (checkAndToggleLenis()) {
+          clearInterval(intervalId);
+        }
+      }, 50);
+    }
+
     return () => {
       document.body.classList.remove('mobile-menu-active');
+      if (intervalId) clearInterval(intervalId);
+      const lenis = (window as any).globalLenis;
       lenis?.start();
     };
   }, [isMobileMenuOpen]);
@@ -63,7 +87,7 @@ const Navbar: React.FC = () => {
           <Link to="/" className="logo" onClick={handleNavClick}><img src={`${import.meta.env.BASE_URL}ImpulseDigital_Logo.svg`} alt="Impulse Digital - Leading Digital Marketing Agency in Mumbai" /></Link>
         </div>
         
-        <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+        <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`} data-lenis-prevent>
           <Link to="/" className="nav-item" data-cursor="GO" onClick={handleNavClick}>Home</Link>
           <Link to="/about-us/" className="nav-item" data-cursor="GO" onClick={handleNavClick}>About Us</Link>
           <div className="nav-dropdown" onMouseLeave={handleDropdownMouseLeave}>
