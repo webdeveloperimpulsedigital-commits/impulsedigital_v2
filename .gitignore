@@ -26,5 +26,3 @@ dist-ssr
 # Ignore zip files
 *.zip
 
-# Ignore blog directory
-blog/
