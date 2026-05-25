@@ -155,23 +155,41 @@ const server = app.listen(PORT, async () => {
         timeout: 30000
       });
       
-      // Wait for React Helmet to inject page-specific tags
-      // Checks that title has moved away from the generic index.html fallback
-      await page.waitForFunction(() => {
-        const defaultTitles = [
+      // Wait for React to mount the page component and Helmet to inject page-specific tags.
+      // The Suspense boundary (key={location.key}) means there's a brief fallback period
+      // before the page component mounts — so we poll until the title stabilises.
+      let stableTitle = '';
+      let stableCount = 0;
+      const maxChecks = 30; // 3 seconds max
+      for (let i = 0; i < maxChecks; i++) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        const currentTitle = await page.evaluate(() => document.title.trim());
+        const hasMeta = await page.evaluate(() => !!document.querySelector('meta[name="description"][content]'));
+        const isGeneric = [
           'Impulse Digital | Digital Marketing Agency in Mumbai',
           'Impulse Digital Mumbai | AI-Native Growth Intelligence',
           '',
-        ];
-        const title = document.title.trim();
-        const hasMeta = !!document.querySelector('meta[name="description"]');
-        return title.length > 0 && !defaultTitles.includes(title) && hasMeta;
-      }, { timeout: 8000 }).catch(() => {
-        console.warn(`Warning: Helmet title may not have updated for route: ${route}`);
-      });
+        ].includes(currentTitle);
 
-      // Give a tiny buffer for GSAP or any final DOM updates
-      await new Promise(resolve => setTimeout(resolve, 500));
+        if (currentTitle.length > 0 && !isGeneric && hasMeta) {
+          if (currentTitle === stableTitle) {
+            stableCount++;
+            if (stableCount >= 3) break; // stable for 300ms → done
+          } else {
+            stableTitle = currentTitle;
+            stableCount = 1;
+          }
+        } else {
+          stableTitle = '';
+          stableCount = 0;
+        }
+      }
+      if (!stableTitle) {
+        console.warn(`Warning: Helmet title may not have updated for route: ${route}`);
+      }
+
+      // Give a tiny buffer for any final DOM updates
+      await new Promise(resolve => setTimeout(resolve, 300));
 
       let html = await page.content();
       
