@@ -86,7 +86,7 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
         if (nameField) $zohoObj.salesiq.visitor.name(nameField.value);
         if (emailField) $zohoObj.salesiq.visitor.email(emailField.value);
       }
-    } catch (_) {}
+    } catch (_) { }
 
     // Disable submit to prevent duplicate submissions
     const submitBtn = form.querySelector('.formsubmit-btn') as HTMLButtonElement | null;
@@ -300,11 +300,7 @@ const DownloadCaseStudyForm: React.FC<DownloadCaseStudyFormProps> = ({ ctaText, 
         </label>
 
         <label style={{ display: 'flex', flexDirection: 'column' }}>
-<<<<<<< HEAD
           <span style={labelSpanStyle}>Company Website <span style={{ color: 'rgba(255,255,255,0.3)', fontWeight: 400, textTransform: 'none', fontSize: '0.72rem' }}>(optional)</span></span>
-=======
-          <span style={labelSpanStyle}>Company Website <span style={{ color: '#ef4444' }}>*</span></span>
->>>>>>> 3be22161577460d118702f3d189b222d4ba743d5
           <input
             type="text"
             id={`Website_${zoho.formId}`}
